@@ -146,7 +146,7 @@ THEME = "custom"
 
 # Primary color of your theme. This will be used to customize your theme and
 # auto-generate related colors in POSTS_SECTION_COLORS. Must be a HEX value.
-THEME_COLOR = '#b22222'
+THEME_COLOR = '#0078D7'
 
 # POSTS and PAGES contains (wildcard, destination, template) tuples.
 # (translatable)

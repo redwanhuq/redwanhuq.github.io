@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1484861038.810377
+_modified_time = 1484861205.2133152
 _enable_loop = True
 _template_filename = 'c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/story.tmpl'
 _template_uri = 'story.tmpl'
@@ -38,13 +38,13 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         def content():
             return render_content(context._locals(__M_locals))
-        messages = context.get('messages', UNDEFINED)
-        helper = _mako_get_namespace(context, 'helper')
         post = context.get('post', UNDEFINED)
         comments = _mako_get_namespace(context, 'comments')
-        site_has_comments = context.get('site_has_comments', UNDEFINED)
         enable_comments = context.get('enable_comments', UNDEFINED)
         pheader = _mako_get_namespace(context, 'pheader')
+        site_has_comments = context.get('site_has_comments', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
+        helper = _mako_get_namespace(context, 'helper')
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
@@ -65,13 +65,13 @@ def render_content(context,**pageargs):
     try:
         def content():
             return render_content(context)
-        messages = context.get('messages', UNDEFINED)
-        helper = _mako_get_namespace(context, 'helper')
         post = context.get('post', UNDEFINED)
         comments = _mako_get_namespace(context, 'comments')
-        site_has_comments = context.get('site_has_comments', UNDEFINED)
         enable_comments = context.get('enable_comments', UNDEFINED)
         pheader = _mako_get_namespace(context, 'pheader')
+        site_has_comments = context.get('site_has_comments', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
+        helper = _mako_get_namespace(context, 'helper')
         __M_writer = context.writer()
         __M_writer('\n<article class="post-')
         __M_writer(str(post.meta('type')))
@@ -98,6 +98,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/story.tmpl", "uri": "story.tmpl", "source_encoding": "utf-8", "line_map": {"87": 18, "76": 7, "77": 8, "78": 8, "79": 10, "80": 10, "81": 11, "82": 11, "83": 14, "84": 14, "85": 16, "86": 17, "23": 4, "88": 18, "89": 19, "26": 3, "91": 22, "92": 22, "29": 2, "35": 0, "90": 19, "93": 22, "99": 93, "49": 2, "50": 3, "51": 4, "52": 5, "57": 24, "63": 7}}
+{"line_map": {"87": 18, "76": 7, "77": 8, "78": 8, "79": 10, "80": 10, "81": 11, "82": 11, "83": 14, "84": 14, "85": 16, "86": 17, "23": 4, "88": 18, "89": 19, "26": 3, "91": 22, "92": 22, "29": 2, "35": 0, "90": 19, "93": 22, "99": 93, "49": 2, "50": 3, "51": 4, "52": 5, "57": 24, "63": 7}, "filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/story.tmpl", "source_encoding": "utf-8", "uri": "story.tmpl"}
 __M_END_METADATA
 """
