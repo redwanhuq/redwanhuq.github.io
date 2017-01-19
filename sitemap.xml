@@ -6,87 +6,63 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
-  <loc>https://example.com/</loc>
+  <loc>https://redwanhuq.github.io/</loc>
   <lastmod>2017-01-18T14:51:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/2016/</loc>
-  <lastmod>2017-01-18T23:10:00Z</lastmod>
+  <loc>https://redwanhuq.github.io/archive.html</loc>
+  <lastmod>2017-01-19T21:22:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/2016/12/</loc>
-  <lastmod>2017-01-18T23:10:00Z</lastmod>
+  <loc>https://redwanhuq.github.io/categories/</loc>
+  <lastmod>2017-01-19T21:17:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/2017/</loc>
-  <lastmod>2017-01-18T23:07:00Z</lastmod>
- </url>
- <url>
-  <loc>https://example.com/2017/01/</loc>
-  <lastmod>2017-01-18T23:07:00Z</lastmod>
- </url>
- <url>
-  <loc>https://example.com/archive.html</loc>
-  <lastmod>2017-01-19T19:52:00Z</lastmod>
- </url>
- <url>
-  <loc>https://example.com/categories/</loc>
+  <loc>https://redwanhuq.github.io/categories/data-analytics/</loc>
   <lastmod>2017-01-19T19:47:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/categories/data-analytics/</loc>
-  <lastmod>2017-01-19T19:47:00Z</lastmod>
- </url>
- <url>
-  <loc>https://example.com/categories/data-science/</loc>
+  <loc>https://redwanhuq.github.io/categories/data-science/</loc>
   <lastmod>2017-01-18T23:00:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/categories/machine-learning/</loc>
+  <loc>https://redwanhuq.github.io/categories/machine-learning/</loc>
   <lastmod>2017-01-19T19:47:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/categories/pandas-seaborn-pokemon/</loc>
-  <lastmod>2017-01-18T17:39:00Z</lastmod>
- </url>
- <url>
-  <loc>https://example.com/categories/pandas/</loc>
+  <loc>https://redwanhuq.github.io/categories/pandas/</loc>
   <lastmod>2017-01-18T20:30:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/categories/pokemon/</loc>
+  <loc>https://redwanhuq.github.io/categories/pokemon/</loc>
   <lastmod>2017-01-18T20:30:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/categories/python/</loc>
+  <loc>https://redwanhuq.github.io/categories/python/</loc>
   <lastmod>2017-01-18T20:30:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/categories/seaborn/</loc>
+  <loc>https://redwanhuq.github.io/categories/seaborn/</loc>
   <lastmod>2017-01-18T20:30:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/galleries/</loc>
+  <loc>https://redwanhuq.github.io/galleries/</loc>
   <lastmod>2017-01-17T22:19:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/listings/</loc>
+  <loc>https://redwanhuq.github.io/listings/</loc>
   <lastmod>2017-01-17T22:19:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/pages/about-me/</loc>
-  <lastmod>2017-01-18T14:36:00Z</lastmod>
- </url>
- <url>
-  <loc>https://example.com/pages/about/</loc>
+  <loc>https://redwanhuq.github.io/pages/about/</loc>
   <lastmod>2017-01-18T16:50:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/exploring-pokemon-dataset/</loc>
+  <loc>https://redwanhuq.github.io/posts/exploring-pokemon-dataset/</loc>
   <lastmod>2017-01-17T23:34:00Z</lastmod>
  </url>
  <url>
-  <loc>https://example.com/posts/what-is-data-science/</loc>
+  <loc>https://redwanhuq.github.io/posts/what-is-data-science/</loc>
   <lastmod>2017-01-18T23:00:00Z</lastmod>
  </url>
 </urlset>

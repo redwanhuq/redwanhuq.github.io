@@ -6,47 +6,43 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
-  <loc>https://example.com/categories/data-analytics.xml</loc>
-  <lastmod>2017-01-19T19:52:00Z</lastmod>
+  <loc>https://redwanhuq.github.io/categories/data-analytics.xml</loc>
+  <lastmod>2017-01-19T21:22:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>https://example.com/categories/data-science.xml</loc>
-  <lastmod>2017-01-19T19:47:00Z</lastmod>
+  <loc>https://redwanhuq.github.io/categories/data-science.xml</loc>
+  <lastmod>2017-01-19T21:22:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>https://example.com/categories/machine-learning.xml</loc>
-  <lastmod>2017-01-19T19:47:00Z</lastmod>
+  <loc>https://redwanhuq.github.io/categories/machine-learning.xml</loc>
+  <lastmod>2017-01-19T21:22:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>https://example.com/categories/pandas-seaborn-pokemon.xml</loc>
-  <lastmod>2017-01-18T19:30:00Z</lastmod>
+  <loc>https://redwanhuq.github.io/categories/pandas.xml</loc>
+  <lastmod>2017-01-19T21:22:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>https://example.com/categories/pandas.xml</loc>
-  <lastmod>2017-01-19T19:52:00Z</lastmod>
+  <loc>https://redwanhuq.github.io/categories/pokemon.xml</loc>
+  <lastmod>2017-01-19T21:22:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>https://example.com/categories/pokemon.xml</loc>
-  <lastmod>2017-01-19T19:52:00Z</lastmod>
+  <loc>https://redwanhuq.github.io/categories/python.xml</loc>
+  <lastmod>2017-01-19T21:22:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>https://example.com/categories/python.xml</loc>
-  <lastmod>2017-01-19T19:52:00Z</lastmod>
+  <loc>https://redwanhuq.github.io/categories/seaborn.xml</loc>
+  <lastmod>2017-01-19T21:22:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>https://example.com/categories/seaborn.xml</loc>
-  <lastmod>2017-01-19T19:52:00Z</lastmod>
+  <loc>https://redwanhuq.github.io/galleries/rss.xml</loc>
+  <lastmod>2017-01-19T21:22:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>https://example.com/galleries/rss.xml</loc>
-  <lastmod>2017-01-18T22:00:00Z</lastmod>
+  <loc>https://redwanhuq.github.io/rss.xml</loc>
+  <lastmod>2017-01-19T21:22:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>https://example.com/rss.xml</loc>
-  <lastmod>2017-01-19T19:52:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://example.com/sitemap.xml</loc>
-  <lastmod>2017-01-19T19:52:00Z</lastmod>
+  <loc>https://redwanhuq.github.io/sitemap.xml</loc>
+  <lastmod>2017-01-19T21:22:00Z</lastmod>
  </sitemap>
 </sitemapindex>
