@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1484863951.0536456
+_modified_time = 1484864048.6434255
 _enable_loop = True
 _template_filename = 'c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/comments_helper_muut.tmpl'
 _template_uri = 'comments_helper_muut.tmpl'
@@ -66,6 +66,6 @@ def render_comment_form(context,url,title,identifier):
 
 """
 __M_BEGIN_METADATA
-{"line_map": {"34": 11, "67": 61, "40": 7, "55": 3, "44": 7, "16": 0, "56": 4, "50": 3, "21": 2, "22": 5, "23": 8, "24": 13, "57": 4, "58": 4, "59": 4, "60": 4, "61": 4, "30": 11}, "uri": "comments_helper_muut.tmpl", "source_encoding": "utf-8", "filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/comments_helper_muut.tmpl"}
+{"line_map": {"34": 11, "67": 61, "40": 7, "55": 3, "44": 7, "16": 0, "56": 4, "50": 3, "21": 2, "22": 5, "23": 8, "24": 13, "57": 4, "58": 4, "59": 4, "60": 4, "61": 4, "30": 11}, "filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/comments_helper_muut.tmpl", "source_encoding": "utf-8", "uri": "comments_helper_muut.tmpl"}
 __M_END_METADATA
 """
