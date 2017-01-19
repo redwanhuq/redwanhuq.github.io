@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="A blog about my journey to become a data scientist">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MACHINE MADE</title>
+<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#b22222">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<link rel="canonical" href="https://example.com/">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link rel="prefetch" href="posts/exploring-pokemon-dataset/" type="text/html">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://example.com/">
+
+                <span id="blog-title">MACHINE MADE</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="pages/about/">About</a>
+                </li>
+<li>
+<a href="archive.html">Archive</a>
+                </li>
+<li>
+<a href="categories/">Tags</a>
+                </li>
+<li>
+<a href="rss.xml">Feed</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+
+    
+<div class="postindex">
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/exploring-pokemon-dataset/" class="u-url">Exploring the Pokemon dataset with pandas and seaborn</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                Redwan Huq
+            </span></p>
+            <p class="dateline"><a href="posts/exploring-pokemon-dataset/" rel="bookmark"><time class="published dt-published" datetime="2017-01-11T19:52:05-06:00" title="2017-01-11 19:52">2017-01-11 19:52</time></a></p>
+                <p class="commentline">
+        
+    <a href="posts/exploring-pokemon-dataset/#disqus_thread" data-disqus-identifier="cache/posts/post2.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="p-summary entry-summary">
+    <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The Pokemon dataset is a complete listing of all Pokemon species as of mid-2016, and contains detailed information about their type and statistics. Considering their diversity, it's worthwhile analyzing the datset to identify any insights regarding the design of new Pokemon and to potentially assist players in selecting the best Pokemon. And having been a huge Pokemon fan as a kid, I'm also dreadfully curious.</p>
+<p>While we could easily analyze the dataset using Excel, this software isn't very handy for cleaning messy datasets or telling a story. In addition, Excel is proprietary, not capable of processing large data sets (limited to 1,048,576 rows), and its analyses lack repeatability and transparency. One solution is to use <a href="http://jupyter.org/">Jupyter notebooks</a> for exploratory analysis combined with Python's renowned open-source libraries: <a href="http://pandas.pydata.org/pandas-docs/stable/index.html">pandas</a> for data analysis and <a href="http://seaborn.pydata.org/index.html">seaborn</a> for high-level visualizations.</p>
+<p>The Pokemon dataset was made available on Kaggle <a href="https://www.kaggle.com/abcsds/pokemon">here</a>. Let's begin by loading it and taking a peek inside.
+</p>
+<p class="more"><a href="posts/exploring-pokemon-dataset/">Read more…</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/what-is-data-science/" class="u-url">What exactly is data science?</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                Redwan Huq
+            </span></p>
+            <p class="dateline"><a href="posts/what-is-data-science/" rel="bookmark"><time class="published dt-published" datetime="2016-12-30T14:52:00-06:00" title="2016-12-30 14:52">2016-12-30 14:52</time></a></p>
+                <p class="commentline">
+        
+    <a href="posts/what-is-data-science/#disqus_thread" data-disqus-identifier="cache/posts/post1.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>I figured I'd focus my first post on something generic and what better than to discuss what this blog will revolve around: data science! Actually, when I talk to people about data science, I usually get blank stares, maybe a head nod or two, and if I'm lucky, someone will ask what it is. Because data science is an emerging field, practically everyone has their own definition, so allow me to share mine.
+</p>
+<p class="more"><a href="posts/what-is-data-science/">Read more…</a></p>
+</div>
+    </div>
+    </article>
+</div>
+
+
+
+        
+       <script>var disqus_shortname="machinemade";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script><script type="text/x-mathjax-config">
+            MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+            </script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer"><div class="text-center">
+<p>
+<span class="fa-stack fa-2x">
+  <a href="rss.xml">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-rss fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://twitter.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-twitter fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://github.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-github fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://www.linkedin.com/in/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-linkedin fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="mailto:redwanhuq@gmail.com">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-envelope fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+</p>
+<p>
+  Contents © 2017  <a href="mailto:redwanhuq@gmail.com">Redwan Huq</a>
+  
+  —
+  Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>
+</p>
+</div>
+
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>
