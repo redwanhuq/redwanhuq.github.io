@@ -1,4 +1,4 @@
-<img src="/images/my-photo.thumbnail.jpg" align="left" style="padding-right:20px; padding-bottom:5px"> Hey there! My name is Redwan Huq, and I'm an aspiring data scientist.
+<img src="/images/my-photo.jpg" height="250" align="left" style="padding-right:20px; padding-bottom:5px"> Hey there! My name is Redwan Huq, and I'm an aspiring data scientist.
 
 I recently received my PhD from [Baylor College of Medicine](https://www.bcm.edu/research/labs/christine-beeton) where I developed a [new treatment](http://www.nature.com/articles/srep33808) for autoimmune diseases using carbon nanotechnology. During my spare time, I founded and led a [501(c)(3) non-profit business](http://medcenterconsulting.com) that trains PhDs and MDs to become management consultants. While I've enjoyed working as an interdisciplinary scientist for the past 14 years, my favorite aspect has been generating meaningful insights from data to make more informed decisions.
 
