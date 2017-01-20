@@ -1,4 +1,4 @@
-Sitemap: https://redwanhuq.github.io/sitemapindex.xml
+Sitemap: https://machinemadephd.com/sitemapindex.xml
 
 User-Agent: *
-Host: redwanhuq.github.io
+Host: machinemadephd.com
