@@ -18,7 +18,7 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "Redwan Huq"  # (translatable)
-BLOG_TITLE = "MACHINE MADE"  # (translatable)
+BLOG_TITLE = "MACHINE MADE PHD"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
 SITE_URL = "https://redwanhuq.github.io/"
