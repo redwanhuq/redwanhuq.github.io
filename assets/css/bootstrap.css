@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto Condensed:400,400i,700,700i");
-@import url("https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i");
+@import url("https://fonts.googleapis.com/css?family=Libre Baskerville:400,400i,700");
 
 @import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");/*!
  * bootswatch v3.3.7
@@ -1088,8 +1088,8 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Lora", Georgia, "Times New Roman", Times, serif;
-  font-size: 16px;
+  font-family: "Libre Baskerville", Georgia, "Times New Roman", Times, serif;
+  font-size: 15px;
   line-height: 1.42857143;
   color: #000000;
   background-color: #ffffff;
@@ -5996,7 +5996,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Lora", Georgia, "Times New Roman", Times, serif;
+  font-family: "Libre Baskerville", Georgia, "Times New Roman", Times, serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6114,7 +6114,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Lora", Georgia, "Times New Roman", Times, serif;
+  font-family: "Libre Baskerville", Georgia, "Times New Roman", Times, serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
