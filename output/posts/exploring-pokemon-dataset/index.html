@@ -109,7 +109,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The Pokemon dataset is a complete listing of all Pokemon species as of mid-2016, containing data about their type and statistics. Considering how diverse Pokemon are, it's worthwhile analyzing this datset to identify any insights regarding the design of new Pokemon, how the game is balanced and to potentially assist players in selecting the best Pokemon, if there exists one. And having been a fervent Pokemon fan as a kid, I'm also dreadfully curious!</p>
-<p>While we could easily analyze the dataset using Excel, this software isn't very handy for cleaning messy datasets or telling a story. In addition, Excel is proprietary, not capable of processing large data sets (limited to 1,048,576 rows), and its analyses lack repeatability and transparency. One solution is to use <a href="http://jupyter.org/">Jupyter notebooks</a> for exploratory analysis combined with Python's renowned open-source libraries: <a href="http://pandas.pydata.org/pandas-docs/stable/index.html">pandas</a> for data analysis and <a href="http://seaborn.pydata.org/index.html">seaborn</a> for high-level visualizations.</p>
+<p>While we could easily analyze the dataset using Excel, this software isn't very handy for cleaning messy datasets or telling a story. In addition, Excel is proprietary, not capable of processing large data sets (limited to 1,048,576 rows), and its analyses lack repeatability and transparency. One solution is to use <a href="http://jupyter.org/">Jupyter notebooks</a> for exploratory analysis combined with Python's open-source libraries: <a href="http://pandas.pydata.org/pandas-docs/stable/index.html">pandas</a> for data analysis and <a href="http://seaborn.pydata.org/index.html">seaborn</a> for high-level visualizations.</p>
 <p>The Pokemon dataset was made available on <a href="https://www.kaggle.com/abcsds/pokemon">Kaggle</a>. Let's begin by loading it and taking a peek inside.
 <!-- TEASER_END --></p>
 
@@ -310,7 +310,7 @@ memory usage: 75.9+ KB
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here's a quick description of each column taken from Kaggle:</p>
+<p>Here's a quick description of each column, taken from Kaggle:</p>
 <ul>
 <li>
 <code>#</code> - Pokedex entry number of the Pokemon</li>
@@ -339,7 +339,7 @@ memory usage: 75.9+ KB
 <li>
 <code>Legendary</code> - a boolean that identifies whether the Pokemon is legendary</li>
 </ul>
-<h2 id="Key-questions-to-answer-using-the-dataset">Key questions to answer using the dataset<a class="anchor-link" href="#Key-questions-to-answer-using-the-dataset">¶</a>
+<h2 id="Questions-to-answer-using-the-dataset">Questions to answer using the dataset<a class="anchor-link" href="#Questions-to-answer-using-the-dataset">¶</a>
 </h2>
 <ol>
 <li><a href="#cell1">How are Pokemon numbers distributed across generations?</a></li>
@@ -351,11 +351,7 @@ memory usage: 75.9+ KB
 </ol>
 <h2 id="Cleaning-the-dataset">Cleaning the dataset<a class="anchor-link" href="#Cleaning-the-dataset">¶</a>
 </h2>
-<ul>
-<li>According to <a href="http://bulbapedia.bulbagarden.net/wiki/Generation">Bulbapedia</a>, there are only 721 Pokemon species by generation 6, which suggests that we have may duplicate rows in our dataset. One of our first goals is ensuring the datset is tidy, meaning each column represents a single variable and each row represents a single data point (Pokemon species in this case).</li>
-<li>Our initial inspection also revealed that some Pokemon have missing values for <code>Type 2</code>, which confirms that not all Pokemon have a secondary type; we have to account for these missing values. </li>
-<li>The dataset has two observational units: the Pokemon's identity and statistics, which should be normalized into two tables to prevent future inconsistencies. </li>
-</ul>
+<p>One of our first priorities is ensuring the datset is <a href="https://www.jstatsoft.org/article/view/v059i10">tidy</a>, meaning each column should  represent a single variable and each row represent a single data point (Pokemon species in this case). According to <a href="http://bulbapedia.bulbagarden.net/wiki/Generation">Bulbapedia</a>, there are only 721 Pokemon species by generation 6, which suggests that we have may duplicate rows in our dataset. In addition, our initial inspection also revealed some Pokemon have missing values for <code>Type 2</code>, which confirms that not all Pokemon have a secondary type; we have to account for these missing values. I also noticed the dataset has two observational units: the Pokemon's identity and statistics, which should be normalized into two tables to prevent future inconsistencies.</p>
 <p>But before any rigorous cleaning, let's do some housekeeping.</p>
 
 </div>
@@ -882,7 +878,7 @@ memory usage: 50.7 KB
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Everything looks good! It's now time to get to those questions.</p>
+<p>Everything looks good and the dataset is tidy! It's now time to get to those questions.</p>
 <p><a id="cell1"></a></p>
 <h2 id="1.-How-are-Pokemon-numbers-distributed-across-generations?">1. How are Pokemon numbers distributed across generations?<a class="anchor-link" href="#1.-How-are-Pokemon-numbers-distributed-across-generations?">¶</a>
 </h2>
@@ -22362,7 +22358,7 @@ Name: name, dtype: object</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There's more choices available with Dragon/Flying-type Pokemon as compared to Ghost/Dragon-type--not to mention three of them are non-legendary and relatively easier to capture. Therefore, one can see that when determining Pokemon strength, it quickly boils to down being quite subjective. However, if there was a single best Pokemon or type of Pokemon, everyone would naturally gravitate towards it. By adding nuance to the system, the developers have made Pokemon a game that is more than simply optimizing statistics and strength, but a tactical and personal experience. No wonder they've sold nearly 300 million copies!</p>
-<p>Feel free to leave me your comments below. One of the best parts of data science is that there's always something new to learn, and I love talking about it.</p>
+<p>If you want to play around with the data or run the analysis yourself, here's the <a href="https://github.com/redwanhuq/pokemon-analysis">GitHub repository</a>. Feel free to leave me your comments below. One of the best parts of data science is that there's always something new to learn, and I love discussing it so feel free to leave me your comments below.</p>
 
 </div>
 </div>
