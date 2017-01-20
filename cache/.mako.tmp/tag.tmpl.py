@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1484948028.0647306
+_modified_time = 1484950407.5713224
 _enable_loop = True
 _template_filename = 'c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/tag.tmpl'
 _template_uri = 'tag.tmpl'
@@ -29,22 +29,22 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         generate_rss = context.get('generate_rss', UNDEFINED)
-        tag = context.get('tag', UNDEFINED)
-        messages = context.get('messages', UNDEFINED)
-        kind = context.get('kind', UNDEFINED)
-        title = context.get('title', UNDEFINED)
-        def extra_head():
-            return render_extra_head(context._locals(__M_locals))
-        len = context.get('len', UNDEFINED)
-        sorted = context.get('sorted', UNDEFINED)
-        _link = context.get('_link', UNDEFINED)
-        posts = context.get('posts', UNDEFINED)
         date_format = context.get('date_format', UNDEFINED)
-        description = context.get('description', UNDEFINED)
         parent = context.get('parent', UNDEFINED)
+        posts = context.get('posts', UNDEFINED)
+        tag = context.get('tag', UNDEFINED)
+        sorted = context.get('sorted', UNDEFINED)
+        subcategories = context.get('subcategories', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        subcategories = context.get('subcategories', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
+        description = context.get('description', UNDEFINED)
+        len = context.get('len', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
+        title = context.get('title', UNDEFINED)
+        kind = context.get('kind', UNDEFINED)
+        def extra_head():
+            return render_extra_head(context._locals(__M_locals))
         translations = context.get('translations', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
@@ -67,20 +67,20 @@ def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         generate_rss = context.get('generate_rss', UNDEFINED)
-        messages = context.get('messages', UNDEFINED)
-        kind = context.get('kind', UNDEFINED)
-        tag = context.get('tag', UNDEFINED)
-        title = context.get('title', UNDEFINED)
-        len = context.get('len', UNDEFINED)
-        sorted = context.get('sorted', UNDEFINED)
-        _link = context.get('_link', UNDEFINED)
-        posts = context.get('posts', UNDEFINED)
         date_format = context.get('date_format', UNDEFINED)
-        description = context.get('description', UNDEFINED)
+        posts = context.get('posts', UNDEFINED)
+        subcategories = context.get('subcategories', UNDEFINED)
+        sorted = context.get('sorted', UNDEFINED)
+        tag = context.get('tag', UNDEFINED)
         def content():
             return render_content(context)
-        subcategories = context.get('subcategories', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
+        description = context.get('description', UNDEFINED)
+        len = context.get('len', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
+        title = context.get('title', UNDEFINED)
         translations = context.get('translations', UNDEFINED)
+        kind = context.get('kind', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<article class="tagpage">\n    <header>\n        <h1>')
         __M_writer(filters.html_escape(str(title)))
@@ -144,15 +144,15 @@ def render_extra_head(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         generate_rss = context.get('generate_rss', UNDEFINED)
-        kind = context.get('kind', UNDEFINED)
+        parent = context.get('parent', UNDEFINED)
         tag = context.get('tag', UNDEFINED)
+        sorted = context.get('sorted', UNDEFINED)
+        kind = context.get('kind', UNDEFINED)
+        len = context.get('len', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
+        translations = context.get('translations', UNDEFINED)
         def extra_head():
             return render_extra_head(context)
-        len = context.get('len', UNDEFINED)
-        sorted = context.get('sorted', UNDEFINED)
-        _link = context.get('_link', UNDEFINED)
-        parent = context.get('parent', UNDEFINED)
-        translations = context.get('translations', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n    ')
         __M_writer(str(parent.extra_head()))
@@ -183,6 +183,6 @@ def render_extra_head(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/tag.tmpl", "uri": "tag.tmpl", "source_encoding": "utf-8", "line_map": {"128": 46, "129": 46, "130": 46, "131": 46, "132": 46, "133": 46, "134": 46, "135": 46, "136": 48, "137": 50, "143": 4, "178": 11, "27": 0, "157": 4, "158": 5, "159": 5, "160": 6, "161": 7, "162": 8, "163": 8, "164": 8, "165": 8, "166": 8, "167": 8, "168": 8, "169": 8, "170": 8, "171": 10, "172": 11, "173": 11, "174": 11, "175": 11, "176": 11, "177": 11, "50": 2, "55": 13, "184": 178, "60": 51, "66": 16, "85": 16, "86": 19, "87": 19, "88": 20, "89": 21, "90": 21, "91": 21, "92": 23, "93": 24, "94": 24, "95": 24, "96": 26, "97": 27, "98": 27, "99": 27, "100": 27, "101": 27, "102": 29, "103": 31, "104": 32, "105": 33, "106": 34, "107": 35, "108": 35, "109": 35, "110": 35, "111": 35, "112": 35, "113": 35, "114": 35, "115": 38, "116": 39, "117": 39, "118": 39, "119": 39, "120": 39, "121": 41, "122": 43, "123": 44, "124": 45, "125": 46, "126": 46, "127": 46}}
+{"line_map": {"128": 46, "129": 46, "130": 46, "131": 46, "132": 46, "133": 46, "134": 46, "135": 46, "136": 48, "137": 50, "143": 4, "178": 11, "27": 0, "157": 4, "158": 5, "159": 5, "160": 6, "161": 7, "162": 8, "163": 8, "164": 8, "165": 8, "166": 8, "167": 8, "168": 8, "169": 8, "170": 8, "171": 10, "172": 11, "173": 11, "174": 11, "175": 11, "176": 11, "177": 11, "50": 2, "55": 13, "184": 178, "60": 51, "66": 16, "85": 16, "86": 19, "87": 19, "88": 20, "89": 21, "90": 21, "91": 21, "92": 23, "93": 24, "94": 24, "95": 24, "96": 26, "97": 27, "98": 27, "99": 27, "100": 27, "101": 27, "102": 29, "103": 31, "104": 32, "105": 33, "106": 34, "107": 35, "108": 35, "109": 35, "110": 35, "111": 35, "112": 35, "113": 35, "114": 35, "115": 38, "116": 39, "117": 39, "118": 39, "119": 39, "120": 39, "121": 41, "122": 43, "123": 44, "124": 45, "125": 46, "126": 46, "127": 46}, "source_encoding": "utf-8", "filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/tag.tmpl", "uri": "tag.tmpl"}
 __M_END_METADATA
 """
