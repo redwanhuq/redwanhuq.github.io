@@ -26,7 +26,7 @@ SITE_URL = "https://redwanhuq.github.io/"
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://example.com/"
 BLOG_EMAIL = "redwanhuq@gmail.com"
-BLOG_DESCRIPTION = "A blog about my journey to become a data scientist"  # (translatable)
+BLOG_DESCRIPTION = "A blog chronicling my journey to become a data scientist"  # (translatable)
 
 # Nikola is multilingual!
 #
