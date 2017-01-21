@@ -21201,9 +21201,9 @@ height=405
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Immediately, we can see that using this metric introduces a major hurdle: at least nine Pokemon are tied for second place with a <code>total</code> value of 680--it wouldn't be surprising if there were other ties. Therefore, summing the statistics is not a meaningful way to answer our question.</p>
+<p>Immediately, we can see that using this metric introduces a major hurdle: at least nine Pokemon are tied for second place with a <code>total</code> value of 680&mdash;it wouldn't be surprising if there were other ties. Therefore, summing the statistics is not a meaningful way to answer our question.</p>
 <p>Let's try a different metric: normalize the six statistic columns independently by converting each value into a z-score so when we do take the sum, we account for the variation in the each statistic using its mean and standard deviation across all Pokemon species. As a reminder, a <a href="https://en.wikipedia.org/wiki/Standard_score">z-score</a> is</p>
-$$z = \frac{x-\mu}{\sigma}$$<p>We'll define a new column, <code>strength</code>, as the sum of the z-scores of each statistic--the higher this value, the stronger the Pokemon.</p>
+$$z = \frac{x-\mu}{\sigma}$$<p>We'll define a new column, <code>strength</code>, as the sum of the z-scores of each statistic&mdash;the higher this value, the stronger the Pokemon.</p>
 
 </div>
 </div>
@@ -24650,7 +24650,7 @@ height=526
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The results change a bit when excluding legendary Pokemon: Dragon-type is not as dominating; in fact, there's more diversity in strength among the different types. This also indicates that many legendary Pokemon species are Dragon-type, and the game maintains balance by ensuring these Pokemon are a lot less common. Unfortunately for Bug-type Pokemon, even though they're the fourth most common primary type, they're still among the weakest of all.</p>
-<p>Our earlier analysis pointed out the most common combination of primary and secondary types: Normal/Flying, Bug/Flying, Bug/Poison, Grass/Poison and Water/Ground. If we look at the strength of these combinations, we see that none of them are exceptionally strong or weak--the game is indeed balanced in this regard!</p>
+<p>Our earlier analysis pointed out the most common combination of primary and secondary types: Normal/Flying, Bug/Flying, Bug/Poison, Grass/Poison and Water/Ground. If we look at the strength of these combinations, we see that none of them are exceptionally strong or weak&mdash;the game is indeed balanced in this regard!</p>
 <p><a id="cell5"></a></p>
 <h1 id="5.-Do-any-types-of-Pokemon-excel-at-certain-statistics-over-others?">5. Do any types of Pokemon excel at certain statistics over others?<a class="anchor-link" href="#5.-Do-any-types-of-Pokemon-excel-at-certain-statistics-over-others?">&#182;</a></h1><p>We've seen that a Pokemon's type can influence how strong it is. Now let's investigate if any specific statistic is driving these results and whether different types of Pokemon excel at a particular statistic. Since all Pokemon have a primary type, let's restrict our analysis to primary types only.</p>
 
@@ -45914,7 +45914,7 @@ height=1471
 <li>attack/HP</li>
 <li>special attack/speed</li>
 </ol>
-<p>We can see that none of the statistics are strongly correlated, which is actually important as that would favor certain Pokemon or types of Pokemon over others. However, it is worth noting that all of the statistics are positively correlated except for defense and speed--this particular case is epitomized by Rock-type and Steel-type Pokemon!</p>
+<p>We can see that none of the statistics are strongly correlated, which is actually important as that would favor certain Pokemon or types of Pokemon over others. However, it is worth noting that all of the statistics are positively correlated except for defense and speed&mdash;this particular case is epitomized by Rock-type and Steel-type Pokemon!</p>
 <p>The above plot also reveals a few outliers with remarkably high HP, defense or special defense. Let's find out which Pokemon these are.</p>
 
 </div>
@@ -46021,7 +46021,7 @@ Name: name, dtype: object</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I remember Chansey having extraordinarily high HP from the original Pokemon games so it's not surprising that Blissey, which is Chansey's evolved form, is up there as well. On a different note, it looks like Shuckle is the most defensive Pokemon by a landslide!</p>
 <h1 id="Considerations-regarding-the-results">Considerations regarding the results<a class="anchor-link" href="#Considerations-regarding-the-results">&#182;</a></h1><p>Our analysis revealed some wonderful insights about the Pokemon dataset, but it has drawbacks and pitfalls that we must take into account.</p>
-<h2 id="Efficacy-of-the-strength-metric">Efficacy of the <code>strength</code> metric<a class="anchor-link" href="#Efficacy-of-the-strength-metric">&#182;</a></h2><p>To determine the strongest Pokemon, we summed up the normalized statistics for each species. While this is better than <code>total</code>, we still made a critical assumption: each statistic was weighted equally. In the real world, some gamers like to focus on defense to win battles, while others will take advantage of speed or use brute force--it's simply a matter of taste. While our metric approached Pokemon strength objectively as possible, in the end, it may not be meaningful to all players.</p>
+<h2 id="Efficacy-of-the-strength-metric">Efficacy of the <code>strength</code> metric<a class="anchor-link" href="#Efficacy-of-the-strength-metric">&#182;</a></h2><p>To determine the strongest Pokemon, we summed up the normalized statistics for each species. While this is better than <code>total</code>, we still made a critical assumption: each statistic was weighted equally. In the real world, some gamers like to focus on defense to win battles, while others will take advantage of speed or use brute force&mdash;it's simply a matter of taste. While our metric approached Pokemon strength objectively as possible, in the end, it may not be meaningful to all players.</p>
 <p>In addition, the Pokemon games add another layer of complexity for determining success in battles: the Pokemon's move list. These moves also have their own types (e.g., Fire Blast is a Fire-type move). Each type of move can be more, less or not effective at all depending on the type of Pokemon it has targeted. Moreover, whether a move is successfully executed by a Pokemon has a luck component. Therefore, the player's selection of moves during the battle is ultimately a bigger factor in determining success than the strength of the Pokemon chosen.</p>
 <p>Finally, the statistics found in the dataset refer to base values. As a Pokemon levels up and wins battles, the statistics grow. Unfortunately, these statistics grow at different rates. To make things even more convoluted, certain Pokemon naturally excel at specific statistics.</p>
 <h2 id="Secret-of-the-heatmaps">Secret of the heatmaps<a class="anchor-link" href="#Secret-of-the-heatmaps">&#182;</a></h2><p>The heatmaps displaying the strongest and weakest types of Pokemon were incredibly informative. However, they conceal the number of Pokemon representing a given combination of primary and secondary type. This is important in scenarios where there exist only one or two Pokemon for a particular combination. For example, let's take a look at the unequivocally strongest type of Pokemon: Ghost/Dragon.</p>
@@ -46177,7 +46177,7 @@ Name: name, dtype: object</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There's more choices available with Dragon/Flying-type Pokemon as compared to Ghost/Dragon-type--not to mention three of them are non-legendary and relatively easier to capture. Therefore, one can see that when determining Pokemon strength, it quickly boils to down being quite subjective. However, if there was a single best Pokemon or type of Pokemon, everyone would naturally gravitate towards it. By adding nuance to the system, the developers have made Pokemon a game that is more than simply optimizing statistics and strength, but a tactical and personal experience. No wonder they've sold nearly 300 million copies!</p>
+<p>There's more choices available with Dragon/Flying-type Pokemon as compared to Ghost/Dragon-type&mdash;not to mention three of them are non-legendary and relatively easier to capture. Therefore, one can see that when determining Pokemon strength, it quickly boils to down being quite subjective. However, if there was a single best Pokemon or type of Pokemon, everyone would naturally gravitate towards it. By adding nuance to the system, the developers have made Pokemon a game that is more than simply optimizing statistics and strength, but a tactical and personal experience. No wonder they've sold nearly 300 million copies!</p>
 <p>This exercise was a fun way to become familiar with pandas and seaborn, and I can already think of ways to use machine learning to answer questions such as:</p>
 <ul>
 <li>Can we identify a Pokemon's type solely by its photo?</li>
