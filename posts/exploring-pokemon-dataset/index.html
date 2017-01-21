@@ -339,17 +339,20 @@ memory usage: 75.9+ KB
 <li>
 <code>Legendary</code> - a boolean that identifies whether the Pokemon is legendary</li>
 </ul>
-<h2 id="Questions-to-answer-using-the-dataset">Questions to answer using the dataset<a class="anchor-link" href="#Questions-to-answer-using-the-dataset">¶</a>
+<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
 </h2>
 <ol>
+<li><a href="#cell0">Cleaning the dataset</a></li>
 <li><a href="#cell1">How are Pokemon numbers distributed across generations?</a></li>
 <li><a href="#cell2">What are the most common types of Pokemon?</a></li>
 <li><a href="#cell3">What are the strongest and weakest Pokemon species?</a></li>
 <li><a href="#cell4">What are the strongest and weakest types of Pokemon?</a></li>
 <li><a href="#cell5">Do any types of Pokemon excel at certain statistics over others?</a></li>
 <li><a href="#cell6">Are any of the statistics correlated?</a></li>
+<li><a href="#cell7">Considerations regarding the results</a></li>
 </ol>
-<h2 id="Cleaning-the-dataset">Cleaning the dataset<a class="anchor-link" href="#Cleaning-the-dataset">¶</a>
+<p><a id="cell0"></a></p>
+<h2 id="1.-Cleaning-the-dataset">1. Cleaning the dataset<a class="anchor-link" href="#1.-Cleaning-the-dataset">¶</a>
 </h2>
 <p>One of our first priorities is ensuring the datset is <a href="https://www.jstatsoft.org/article/view/v059i10">tidy</a>, meaning each column should  represent a single variable and each row represent a single data point (Pokemon species in this case). According to <a href="http://bulbapedia.bulbagarden.net/wiki/Generation">Bulbapedia</a>, there are only 721 Pokemon species by generation 6, which suggests that there may be duplicate rows in our dataset. In addition, our initial inspection also revealed some Pokemon have missing values for <code>Type 2</code>, which confirms that not all Pokemon have a secondary type; we have to account for these missing values. We also notice the dataset has two observational units: the Pokemon's identity and statistics, which should be normalized into two tables to prevent future inconsistencies.</p>
 <p>But before any rigorous cleaning, let's do some housekeeping.</p>
@@ -880,7 +883,7 @@ memory usage: 50.7 KB
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Everything looks good and the dataset is tidy! It's now time to get to those questions.</p>
 <p><a id="cell1"></a></p>
-<h2 id="1.-How-are-Pokemon-numbers-distributed-across-generations?">1. How are Pokemon numbers distributed across generations?<a class="anchor-link" href="#1.-How-are-Pokemon-numbers-distributed-across-generations?">¶</a>
+<h2 id="2.-How-are-Pokemon-numbers-distributed-across-generations?">2. How are Pokemon numbers distributed across generations?<a class="anchor-link" href="#2.-How-are-Pokemon-numbers-distributed-across-generations?">¶</a>
 </h2>
 <p>We'll start by taking a look at the total number of Pokemon in each generation.</p>
 
@@ -985,7 +988,7 @@ memory usage: 50.7 KB
 <li>Normal-type Pokemon had a strong presence in every generation except generation 6.</li>
 </ul>
 <p><a id="cell2"></a></p>
-<h2 id="2.-What-are-the-most-common-types-of-Pokemon?">2. What are the most common types of Pokemon?<a class="anchor-link" href="#2.-What-are-the-most-common-types-of-Pokemon?">¶</a>
+<h2 id="3.-What-are-the-most-common-types-of-Pokemon?">3. What are the most common types of Pokemon?<a class="anchor-link" href="#3.-What-are-the-most-common-types-of-Pokemon?">¶</a>
 </h2>
 <p>It's been a long time since I've played the Pokemon games so let's begin by investigating if there are any unique primary or secondary Pokemon types, or if they simply share the same ones.</p>
 
@@ -1276,7 +1279,7 @@ Type 2 count: 19
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nothing too surprising here besides the considerably large proportion of Pokemon that are only Normal-type or Water-type!</p>
 <p><a id="cell3"></a></p>
-<h2 id="3.-What-are-the-strongest-and-weakest-Pokemon-species?">3. What are the strongest and weakest Pokemon species?<a class="anchor-link" href="#3.-What-are-the-strongest-and-weakest-Pokemon-species?">¶</a>
+<h2 id="4.-What-are-the-strongest-and-weakest-Pokemon-species?">4. What are the strongest and weakest Pokemon species?<a class="anchor-link" href="#4.-What-are-the-strongest-and-weakest-Pokemon-species?">¶</a>
 </h2>
 <p>One potential approach to this question is to rank Pokemon according to the sum of their six statistics. Fortunately, this is already available to us as <code>total</code> in the <code>statistics</code> table. Let's use this metric to identify the ten strongest Pokemon.</p>
 
@@ -2256,7 +2259,7 @@ $$z = \frac{x-\mu}{\sigma}$$<p>We'll define a new column, <code>strength</code>,
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The five strongest non-legendary Pokemon are in order: Slaking, Goodra, Garchomp, Hyregion, Salamence, Dragonite, Tyranitar, Metagross, Archeops and Blissey. Slaking commands a strong lead. Regardless, many of these are Dragon-type Pokemon. Very intriguing!</p>
 <p><a id="cell4"></a></p>
-<h2 id="4.-What-are-the-strongest-and-weakest-types-of-Pokemon?">4. What are the strongest and weakest types of Pokemon?<a class="anchor-link" href="#4.-What-are-the-strongest-and-weakest-types-of-Pokemon?">¶</a>
+<h2 id="5.-What-are-the-strongest-and-weakest-types-of-Pokemon?">5. What are the strongest and weakest types of Pokemon?<a class="anchor-link" href="#5.-What-are-the-strongest-and-weakest-types-of-Pokemon?">¶</a>
 </h2>
 <p>Since our last analysis hinted that certain types of Pokemon may be stronger than others, let's take a look at the strongest combinations of primary and secondary types. In addition, instead of using the mean as a measure of central tendency and assuming the strengths of each type are normally distributed, let's use the median.</p>
 
@@ -2534,7 +2537,7 @@ $$z = \frac{x-\mu}{\sigma}$$<p>We'll define a new column, <code>strength</code>,
 <p>The results change a bit when excluding legendary Pokemon: Dragon-type is not as dominating; in fact, there's more diversity in strength among the different types. This also indicates that many legendary Pokemon species are Dragon-type, and the game maintains balance by ensuring these Pokemon are a lot less common. Unfortunately for Bug-type Pokemon, even though they're the fourth most common primary type, they're still among the weakest of all.</p>
 <p>Our earlier analysis pointed out the most common combination of primary and secondary types: Normal/Flying, Bug/Flying, Bug/Poison, Grass/Poison and Water/Ground. If we look at the strength of these combinations, we see that none of them are exceptionally strong or weak—the game is indeed balanced in this regard!</p>
 <p><a id="cell5"></a></p>
-<h2 id="5.-Do-any-types-of-Pokemon-excel-at-certain-statistics-over-others?">5. Do any types of Pokemon excel at certain statistics over others?<a class="anchor-link" href="#5.-Do-any-types-of-Pokemon-excel-at-certain-statistics-over-others?">¶</a>
+<h2 id="6.-Do-any-types-of-Pokemon-excel-at-certain-statistics-over-others?">6. Do any types of Pokemon excel at certain statistics over others?<a class="anchor-link" href="#6.-Do-any-types-of-Pokemon-excel-at-certain-statistics-over-others?">¶</a>
 </h2>
 <p>We've seen that a Pokemon's type can influence how strong it is. Now let's investigate if any specific statistic is driving these results and whether different types of Pokemon excel at a particular statistic. Since all Pokemon have a primary type, let's restrict our analysis to primary types only.</p>
 
@@ -2642,7 +2645,7 @@ $$z = \frac{x-\mu}{\sigma}$$<p>We'll define a new column, <code>strength</code>,
 <li>Rock-type and Steel-type Pokemon still have the absolute best defense but lack in speed. Perhaps there is a correlation between these two statistics?</li>
 </ul>
 <p><a id="cell6"></a></p>
-<h2 id="6.-Are-any-of-the-statistics-correlated?">6. Are any of the statistics correlated?<a class="anchor-link" href="#6.-Are-any-of-the-statistics-correlated?">¶</a>
+<h2 id="7.-Are-any-of-the-statistics-correlated?">7. Are any of the statistics correlated?<a class="anchor-link" href="#7.-Are-any-of-the-statistics-correlated?">¶</a>
 </h2>
 <p>Our findings have hinted certain types of Pokemon that excel at a particular statistic don't fare so well in other statistics. To determine if the statistics are correlated, let's define a function that will compute Pearson's correlation coefficient for each pair of statistics as a measure of the goodness of fit of a linear regression model.</p>
 
@@ -22198,7 +22201,8 @@ Name: name, dtype: object</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I remember Chansey having extraordinarily high HP from the original Pokemon games so it's not surprising that Blissey, which is Chansey's evolved form, is up there as well. On a different note, it looks like Shuckle is the most defensive Pokemon by a landslide!</p>
-<h2 id="Considerations-regarding-the-results">Considerations regarding the results<a class="anchor-link" href="#Considerations-regarding-the-results">¶</a>
+<p><a id="cell7"></a></p>
+<h2 id="8.-Considerations-regarding-the-results">8. Considerations regarding the results<a class="anchor-link" href="#8.-Considerations-regarding-the-results">¶</a>
 </h2>
 <p>Our analysis revealed some wonderful insights about the Pokemon dataset, but it has drawbacks and pitfalls that we must take into account.</p>
 <h3 id="Efficacy-of-the-strength-metric">Efficacy of the <code>strength</code> metric<a class="anchor-link" href="#Efficacy-of-the-strength-metric">¶</a>
