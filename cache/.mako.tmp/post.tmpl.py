@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1485021618.8956177
+_modified_time = 1485022240.635097
 _enable_loop = True
 _template_filename = 'c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/bootstrap3/templates/post.tmpl'
 _template_uri = 'post.tmpl'
@@ -36,20 +36,20 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        post = context.get('post', UNDEFINED)
-        messages = context.get('messages', UNDEFINED)
         def sourcelink():
             return render_sourcelink(context._locals(__M_locals))
+        helper = _mako_get_namespace(context, 'helper')
+        messages = context.get('messages', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        pheader = _mako_get_namespace(context, 'pheader')
-        parent = context.get('parent', UNDEFINED)
-        helper = _mako_get_namespace(context, 'helper')
-        show_sourcelink = context.get('show_sourcelink', UNDEFINED)
         site_has_comments = context.get('site_has_comments', UNDEFINED)
-        comments = _mako_get_namespace(context, 'comments')
+        show_sourcelink = context.get('show_sourcelink', UNDEFINED)
         def extra_head():
             return render_extra_head(context._locals(__M_locals))
+        post = context.get('post', UNDEFINED)
+        pheader = _mako_get_namespace(context, 'pheader')
+        parent = context.get('parent', UNDEFINED)
+        comments = _mako_get_namespace(context, 'comments')
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
@@ -80,9 +80,9 @@ def render_sourcelink(context,**pageargs):
     try:
         def sourcelink():
             return render_sourcelink(context)
-        post = context.get('post', UNDEFINED)
         messages = context.get('messages', UNDEFINED)
         show_sourcelink = context.get('show_sourcelink', UNDEFINED)
+        post = context.get('post', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if show_sourcelink:
@@ -99,14 +99,14 @@ def render_sourcelink(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        post = context.get('post', UNDEFINED)
         helper = _mako_get_namespace(context, 'helper')
         messages = context.get('messages', UNDEFINED)
-        site_has_comments = context.get('site_has_comments', UNDEFINED)
         def content():
             return render_content(context)
-        comments = _mako_get_namespace(context, 'comments')
         pheader = _mako_get_namespace(context, 'pheader')
+        site_has_comments = context.get('site_has_comments', UNDEFINED)
+        comments = _mako_get_namespace(context, 'comments')
+        post = context.get('post', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<article class="post-')
         __M_writer(str(post.meta('type')))
@@ -138,11 +138,11 @@ def render_content(context,**pageargs):
 def render_extra_head(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        parent = context.get('parent', UNDEFINED)
-        post = context.get('post', UNDEFINED)
         helper = _mako_get_namespace(context, 'helper')
         def extra_head():
             return render_extra_head(context)
+        parent = context.get('parent', UNDEFINED)
+        post = context.get('post', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n    ')
         __M_writer(str(parent.extra_head()))
@@ -186,6 +186,6 @@ def render_extra_head(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"uri": "post.tmpl", "filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/bootstrap3/templates/post.tmpl", "line_map": {"128": 48, "129": 48, "130": 48, "131": 50, "132": 50, "172": 20, "138": 7, "151": 10, "175": 25, "147": 7, "148": 8, "149": 8, "150": 9, "23": 2, "152": 10, "153": 10, "26": 3, "155": 13, "156": 13, "29": 4, "158": 15, "159": 15, "160": 15, "161": 16, "162": 17, "35": 0, "164": 17, "165": 17, "166": 17, "167": 19, "168": 20, "169": 20, "170": 20, "171": 20, "154": 12, "173": 22, "174": 23, "157": 13, "176": 25, "177": 25, "178": 26, "179": 26, "180": 27, "181": 27, "54": 2, "55": 3, "56": 4, "57": 5, "187": 181, "62": 28, "67": 51, "72": 59, "78": 53, "163": 17, "87": 53, "88": 54, "89": 55, "90": 56, "91": 56, "92": 56, "93": 56, "99": 30, "111": 30, "112": 31, "113": 31, "114": 32, "115": 32, "116": 34, "117": 34, "118": 38, "119": 38, "120": 39, "121": 39, "122": 42, "123": 43, "124": 44, "125": 44, "126": 45, "127": 45}, "source_encoding": "utf-8"}
+{"line_map": {"128": 48, "129": 48, "130": 48, "131": 50, "132": 50, "172": 20, "138": 7, "151": 10, "175": 25, "147": 7, "148": 8, "149": 8, "150": 9, "23": 2, "152": 10, "153": 10, "26": 3, "155": 13, "156": 13, "29": 4, "158": 15, "159": 15, "160": 15, "161": 16, "162": 17, "35": 0, "164": 17, "165": 17, "166": 17, "167": 19, "168": 20, "169": 20, "170": 20, "171": 20, "154": 12, "173": 22, "174": 23, "157": 13, "176": 25, "177": 25, "178": 26, "179": 26, "180": 27, "181": 27, "54": 2, "55": 3, "56": 4, "57": 5, "187": 181, "62": 28, "67": 51, "72": 59, "78": 53, "163": 17, "87": 53, "88": 54, "89": 55, "90": 56, "91": 56, "92": 56, "93": 56, "99": 30, "111": 30, "112": 31, "113": 31, "114": 32, "115": 32, "116": 34, "117": 34, "118": 38, "119": 38, "120": 39, "121": 39, "122": 42, "123": 43, "124": 44, "125": 44, "126": 45, "127": 45}, "uri": "post.tmpl", "filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/bootstrap3/templates/post.tmpl", "source_encoding": "utf-8"}
 __M_END_METADATA
 """
