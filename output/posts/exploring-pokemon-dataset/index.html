@@ -110,7 +110,7 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The Pokemon dataset is a complete listing of all Pokemon species as of mid-2016, containing data about their type and statistics. Considering how diverse Pokemon are, it's worthwhile analyzing this datset to identify any insights regarding the design of new Pokemon, how the game is balanced and to potentially assist players in selecting the best Pokemon, if there exists one. And having been a fervent Pokemon fan as a kid, I'm also dreadfully curious!
 <!-- TEASER_END --></p>
-<p>While one could easily analyze the dataset using Excel, this software isn't very handy for cleaning messy datasets or telling a story. In addition, Excel is proprietary/closed, not capable of processing large data sets (limited to 1,048,576 rows), and its analyses lack repeatability and transparency. One solution is to use <a href="http://jupyter.org/">Jupyter notebooks</a> for exploratory analysis combined with Python's open-source libraries: <a href="http://pandas.pydata.org/pandas-docs/stable/index.html">pandas</a> for data analysis and <a href="http://seaborn.pydata.org/index.html">seaborn</a> for high-level visualizations.</p>
+<p>While one could easily analyze the dataset using Excel, this software isn't very handy for cleaning messy datasets or telling a story. In addition, Excel is proprietary/closed, not capable of processing large data sets (limited to 1,048,576 rows), and its analyses lack repeatability and transparency. One solution is to use <a href="http://jupyter.org/">Jupyter notebooks</a> for exploratory analysis combined with Python's open-source libraries: <code>pandas</code> and <code>seaborn</code> for high-level visualizations.</p>
 <p>The Pokemon dataset was made available on <a href="https://www.kaggle.com/abcsds/pokemon">Kaggle</a>. Let's begin by loading it and taking a peek inside.</p>
 
 </div>
@@ -22330,7 +22330,7 @@ Name: name, dtype: object</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There's more choices available with Dragon/Flying-type Pokemon as compared to Ghost/Dragon-type—not to mention three of them are non-legendary and relatively easier to capture. Therefore, one can see that when determining Pokemon strength, it quickly boils to down being quite subjective. However, if there was a single best Pokemon or type of Pokemon, everyone would naturally gravitate towards it. By adding nuance to the system, the developers have made Pokemon a game that is more than simply optimizing statistics and strength, but a tactical and personal experience. No wonder they've sold nearly 300 million copies!</p>
-<p>This exercise was a fun way to become familiar with pandas and seaborn, and I can already think of ways to use machine learning to answer questions such as:</p>
+<p>This exercise was a fun way to become familiar with <code>pandas</code> and <code>seaborn</code>, and I can already think of ways to use machine learning to answer questions such as:</p>
 <ul>
 <li>Can we identify a Pokemon's type solely by its photo?</li>
 <li>Can a machine classify the newly released Pokemon in generation 7?</li>
