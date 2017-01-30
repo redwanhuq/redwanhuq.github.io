@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1485785230.4462385
+_modified_time = 1485785374.936548
 _enable_loop = True
 _template_filename = 'c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/bootstrap3/templates/gallery.tmpl'
 _template_uri = 'gallery.tmpl'
@@ -35,27 +35,27 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         _import_ns = {}
         _mako_get_namespace(context, 'ui')._populate(_import_ns, ['bar'])
-        thumbnail_size = _import_ns.get('thumbnail_size', context.get('thumbnail_size', UNDEFINED))
-        title = _import_ns.get('title', context.get('title', UNDEFINED))
-        def extra_js():
-            return render_extra_js(context._locals(__M_locals))
-        comments = _mako_get_namespace(context, 'comments')
-        crumbs = _import_ns.get('crumbs', context.get('crumbs', UNDEFINED))
         enable_comments = _import_ns.get('enable_comments', context.get('enable_comments', UNDEFINED))
-        post = _import_ns.get('post', context.get('post', UNDEFINED))
-        site_has_comments = _import_ns.get('site_has_comments', context.get('site_has_comments', UNDEFINED))
-        def sourcelink():
-            return render_sourcelink(context._locals(__M_locals))
+        thumbnail_size = _import_ns.get('thumbnail_size', context.get('thumbnail_size', UNDEFINED))
+        photo_array_json = _import_ns.get('photo_array_json', context.get('photo_array_json', UNDEFINED))
         ui = _mako_get_namespace(context, 'ui')
         photo_array = _import_ns.get('photo_array', context.get('photo_array', UNDEFINED))
-        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
-        def content():
-            return render_content(context._locals(__M_locals))
-        photo_array_json = _import_ns.get('photo_array_json', context.get('photo_array_json', UNDEFINED))
+        site_has_comments = _import_ns.get('site_has_comments', context.get('site_has_comments', UNDEFINED))
+        def extra_js():
+            return render_extra_js(context._locals(__M_locals))
+        def sourcelink():
+            return render_sourcelink(context._locals(__M_locals))
         parent = _import_ns.get('parent', context.get('parent', UNDEFINED))
-        permalink = _import_ns.get('permalink', context.get('permalink', UNDEFINED))
+        comments = _mako_get_namespace(context, 'comments')
         def extra_head():
             return render_extra_head(context._locals(__M_locals))
+        def content():
+            return render_content(context._locals(__M_locals))
+        post = _import_ns.get('post', context.get('post', UNDEFINED))
+        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
+        crumbs = _import_ns.get('crumbs', context.get('crumbs', UNDEFINED))
+        title = _import_ns.get('title', context.get('title', UNDEFINED))
+        permalink = _import_ns.get('permalink', context.get('permalink', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
@@ -140,18 +140,18 @@ def render_content(context,**pageargs):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'ui')._populate(_import_ns, ['bar'])
-        title = _import_ns.get('title', context.get('title', UNDEFINED))
         comments = _mako_get_namespace(context, 'comments')
-        ui = _mako_get_namespace(context, 'ui')
-        photo_array = _import_ns.get('photo_array', context.get('photo_array', UNDEFINED))
-        crumbs = _import_ns.get('crumbs', context.get('crumbs', UNDEFINED))
-        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
         enable_comments = _import_ns.get('enable_comments', context.get('enable_comments', UNDEFINED))
         def content():
             return render_content(context)
         post = _import_ns.get('post', context.get('post', UNDEFINED))
-        site_has_comments = _import_ns.get('site_has_comments', context.get('site_has_comments', UNDEFINED))
+        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
+        crumbs = _import_ns.get('crumbs', context.get('crumbs', UNDEFINED))
+        title = _import_ns.get('title', context.get('title', UNDEFINED))
+        ui = _mako_get_namespace(context, 'ui')
+        photo_array = _import_ns.get('photo_array', context.get('photo_array', UNDEFINED))
         permalink = _import_ns.get('permalink', context.get('permalink', UNDEFINED))
+        site_has_comments = _import_ns.get('site_has_comments', context.get('site_has_comments', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n    ')
         __M_writer(str(ui.bar(crumbs)))
@@ -197,6 +197,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"line_map": {"130": 41, "131": 42, "132": 42, "138": 7, "23": 3, "26": 4, "156": 7, "157": 8, "158": 8, "159": 9, "160": 10, "161": 10, "162": 10, "163": 12, "164": 13, "165": 14, "166": 14, "167": 17, "168": 18, "169": 19, "170": 20, "171": 20, "172": 20, "173": 20, "174": 20, "175": 22, "176": 24, "177": 26, "178": 27, "179": 29, "180": 30, "181": 30, "182": 30, "183": 30, "184": 30, "185": 31, "186": 31, "187": 31, "60": 2, "61": 3, "62": 4, "191": 37, "192": 37, "32": 0, "67": 5, "198": 192, "72": 39, "77": 52, "82": 95, "88": 55, "98": 55, "99": 58, "100": 58, "101": 61, "102": 61, "188": 31, "108": 5, "189": 33, "190": 36, "121": 41}, "filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/bootstrap3/templates/gallery.tmpl", "source_encoding": "utf-8", "uri": "gallery.tmpl"}
+{"filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/bootstrap3/templates/gallery.tmpl", "uri": "gallery.tmpl", "line_map": {"130": 41, "131": 42, "132": 42, "138": 7, "23": 3, "26": 4, "156": 7, "157": 8, "158": 8, "159": 9, "160": 10, "161": 10, "162": 10, "163": 12, "164": 13, "165": 14, "166": 14, "167": 17, "168": 18, "169": 19, "170": 20, "171": 20, "172": 20, "173": 20, "174": 20, "175": 22, "176": 24, "177": 26, "178": 27, "179": 29, "180": 30, "181": 30, "182": 30, "183": 30, "184": 30, "185": 31, "186": 31, "187": 31, "60": 2, "61": 3, "62": 4, "191": 37, "192": 37, "32": 0, "67": 5, "198": 192, "72": 39, "77": 52, "82": 95, "88": 55, "98": 55, "99": 58, "100": 58, "101": 61, "102": 61, "188": 31, "108": 5, "189": 33, "190": 36, "121": 41}, "source_encoding": "utf-8"}
 __M_END_METADATA
 """
