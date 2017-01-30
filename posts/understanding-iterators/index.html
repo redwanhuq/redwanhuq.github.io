@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iterables, iterators and generators, oh my! Part 1 | MACHINE MADE PHD</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#0078D7">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://redwanhuq.github.io/posts/understanding-iterators/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<meta name="author" content="Redwan Huq">
+<link rel="prev" href="../exploring-pokemon-dataset/" title="Exploring the Pokemon dataset with pandas and seaborn" type="text/html">
+<meta property="og:site_name" content="MACHINE MADE PHD">
+<meta property="og:title" content="Iterables, iterators and generators, oh my! Part 1">
+<meta property="og:url" content="https://redwanhuq.github.io/posts/understanding-iterators/">
+<meta property="og:description" content="Iterators and generators are among my favorite programming tools—they're also some of the most powerful. These constructs enable us to write cleaner, more flexible and higher performance code; undoubt">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2017-01-26T10:00:00-06:00">
+<meta property="article:tag" content="generator">
+<meta property="article:tag" content="iterable">
+<meta property="article:tag" content="iterator">
+<meta property="article:tag" content="python">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://redwanhuq.github.io/">
+
+                <span id="blog-title">MACHINE MADE PHD</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../pages/about/">About</a>
+                </li>
+<li>
+<a href="../../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../../categories/">Tags</a>
+                </li>
+<li>
+<a href="../../rss.xml">Feed</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="index.ipynb" id="sourcelink">Source</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Iterables, iterators and generators, oh my! Part 1</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                    Redwan Huq
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2017-01-26T10:00:00-06:00" itemprop="datePublished" title="2017-01-26 10:00">2017-01-26 10:00</time></a></p>
+                <p class="commentline">
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/post3.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.ipynb" id="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Iterators and generators are among my favorite programming tools—they're also some of the most powerful. These constructs enable us to write cleaner, more flexible and higher performance code; undoubtedly an invaluable addition to any programmer's toolbox. In addition, iterators and generators are an elegant means to work with large and potentially infinite data structures, coming in handy for data science. However, they can be some of the more perplexing concepts to grasp at first.</p>
+<p>This article aims to deliver a gentle but in-depth introduction to iterators and generators in Python, although they're prevalent in other languages too. Nevertheless, in order to appreciate generators, we need to first have a good handle on iterators. And to understand iterators, we need to start with iterables.
+<!-- TEASER_END --></p>
+<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
+</h2>
+<ol>
+<li><a href="#cell1">Unraveling the secrets of a for loop</a></li>
+<li><a href="#cell2">Putting theory into practice</a></li>
+<li><a href="#cell3">Constructing custom iterators</a></li>
+<li><a href="#cell4">Infinite iterators</a></li>
+<li><a href="#cell5">Why iterators are so powerful</a></li>
+</ol>
+<p><a id="cell1"></a></p>
+<h2 id="1.-Unraveling-the-secrets-of-a-for-loop">1. Unraveling the secrets of a for loop<a class="anchor-link" href="#1.-Unraveling-the-secrets-of-a-for-loop">¶</a>
+</h2>
+<h3 id="What-are-iterables?">What are iterables?<a class="anchor-link" href="#What-are-iterables?">¶</a>
+</h3>
+<p>Most programmers have worked with an <em>iterable</em> before even if they weren't consciously aware of doing so. <strong>An iterable is an object whose contents can be traversed or looped over.</strong> For example, when implementing a <code>for</code> loop (<code>for item in obj: ...</code>), any object that can take the place of <code>obj</code> is an iterable. Many Python containers are examples of iterables, including <code>list</code>, <code>set</code>, <code>frozenset</code>, <code>tuple</code>, <code>str</code> and <code>dict</code>. Even <code>numpy</code> arrays, <code>pandas</code> DataFrames, and open file objects are iterables since we can loop over them. All iterables share a common thread: they implement the <code>__iter__()</code> method, which we'll get to in the next section.</p>
+<h3 id="What-are-iterators?">What are iterators?<a class="anchor-link" href="#What-are-iterators?">¶</a>
+</h3>
+<p>An iterable provides the <code>for</code> loop its contents but on its own isn't very useful; an iterable can't tell the loop <em>how</em> to traverse or iterate over its contents, or what the next item is. Therefore, upon initiating, a <code>for</code> loop cleverly calls <code>iter(obj)</code> behind-the-scenes, which in turn calls <code>obj.__iter__()</code>. If <code>obj</code> doesn't support iteration or sport the <code>__iter__()</code> method (meaning not an iterable), a <code>TypeError</code> is raised. Otherwise, <code>obj.__iter__()</code> hands the loop an <em>iterator</em>; <strong>an iterator is an object that knows how to perform the iteration and determines what the next item is</strong>. Logically, this means an iterable is any object when passed to <code>iter()</code>, that's capable of producing an iterator.</p>
+<p>How does the <code>for</code> loop actually employ the iterator to perform the iteration and identify the next item? The answer is after retrieving an iterator, the loop secretly calls <code>next(iterator)</code>, which in turn calls <code>iterator.__next__()</code>—don't worry, every iterator implements this method by definition. <code>__next__()</code> holds instructions that determine the subsequent item, which is then handed to the loop. During each cycle, the loop secretly calls <code>next(iterator)</code> again; the iterator "remembers" its <em>state</em> and rather than yielding the first item, it resumes where it left off.</p>
+<p>Depending on the iterable, its iterator may have differing methodologies for traversing the contents and identifying the next item. Here are instructions for some common iterables:</p>
+<ul>
+<li>
+<code>list</code> or <code>tuple</code> - loop over each element</li>
+<li>
+<code>dict</code> - loop over each key (arbitrary order)</li>
+<li>
+<code>set</code> or <code>frozenset</code> - loop over each element (arbitrary order)</li>
+<li>
+<code>str</code> - loop over each "character"</li>
+<li>open file object - loop over each line</li>
+</ul>
+<p>In a nutshell, the <code>for</code> loop first passes an iterable to <code>iter()</code> to produce an iterator and then in each cycle, implicitly calls <code>next(iterator)</code> to determine the subsequent item—just one item per cycle. Ha, we now know the inner workings of a <code>for</code> loop!</p>
+<p><a id="cell2"></a></p>
+<h2 id="2.-Putting-theory-into-practice">2. Putting theory into practice<a class="anchor-link" href="#2.-Putting-theory-into-practice">¶</a>
+</h2>
+<p>The best way to make sense of iterables and iterators is to experiment with them. Let's put what we've learned to the test and start by creating an iterable.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># My favorite list of numbers</span>
+<span class="n">myIterable</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">42</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we have an iterable, we need instructions for traversing its contents so let's produce an iterator from <code>myIterable</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce an iterator from myIterable</span>
+<span class="n">myIterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">myIterable</span><span class="p">)</span>
+
+<span class="c1"># Confirm that we produced an iterator</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>list_iterator</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We could call <code>next(myIterator)</code> and explore what happens, but before jumping in, what would happen if we used an <em>iterator</em> in a <code>for</code> loop instead of an iterable? Will the loop raise a <code>TypeError</code> when it calls <code>iter(myIterator)</code>? Let's find out.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Test myIterator in a for loop</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">myIterator</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>4 8 15 16 23 42 </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Surprise! It looks like everything went smoothly. The reason is because <code>myIterator</code>, or any iterator produced via <code>iter()</code>, implements its own <code>__iter__()</code> method to satisfy the <code>for</code> loop. In fact, calling <code>myIterator.__iter__()</code> returns <code>self</code>. Simply put, if we produce an iterator from an iterable and then pass this iterator to <code>iter()</code> (thus calling its <code>__iter__()</code> method), we get back the same iterator. We can quickly verify this.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">iter</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span> <span class="o">==</span> <span class="n">myIterator</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We've already mentioned that an iterable is any object when passed to <code>iter()</code>, that's capable of producing an iterator. According to this definition, <code>myIterator</code> must also be an iterable, which explains why it plays nicely with the <code>for</code> loop.</p>
+<h3 id="Traversing-contents-manually">Traversing contents manually<a class="anchor-link" href="#Traversing-contents-manually">¶</a>
+</h3>
+<p>Now let's continue where we left off and verify that calling <code>next(myIterator)</code> yields the subsequent item one at a time.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Yield the subsequent item</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StopIteration</span>                             Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-5-4b59040f9a4a&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-intense-fg ansi-bold"># Yield the subsequent item</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>next<span class="ansi-yellow-intense-fg ansi-bold">(</span>myIterator<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-red-fg">StopIteration</span>: </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Oh no, what happened? Well, the <code>for</code> loop from earlier had implicitly called <code>next(myIterator)</code> over and over until the iterator yielded its last item—the loop <em>exhausted</em> the iterator. When we attempted to manually call <code>next(myIterator)</code> afterwards, a <code>StopIteration</code> exception was raised to tell us <code>myIterator</code> has no more items left to yield. Unbeknownst to us, the loop also ran into the same <code>StopIteration</code> exception after exhausting the iterator; <code>for</code> loops gracefully handle and conceal this exception, and know when to stop calling <code>next()</code>.</p>
+<p>Once an iterator is exhausted, it's practically useless. However, we can "restock" the contents by re-creating the iterator, enabling it to yield items again, starting with the first one.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce another iterator from myIterable</span>
+<span class="n">myIterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">myIterable</span><span class="p">)</span>
+
+<span class="c1"># Yield the subsequent item</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>4</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[7]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[8]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>15</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Wonderful, <code>myIterator</code> has been "restocked" and <code>next()</code> does its job. Let's keep going and confirm a <code>StopIteration</code> exception is raised if the iterator is exhausted again.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[9]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>16</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>23</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[11]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>42</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StopIteration</span>                             Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-12-dc04b44d6581&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>next<span class="ansi-yellow-intense-fg ansi-bold">(</span>myIterator<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-red-fg">StopIteration</span>: </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As expected, after again exhausting the iterator, we run into another <code>StopIteration</code> exception when attempting to call <code>next(myIterator)</code>.</p>
+<h3 id="Revealing-the-true-identity-of-a-for-loop">Revealing the true identity of a for loop<a class="anchor-link" href="#Revealing-the-true-identity-of-a-for-loop">¶</a>
+</h3>
+<p>Gathering everything we've learned so far about how iterables and iterators work, we can construct a <code>while</code> loop that emulates <code>for item in obj: expression</code>.</p>
+
+<pre><code># Produce an iterator assuming obj is an iterable
+obj = iter(obj)
+
+while True:
+    try:
+        # Yield the subsequent item
+        item = next(obj)
+
+        # Perform expression
+
+    # End the loop if a StopIteration exception is raised
+    except StopIteration:
+        break
+</code></pre>
+<p>We've divulged the <code>for</code> loop in Python is actually just a special case of a <code>while</code> loop! We've also shown that an iterator yields the subsequent item only when passed to <code>next()</code>, either manually or implicitly within a <code>for</code> loop; otherwise, the iterator just...sits there. Pretty lazy, no? That's actually the correct terminology to describe this behavior: <a href="https://en.wikipedia.org/wiki/Lazy_evaluation"><em>lazy evaluation</em></a>. We can think of an iterator as an idle conveyor belt in a factory that churns out a single product when switched on, but then it automatically shuts off. Fortunately, the conveyor belt knows where it left off each time and never runs backward.</p>
+<p><a id="cell3"></a></p>
+<h2 id="3.-Constructing-custom-iterators">3. Constructing custom iterators<a class="anchor-link" href="#3.-Constructing-custom-iterators">¶</a>
+</h2>
+<p>So far we know only one way to produce iterators: by passing an iterable to <code>iter()</code>. However, we've determined the building blocks of an iterator include the <code>__iter__()</code> and <code>__next__()</code> methods; we can use this information to construct a <code>class</code> that generates our very own iterators! But before getting  fancy, let's build one that generates iterators similar to one we're familiar with: <code>myIterator</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">TheNumbersMaker</span><span class="p">():</span>    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Instantiate the iterator using our favorite list of numbers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">42</span><span class="p">]</span>
+        
+        <span class="c1"># An iterator needs a way to hold state and recall where it left off. </span>
+        <span class="c1"># We can keep track of which index we're on using self.curr_index.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curr_index</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Recall that in order for an iterator to work with a for loop, the </span>
+        <span class="c1"># loop must be able call this method. Technically, we don't need this</span>
+        <span class="c1"># method if we only want to traverse the iterator manually, but why</span>
+        <span class="c1"># restrict ourselves?</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># This method provides the instructions needed to determine the</span>
+        <span class="c1"># subsequent item: move down the contents of the list by one index and </span>
+        <span class="c1"># update the state each time. Upon reaching the end, raise an exception</span>
+        <span class="c1"># to indicate the iterator is exhausted.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">):</span>
+            <span class="n">curr_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_index</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">curr_index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">curr_index</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This <code>class</code> is known as an <em>iterator protocol</em>—everything required to generate a custom iterator. Let's use it to generate a "clone" of <code>myIterator</code> and test it out.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Generate an iterator using our iterator protocol</span>
+<span class="n">myIteratorClone</span> <span class="o">=</span> <span class="n">TheNumbersMaker</span><span class="p">()</span>
+
+<span class="c1"># Yield all items and exhaust the iterator</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">myIteratorClone</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>4 8 15 16 23 42 </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Confirm that a StopIteration exception is raised when calling next() on an</span>
+<span class="c1"># exhausted iterator</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">myIteratorClone</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StopIteration</span>                             Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-15-386b0a8c8ce3&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-intense-fg ansi-bold"># Confirm that an exception is raised when calling next() after the iterator is</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-red-intense-fg ansi-bold"># exhausted</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>next<span class="ansi-yellow-intense-fg ansi-bold">(</span>myIteratorClone<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-13-9aafb5109040&gt;</span> in <span class="ansi-cyan-fg">__next__</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">     25</span>             <span class="ansi-green-intense-fg ansi-bold">return</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>contents<span class="ansi-yellow-intense-fg ansi-bold">[</span>curr_index<span class="ansi-yellow-intense-fg ansi-bold">]</span>
+<span class="ansi-green-intense-fg ansi-bold">     26</span>         <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">---&gt; 27</span><span class="ansi-red-fg">             </span><span class="ansi-green-intense-fg ansi-bold">raise</span> StopIteration<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-red-fg">StopIteration</span>: </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our custom iterator works like a charm! Now that we know how to build our own iterator, we could make more complex ones by changing the iterator protocol. Perhaps we'd like to generate an iterator from a list of our choosing—we just need to add a <code>contents</code> parameter to <code>__init__()</code> and assign it to <code>self.contents</code>. Or instead we'd want to yield every third item?</p>
+<p><a id="cell4"></a></p>
+<h2 id="4.-Infinite-iterators">4. Infinite iterators<a class="anchor-link" href="#4.-Infinite-iterators">¶</a>
+</h2>
+<p>Every iterator we've produced thus far is finite—they can eventually be exhausted, either manually or using a <code>for</code> loop. However, we can amend the iterator protocol to generate iterators that <em>never</em> stop yielding items. Let's investigate by constructing an iterator protocol that generates one of these uncanny-sounding iterators: one that yields <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a>. The instructions for yielding the <em>n</em>th Fibonacci number are:</p>
+$$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting with 0 and 1, the next Fibonacci number is the sum of the previous two; thus, leading to the sequence 0, 1, 1, 2, 3, 5, 8, 13, 21...</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">FibNumMaker</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Instantiate the iterator with 0 and 1 (the first two Fibonacci </span>
+        <span class="c1"># numbers). Since the next Fibonacci number depends on the previous two</span>
+        <span class="c1"># numbers, we need to keep track of both the current and previous</span>
+        <span class="c1"># states for this iterator, using self.curr and self.last,</span>
+        <span class="c1"># respectively.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Enables the iterator to be compatible with for loops</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Instructions for determining and yielding the subsequent Fibonacci </span>
+        <span class="c1"># number</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curr</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">last</span> <span class="o">=</span> <span class="n">number</span>              
+        <span class="k">return</span> <span class="n">number</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's generate an iterator using this iterator protocol and explore what happens as we manually attempt to yield items.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Generate an iterator that yields Fibonacci numbers</span>
+<span class="n">fib_seq</span> <span class="o">=</span> <span class="n">FibNumMaker</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">fib_seq</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[18]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">fib_seq</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[19]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">fib_seq</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[20]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">fib_seq</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[21]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">fib_seq</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[22]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So far so good, but to test if <code>fib_seq</code> will continue yielding items, let's ask it for the next 15 numbers via a <code>for</code> loop.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Yield the next 15 Fibonacci numbers</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">fib_seq</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Fantastic, we've built an iterator that successively yields Fibonacci numbers; since there are infinite Fibonacci numbers, <code>fib_seq</code> is an <em>infinite iterator</em>. We can keep calling <code>next(fib_seq)</code> and we'll never exhaust the iterator! However, there's a few things to keep in mind:</p>
+<ul>
+<li>Notice we didn't use <code>fib_seq</code> as <code>obj</code> in <code>for item in obj: ...</code>. If we were to do so, the loop would implicitly call <code>next(fib_seq)</code> each cycle; because <code>fib_seq</code> can't be exhausted, the loop would never end! As an alternative, we elected to use the <code>for</code> loop to manually call <code>next(feb_seq)</code> 15 times.</li>
+<li>
+<code>fib_seq</code> is an infinite iterator because it's <em>not</em> derived from a finite iterable such as <code>myIterator</code> or <code>myIteratorClone</code>. In fact, <code>fib_seq</code> isn't derived from any iterable; rather, each time we call <code>next(fib_seq)</code>, we simply compute a rolling sum using our two stored states (<code>self.curr</code> and <code>self.last</code>) and then update the states accordingly.</li>
+<li>Because <code>fib_seq</code> can't be exhausted, we didn't need a condition that raises a <code>StopIteration</code> exception in the <code>__next__()</code> method of the iterator protocol.</li>
+</ul>
+<p><a id="cell5"></a></p>
+<h2 id="5.-Why-iterators-are-so-powerful">5. Why iterators are so powerful<a class="anchor-link" href="#5.-Why-iterators-are-so-powerful">¶</a>
+</h2>
+<p>Let's say we wanted the sum of any <a href="https://en.wikipedia.org/wiki/Prime_number">prime number</a> smaller than a <code>maximum</code> value. We could first create a <code>list</code> of all integers up to <code>maximum</code>, then use our favorite algorithm to keep only the prime numbers, and then pass <code>list</code> to <code>sum()</code>. What if <code>maximum</code> was <em>1 billion</em>? The filtered <code>list</code> would not only take a long time just to construct but require a needlessly large amount of memory when all we really care about is its sum. Instead, we could construct an iterator that successively yields prime numbers and compute a rolling sum; when the next prime number exceeds <code>limit</code>, we'd know to stop and return the current sum.</p>
+<p>Not surprisingly, iterators can save a tremendous amount of memory and time when working very large sequences or datasets, or even infinite ones. In fact, <strong>iterators enable us to represent an infinite number of items with finite memory</strong>. Even with smaller sequences or datasets, using iterators can help us write more efficient code. Here are a few scenarios that come to mind where using an iterator may be advantageous:</p>
+<ul>
+<li>Performing computations on a <em>stream of data</em>
+</li>
+<li>Accessing certain items of a sequence without first storing the entire sequence </li>
+<li>Processing large files or datasets in manageable chunks (buffering)</li>
+<li>Performing computations on a sequence without knowing if all items in the sequence will be needed </li>
+<li>Building custom data samplers or random number generators</li>
+</ul>
+<p>The biggest drawback to using iterators is the numerous lines of code required to implement a complete iterator protocol, even if the resulting iterator is rudimentary (like <code>myIteratorClone</code>). Of course, Python wouldn't live up to its reputation if it didn't offer a few ways to simplify the process of generating iterators, conceivably down to a <em>single</em>, straightforward line of code! We'll learn about these shortcuts and some handy built-in iterators in the following blog post.</p>
+<p>If you'd like to play around with the code, you can <a href="http://test">download</a> the Jupyter notebook or fork it from <a href="https://github.com/redwanhuq/pokemon-analysis">GitHub</a>. As always, don't hesitate to leave your comments below.</p>
+
+</div>
+</div>
+</div>
+    </div>
+  </div>
+
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/generator/" rel="tag">generator</a></li>
+            <li><a class="tag p-category" href="../../categories/iterable/" rel="tag">iterable</a></li>
+            <li><a class="tag p-category" href="../../categories/iterator/" rel="tag">iterator</a></li>
+            <li><a class="tag p-category" href="../../categories/python/" rel="tag">python</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../exploring-pokemon-dataset/" rel="prev" title="Exploring the Pokemon dataset with pandas and seaborn">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="machinemade",
+            disqus_url="https://redwanhuq.github.io/posts/understanding-iterators/",
+        disqus_title="Iterables, iterators and generators, oh my! Part 1",
+        disqus_identifier="cache/posts/post3.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script><script type="text/x-mathjax-config">
+            MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
+            </script></article><script>var disqus_shortname="machinemade";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer"><div class="text-center">
+<p>
+<span class="fa-stack fa-2x">
+  <a href="../../rss.xml">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-rss fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://twitter.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-twitter fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://github.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-github fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://www.linkedin.com/in/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-linkedin fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="mailto:redwanhuq@gmail.com">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-envelope fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+</p>
+<p>
+  Contents © 2017  <a href="mailto:redwanhuq@gmail.com">Redwan Huq</a>
+  
+  —
+  Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>
+</p>
+</div>
+
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90799006-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

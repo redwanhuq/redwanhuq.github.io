@@ -14,6 +14,7 @@
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <meta name="author" content="Redwan Huq">
 <link rel="prev" href="../what-is-data-science/" title="What exactly is data science?" type="text/html">
+<link rel="next" href="../understanding-iterators/" title="Iterables, iterators and generators, oh my! Part 1" type="text/html">
 <meta property="og:site_name" content="MACHINE MADE PHD">
 <meta property="og:title" content="Exploring the Pokemon dataset with pandas and seaborn">
 <meta property="og:url" content="https://redwanhuq.github.io/posts/exploring-pokemon-dataset/">
@@ -22179,7 +22180,7 @@ Name: name, dtype: object</pre>
 <h2 id="8.-Considerations-regarding-the-results">8. Considerations regarding the results<a class="anchor-link" href="#8.-Considerations-regarding-the-results">¶</a>
 </h2>
 <p>Our analysis revealed some wonderful insights about the Pokemon dataset, but it has drawbacks and pitfalls that we must take into account.</p>
-<h3 id="Efficacy-of-the-strength-metric">Efficacy of the <code>strength</code> metric<a class="anchor-link" href="#Efficacy-of-the-strength-metric">¶</a>
+<h3 id="Efficacy-of-the-strength-metric">Efficacy of the strength metric<a class="anchor-link" href="#Efficacy-of-the-strength-metric">¶</a>
 </h3>
 <p>To determine the strongest Pokemon, we summed up the standardized statistics for each species. While this is better than <code>total</code>, we still made a critical assumption: each statistic was weighted equally. In the real world, some gamers like to focus on defense to win battles, while others will take advantage of speed or use brute force—it's simply a matter of taste. While our metric approached Pokemon strength objectively as possible, in the end, it may not be meaningful to all players.</p>
 <p>In addition, the Pokemon games add another layer of complexity for determining success in battles: the Pokemon's move list. These moves also have their own types (e.g., Fire Blast is a Fire-type move). Each type of move can be more, less or not effective at all depending on the type of Pokemon it has targeted. Moreover, whether a move is successfully executed by a Pokemon has a luck component. Therefore, the player's selection of moves during the battle is ultimately a bigger factor in determining success than the strength of the Pokemon chosen.</p>
@@ -22362,6 +22363,9 @@ Name: name, dtype: object</pre>
 <ul class="pager hidden-print">
 <li class="previous">
                 <a href="../what-is-data-science/" rel="prev" title="What exactly is data science?">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../understanding-iterators/" rel="next" title="Iterables, iterators and generators, oh my! Part 1">Next post</a>
             </li>
         </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
         

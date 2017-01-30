@@ -11,11 +11,11 @@
  </url>
  <url>
   <loc>https://redwanhuq.github.io/archive.html</loc>
-  <lastmod>2017-01-26T14:45:00Z</lastmod>
+  <lastmod>2017-01-30T14:06:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/</loc>
-  <lastmod>2017-01-26T14:45:00Z</lastmod>
+  <lastmod>2017-01-27T21:27:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/data-analytics/</loc>
@@ -32,6 +32,18 @@
  <url>
   <loc>https://redwanhuq.github.io/categories/exploratory-analysis/</loc>
   <lastmod>2017-01-26T14:45:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/categories/generator/</loc>
+  <lastmod>2017-01-27T21:27:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/categories/iterable/</loc>
+  <lastmod>2017-01-27T21:27:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/categories/iterator/</loc>
+  <lastmod>2017-01-27T21:27:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/machine-learning/</loc>
@@ -68,6 +80,10 @@
  <url>
   <loc>https://redwanhuq.github.io/posts/exploring-pokemon-dataset/</loc>
   <lastmod>2017-01-17T23:34:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/posts/understanding-iterators/</loc>
+  <lastmod>2017-01-27T21:27:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/posts/what-is-data-science/</loc>
