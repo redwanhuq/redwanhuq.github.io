@@ -8,6 +8,4 @@ I'm trained as a life scientist but long since held a fascination with artificia
 I recently received a PhD in molecular physiology from [Baylor College of Medicine](https://www.bcm.edu/research/labs/christine-beeton) where I used carbon nanotechnology to develop a [new](https://www.bcm.edu/news/molecular-physiology-and-biophysics/nanoparticle-therapy-for-autoimmune-disease) [treatment](http://www.nature.com/articles/srep33808) for autoimmune diseases. During grad school, I also founded and led a [nonprofit organization](http://medcenterconsulting.com) that trains scientists and doctors to become management consultants. Previously, I worked in biomedical [R&D](https://www.canon-biomedical.com) and [venture capital](http://fannininnovation.com).
 
 ### How to get in touch
-Don't hesitate to connect with me on [Twitter](https://twitter.com/redwanhuq), [LinkedIn](https://www.linkedin.com/in/redwanhuq) or [GitHub](https://github.com/redwanhuq). If you have any questions or comments, you can  contact me [directly](mailto:redwanhuq@gmail.com).
-
-Thanks for visiting!
+Don't hesitate to connect with me on [Twitter](https://twitter.com/redwanhuq), [LinkedIn](https://www.linkedin.com/in/redwanhuq) or [GitHub](https://github.com/redwanhuq). If you have any questions or comments, you can  contact me [directly](mailto:redwanhuq@gmail.com). Thanks for visiting!
