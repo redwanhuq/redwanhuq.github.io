@@ -573,6 +573,15 @@
 </h3>
 <p>Gathering everything we've learned so far about how iterables and iterators work, we can construct a <code>while</code> loop that emulates <code>for item in obj: expression</code>.</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
 <pre><code># Produce an iterator assuming obj is an iterable
 obj = iter(obj)
 
@@ -585,8 +594,16 @@ while True:
 
     # End the loop if a StopIteration exception is raised
     except StopIteration:
-        break
-</code></pre>
+        break</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>We've divulged the <code>for</code> loop in Python is actually just a special case of a <code>while</code> loop! We've also shown that an iterator yields the subsequent item only when passed to <code>next()</code>, either manually or implicitly within a <code>for</code> loop; otherwise, the iterator just...sits there. Pretty lazy, no? That's actually the correct terminology to describe this behavior: <a href="https://en.wikipedia.org/wiki/Lazy_evaluation"><em>lazy evaluation</em></a>. We can think of an iterator as an idle conveyor belt in a factory that churns out a single product when switched on, but then it automatically shuts off. Fortunately, the conveyor belt knows where it left off each time and never runs backward.</p>
 <p><a id="cell3"></a></p>
 <h2 id="3.-Constructing-custom-iterators">3. Constructing custom iterators<a class="anchor-link" href="#3.-Constructing-custom-iterators">¶</a>
