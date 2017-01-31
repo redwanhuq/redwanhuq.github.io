@@ -5,12 +5,12 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1485880829.9374998
+_modified_time = 1485884360.9034636
 _enable_loop = True
 _template_filename = 'c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/post_header.tmpl'
 _template_uri = 'post_header.tmpl'
 _source_encoding = 'utf-8'
-_exports = ['html_title', 'html_post_header', 'html_sourcelink', 'html_translations']
+_exports = ['html_post_header', 'html_sourcelink', 'html_title', 'html_translations']
 
 
 def _mako_get_namespace(context, name):
@@ -42,40 +42,22 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_html_title(context):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        title = context.get('title', UNDEFINED)
-        post = context.get('post', UNDEFINED)
-        __M_writer = context.writer()
-        __M_writer('\n')
-        if title and not post.meta('hidetitle'):
-            __M_writer('    <h1 class="p-name entry-title" itemprop="headline name"><a href="')
-            __M_writer(str(post.permalink()))
-            __M_writer('" class="u-url">')
-            __M_writer(filters.html_escape(str(post.title())))
-            __M_writer('</a></h1>\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 def render_html_post_header(context):
     __M_caller = context.caller_stack._push_frame()
     try:
         _link = context.get('_link', UNDEFINED)
-        post = context.get('post', UNDEFINED)
-        comments = _mako_get_namespace(context, 'comments')
+        messages = context.get('messages', UNDEFINED)
         def html_title():
             return render_html_title(context)
         date_format = context.get('date_format', UNDEFINED)
+        site_has_comments = context.get('site_has_comments', UNDEFINED)
         def html_sourcelink():
             return render_html_sourcelink(context)
-        messages = context.get('messages', UNDEFINED)
-        author_pages_generated = context.get('author_pages_generated', UNDEFINED)
+        comments = _mako_get_namespace(context, 'comments')
         def html_translations(post):
             return render_html_translations(context,post)
-        site_has_comments = context.get('site_has_comments', UNDEFINED)
+        author_pages_generated = context.get('author_pages_generated', UNDEFINED)
+        post = context.get('post', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n    <header>\n        ')
         __M_writer(str(html_title()))
@@ -143,14 +125,32 @@ def render_html_sourcelink(context):
         context.caller_stack._pop_frame()
 
 
+def render_html_title(context):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        title = context.get('title', UNDEFINED)
+        post = context.get('post', UNDEFINED)
+        __M_writer = context.writer()
+        __M_writer('\n')
+        if title and not post.meta('hidetitle'):
+            __M_writer('    <h1 class="p-name entry-title" itemprop="headline name"><a href="')
+            __M_writer(str(post.permalink()))
+            __M_writer('" class="u-url">')
+            __M_writer(filters.html_escape(str(post.title())))
+            __M_writer('</a></h1>\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_html_translations(context,post):
     __M_caller = context.caller_stack._push_frame()
     try:
-        sorted = context.get('sorted', UNDEFINED)
         lang = context.get('lang', UNDEFINED)
-        len = context.get('len', UNDEFINED)
+        sorted = context.get('sorted', UNDEFINED)
         translations = context.get('translations', UNDEFINED)
         messages = context.get('messages', UNDEFINED)
+        len = context.get('len', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if len(post.translated_to) > 1:
@@ -174,6 +174,6 @@ def render_html_translations(context,post):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "uri": "post_header.tmpl", "filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/post_header.tmpl", "line_map": {"134": 24, "135": 25, "136": 26, "137": 26, "138": 26, "139": 26, "140": 26, "175": 169, "146": 11, "23": 2, "26": 3, "155": 11, "156": 12, "29": 0, "158": 14, "159": 14, "160": 15, "161": 16, "34": 2, "35": 3, "36": 9, "37": 22, "38": 28, "39": 55, "168": 17, "169": 20, "166": 17, "45": 5, "157": 13, "51": 5, "52": 6, "53": 7, "54": 7, "55": 7, "56": 7, "57": 7, "163": 17, "63": 30, "164": 17, "167": 17, "162": 17, "80": 30, "81": 32, "82": 32, "83": 35, "84": 36, "85": 36, "86": 36, "87": 36, "88": 36, "89": 37, "90": 38, "91": 38, "92": 38, "93": 40, "94": 41, "95": 41, "96": 41, "97": 41, "98": 41, "99": 41, "100": 41, "101": 41, "102": 42, "103": 43, "104": 43, "105": 43, "106": 45, "107": 45, "108": 45, "109": 46, "110": 47, "111": 47, "112": 47, "113": 47, "114": 47, "115": 49, "116": 50, "117": 50, "118": 50, "119": 52, "120": 53, "121": 53, "165": 17, "127": 24}}
+{"line_map": {"128": 5, "134": 5, "135": 6, "136": 7, "137": 7, "138": 7, "139": 7, "140": 7, "175": 169, "164": 17, "146": 11, "23": 2, "26": 3, "155": 11, "156": 12, "29": 0, "158": 14, "159": 14, "160": 15, "161": 16, "34": 2, "35": 3, "36": 9, "37": 22, "38": 28, "39": 55, "168": 17, "169": 20, "45": 30, "157": 13, "162": 17, "163": 17, "62": 30, "63": 32, "64": 32, "65": 35, "66": 36, "67": 36, "68": 36, "69": 36, "70": 36, "71": 37, "72": 38, "73": 38, "74": 38, "75": 40, "76": 41, "77": 41, "78": 41, "79": 41, "80": 41, "81": 41, "82": 41, "83": 41, "84": 42, "85": 43, "86": 43, "87": 43, "88": 45, "89": 45, "90": 45, "91": 46, "92": 47, "93": 47, "94": 47, "95": 47, "96": 47, "97": 49, "98": 50, "99": 50, "100": 50, "101": 52, "102": 53, "103": 53, "167": 17, "109": 24, "116": 24, "117": 25, "118": 26, "119": 26, "120": 26, "121": 26, "122": 26, "166": 17, "165": 17}, "filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/post_header.tmpl", "source_encoding": "utf-8", "uri": "post_header.tmpl"}
 __M_END_METADATA
 """
