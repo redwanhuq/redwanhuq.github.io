@@ -18,7 +18,7 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "Redwan Huq"  # (translatable)
-BLOG_TITLE = "MACHINE MADE PHD"  # (translatable)
+BLOG_TITLE = "Machine Made PhD"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
 SITE_URL = "https://redwanhuq.github.io/"
@@ -137,7 +137,7 @@ NAVIGATION_LINKS = {
         ("/pages/about/", "About"),
         ("/archive.html", "Archive"),
         ("/categories/", "Tags"),
-        ("/rss.xml", "Feed"),
+#        ("/rss.xml", "Feed"),
     ),
 }
 
@@ -832,7 +832,7 @@ IMAGE_FOLDERS = {'images': 'images'}
 # vs
 # xcode
 # This list MAY be incomplete since pygments adds styles every now and then.
-CODE_COLOR_SCHEME = 'friendly'
+CODE_COLOR_SCHEME = 'default'
 
 # If you use 'site-reveal' theme you can select several subthemes
 # THEME_REVEAL_CONFIG_SUBTHEME = 'sky'
@@ -1118,7 +1118,7 @@ CONTENT_FOOTER = '''
 '''
 # Show link to source for the posts?
 # Formerly known as HIDE_SOURCELINK (inverse)
-# SHOW_SOURCELINK = True
+SHOW_SOURCELINK = False
 # Copy the source files for your pages?
 # Setting it to False implies SHOW_SOURCELINK = False
 # COPY_SOURCES = True
