@@ -1285,8 +1285,8 @@ Type 2 count: 19
 <div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Join the statistics table with the pokedex table based on id number to report the 10 </span>
-<span class="c1"># highest total values</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Join the statistics table with the pokedex table based on id number to report</span>
+<span class="c1"># the 10 highest total values</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
     <span class="n">pokedex</span><span class="p">,</span> 
     <span class="n">statistics</span><span class="p">,</span> 
@@ -2261,7 +2261,8 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 
 <span class="c1"># Calculate the median strength of each combination of primary and secondary</span>
 <span class="c1"># type</span>
-<span class="n">medians</span> <span class="o">=</span> <span class="n">joined</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'type 1'</span><span class="p">,</span> <span class="s1">'type 2'</span><span class="p">])</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'strength'</span><span class="p">]</span>
+<span class="n">medians</span> <span class="o">=</span> <span class="n">joined</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'type 1'</span><span class="p">,</span>
+                          <span class="s1">'type 2'</span><span class="p">])</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'strength'</span><span class="p">]</span>
 
 <span class="c1"># Display a heatmap of the median strength of each combination of primary and</span>
 <span class="c1"># secondary type</span>
@@ -2309,7 +2310,7 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 <div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Rearrange the medians table and sort by the strongest combination of primary </span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Rearrange the medians table and sort by the strongest combination of primary</span>
 <span class="c1"># and secondary types</span>
 <span class="n">medians</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'strength'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -2407,7 +2408,8 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 
 <span class="c1"># Calculate the median strength of each combination of primary and secondary</span>
 <span class="c1"># type</span>
-<span class="n">medians</span> <span class="o">=</span> <span class="n">joined_nolegs</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'type 1'</span><span class="p">,</span> <span class="s1">'type 2'</span><span class="p">])</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'strength'</span><span class="p">]</span>
+<span class="n">medians</span> <span class="o">=</span> <span class="n">joined_nolegs</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'type 1'</span><span class="p">,</span>
+                                 <span class="s1">'type 2'</span><span class="p">])</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'strength'</span><span class="p">]</span>
 
 <span class="c1"># Display a heatmap of the median strength of each combination of primary and</span>
 <span class="c1"># secondary type for non-legendary Pokemon</span>
