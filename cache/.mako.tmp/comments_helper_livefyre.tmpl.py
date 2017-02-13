@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1486320313.8180869
+_modified_time = 1487003622.7056134
 _enable_loop = True
 _template_filename = 'c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/comments_helper_livefyre.tmpl'
 _template_uri = 'comments_helper_livefyre.tmpl'
@@ -70,6 +70,6 @@ def render_comment_link_script(context):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "line_map": {"65": 31, "34": 23, "35": 24, "36": 24, "37": 25, "38": 25, "39": 25, "40": 25, "55": 11, "46": 2, "61": 31, "16": 0, "51": 2, "52": 7, "21": 21, "22": 28, "23": 33, "71": 65, "54": 11, "29": 23, "53": 7}, "filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/comments_helper_livefyre.tmpl", "uri": "comments_helper_livefyre.tmpl"}
+{"uri": "comments_helper_livefyre.tmpl", "line_map": {"65": 31, "34": 23, "35": 24, "36": 24, "37": 25, "38": 25, "39": 25, "40": 25, "55": 11, "46": 2, "61": 31, "16": 0, "51": 2, "52": 7, "21": 21, "22": 28, "23": 33, "71": 65, "54": 11, "29": 23, "53": 7}, "source_encoding": "utf-8", "filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/comments_helper_livefyre.tmpl"}
 __M_END_METADATA
 """
