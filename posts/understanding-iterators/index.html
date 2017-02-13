@@ -11,9 +11,22 @@
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://redwanhuq.github.io/posts/understanding-iterators/">
-<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'center' to center equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script><!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <meta name="author" content="Redwan Huq">
 <link rel="prev" href="../exploring-pokemon-dataset/" title="Exploring the Pokemon dataset with pandas and seaborn" type="text/html">
+<link rel="next" href="../building-logistic-regression/" title="Building a logistic regression classifier from the ground up" type="text/html">
 <meta property="og:site_name" content="Machine Made PhD">
 <meta property="og:title" content="Iterables, iterators and generators, oh my! Part 1">
 <meta property="og:url" content="https://redwanhuq.github.io/posts/understanding-iterators/">
@@ -1021,7 +1034,7 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 <li>Performing computations on a sequence without knowing if all items in the sequence will be needed </li>
 <li>Building custom data samplers or random number generators</li>
 </ul>
-<p>The biggest drawback to using iterators is the numerous lines of code required to implement a complete iterator protocol, even if the resulting iterator is rudimentary (like <code>myIteratorClone</code>). Of course, Python wouldn't live up to its reputation if it didn't offer a few ways to simplify the process of generating iterators, conceivably down to a <em>single</em>, straightforward line of code! We'll learn about these shortcuts and some handy built-in iterators in the following blog post.</p>
+<p>The biggest drawback to using iterators is the numerous lines of code required to implement a complete iterator protocol, even if the resulting iterator is rudimentary (like <code>myIteratorClone</code>). Of course, Python wouldn't live up to its reputation if it didn't offer a few ways to simplify the process of generating iterators, conceivably down to a <em>single</em>, straightforward line of code! We'll learn about these shortcuts and some handy built-in iterators in an upcoming blog post.</p>
 <p>If you'd like to play around with the code, here's the <a href="https://github.com/redwanhuq/iterator-generator_tutorial">GitHub</a> repository. As always, don't hesitate to leave your comments below.</p>
 
 </div>
@@ -1040,6 +1053,9 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 <ul class="pager hidden-print">
 <li class="previous">
                 <a href="../exploring-pokemon-dataset/" rel="prev" title="Exploring the Pokemon dataset with pandas and seaborn">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../building-logistic-regression/" rel="next" title="Building a logistic regression classifier from the ground up">Next post</a>
             </li>
         </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
         
@@ -1064,8 +1080,18 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 
 
         </section><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script><script type="text/x-mathjax-config">
-            MathJax.Hub.Config({tex2jax: {inlineMath: [['$latex ','$'], ['\\(','\\)']]}});
-            </script></article><script>var disqus_shortname="machinemade";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'center' to center equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script>var disqus_shortname="machinemade";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
 </div>
         <!--End of body content-->
 
