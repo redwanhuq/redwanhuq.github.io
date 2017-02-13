@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/classification.xml</loc>
-  <lastmod>2017-02-13T16:32:00Z</lastmod>
+  <lastmod>2017-02-13T19:30:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/data-analytics.xml</loc>
@@ -31,7 +31,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/gradient-descent.xml</loc>
-  <lastmod>2017-02-13T16:31:00Z</lastmod>
+  <lastmod>2017-02-13T19:30:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/iterable.xml</loc>
@@ -43,11 +43,11 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/logistic-regression.xml</loc>
-  <lastmod>2017-02-13T16:31:00Z</lastmod>
+  <lastmod>2017-02-13T19:30:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/machine-learning.xml</loc>
-  <lastmod>2017-02-13T16:31:00Z</lastmod>
+  <lastmod>2017-02-13T19:30:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/pandas.xml</loc>
@@ -59,7 +59,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/python.xml</loc>
-  <lastmod>2017-02-13T16:32:00Z</lastmod>
+  <lastmod>2017-02-13T19:30:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/seaborn.xml</loc>
@@ -67,7 +67,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/supervised-learning.xml</loc>
-  <lastmod>2017-02-13T16:31:00Z</lastmod>
+  <lastmod>2017-02-13T19:30:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/galleries/rss.xml</loc>
@@ -75,10 +75,10 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/rss.xml</loc>
-  <lastmod>2017-02-13T16:32:00Z</lastmod>
+  <lastmod>2017-02-13T19:30:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/sitemap.xml</loc>
-  <lastmod>2017-02-13T16:32:00Z</lastmod>
+  <lastmod>2017-02-13T19:30:00Z</lastmod>
  </sitemap>
 </sitemapindex>
