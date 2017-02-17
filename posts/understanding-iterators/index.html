@@ -596,12 +596,12 @@ MathJax.Hub.Config({
 <div class="text_cell_render border-box-sizing rendered_html">
 
 <pre><code># Produce an iterator assuming obj is an iterable
-obj = iter(obj)
+obj_iter = iter(obj)
 
 while True:
     try:
         # Yield the subsequent item
-        item = next(obj)
+        item = next(obj_iter)
 
         # Perform expression
 
