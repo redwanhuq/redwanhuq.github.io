@@ -127,7 +127,7 @@ MathJax.Hub.Config({
 </h2>
 <h3 id="What-are-iterables?">What are iterables?<a class="anchor-link" href="#What-are-iterables?">¶</a>
 </h3>
-<p>Most programmers have worked with an <em>iterable</em> before even if they weren't consciously aware of doing so. <strong>An iterable is an object whose contents can be traversed or looped over.</strong> For example, when implementing a <code>for</code> loop (<code>for item in obj: ...</code>), any object that can take the place of <code>obj</code> is an iterable. Many Python containers are examples of iterables, including <code>list</code>, <code>set</code>, <code>frozenset</code>, <code>tuple</code>, <code>str</code> and <code>dict</code>. Even <code>numpy</code> arrays, <code>pandas</code> DataFrames, and open file objects are iterables since we can loop over them. All iterables share a common thread: they implement the <code>__iter__()</code> method, which we'll get to in the next section.</p>
+<p>Most programmers have worked with an iterable before even if they weren't consciously aware of doing so. <strong>An iterable is an object whose contents can be traversed or looped over.</strong> For example, when implementing a <code>for</code> loop (<code>for item in obj: ...</code>), any object that can take the place of <code>obj</code> is an iterable. Many Python containers are examples of iterables, including <code>list</code>, <code>set</code>, <code>frozenset</code>, <code>tuple</code>, <code>str</code> and <code>dict</code>. Even <code>numpy</code> arrays, <code>pandas</code> DataFrames, and open file objects are iterables since we can loop over them. All iterables share a common thread: they implement the <code>__iter__()</code> method, which we'll get to in the next section.</p>
 <h3 id="What-are-iterators?">What are iterators?<a class="anchor-link" href="#What-are-iterators?">¶</a>
 </h3>
 <p>An iterable provides the <code>for</code> loop its contents but on its own isn't very useful; an iterable can't tell the loop <em>how</em> to traverse or iterate over its contents, or what the next item is. Therefore, upon initiating, a <code>for</code> loop cleverly calls <code>iter(obj)</code> behind-the-scenes, which in turn calls <code>obj.__iter__()</code>. If <code>obj</code> doesn't support iteration or sport the <code>__iter__()</code> method (meaning not an iterable), a <code>TypeError</code> is raised. Otherwise, <code>obj.__iter__()</code> hands the loop an <em>iterator</em>; <strong>an iterator is an object that knows how to perform the iteration and determines what the next item is</strong>. Logically, this means an iterable is any object when passed to <code>iter()</code>, that's capable of producing an iterator.</p>
@@ -617,7 +617,7 @@ while True:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We've divulged the <code>for</code> loop in Python is actually just a special case of a <code>while</code> loop! We've also shown that an iterator yields the subsequent item only when passed to <code>next()</code>, either manually or implicitly within a <code>for</code> loop; otherwise, the iterator just...sits there. Pretty lazy, no? That's actually the correct terminology to describe this behavior: <a href="https://en.wikipedia.org/wiki/Lazy_evaluation"><em>lazy evaluation</em></a>. We can think of an iterator as an idle conveyor belt in a factory that churns out a single product when switched on, but then it automatically shuts off. Fortunately, the conveyor belt knows where it left off each time and never runs backward.</p>
+<p>We've divulged the <code>for</code> loop in Python is actually just a special case of a <code>while</code> loop! We've also shown that an iterator yields the subsequent item only when passed to <code>next()</code>, either manually or implicitly within a <code>for</code> loop; otherwise, the iterator just...sits there. Pretty lazy, no? That's actually the correct terminology to describe this behavior: <a href="https://en.wikipedia.org/wiki/Lazy_evaluation">lazy evaluation</a>. We can think of an iterator as an idle conveyor belt in a factory that churns out a single product when switched on, but then it automatically shuts off. Fortunately, the conveyor belt knows where it left off each time and never runs backward.</p>
 <p><a id="cell3"></a></p>
 <h2 id="3.-Constructing-custom-iterators">3. Constructing custom iterators<a class="anchor-link" href="#3.-Constructing-custom-iterators">¶</a>
 </h2>
@@ -670,7 +670,7 @@ while True:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This <code>class</code> is known as an <em>iterator protocol</em>—everything required to generate a custom iterator. Let's use it to generate a "clone" of <code>myIterator</code> and test it out.</p>
+<p>This <code>class</code> is known as an <strong>iterator protocol</strong>—everything required to generate a custom iterator. Let's use it to generate a "clone" of <code>myIterator</code> and test it out.</p>
 
 </div>
 </div>
@@ -1014,7 +1014,7 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Fantastic, we've built an iterator that successively yields Fibonacci numbers; since there are infinite Fibonacci numbers, <code>fib_seq</code> is an <em>infinite iterator</em>. We can keep calling <code>next(fib_seq)</code> and we'll never exhaust the iterator! However, there's a few things to keep in mind:</p>
+<p>Fantastic, we've built an iterator that successively yields Fibonacci numbers; since there are infinite Fibonacci numbers, <code>fib_seq</code> is an <strong>infinite iterator</strong>. We can keep calling <code>next(fib_seq)</code> and we'll never exhaust the iterator! However, there's a few things to keep in mind:</p>
 <ul>
 <li>Notice we didn't use <code>fib_seq</code> as <code>obj</code> in <code>for item in obj: ...</code>. If we were to do so, the loop would implicitly call <code>next(fib_seq)</code> each cycle; because <code>fib_seq</code> can't be exhausted, the loop would never end! As an alternative, we elected to use the <code>for</code> loop to manually call <code>next(feb_seq)</code> 15 times.</li>
 <li>
