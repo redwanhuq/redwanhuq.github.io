@@ -137,7 +137,7 @@ MathJax.Hub.Config({
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load required packages</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load the required packages</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -146,10 +146,10 @@ MathJax.Hub.Config({
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = 'retina'
 
-<span class="c1"># Load the dataset into a DataFrame using the first row as column labels</span>
+<span class="c1"># Load the training set using the first row as column labels</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/election.csv'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="c1"># Display first five rows</span>
+<span class="c1"># Display the first five rows</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -240,7 +240,7 @@ MathJax.Hub.Config({
 <div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Encode the values in the target variable with numbers</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Encode the values in the target variable</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'result'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'won'</span><span class="p">,</span> <span class="s1">'result'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'result'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'lost'</span><span class="p">,</span> <span class="s1">'result'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -418,7 +418,7 @@ MathJax.Hub.Config({
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Improve readability of the figures</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Improve readability of figures</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">'notebook'</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.4</span><span class="p">)</span>
 
 <span class="c1"># Display a scatterplot of the training set and label the axes</span>
@@ -532,7 +532,7 @@ $$\displaystyle\prod_{y=1}h_\theta(x)\displaystyle\prod_{y=0}(1-h_\theta(x))$$<p
 $$\mathcal{L}(\theta) = \displaystyle\prod_{i=1}^{m}h_\theta({x}^{(i)})^{y^{(i)}}(1-h_\theta({x}^{(i)}))^{1-y^{(i)}}$$<p>where $({x}^{(i)}, {y}^{(i)})$ refers to the $i$th training example and  $m$ is the number of training examples. Since we'd like to maximize the probability of correctly classifying the entire training set, we need to maximize $\mathcal{L}(\theta)$. It turns out that it's much easier to maximize its logarithm:</p>
 $$\ln{\mathcal{L}(\theta)} =\sum_{i=1}^{m}{y}^{(i)}\ln{h_\theta(x^{(i)})} + (1 - y^{(i)})\ln(1 - h_\theta(x^{(i)}))$$<p>Maximizing $\ln{\mathcal{L}(\theta)}$ is also equivalent to <em>minimizing</em> its negative:</p>
 $$-\ln{\mathcal{L}(\theta)} = \sum_{i=1}^{m}{-y}^{(i)}\ln h_\theta(x^{(i)}) - (1 - y^{(i)})\ln(1 - h_\theta(x^{(i)}))$$<p>This expression represents the probability of <em>incorrectly</em> classifying the training set, or in other words, the total error or cost of the predictions made by the classifier. The mean cost of a prediction can then serve as a convenient metric for how well the classifier performs, and is called the <strong>cost function</strong>:</p>
-$$C(\theta) = \frac{1}{m}\sum_{i=1}^{m}{-y}^{(i)}\ln h_\theta(x^{(i)}) - (1 - y^{(i)})\ln(1 - h_\theta(x^{(i)}))$$<p><strong>Therefore, our goal is to the identify the parameters $\theta$ that minimize the cost function.</strong> Programming the cost function would typically require nested <code>for</code> loops and/or the use of <code>sum()</code>. A more elegant and computationally efficient method takes advantageous of linear algebra to arrive at a vectorized version:</p>
+$$C(\theta) = \frac{1}{m}\sum_{i=1}^{m}{-y}^{(i)}\ln h_\theta(x^{(i)}) - (1 - y^{(i)})\ln(1 - h_\theta(x^{(i)}))$$<p><strong>Therefore, our goal is to the identify the parameters $\theta$ that minimize the cost function.</strong> Programming the cost function would typically require nested <code>for</code> loops and/or the use of <code>sum()</code>. A more elegant and computationally efficient method takes advantageous of linear algebra to arrive at a vectorized form:</p>
 $$C(\vec{\theta}) = \frac{1}{m}\Big({-\mathbf{y}}^T\ln \sigma({X}{\vec\theta}) - (1 - \mathbf{y})^T\ln(1 - \sigma({X}{\vec\theta}))\Big)$$$$\\$$$$\vec{\theta}=
 \left[\begin{array}{cccc}
 \theta_0 \\
@@ -561,7 +561,7 @@ y^{(m)}
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cost_function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>    
-    <span class="c1"># Compute the number of training examples</span>
+    <span class="c1"># Record the number of training examples</span>
     <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> 
     
     <span class="n">hypothesis</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span> <span class="o">@</span> <span class="n">theta</span><span class="p">)</span>
@@ -593,10 +593,10 @@ y^{(m)}
 <div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Compute the number of training examples</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Record the number of training examples</span>
 <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
-<span class="c1"># Set up a design matrix with the first column x0 as ones</span>
+<span class="c1"># Create a design matrix</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
     <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'x0'</span><span class="p">),</span> <span class="n">df</span><span class="p">[[</span><span class="s1">'funds'</span><span class="p">,</span> <span class="s1">'rating'</span><span class="p">]]),</span>
     <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
@@ -683,8 +683,8 @@ y^{(m)}
 <div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Store the target variable as a separate vector</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'result'</span><span class="p">:]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Store the target variable</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'result'</span><span class="p">]</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
 
 <span class="c1"># Display the first five rows</span>
 <span class="n">y</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -749,18 +749,19 @@ y^{(m)}
 <h2 id="4.-Minimizing-the-cost-function-with-batch-gradient-descent">4. Minimizing the cost function with batch gradient descent<a class="anchor-link" href="#4.-Minimizing-the-cost-function-with-batch-gradient-descent">¶</a>
 </h2>
 <p>Because the cost function $C(\theta)$ of a logistic regression classifier is <a href="http://mathgotchas.blogspot.com/2011/10/why-is-error-function-minimized-in.html">convex</a>, $C(\theta)$ is guaranteed to have a global minimum—we just need to find the corresponding parameters $\theta$. Unfortunately, there's no known <a href="https://www.quora.com/Does-there-exist-an-analytical-solution-to-Logistic-Regression-similar-to-that-of-the-Normal-Equation-for-Linear-Regression">closed-form solution</a> that conveniently provides us these values—the classifier will need to <em>learn</em> them from the training set.</p>
-<p>One learning algorithm is <strong>batch gradient descent</strong>. Here's how it works:</p>
+<p>One learning algorithm is <strong>batch gradient descent</strong>:</p>
 <ol>
 <li>Select arbitrary values for the parameters $\theta$</li>
 <li>Compute the steepness, or gradient of $C(\theta)$ at the current values of the parameters</li>
 <li>Subtract the gradient from all values of the parameters <em>simultaneously</em>
 </li>
-<li>Repeat step 2 and 3 until the gradient approaches zero, i.e., we've converged to the minimum of $C(\theta)$</li>
+<li>Repeat steps 2 and 3 of updating the parameters until the gradient approaches zero, i.e., we've converged to the minimum of $C(\theta)$</li>
 </ol>
-<p>Put simply, this algorithm takes steps opposite the direction of steepest increase of $C(\theta)$, updating the parameters each time, and thereby, arrives closer and closer to the minimum. The gradient of $C(\theta)$ is given by its partial derivatives with respect to the parameters $\theta$:</p>
+<p><strong>Here's an intuitive perspective of this algorithm:</strong> imagine a hiker that's stranded somewhere on a mountain (step 1) and wants to reach the bottom. Unfortunately, visibility is low due to thick fog—the way down isn't obvious and the hiker wants to get down as soon as possible. First, the hiker examines the immediate surroundings and identifies the direction of the steepest incline (the gradient in step 2). Next, the hiker moves a set distance, perhaps as far as is visible in the fog, in the <em>opposite</em> direction (step 3); thereby, arriving at a slightly lower position on the mountain. The hiker then reassesses the steepness again and repeats this process until he/she eventually arrives at the bottom (step 4).</p>
+<p>The gradient of $C(\theta)$ is given by its partial derivatives with respect to the parameters $\theta$:</p>
 $$\frac{\partial}{\partial\theta_j}C(\theta) = \frac{1}{m}\sum_{i=1}^{m}{x_j}^{(i)}({h_\theta}(x^{(i)}) - y^{(i)})$$<p>where $j = 0, 1\dots n$ with $n$ being the number of features. This algorithm is called <em>batch</em> gradient descent because we process <em>all</em> of the training examples prior to computing the gradient and updating the parameters. The update formula used in the algorithm for each iteration is</p>
-$$\theta_j := \theta_j - \alpha\frac{\partial}{\partial\theta_j}C(\theta) = \theta_j - \frac{\alpha}{m}\sum_{i=1}^{m}{x_j}^{(i)}({h_\theta}(x^{(i)}) - y^{(i)})$$<p>where $\alpha$ dictates how large of a step is taken, and is called the <strong>learning rate</strong>. If $\alpha$ is too small, we may take a long time to converge to the minimum of $C(\theta)$. On the other hand, if $\alpha$ is too large, we may overshoot the minimum and the parameters may oscillate or even diverge! Once we've converged to the minimum of $C(\theta)$, the classifier will have learned the parameters of the hypothesis and will be equipped to make predictions.</p>
-<p>A vectorized version of the update formula is</p>
+$$\theta_j := \theta_j - \alpha\frac{\partial}{\partial\theta_j}C(\theta) = \theta_j - \frac{\alpha}{m}\sum_{i=1}^{m}{x_j}^{(i)}({h_\theta}(x^{(i)}) - y^{(i)})$$<p>where $\alpha$ dictates the magnitude of the update (or the set distance the hiker decided to move) and is called the <strong>learning rate</strong>. If $\alpha$ is too small, we may take a long time to converge to the minimum of $C(\theta)$. On the other hand, if $\alpha$ is too large, we may overshoot the minimum and the parameters may oscillate or even diverge! Once we've converged to the minimum of $C(\theta)$, the classifier will have learned the parameters of the hypothesis and will be equipped to make predictions.</p>
+<p>A vectorized form of the update formula is</p>
 $$\vec{\theta} := \vec{\theta} - \frac{\alpha}{m}{X^T}({\sigma(X\vec{\theta}) - \mathbf{y}})$$<p>It's also probably a good idea to keep track of the value of the cost function during each iteration to confirm that we've indeed converged to the minimum.</p>
 
 </div>
@@ -772,9 +773,10 @@ $$\vec{\theta} := \vec{\theta} - \frac{\alpha}{m}{X^T}({\sigma(X\vec{\theta}) - 
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">iterations</span><span class="p">):</span>
+    <span class="c1"># Record the number of training examples</span>
     <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
     
-    <span class="c1"># Select arbitrary initial values for the parameters</span>
+    <span class="c1"># Initialize the parameters with arbitrary values</span>
     <span class="n">current_theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
     
     <span class="c1"># Create an empty array to track the cost function during each iteration</span>
@@ -882,7 +884,7 @@ theta2 = [ 9.47343264]
 <div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display a scatterplot of the cost function at each iteration</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display a scatterplot of the cost function after each iteration</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="s1">'Iteration'</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">'Cost'</span><span class="p">,</span>
@@ -929,8 +931,7 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 <div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Compute values of the decision boundary using the parameters and a range of</span>
-<span class="c1"># feature values</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Compute the decision boundary using the learned parameters</span>
 <span class="n">x1_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">'funds'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="p">[</span><span class="s1">'funds'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">iterations</span><span class="p">)</span>
 <span class="n">x2_vals</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x1_vals</span><span class="p">))</span> <span class="o">/</span> <span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
@@ -1003,10 +1004,10 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 <div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Insert a value of one to account for x0</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Insert a value of one into the test example to account for x0</span>
 <span class="n">test_example</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">])</span>
 
-<span class="c1"># Compute the win probability using the hypothesis</span>
+<span class="c1"># Compute the win probability with the learned parameters</span>
 <span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">test_example</span> <span class="o">@</span> <span class="n">theta</span><span class="p">)</span>
 </pre></div>
 
