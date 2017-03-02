@@ -344,7 +344,7 @@ MathJax.Hub.Config({
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Oh no, what happened? Well, the <code>for</code> loop from earlier had implicitly called <code>next(myIterator)</code> over and over until the iterator yielded its last item—the loop <em>exhausted</em> the iterator. When we attempted to manually call <code>next(myIterator)</code> afterwards, a <code>StopIteration</code> exception was raised to tell us <code>myIterator</code> has no more items left to yield. Unbeknownst to us, the loop also ran into the same <code>StopIteration</code> exception after exhausting the iterator; <code>for</code> loops gracefully handle and conceal this exception, and know when to stop calling <code>next()</code>.</p>
-<p>Once an iterator is exhausted, it's practically useless. However, we can "restock" the contents by re-creating the iterator, enabling it to yield items again, starting with the first one.</p>
+<p>Once an iterator is exhausted, it's practically useless. However, we can "restock" the contents by recreating the iterator, enabling it to yield items again, starting with the first one.</p>
 
 </div>
 </div>
@@ -621,7 +621,7 @@ while True:
 <p><a id="cell3"></a></p>
 <h2 id="3.-Constructing-custom-iterators">3. Constructing custom iterators<a class="anchor-link" href="#3.-Constructing-custom-iterators">¶</a>
 </h2>
-<p>So far we know only one way to produce iterators: by passing an iterable to <code>iter()</code>. However, we've determined the building blocks of an iterator include the <code>__iter__()</code> and <code>__next__()</code> methods; we can use this information to construct a <code>class</code> that generates our very own iterators! But before getting  fancy, let's build one that generates iterators similar to one we're familiar with: <code>myIterator</code>.</p>
+<p>So far we know only one way to produce iterators: by passing an iterable to <code>iter()</code>. However, we've determined the building blocks of an iterator include the <code>__iter__()</code> and <code>__next__()</code> methods; we can use this information to construct a <code>class</code> that produces our very own iterators! But before getting  fancy, let's build one that produces iterators similar to one we're familiar with: <code>myIterator</code>.</p>
 
 </div>
 </div>
@@ -670,7 +670,7 @@ while True:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This <code>class</code> is known as an <strong>iterator protocol</strong>—everything required to generate a custom iterator. Let's use it to generate a "clone" of <code>myIterator</code> and test it out.</p>
+<p>This <code>class</code> is known as an <strong>iterator protocol</strong>—everything required to produce a custom iterator. Let's use it to produce a "clone" of <code>myIterator</code> and test it out.</p>
 
 </div>
 </div>
@@ -680,7 +680,7 @@ while True:
 <div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Generate an iterator using our iterator protocol</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce an iterator using our iterator protocol</span>
 <span class="n">myIteratorClone</span> <span class="o">=</span> <span class="n">TheNumbersMaker</span><span class="p">()</span>
 
 <span class="c1"># Yield all items and exhaust the iterator</span>
@@ -754,11 +754,11 @@ while True:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Our custom iterator works like a charm! Now that we know how to build our own iterator, we could make more complex ones by changing the iterator protocol. Perhaps we'd like to generate an iterator from a list of our choosing—we just need to add a <code>contents</code> parameter to <code>__init__()</code> and assign it to <code>self.contents</code>. Or instead we'd want to yield every third item?</p>
+<p>Our custom iterator works like a charm! Now that we know how to build our own iterator, we could make more complex ones by changing the iterator protocol. Perhaps we'd like to produce an iterator from a list of our choosing—we just need to add a <code>contents</code> parameter to <code>__init__()</code> and assign it to <code>self.contents</code>. Or instead we'd want to yield every third item?</p>
 <p><a id="cell4"></a></p>
 <h2 id="4.-Infinite-iterators">4. Infinite iterators<a class="anchor-link" href="#4.-Infinite-iterators">¶</a>
 </h2>
-<p>Every iterator we've produced thus far is finite—they can eventually be exhausted, either manually or using a <code>for</code> loop. However, we can amend the iterator protocol to generate iterators that <em>never</em> stop yielding items. Let's investigate by constructing an iterator protocol that generates one of these uncanny-sounding iterators: one that yields <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a>. The instructions for yielding the <em>n</em>th Fibonacci number are:</p>
+<p>Every iterator we've produced thus far is finite—they can eventually be exhausted, either manually or using a <code>for</code> loop. However, we can amend the iterator protocol to produce iterators that <em>never</em> stop yielding items. Let's investigate by constructing an iterator protocol that produces one of these uncanny-sounding iterators: one that yields <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a>. The instructions for yielding the <em>n</em>th Fibonacci number are:</p>
 $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting with 0 and 1, the next Fibonacci number is the sum of the previous two; thus, leading to the sequence 0, 1, 1, 2, 3, 5, 8, 13, 21...</p>
 
 </div>
@@ -801,7 +801,7 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's generate an iterator using this iterator protocol and explore what happens as we manually attempt to yield items.</p>
+<p>Let's produce an iterator using this iterator protocol and explore what happens as we manually attempt to yield items.</p>
 
 </div>
 </div>
@@ -811,7 +811,7 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 <div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Generate an iterator that yields Fibonacci numbers</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce an iterator that yields Fibonacci numbers</span>
 <span class="n">fib_seq</span> <span class="o">=</span> <span class="n">FibNumMaker</span><span class="p">()</span>
 </pre></div>
 
@@ -1034,7 +1034,7 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 <li>Performing computations on a sequence without knowing if all items in the sequence will be needed </li>
 <li>Building custom data samplers or random number generators</li>
 </ul>
-<p>The biggest drawback to using iterators is the numerous lines of code required to implement a complete iterator protocol, even if the resulting iterator is rudimentary (like <code>myIteratorClone</code>). Of course, Python wouldn't live up to its reputation if it didn't offer a few ways to simplify the process of generating iterators, conceivably down to a <em>single</em>, straightforward line of code! We'll learn about these shortcuts and some handy built-in iterators in an upcoming blog post.</p>
+<p>The biggest drawback to using iterators is the numerous lines of code required to implement a complete iterator protocol, even if the resulting iterator is rudimentary (like <code>myIteratorClone</code>). Of course, Python wouldn't live up to its reputation if it didn't offer a few ways to simplify the process of producing iterators, conceivably down to a <em>single</em>, straightforward line of code! We'll learn about these shortcuts and some handy built-in iterators in an upcoming blog post.</p>
 <p>If you'd like to play around with the code, here's the <a href="https://github.com/redwanhuq/iterator-generator_tutorial">GitHub</a> repository. As always, don't hesitate to leave your comments below.</p>
 
 </div>
