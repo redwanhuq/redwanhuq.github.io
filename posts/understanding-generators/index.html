@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iterables, iterators and generators, oh my! Part 2 | Machine Made PhD</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#0078D7">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://redwanhuq.github.io/posts/understanding-generators/">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'center' to center equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script><!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<meta name="author" content="Redwan Huq">
+<link rel="prev" href="../building-logistic-regression/" title="Building a logistic regression classifier from the ground up" type="text/html">
+<meta property="og:site_name" content="Machine Made PhD">
+<meta property="og:title" content="Iterables, iterators and generators, oh my! Part 2">
+<meta property="og:url" content="https://redwanhuq.github.io/posts/understanding-generators/">
+<meta property="og:description" content="In a previous post, we learned about iterators—one of the most powerful programming constructs. Our discussion divulged their role as a fundamental but hidden component of Python's for loop, which led">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2017-03-01T10:00:00-06:00">
+<meta property="article:tag" content="generator">
+<meta property="article:tag" content="generator function">
+<meta property="article:tag" content="iterator">
+<meta property="article:tag" content="python">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://redwanhuq.github.io/">
+
+                <span id="blog-title">Machine Made PhD</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../pages/about/">About</a>
+                </li>
+<li>
+<a href="../../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../../categories/">Tags</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Iterables, iterators and generators, oh my! Part 2</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                    Redwan Huq
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2017-03-01T10:00:00-06:00" itemprop="datePublished" title="2017-03-01 10:00">2017-03-01 10:00</time></a></p>
+                <p class="commentline">
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/post5.html">Comments</a>
+
+
+            
+
+        </p>
+</div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In a <a href="http://machinemadephd.com/posts/understanding-iterators/">previous post</a>, we learned about iterators—one of the most powerful programming constructs. Our discussion divulged their role as a fundamental but hidden component of Python's <code>for</code> loop, which led to a startling revelation regarding the <code>for</code> loop itself (no spoilers here). We also discovered how to implement the iterator protocol to create our very own iterators, even constructing ones that represent infinite data structures. In this post, we'll build upon our knowledge and learn about more elegant and efficient means for producing iterators. However, if you're not comfortable with the iterator protocol and the inner workings of iterators, I <em>strongly</em> recommend familiarizing yourself with <a href="http://machinemadephd.com/posts/understanding-iterators/">Part 1</a> first.
+<!-- TEASER_END --></p>
+<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
+</h2>
+<ol>
+<li><a href="#cell1">A shortcut for constructing custom iterators</a></li>
+<li><a href="#cell2">Infinite generators</a></li>
+<li><a href="#cell3">Generator expressions</a></li>
+<li><a href="#cell4">Built-in iterators and generators</a></li>
+</ol>
+<p><a id="cell1"></a></p>
+<h2 id="1.-A-shortcut-for-constructing-custom-iterators">1. A shortcut for constructing custom iterators<a class="anchor-link" href="#1.-A-shortcut-for-constructing-custom-iterators">¶</a>
+</h2>
+<p>Let's start by examining how to build an iterator that yields the <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a>. As a refresher, the instructions for computing the $n$th Fibonacci number are</p>
+$$F_1 = 0 \\
+F_2 = 1 \\
+F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the iterator protocol.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">FibNumMaker</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Instantiate the iterator with initial states 0 and 1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Enable the iterator to be compatible with for loops</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Determine and yield the subsequent item</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curr</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">last</span> <span class="o">=</span> <span class="n">temp</span>              
+        <span class="k">return</span> <span class="n">temp</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It's difficult to ignore how much boilerplate code is involved in the iterator protocol. Python has always prided itself on being highly readable and concise; not surprisingly, there's an easier way to create our own iterators.</p>
+<h3 id="Using-generator-functions">Using generator functions<a class="anchor-link" href="#Using-generator-functions">¶</a>
+</h3>
+<p>You may have noticed whenever we referred to retrieving the subsequent item from an iterator, we used the term <em>yield</em>—that was no arbitrary choice of words. It turns out that <code>yield</code> is a keyword linked to another method for building iterators called a <strong>generator function</strong>.</p>
+<p>The best way to understand how to use a generator function is to see one in action. Let's implement one that creates an iterator that successively yields a sequence of three numbers: 10, 20 and 30.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># An example of a generator function</span>
+<span class="k">def</span> <span class="nf">gen_func</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'First item'</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="mi">10</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Second item'</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="mi">20</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Third item'</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="mi">30</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'No more items left!'</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To produce an iterator, we call the generator function and assign it to an object.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce an iterator</span>
+<span class="n">seq</span> <span class="o">=</span> <span class="n">gen_func</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We call <code>next()</code> on the iterator to yield its subsequent item.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Yield the subsequent item</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>First item
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>10</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Second item
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[5]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>20</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Third item
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>30</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>No more items left!
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StopIteration</span>                             Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-7-1e4fcafbc0ee&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>next<span class="ansi-yellow-intense-fg ansi-bold">(</span>seq<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-red-fg">StopIteration</span>: </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Look familiar? We see that <code>seq</code> behaved exactly like an iterator built using an iterator protocol; once <code>seq</code> was exhausted, it even raised a <code>StopIteration</code> exception! An iterator created by a generator function is called a <strong>generator</strong>, but it operates in a similar manner to an iterator created by an iterator protocol. The major difference lies within the construction procedure so let's dive into the generator function and the <code>yield</code> keyword.</p>
+<h3 id="How-to-use-the-yield-keyword">How to use the yield keyword<a class="anchor-link" href="#How-to-use-the-yield-keyword">¶</a>
+</h3>
+<p>In an iterator protocol, we used class attributes to hold state and determine the next item. In a generator function, this responsibility is delegated to the <code>yield</code> keyword.</p>
+<p>In the above example, we produced the generator <code>seq</code> using the generator function <code>gen_func()</code>. When we call <code>next()</code> on the generator to yield its subsequent item, here is what's going on behind the scenes:</p>
+<ol>
+<li>Run any lines of code in the generator function, such as the <code>print()</code> function in our example, until we hit a <code>yield</code> statement</li>
+<li>Return the value or variable dictated by the <code>yield</code> statement</li>
+<li>Pause the generator function and relinquish control</li>
+</ol>
+<p>Upon subsequent calls to <code>next()</code> on the generator, we resume where we left off in the generator function and continue to run any lines of code until we hit another <code>yield</code> statement, and thus repeating the process. If there are no more <code>yield</code> statements left in the generator function, calling <code>next()</code> raises a <code>StopIteration</code> exception, which indicates we've <em>exhausted</em> the generator. Clearly, there's quite a few things going on in the background, but the <code>yield</code> statement does a terrific job delineating the generator's next item.</p>
+<p>Unlike a traditional function that <em>always</em> starts at its first line after being called, a generator function resembles "a function that remembers its place"; the <code>yield</code> statement serves as a bookmark of sorts. <strong>In fact, the presence of a <code>yield</code> statement concretely distinguishes a generator function from a traditional function.</strong></p>
+<p>One reason generators can be challenging to grasp is because the generator function is doing two things at once:</p>
+<ol>
+<li>Produce a generator</li>
+<li>Determine and yield the subsequent item in an already produced generator</li>
+</ol>
+<p>The first role is equivalent to the <code>__init__()</code> method of the iterator protocol; calling a generator function produces a new generator.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce another generator</span>
+<span class="n">seq</span> <span class="o">=</span> <span class="n">gen_func</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The second role is equivalent to the <code>__next__()</code> method of the iterator protocol; calling <code>next()</code> on a generator yields its subsequent item as dictated by the <code>yield</code> statements within the generator function.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Yield the subsequent item</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>First item
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[9]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>10</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the iterator protocol, these two roles were explicitly and distinctly defined, but a generator function achieves the same result while doing away with the boilerplate code. For anyone implementing iterator protocols, generator functions are a godsend! On the other hand, if you approach generator functions and the <code>yield</code> statement without first understanding <a href="http://machinemadephd.com/posts/understanding-iterators/">how iterators and the iterator protocol work</a>, these constructs can be very perplexing.</p>
+<p><a id="cell2"></a></p>
+<h2 id="2.-Infinite-generators">2. Infinite generators<a class="anchor-link" href="#2.-Infinite-generators">¶</a>
+</h2>
+<p>We were able to produce infinite iterators by modifying the iterator protocol; similarly, we can tweak a generator function to produce <strong>infinite generators</strong>. Let's demonstrate by converting our iterator protocol for Fibonacci numbers into a generator function.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fib_genfunc</span><span class="p">():</span>
+    <span class="n">last</span><span class="p">,</span> <span class="n">curr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">curr</span>
+        <span class="n">last</span><span class="p">,</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">,</span> <span class="n">last</span> <span class="o">+</span> <span class="n">curr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We're employing two tricks in this generator function. First, we ensure that we never run out <code>yield</code> statements by incorporating an infinite <code>while</code> loop. Second, since Python handles assignment statements from left to right, we don't need to utilize a temporary variable as we did in the iterator protocol. The power concealed in these few lines of code is boggling; a truly phenomenal example of the elegance of generators.</p>
+<p>Let's now produce a generator using <code>fib_genfunc()</code> and display the first 50 Fibonacci numbers.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce a generator</span>
+<span class="n">fib_seq</span> <span class="o">=</span> <span class="n">fib_genfunc</span><span class="p">()</span>
+
+<span class="c1"># Yield the first 50 items</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">fib_seq</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946 17711 28657 46368 75025 121393 196418 317811 514229 832040 1346269 2178309 3524578 5702887 9227465 14930352 24157817 39088169 63245986 102334155 165580141 267914296 433494437 701408733 1134903170 1836311903 2971215073 4807526976 7778742049 12586269025 </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We could also get clever and provide the generator function a parameter that governs the maximum value that can be yielded by the generator. In turn, this provides us with granular control of infinite generators.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fib_genfunc2</span><span class="p">(</span><span class="n">limit</span><span class="p">):</span>
+    <span class="n">last</span><span class="p">,</span> <span class="n">curr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">curr</span> <span class="o">&lt;</span> <span class="n">limit</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">curr</span>
+        <span class="n">last</span><span class="p">,</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">,</span> <span class="n">last</span> <span class="o">+</span> <span class="n">curr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For example, we can use <code>fib_genfunc2()</code> to produce a generator that yields every Fibonacci number below 1 million.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce a generator</span>
+<span class="n">fib_million</span> <span class="o">=</span> <span class="n">fib_genfunc2</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+
+<span class="c1"># Yield all items</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">fib_million</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946 17711 28657 46368 75025 121393 196418 317811 514229 832040 </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="cell3"></a></p>
+<h2 id="3.-Generator-expressions">3. Generator expressions<a class="anchor-link" href="#3.-Generator-expressions">¶</a>
+</h2>
+<p>Believe it or not, there's an even <em>more</em> straightforward method for building generators, related to <a href="https://en.wikipedia.org/wiki/List_comprehension">list comprehensions</a>. As a reminder, list comprehensions are a convenient way to construct a customized list object. For example, let's create a list containing the cubes of even integers between 0 and 20 inclusive and display each element.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cubes_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cubes_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0 8 64 216 512 1000 1728 2744 4096 5832 8000 </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we swap out the brackets for parentheses in the list comprehension, we have a <strong>generator expression</strong>, which produces a generator that successively yields the same sequence of numbers.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cubes_gen</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cubes_gen</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0 8 64 216 512 1000 1728 2744 4096 5832 8000 </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Of course, if we add too many conditions in the generator expression, it can become incomprehensible (a big no-no in idiomatic Python). Therefore, a generator function may be more appropriate for building complex generators. However, whenever we're interested in performing an operation on a sequence or a stream of data, it's typically a better idea to use a generator than first creating a list. For example, let's say we wanted to find the sum of the cubes of even integers below 1 million.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce a list and compute the sum</span>
+<span class="n">cubes_list2</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">sum</span><span class="p">(</span><span class="n">cubes_list2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[16]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>124999500000500000000000</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce a generator and compute the sum</span>
+<span class="n">cubes_gen2</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">sum</span><span class="p">(</span><span class="n">cubes_gen2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[17]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>124999500000500000000000</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Both methods get the job done but let's take a peek at the memory footprint of each construct.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sys</span> <span class="k">import</span> <span class="n">getsizeof</span>
+
+<span class="c1"># Compute memory footprint of list</span>
+<span class="n">getsizeof</span><span class="p">(</span><span class="n">cubes_list2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[18]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>4290016</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Compute memory footprint of generator</span>
+<span class="n">getsizeof</span><span class="p">(</span><span class="n">cubes_gen2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[19]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>88</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We see the list taking up dramatically more memory than the generator. In fact, whether the generator were to yield ten or $10^{100}$ numbers, its memory footprint would <em>always</em> be 88 bytes! Such is the beauty of <a href="https://en.wikipedia.org/wiki/Lazy_evaluation">lazy evaluation</a>.</p>
+<p>If wanted to perform the same computation using a generator in a single line of code, here's a tip: the set of parentheses for implementing a generator expression isn't required.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[20]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>124999500000500000000000</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, it's very important to note that <strong>a generator expression is <em>not</em> a tuple comprehension</strong>. That is, a generator expression yields a <code>generator</code> object, not a <code>tuple</code> object.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">cubes_gen2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[21]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>generator</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="cell4"></a></p>
+<h2 id="4.-Built-in-iterators-and-generators">4. Built-in iterators and generators<a class="anchor-link" href="#4.-Built-in-iterators-and-generators">¶</a>
+</h2>
+<p>Even with all of these convenient shortcuts for producing iterators and generators, Python includes a module called <a href="https://docs.python.org/3/library/itertools.html"><code>itertools</code></a> that contains some useful prepackaged ones. There's also several ingenious recipes that demonstrate ways to get creative with custom iterators. There's simply way too many to describe here but they're worth browsing through; you'll never know when they could come in handy!</p>
+<p>In addition, if you're performing data science using the <code>pandas</code> package, you've probably wondered if there was a simple way to loop over the rows or columns of a <code>DataFrame</code>. The following methods can do the job:</p>
+<ul>
+<li>
+<code>iterrows()</code> - produces a generator that loops over the indices and rows of a <code>DataFrame</code>
+</li>
+<li>
+<code>iteritems()</code> - produces a generator that loops over the column labels and columns of a <code>DataFrame</code>
+</li>
+</ul>
+<p>By now, you should have an in-depth understanding of iterators and generators, how to build them, and use them effectively. I hope these two posts helped shed light on these abstract constructs and illustrated their utility. At first, I found it quite challenging to wrap my head around iterators and generators, but after appreciating what they can do, they've helped me write cleaner and more efficient code. In fact, now whenever I implement a loop, I'm naturally inclined to think about whether a generator could take its place.</p>
+<p>If you'd like to play around with the code, here's the <a href="https://github.com/redwanhuq/iterator-generator_tutorial/blob/master/understanding_generators.ipynb">GitHub repository</a>. As always, don't hesitate to leave your comments below.</p>
+
+</div>
+</div>
+</div>
+    </div>
+  </div>
+
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/generator/" rel="tag">generator</a></li>
+            <li><a class="tag p-category" href="../../categories/generator-function/" rel="tag">generator function</a></li>
+            <li><a class="tag p-category" href="../../categories/iterator/" rel="tag">iterator</a></li>
+            <li><a class="tag p-category" href="../../categories/python/" rel="tag">python</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../building-logistic-regression/" rel="prev" title="Building a logistic regression classifier from the ground up">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="machinemade",
+            disqus_url="https://redwanhuq.github.io/posts/understanding-generators/",
+        disqus_title="Iterables, iterators and generators, oh my! Part 2",
+        disqus_identifier="cache/posts/post5.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'center' to center equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script>var disqus_shortname="machinemade";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer"><div class="text-center">
+<p>
+<span class="fa-stack fa-2x">
+  <a href="../../rss.xml">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-rss fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://twitter.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-twitter fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://github.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-github fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://www.linkedin.com/in/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-linkedin fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="mailto:redwanhuq@gmail.com">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-envelope fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+</p>
+<p>
+  Contents © 2017  <a href="mailto:redwanhuq@gmail.com">Redwan Huq</a>
+  
+  —
+  Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>
+</p>
+</div>
+
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90799006-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
