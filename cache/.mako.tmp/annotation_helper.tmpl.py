@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1488422746.3035164
+_modified_time = 1488559096.5231612
 _enable_loop = True
 _template_filename = 'c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/annotation_helper.tmpl'
 _template_uri = 'annotation_helper.tmpl'
@@ -47,6 +47,6 @@ def render_code(context):
 
 """
 __M_BEGIN_METADATA
-{"filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/annotation_helper.tmpl", "uri": "annotation_helper.tmpl", "source_encoding": "ascii", "line_map": {"16": 0, "32": 1, "21": 3, "22": 16, "48": 42, "42": 5, "38": 5, "28": 1}}
+{"filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/annotation_helper.tmpl", "source_encoding": "ascii", "line_map": {"16": 0, "32": 1, "21": 3, "22": 16, "48": 42, "42": 5, "38": 5, "28": 1}, "uri": "annotation_helper.tmpl"}
 __M_END_METADATA
 """

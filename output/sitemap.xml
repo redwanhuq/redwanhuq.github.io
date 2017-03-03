@@ -11,11 +11,11 @@
  </url>
  <url>
   <loc>https://redwanhuq.github.io/archive.html</loc>
-  <lastmod>2017-03-02T02:45:00Z</lastmod>
+  <lastmod>2017-03-03T16:37:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/</loc>
-  <lastmod>2017-02-11T22:37:00Z</lastmod>
+  <lastmod>2017-03-02T23:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/classification/</loc>
@@ -36,6 +36,10 @@
  <url>
   <loc>https://redwanhuq.github.io/categories/exploratory-analysis/</loc>
   <lastmod>2017-01-26T14:45:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/categories/generator-function/</loc>
+  <lastmod>2017-03-02T23:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/generator/</loc>
@@ -100,6 +104,10 @@
  <url>
   <loc>https://redwanhuq.github.io/posts/exploring-pokemon-dataset/</loc>
   <lastmod>2017-01-17T23:34:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/posts/understanding-generators/</loc>
+  <lastmod>2017-03-02T23:42:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/posts/understanding-iterators/</loc>
