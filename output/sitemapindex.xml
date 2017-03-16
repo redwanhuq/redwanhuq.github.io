@@ -10,6 +10,10 @@
   <lastmod>2017-02-24T16:57:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>https://redwanhuq.github.io/categories/clustering.xml</loc>
+  <lastmod>2017-03-16T14:17:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>https://redwanhuq.github.io/categories/data-analytics.xml</loc>
   <lastmod>2017-02-27T18:30:00Z</lastmod>
  </sitemap>
@@ -24,6 +28,10 @@
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/exploratory-analysis.xml</loc>
   <lastmod>2017-02-09T21:40:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://redwanhuq.github.io/categories/flow-cytometry.xml</loc>
+  <lastmod>2017-03-16T14:17:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/generator-function.xml</loc>
@@ -46,12 +54,16 @@
   <lastmod>2017-03-03T17:00:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>https://redwanhuq.github.io/categories/k-means.xml</loc>
+  <lastmod>2017-03-16T14:17:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>https://redwanhuq.github.io/categories/logistic-regression.xml</loc>
   <lastmod>2017-02-24T16:57:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/machine-learning.xml</loc>
-  <lastmod>2017-02-27T18:30:00Z</lastmod>
+  <lastmod>2017-03-16T14:17:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/pandas.xml</loc>
@@ -63,7 +75,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/python.xml</loc>
-  <lastmod>2017-03-03T17:00:00Z</lastmod>
+  <lastmod>2017-03-16T14:17:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/seaborn.xml</loc>
@@ -74,15 +86,19 @@
   <lastmod>2017-02-24T16:57:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>https://redwanhuq.github.io/categories/unsupervised-learning.xml</loc>
+  <lastmod>2017-03-16T14:17:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>https://redwanhuq.github.io/galleries/rss.xml</loc>
   <lastmod>2017-02-11T18:42:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/rss.xml</loc>
-  <lastmod>2017-03-03T17:00:00Z</lastmod>
+  <lastmod>2017-03-16T14:17:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/sitemap.xml</loc>
-  <lastmod>2017-03-03T17:00:00Z</lastmod>
+  <lastmod>2017-03-16T14:17:00Z</lastmod>
  </sitemap>
 </sitemapindex>

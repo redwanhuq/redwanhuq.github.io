@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1488560458.298985
+_modified_time = 1489674105.7802536
 _enable_loop = True
 _template_filename = 'c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/post_header.tmpl'
 _template_uri = 'post_header.tmpl'
@@ -45,19 +45,19 @@ def render_body(context,**pageargs):
 def render_html_post_header(context):
     __M_caller = context.caller_stack._push_frame()
     try:
-        _link = context.get('_link', UNDEFINED)
-        messages = context.get('messages', UNDEFINED)
-        comments = _mako_get_namespace(context, 'comments')
-        def html_sourcelink():
-            return render_html_sourcelink(context)
-        date_format = context.get('date_format', UNDEFINED)
-        post = context.get('post', UNDEFINED)
-        site_has_comments = context.get('site_has_comments', UNDEFINED)
         author_pages_generated = context.get('author_pages_generated', UNDEFINED)
-        def html_translations(post):
-            return render_html_translations(context,post)
+        comments = _mako_get_namespace(context, 'comments')
+        post = context.get('post', UNDEFINED)
         def html_title():
             return render_html_title(context)
+        site_has_comments = context.get('site_has_comments', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
+        def html_translations(post):
+            return render_html_translations(context,post)
+        date_format = context.get('date_format', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
+        def html_sourcelink():
+            return render_html_sourcelink(context)
         __M_writer = context.writer()
         __M_writer('\n    <header>\n        ')
         __M_writer(str(html_title()))
@@ -109,8 +109,8 @@ def render_html_post_header(context):
 def render_html_title(context):
     __M_caller = context.caller_stack._push_frame()
     try:
-        post = context.get('post', UNDEFINED)
         title = context.get('title', UNDEFINED)
+        post = context.get('post', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if title and not post.meta('hidetitle'):
@@ -127,11 +127,11 @@ def render_html_title(context):
 def render_html_translations(context,post):
     __M_caller = context.caller_stack._push_frame()
     try:
-        sorted = context.get('sorted', UNDEFINED)
-        len = context.get('len', UNDEFINED)
-        lang = context.get('lang', UNDEFINED)
-        messages = context.get('messages', UNDEFINED)
         translations = context.get('translations', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
+        lang = context.get('lang', UNDEFINED)
+        len = context.get('len', UNDEFINED)
+        sorted = context.get('sorted', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if len(post.translated_to) > 1:
@@ -156,9 +156,9 @@ def render_html_translations(context,post):
 def render_html_sourcelink(context):
     __M_caller = context.caller_stack._push_frame()
     try:
-        show_sourcelink = context.get('show_sourcelink', UNDEFINED)
-        post = context.get('post', UNDEFINED)
         messages = context.get('messages', UNDEFINED)
+        post = context.get('post', UNDEFINED)
+        show_sourcelink = context.get('show_sourcelink', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if show_sourcelink:
@@ -174,6 +174,6 @@ def render_html_sourcelink(context):
 
 """
 __M_BEGIN_METADATA
-{"filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/post_header.tmpl", "line_map": {"136": 11, "137": 12, "138": 13, "139": 14, "140": 14, "141": 15, "142": 16, "143": 17, "144": 17, "145": 17, "146": 17, "147": 17, "148": 17, "149": 17, "150": 20, "23": 2, "26": 3, "175": 169, "156": 24, "29": 0, "34": 2, "35": 3, "36": 9, "37": 22, "38": 28, "39": 55, "168": 26, "169": 26, "166": 26, "45": 30, "164": 25, "163": 24, "62": 30, "63": 32, "64": 32, "65": 35, "66": 36, "67": 36, "68": 36, "69": 36, "70": 36, "71": 37, "72": 38, "73": 38, "74": 38, "75": 40, "76": 41, "77": 41, "78": 41, "79": 41, "80": 41, "81": 41, "82": 41, "83": 41, "84": 42, "85": 43, "86": 43, "87": 43, "88": 45, "89": 45, "90": 45, "91": 46, "92": 47, "93": 47, "94": 47, "95": 47, "96": 47, "97": 49, "98": 50, "99": 50, "100": 50, "101": 52, "102": 53, "103": 53, "167": 26, "109": 5, "115": 5, "116": 6, "117": 7, "118": 7, "119": 7, "120": 7, "121": 7, "165": 26, "127": 11}, "uri": "post_header.tmpl", "source_encoding": "utf-8"}
+{"filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/post_header.tmpl", "line_map": {"136": 11, "137": 12, "138": 13, "139": 14, "140": 14, "141": 15, "142": 16, "143": 17, "144": 17, "145": 17, "146": 17, "147": 17, "148": 17, "149": 17, "150": 20, "23": 2, "26": 3, "175": 169, "156": 24, "29": 0, "34": 2, "35": 3, "36": 9, "37": 22, "38": 28, "39": 55, "168": 26, "169": 26, "166": 26, "45": 30, "164": 25, "163": 24, "62": 30, "63": 32, "64": 32, "65": 35, "66": 36, "67": 36, "68": 36, "69": 36, "70": 36, "71": 37, "72": 38, "73": 38, "74": 38, "75": 40, "76": 41, "77": 41, "78": 41, "79": 41, "80": 41, "81": 41, "82": 41, "83": 41, "84": 42, "85": 43, "86": 43, "87": 43, "88": 45, "89": 45, "90": 45, "91": 46, "92": 47, "93": 47, "94": 47, "95": 47, "96": 47, "97": 49, "98": 50, "99": 50, "100": 50, "101": 52, "102": 53, "103": 53, "167": 26, "109": 5, "115": 5, "116": 6, "117": 7, "118": 7, "119": 7, "120": 7, "121": 7, "165": 26, "127": 11}, "source_encoding": "utf-8", "uri": "post_header.tmpl"}
 __M_END_METADATA
 """
