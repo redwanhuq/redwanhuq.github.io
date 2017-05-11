@@ -39,6 +39,7 @@ MathJax.Hub.Config({
 <meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="supervised learning">
+<meta property="article:tag" content="tutorial">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -88,7 +89,7 @@ MathJax.Hub.Config({
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Building a logistic regression classifier from the ground up</a></h1>
 
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     Redwan Huq
             </span></p>
             <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2017-02-13T10:00:00-06:00" itemprop="datePublished" title="2017-02-13 10:00">2017-02-13 10:00</time></a></p>
@@ -112,7 +113,7 @@ MathJax.Hub.Config({
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The logistic regression classifier is a widely used machine learning model that predicts the group or category that an observation belongs to. When implementing this model, most people rely on <a href="http://scikit-learn.org/stable/">some package</a> or API: just hand over a dataset, pick a few parameters and out come the predictions. However, I'm not a fan of using black boxes without first understanding what's going on inside. In fact, lifting the hood on this classifier provides a segue to more complex models such as neural networks. Therefore, this post will explore the methodology behind logistic regression classifiers and walk through how to construct one from scratch.
+<p>The logistic regression classifier is a widely used machine learning model that predicts the group or category that an observation belongs to. When implementing this model, most people rely on some package or API: just hand over a dataset and out come the predictions. However, I'm not a fan of using black boxes without first understanding what's going on inside. In fact, lifting the hood on this classifier provides a segue to more complex models such as neural networks. Therefore, in this post, I'd like to explore the methodology behind logistic regression classifiers and walk through how to construct one from scratch.
 <!-- TEASER_END --></p>
 <p><strong>Specifically, a logistic regression classifier determines the <em>probability</em> that an observation belongs to one class over another.</strong> If this probability exceeds some threshold, the observation is assigned to a particular class, or else assigned to the other class. For example, such a classifier can decide whether an email is spam or not, or whether a customer will buy a product. Rather than explicitly programming an intricate rule that dictates how the classification should take place, we allow the classifier to <em>learn</em> from a labeled dataset and figure out the rule for itself—a hallmark of machine learning. Since this <strong>training set</strong> informs the classifier of what right and wrong answers look like, this is an example of <strong>supervised learning</strong>.</p>
 <h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
@@ -1108,7 +1109,7 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">linear_model</span>
 
 <span class="c1"># Train a logistic regression classifier</span>
-<span class="n">classifier</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">'l2'</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="n">e10</span><span class="p">)</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">'l2'</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">1e10</span><span class="p">)</span>
 <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
 
 <span class="c1"># Compute the classification accuracy</span>
@@ -1142,7 +1143,8 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Excellent! Our homemade logistic regression classifier is just as accurate as the one from a tried-and-true machine learning package. Obviously, the training set in this example is overly simplified. With real-world datasets, we can run into dozens of features and the classes may not be so well-separated. Our classifier would still be functional but wouldn't likely hold a candle to the highly optimized one from <code>sklearn</code>. In addition, with multiple features, a logistic regression classifier would no longer be seeking a decision boundary that's a straight line. Rather, the classifier would learn the parameters that describe a multi-dimensional <strong>hyperplane</strong>, which can be very difficult to visualize.</p>
+<p>Excellent! Our homemade logistic regression classifier is just as accurate as the one from a tried-and-true machine learning package. However, we evaluated the performance of the model on the same dataset used to train it, which gives us an overly optimistic accuracy measurement and isn't representative of the model's performance on unseen data, but that's a story for another blog post.</p>
+<p>In addition, the training set in this example is overly simplified. With real-world datasets, we can run into dozens of features and the classes may not be so well-separated. Our classifier would still be functional but wouldn't likely hold a candle to the highly optimized one from <code>sklearn</code>. In addition, with multiple features, a logistic regression classifier would no longer be seeking a decision boundary that's a straight line. Rather, the classifier would learn the parameters that describe a multi-dimensional <strong>hyperplane</strong>, which can be very difficult to visualize.</p>
 <p><a id="cell6"></a></p>
 <h2 id="6.-Assessing-and-improving-performance">6. Assessing and improving performance<a class="anchor-link" href="#6.-Assessing-and-improving-performance">¶</a>
 </h2>
@@ -1150,7 +1152,7 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 <p>There are also numerous ways to enhance our classifier:</p>
 <ul>
 <li>Instead of choosing a value for <code>iterations</code>, we could automatically stop iterating once the difference between successive values of the cost function drops below a specified tolerance</li>
-<li>We could perform <strong>feature scaling</strong> or normalization to speed up the learning algorithm</li>
+<li>We could perform feature scaling or normalization to speed up the learning algorithm</li>
 <li>We could find an optimal learning rate</li>
 <li>In this example we performed binary classification, but we could adapt the classifier to learn from a training set comprising <a href="https://en.wikipedia.org/wiki/Multiclass_classification">multiple classes</a>
 </li>
@@ -1174,6 +1176,7 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
             <li><a class="tag p-category" href="../../categories/machine-learning/" rel="tag">machine learning</a></li>
             <li><a class="tag p-category" href="../../categories/python/" rel="tag">python</a></li>
             <li><a class="tag p-category" href="../../categories/supervised-learning/" rel="tag">supervised learning</a></li>
+            <li><a class="tag p-category" href="../../categories/tutorial/" rel="tag">tutorial</a></li>
         </ul>
 <ul class="pager hidden-print">
 <li class="previous">

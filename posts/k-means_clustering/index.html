@@ -33,10 +33,10 @@ MathJax.Hub.Config({
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-03-16T09:00:00-05:00">
 <meta property="article:tag" content="clustering">
-<meta property="article:tag" content="flow cytometry">
 <meta property="article:tag" content="k-means">
 <meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="python">
+<meta property="article:tag" content="tutorial">
 <meta property="article:tag" content="unsupervised learning">
 </head>
 <body>
@@ -87,7 +87,7 @@ MathJax.Hub.Config({
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Applying k-means clustering to flow cytometry analysis</a></h1>
 
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     Redwan Huq
             </span></p>
             <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2017-03-16T09:00:00-05:00" itemprop="datePublished" title="2017-03-16 09:00">2017-03-16 09:00</time></a></p>
@@ -112,7 +112,7 @@ MathJax.Hub.Config({
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Is it possible for a machine to group together similar data on its own? Absolutely—this is what clustering algorithms are all about. These algorithms fall under a branch of machine learning called <strong>unsupervised learning</strong>. In this branch, we give a machine an <em>unlabeled</em> training set containing data regarding the features but not the classes. Algorithms are left to their own devices to discover the underlying structure concealed within the data. This is in stark contrast to <a href="http://machinemadephd.com/posts/building-logistic-regression/">supervised learning</a>, where the correct answers are available and utilized to train a predictive model.</p>
-<p>In this post, we'll not only learn about an algorithm called <strong>$k$-means clustering</strong>, but construct one from scratch. Additionally, we'll apply this algorithm to automate an aspect of a widely used life sciences technique called <strong>flow cytometry</strong>.
+<p>In this post, I'd like to introduce an algorithm called <strong>$k$-means clustering</strong> and also construct one from scratch. Additionally, I'll demonstrate how this algorithm can be used automate an aspect of a widely used life sciences technique called <strong>flow cytometry</strong>.
 <!-- TEASER_END --></p>
 <h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
 </h2>
@@ -1157,10 +1157,10 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../categories/clustering/" rel="tag">clustering</a></li>
-            <li><a class="tag p-category" href="../../categories/flow-cytometry/" rel="tag">flow cytometry</a></li>
             <li><a class="tag p-category" href="../../categories/k-means/" rel="tag">k-means</a></li>
             <li><a class="tag p-category" href="../../categories/machine-learning/" rel="tag">machine learning</a></li>
             <li><a class="tag p-category" href="../../categories/python/" rel="tag">python</a></li>
+            <li><a class="tag p-category" href="../../categories/tutorial/" rel="tag">tutorial</a></li>
             <li><a class="tag p-category" href="../../categories/unsupervised-learning/" rel="tag">unsupervised learning</a></li>
         </ul>
 <ul class="pager hidden-print">
