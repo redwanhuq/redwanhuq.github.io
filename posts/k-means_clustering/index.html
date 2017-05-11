@@ -29,7 +29,18 @@ MathJax.Hub.Config({
 <meta property="og:site_name" content="In Machines We Trust">
 <meta property="og:title" content="Applying k-means clustering to flow cytometry analysis">
 <meta property="og:url" content="https://redwanhuq.github.io/posts/k-means_clustering/">
-<meta property="og:description" content="Is it possible for a machine to group together similar data on its own? Absolutely—this is what clustering algorithms are all about. These algorithms fall under a branch of machine learning called uns">
+<meta property="og:description" content="div.prompt {
+	display: none;
+}
+
+
+
+
+
+
+
+
+Is it possible for a machine to group together similar data on its own? Absolutely—this is what clustering algorithms are all about. These algorithms fall under ">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-03-16T09:00:00-05:00">
 <meta property="article:tag" content="clustering">
@@ -103,9 +114,14 @@ MathJax.Hub.Config({
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div class="container" id="notebook-container">
+    <div>
+<style type="text/css">
+div.prompt {
+	display: none;
+}
 
+
+</style>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -135,41 +151,19 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load the required packages</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="c1"># Improve readability of figures</span>
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = 'retina'
-<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">'notebook'</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.4</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load the training set</span>
-<span class="n">features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/immune_cells.csv'</span><span class="p">)</span>
-
-<span class="c1"># Display the first five rows</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/immune_cells.csv'</span><span class="p">)</span>
 <span class="n">features</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -225,6 +219,7 @@ MathJax.Hub.Config({
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
@@ -234,6 +229,8 @@ MathJax.Hub.Config({
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -320,12 +317,12 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">cluster_label</span><span class="p">):</span>
-    <span class="c1"># Display a scatterplot and return the object</span>
     <span class="k">return</span> <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span>
         <span class="n">data</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
         <span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -343,6 +340,8 @@ MathJax.Hub.Config({
 </div>
 
 </div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -354,16 +353,18 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display a scatterplot of the training set without clusters</span>
-<span class="n">plot_data</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="kc">None</span><span class="p">);</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_data</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="kc">None</span><span class="p">);</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -396,16 +397,18 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Perform feature normalization</span>
-<span class="n">features</span> <span class="o">=</span> <span class="p">(</span><span class="n">features</span> <span class="o">-</span> <span class="n">features</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">features</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">(</span><span class="n">features</span> <span class="o">-</span> <span class="n">features</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">features</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -423,16 +426,18 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select the number of clusters to detect</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">4</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">4</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -459,16 +464,15 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">initialize_centroids</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="c1"># Randomly sample the training set</span>
     <span class="n">init_centroids</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
-    
-    <span class="c1"># Re-label the index of each centroid from 1 to k</span>
     <span class="n">init_centroids</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    
     <span class="k">return</span> <span class="n">init_centroids</span>
 </pre></div>
 
@@ -477,20 +481,22 @@ MathJax.Hub.Config({
 </div>
 
 </div>
+
+</div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select the initial centroids</span>
-<span class="n">centroids</span> <span class="o">=</span> <span class="n">initialize_centroids</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-
-<span class="c1"># Display the initial centroids</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">centroids</span> <span class="o">=</span> <span class="n">initialize_centroids</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
 <span class="n">centroids</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -545,18 +551,18 @@ MathJax.Hub.Config({
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's see where the initial centroids lie within the training set.</p>
+<p>Let's also define a function to plot the centroids over each iteration of the algorithm.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_centroids</span><span class="p">(</span><span class="n">figure</span><span class="p">,</span> <span class="n">U</span><span class="p">):</span>
-    <span class="c1"># Display a scatterplot of the centroids</span>
     <span class="n">figure</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
         <span class="n">x</span><span class="o">=</span><span class="n">U</span><span class="p">[</span><span class="s1">'FSC'</span><span class="p">],</span> 
         <span class="n">y</span><span class="o">=</span><span class="n">U</span><span class="p">[</span><span class="s1">'SSC'</span><span class="p">],</span> 
@@ -570,20 +576,32 @@ MathJax.Hub.Config({
 </div>
 
 </div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's see where the initial centroids lie within the training set. Again, since we haven't assigned any training examples to clusters yet, we have to set <code>cluster_label</code> to <code>None</code> when calling <code>plot_data()</code>.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display a scatterplot of the training set without clusters</span>
-<span class="n">dot_plot</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-
-<span class="c1"># Display the position of each centroid</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dot_plot</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="n">plot_centroids</span><span class="p">(</span><span class="n">dot_plot</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -613,24 +631,21 @@ MathJax.Hub.Config({
 <h2 id="4.-Assigning-each-training-example-to-a-cluster">4. Assigning each training example to a cluster<a class="anchor-link" href="#4.-Assigning-each-training-example-to-a-cluster">¶</a>
 </h2>
 <p>The next step is to assign every training example to one of the $k$ clusters. Because the centroid is the geometric center of a cluster, we perform this assignment by determining the centroid nearest to each training example, as measured by the square of the <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a>.</p>
-<p>Specifically, for each training example $x^{(i)}$, we assign $c^{(i)} := j$ that minimizes $\lVert x^{(i)} - u_j \rVert ^2$ where $c^{(i)}$ is the label of the cluster whose centroid is nearest to $x^{(i)}$ and where $u_j$ is the position of the centroid for the $j$th cluster and $1 \leq j \leq k$.</p>
+<p>Specifically, for each training example $x^{(i)}$, we assign $c^{(i)} := j$ that minimizes $\lVert x^{(i)} - u_j \rVert ^2$ where $c^{(i)}$ is the label of the cluster whose centroid is nearest to $x^{(i)}$ and where $u_j$ is the position of the centroid for the $j$th cluster and $1 \leq j \leq k$. Let's build a function that performs this step.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">assign_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">):</span>
-    <span class="c1"># Record the number of training examples</span>
     <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-    
-    <span class="c1"># Create a repository for recording the nearest centroids</span>
     <span class="n">C</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'label'</span><span class="p">])</span>
     
-    <span class="c1"># Identify the nearest centroid for each training example</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">example</span><span class="p">)</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
         <span class="n">distance</span> <span class="o">=</span> <span class="p">(</span><span class="n">example</span> <span class="o">-</span> <span class="n">U</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
         <span class="n">C</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">distance</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()</span>
@@ -639,6 +654,8 @@ MathJax.Hub.Config({
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -653,20 +670,20 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Perform cluster assignment step</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="n">assign_clusters</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
-
-<span class="c1"># Display a scatterplot of the training set with clusters and centroids</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">assign_clusters</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
 <span class="n">dot_plot</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">'label'</span><span class="p">)</span>
 <span class="n">plot_centroids</span><span class="p">(</span><span class="n">dot_plot</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -698,26 +715,26 @@ MathJax.Hub.Config({
 </h2>
 <p>Having assigned every training example to a cluster, each cluster must therefore have a new centroid. To determine the positions of these new centroids, we compute the mean of all training examples assigned to each cluster, feature by feature.</p>
 <p>Specifically, for each cluster $j$, we assign a new position for its centroid as given by</p>
-$$u_j := \frac{1}{\lvert c_j \rvert}\sum_{i \in c_j}x^{(i)}$$<p>where $c_j$ is the set of training examples assigned to cluster $j$.</p>
+$$u_j := \frac{1}{\lvert c_j \rvert}\sum_{i \in c_j}x^{(i)}$$<p>where $c_j$ is the set of training examples assigned to cluster $j$. Let's build a function that performs this step.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">update_centroids</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
-    <span class="c1"># Append cluster assignments to the features</span>
     <span class="n">joined</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    
-    <span class="c1"># Group training examples by cluster and compute the mean of each feature</span>
     <span class="k">return</span> <span class="n">joined</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'label'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -732,20 +749,20 @@ $$u_j := \frac{1}{\lvert c_j \rvert}\sum_{i \in c_j}x^{(i)}$$<p>where $c_j$ is t
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Perform centroid update step</span>
-<span class="n">centroids</span> <span class="o">=</span> <span class="n">update_centroids</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
-
-<span class="c1"># Display a scatterplot of the training set with clusters and centroids</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">centroids</span> <span class="o">=</span> <span class="n">update_centroids</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
 <span class="n">dot_plot</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">'label'</span><span class="p">)</span>
 <span class="n">plot_centroids</span><span class="p">(</span><span class="n">dot_plot</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -782,19 +799,20 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">distortion_function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
-    <span class="c1"># Compute the sum of the squared distances between each training example </span>
-    <span class="c1"># and the centroid of its currently assigned cluster</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">example</span> <span class="o">-</span> <span class="n">U</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">C</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span> <span class="o">**</span> <span class="mi">2</span>
                <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">example</span><span class="p">)</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">iterrows</span><span class="p">())</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -806,26 +824,21 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 <p><a id="cell7"></a></p>
 <h2 id="7.-Training-the-clustering-algorithm">7. Training the clustering algorithm<a class="anchor-link" href="#7.-Training-the-clustering-algorithm">¶</a>
 </h2>
-<p>We're now prepped to train the algorithm and learn the structure of the training set. Let's start with a fresh set of initial centroids, and repeat the cluster assignment and centroid update steps for a selected number of iterations.</p>
+<p>We're now prepped to train the algorithm and learn the structure of the training set. Let's start with a fresh set of initial centroids, and repeat the cluster assignment and centroid update steps for 5 iterations.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set the number of iterations</span>
-<span class="n">iterations</span> <span class="o">=</span> <span class="mi">5</span>
-
-<span class="c1"># Select the initial centroids</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">centroids</span> <span class="o">=</span> <span class="n">initialize_centroids</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-
-<span class="c1"># Create a repository for recording the distortion function at each iteration</span>
 <span class="n">distortion_history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">iterations</span><span class="p">)</span>
 
-<span class="c1"># Perform k-means clustering on the training set</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
     <span class="n">labels</span> <span class="o">=</span> <span class="n">assign_clusters</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
     <span class="n">centroids</span> <span class="o">=</span> <span class="n">update_centroids</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
@@ -834,6 +847,8 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -848,17 +863,19 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display a scatterplot of the training set with clusters and centroids</span>
-<span class="n">dot_plot</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">'label'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dot_plot</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">'label'</span><span class="p">)</span>
 <span class="n">plot_centroids</span><span class="p">(</span><span class="n">dot_plot</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -890,12 +907,12 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display a scatterplot of the distortion function after each iteration</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">factorplot</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">factorplot</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="s1">'Iteration'</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">'Distortion'</span><span class="p">,</span>
     <span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
@@ -908,6 +925,8 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -942,24 +961,20 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Initialize the current lowest distortion</span>
-<span class="n">lowest_distortion</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">10</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lowest_distortion</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">10</span>
 
-<span class="c1"># Train the algorithm several times</span>
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="c1"># Select the initial centroids</span>
     <span class="n">centroids</span> <span class="o">=</span> <span class="n">initialize_centroids</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
     
-    <span class="c1"># Perform k-means clustering on the training set</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
         <span class="n">labels</span> <span class="o">=</span> <span class="n">assign_clusters</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
         <span class="n">centroids</span> <span class="o">=</span> <span class="n">update_centroids</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
     
-    <span class="c1"># Record the clustering that yields the lowest distortion</span>
     <span class="n">curr_distortion</span> <span class="o">=</span> <span class="n">distortion_function</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">curr_distortion</span> <span class="o">&lt;</span> <span class="n">lowest_distortion</span><span class="p">:</span>
         <span class="n">lowest_distortion</span> <span class="o">=</span> <span class="n">curr_distortion</span>
@@ -969,6 +984,8 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -983,6 +1000,7 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
@@ -992,6 +1010,8 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1013,17 +1033,19 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display a scatterplot of the training set with clusters and centroids</span>
-<span class="n">dot_plot</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">features</span><span class="p">,</span> <span class="n">opt_labels</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">'label'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dot_plot</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">features</span><span class="p">,</span> <span class="n">opt_labels</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">'label'</span><span class="p">)</span>
 <span class="n">plot_centroids</span><span class="p">(</span><span class="n">dot_plot</span><span class="p">,</span> <span class="n">opt_centroids</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1062,26 +1084,26 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="k">import</span> <span class="n">KMeans</span>
 
-<span class="c1"># Perform k-means clustering on the training set</span>
 <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
 
-<span class="c1"># Extract the optimal clusters and centroids</span>
 <span class="n">opt_labels2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'label'</span><span class="p">])</span>
 <span class="n">opt_centroids2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'FSC'</span><span class="p">,</span> <span class="s1">'SSC'</span><span class="p">])</span>
 
-<span class="c1"># Display a scatterplot of the training set with clusters and centroids</span>
 <span class="n">dot_plot</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">features</span><span class="p">,</span> <span class="n">opt_labels2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s1">'label'</span><span class="p">)</span>
 <span class="n">plot_centroids</span><span class="p">(</span><span class="n">dot_plot</span><span class="p">,</span> <span class="n">opt_centroids2</span><span class="p">);</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1102,7 +1124,18 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's also compute the distortion function of this clustering.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
@@ -1112,6 +1145,8 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1137,7 +1172,7 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The colors are swapped but the clustering is very similar. In fact, the values of the distortion function are nearly identical. Not bad at all!</p>
+<p>The colors are swapped but the clustering is very similar. In fact, the value of the distortion function is nearly identical to that of our homemade algorithm. Not bad at all!</p>
 <p><a id="cell8"></a></p>
 <h2 id="8.-Implications-and-conclusions">8. Implications and conclusions<a class="anchor-link" href="#8.-Implications-and-conclusions">¶</a>
 </h2>
@@ -1151,9 +1186,7 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 </div>
 </div>
 </div>
-    </div>
-  </div>
-
+</div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../categories/clustering/" rel="tag">clustering</a></li>

@@ -30,7 +30,18 @@ MathJax.Hub.Config({
 <meta property="og:site_name" content="In Machines We Trust">
 <meta property="og:title" content="Iterables, iterators and generators, oh my! Part 1">
 <meta property="og:url" content="https://redwanhuq.github.io/posts/understanding-iterators/">
-<meta property="og:description" content="Iterators and generators are among my favorite programming tools—they're also some of the most powerful. These constructs enable us to write cleaner, more flexible and higher performance code; undoubt">
+<meta property="og:description" content="div.prompt {
+	display: none;
+}
+
+
+
+
+
+
+
+
+Iterators and generators are among my favorite programming tools—they're also some of the most powerful. These constructs enable us to write cleaner, more flexib">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-01-30T08:00:00-06:00">
 <meta property="article:tag" content="generator">
@@ -103,9 +114,14 @@ MathJax.Hub.Config({
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div class="container" id="notebook-container">
+    <div>
+<style type="text/css">
+div.prompt {
+	display: none;
+}
 
+
+</style>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -155,16 +171,18 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># My favorite list of numbers</span>
-<span class="n">myIterable</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">42</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">myIterable</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">42</span><span class="p">]</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -173,25 +191,26 @@ MathJax.Hub.Config({
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now that we have an iterable, we need instructions for traversing its contents so let's produce an iterator from <code>myIterable</code>.</p>
+<p>Now that we have an iterable, we need instructions for traversing its contents so let's produce an iterator from <code>myIterable</code> and confirm its type.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce an iterator from myIterable</span>
-<span class="n">myIterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">myIterable</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">myIterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">myIterable</span><span class="p">)</span>
 
-<span class="c1"># Confirm that we produced an iterator</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -223,17 +242,19 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Test myIterator in a for loop</span>
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">myIterator</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">myIterator</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -262,6 +283,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
@@ -271,6 +293,8 @@ MathJax.Hub.Config({
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -305,16 +329,18 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Yield the subsequent item</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -351,19 +377,20 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce another iterator from myIterable</span>
-<span class="n">myIterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">myIterable</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">myIterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">myIterable</span><span class="p">)</span>
 
-<span class="c1"># Yield the subsequent item</span>
 <span class="nb">next</span><span class="p">(</span><span class="n">myIterator</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -385,6 +412,7 @@ MathJax.Hub.Config({
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
@@ -394,6 +422,8 @@ MathJax.Hub.Config({
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -415,6 +445,7 @@ MathJax.Hub.Config({
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
@@ -424,6 +455,8 @@ MathJax.Hub.Config({
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -455,6 +488,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
@@ -464,6 +498,8 @@ MathJax.Hub.Config({
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -485,6 +521,7 @@ MathJax.Hub.Config({
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
@@ -494,6 +531,8 @@ MathJax.Hub.Config({
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -515,6 +554,7 @@ MathJax.Hub.Config({
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
@@ -524,6 +564,8 @@ MathJax.Hub.Config({
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -545,6 +587,7 @@ MathJax.Hub.Config({
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
@@ -554,6 +597,8 @@ MathJax.Hub.Config({
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -590,28 +635,28 @@ MathJax.Hub.Config({
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obj_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 
-<pre><code># Produce an iterator assuming obj is an iterable
-obj_iter = iter(obj)
-
-while True:
-    try:
-        # Yield the subsequent item
-        item = next(obj_iter)
-
-        # Perform expression
-
-    # End the loop if a StopIteration exception is raised
-    except StopIteration:
-        break</code></pre>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">obj_iter</span><span class="p">)</span>
+        
+    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+        <span class="k">break</span>
+</pre></div>
 
 </div>
 </div>
+</div>
+
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -628,31 +673,20 @@ while True:
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">TheNumbersMaker</span><span class="p">():</span>    
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Instantiate the iterator using our favorite list of numbers</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">42</span><span class="p">]</span>
-        
-        <span class="c1"># An iterator needs a way to hold state and recall where it left off. </span>
-        <span class="c1"># We can keep track of which index we're on using self.curr_index.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">curr_index</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Recall that in order for an iterator to work with a for loop, the </span>
-        <span class="c1"># loop must be able call this method. Technically, we don't need this</span>
-        <span class="c1"># method if we only want to traverse the iterator manually, but why</span>
-        <span class="c1"># restrict ourselves?</span>
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># This method provides the instructions needed to determine the</span>
-        <span class="c1"># subsequent item: move down the contents of the list by one index and </span>
-        <span class="c1"># update the state each time. Upon reaching the end, raise an exception</span>
-        <span class="c1"># to indicate the iterator is exhausted.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">):</span>
             <span class="n">curr_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_index</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">curr_index</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -666,31 +700,43 @@ while True:
 </div>
 
 </div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This <code>class</code> is known as an <strong>iterator protocol</strong>—everything required to produce a custom iterator. Let's use it to produce a "clone" of <code>myIterator</code> and test it out.</p>
+<p>This <code>class</code> is known as an <strong>iterator protocol</strong>—everything required to produce a custom iterator. Let's go through what each of its methods are doing.</p>
+<ul>
+<li>
+<code>__init__()</code>: Instantiates the iterator using our favorite list of numbers and stores it in <code>self.contents</code>. Since an iterator needs a way to hold state and recall where it left off, this method keeps track of which index we're on using <code>self.curr_index</code>.</li>
+<li>
+<code>__iter__()</code>: Recall that in order for an iterator to be compatible with a <code>for</code> loop, the loop must be able call this method, so that's why it's included to simply return the iterator itself. Technically, we don't need this method if we only want to traverse the iterator manually, but why restrict ourselves?</li>
+<li>
+<code>__next__()</code>: This method provides the instructions needed to determine the subsequent item, specifically, move down the contents of the list by one index and update the state each time and upon reaching the end, raise an exception to indicate the iterator is exhausted.</li>
+</ul>
+<p>Let's use this iterator protocol to produce a "clone" of <code>myIterator</code> and test it out in a <code>for</code> loop.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce an iterator using our iterator protocol</span>
-<span class="n">myIteratorClone</span> <span class="o">=</span> <span class="n">TheNumbersMaker</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">myIteratorClone</span> <span class="o">=</span> <span class="n">TheNumbersMaker</span><span class="p">()</span>
 
-<span class="c1"># Yield all items and exhaust the iterator</span>
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">myIteratorClone</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -708,18 +754,29 @@ while True:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>for</code> loop should have exhausted the iterator so let's see what happens when we call <code>next()</code> manually.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Confirm that a StopIteration exception is raised when calling next() on an</span>
-<span class="c1"># exhausted iterator</span>
-<span class="nb">next</span><span class="p">(</span><span class="n">myIteratorClone</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">myIteratorClone</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -766,17 +823,13 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">FibNumMaker</span><span class="p">():</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Instantiate the iterator with 0 and 1 (the first two Fibonacci </span>
-        <span class="c1"># numbers). Since the next Fibonacci number depends on the previous two</span>
-        <span class="c1"># numbers, we need to keep track of both the current and previous</span>
-        <span class="c1"># states for this iterator, using self.curr and self.last,</span>
-        <span class="c1"># respectively.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">last</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
 
     <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -784,8 +837,6 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
         <span class="k">return</span> <span class="bp">self</span>
     
     <span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Instructions for determining and yielding the subsequent Fibonacci </span>
-        <span class="c1"># number</span>
         <span class="n">number</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">curr</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last</span>  
         <span class="bp">self</span><span class="o">.</span><span class="n">last</span> <span class="o">=</span> <span class="n">number</span>              
@@ -797,23 +848,34 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 </div>
 
 </div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Again, let's go through each method of this iterator protocol.</p>
+<ul>
+<li>
+<code>__init__()</code>: Instantiates the iterator with 0 and 1 (the first two Fibonacci numbers). Since the next Fibonacci number depends on the previous two numbers, we need to keep track of both the current and previous states of this iterator, using <code>self.curr</code> and <code>self.last</code>, respectively.</li>
+<li>
+<code>__iter__()</code>: Enables the iterator to be compatible with <code>for</code> loops</li>
+<li>
+<code>__next__()</code>: Instructions for determining and yielding the subsequent Fibonacci number</li>
+</ul>
 <p>Let's produce an iterator using this iterator protocol and explore what happens as we manually attempt to yield items.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce an iterator that yields Fibonacci numbers</span>
-<span class="n">fib_seq</span> <span class="o">=</span> <span class="n">FibNumMaker</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fib_seq</span> <span class="o">=</span> <span class="n">FibNumMaker</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -821,7 +883,10 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 </div>
 
 </div>
+
+</div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
@@ -831,6 +896,8 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -852,6 +919,7 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
@@ -861,6 +929,8 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -882,6 +952,7 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
@@ -891,6 +962,8 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -912,6 +985,7 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
@@ -921,6 +995,8 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -942,6 +1018,7 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
@@ -951,6 +1028,8 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -982,17 +1061,19 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Yield the next 15 Fibonacci numbers</span>
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">fib_seq</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1041,9 +1122,7 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
 </div>
 </div>
 </div>
-    </div>
-  </div>
-
+</div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../categories/generator/" rel="tag">generator</a></li>

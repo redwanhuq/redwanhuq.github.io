@@ -30,7 +30,18 @@ MathJax.Hub.Config({
 <meta property="og:site_name" content="In Machines We Trust">
 <meta property="og:title" content="Exploring the Pokemon dataset with pandas and seaborn">
 <meta property="og:url" content="https://redwanhuq.github.io/posts/exploring-pokemon-dataset/">
-<meta property="og:description" content="The Pokemon dataset is a listing of all Pokemon species as of mid-2016, containing data about their type and statistics. Considering how diverse Pokemon are, I was interested in analyzing this datset ">
+<meta property="og:description" content="div.prompt {
+	display: none;
+}
+
+
+
+
+
+
+
+
+The Pokemon dataset is a listing of all Pokemon species as of mid-2016, containing data about their type and statistics. Considering how diverse Pokemon are, I w">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-01-19T10:00:00-06:00">
 <meta property="article:tag" content="data analytics">
@@ -105,9 +116,14 @@ MathJax.Hub.Config({
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div class="container" id="notebook-container">
+    <div>
+<style type="text/css">
+div.prompt {
+	display: none;
+}
 
+
+</style>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -122,28 +138,19 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load the required libraries</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = 'retina'
-
-<span class="c1"># Load the dataset into a DataFrame</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/pokemon.csv'</span><span class="p">)</span>
-
-<span class="c1"># Show the first five rows</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/pokemon.csv'</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -264,52 +271,6 @@ MathJax.Hub.Config({
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Show a summary of the dataset</span>
-<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 800 entries, 0 to 799
-Data columns (total 13 columns):
-#             800 non-null int64
-Name          800 non-null object
-Type 1        800 non-null object
-Type 2        414 non-null object
-Total         800 non-null int64
-HP            800 non-null int64
-Attack        800 non-null int64
-Defense       800 non-null int64
-Sp. Atk       800 non-null int64
-Sp. Def       800 non-null int64
-Speed         800 non-null int64
-Generation    800 non-null int64
-Legendary     800 non-null bool
-dtypes: bool(1), int64(9), object(3)
-memory usage: 75.9+ KB
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -359,26 +320,26 @@ memory usage: 75.9+ KB
 <p><a id="cell0"></a></p>
 <h2 id="1.-Cleaning-the-dataset">1. Cleaning the dataset<a class="anchor-link" href="#1.-Cleaning-the-dataset">¶</a>
 </h2>
-<p>One of our first priorities is ensuring the datset is <a href="https://www.jstatsoft.org/article/view/v059i10">tidy</a>, meaning each column should  represent a single variable and each row represent a single data point (Pokemon species in this case). According to <a href="http://bulbapedia.bulbagarden.net/wiki/Generation">Bulbapedia</a>, there are only 721 Pokemon species by generation 6, which suggests that there may be duplicate rows in our dataset. In addition, our initial inspection also revealed some Pokemon have missing values for <code>Type 2</code>, which confirms that not all Pokemon have a secondary type; we have to account for these missing values. We also notice the dataset has two observational units: the Pokemon's identity and statistics, which should be normalized into two tables to prevent future inconsistencies.</p>
-<p>But before any rigorous cleaning, let's do some housekeeping.</p>
+<p>One of our first priorities is ensuring the datset is <a href="https://www.jstatsoft.org/article/view/v059i10">tidy</a>, meaning each column should  represent a single variable and each row represent a single data point (Pokemon species in this case). According to <a href="http://bulbapedia.bulbagarden.net/wiki/Generation">Bulbapedia</a>, there are only 721 Pokemon species by generation 6 so we should check if there are any anomalies or duplicated rows in our dataset. In addition, our initial inspection also revealed some Pokemon have missing values for <code>Type 2</code>, which confirms that not all Pokemon have a secondary type; we have to account for these missing values. We also notice the dataset has two observational units: the Pokemon's identity and statistics, which should be normalized into two tables to prevent future inconsistencies.</p>
+<p>But before any rigorous cleaning, let's rename the <code>#</code> column to <code>id</code>, and convert all column labels to lower case.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Rename the # column to id</span>
-<span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'#'</span><span class="p">:</span> <span class="s1">'id'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># Convert all column labels to lower case</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'#'</span><span class="p">:</span> <span class="s1">'id'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -393,16 +354,18 @@ memory usage: 75.9+ KB
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Show all Pokemon with duplicated id values</span>
-<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -534,16 +497,18 @@ memory usage: 75.9+ KB
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove any Pokemon with duplicated id numbers except for the first instance</span>
-<span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s1">'first'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s1">'first'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -558,16 +523,18 @@ memory usage: 75.9+ KB
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Replace any missing values in type 2 with 'None'</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">'type 2'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'type 2'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -576,22 +543,19 @@ memory usage: 75.9+ KB
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The dataset contains both information regarding the identity and statistics of each Pokemon species; therefore, let's separate these two observational units into separate tables.</p>
+<p>The dataset contains both information regarding the identity and statistics of each Pokemon species; therefore, let's separate these two observational units into separate tables: <code>pokedex</code> and <code>statistics</code>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select only the identity-related columns from original dataset and store them</span>
-<span class="c1"># in a new table called pokedex</span>
-<span class="n">pokedex</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">,</span> <span class="s1">'type 1'</span><span class="p">,</span> <span class="s1">'type 2'</span><span class="p">,</span> <span class="s1">'generation'</span><span class="p">,</span> <span class="s1">'legendary'</span><span class="p">]]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pokedex</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">,</span> <span class="s1">'type 1'</span><span class="p">,</span> <span class="s1">'type 2'</span><span class="p">,</span> <span class="s1">'generation'</span><span class="p">,</span> <span class="s1">'legendary'</span><span class="p">]]</span>
 
-<span class="c1"># Join the original dataset with the pokedex table to generate a new table</span>
-<span class="c1"># called statistics</span>
 <span class="n">statistics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
     <span class="n">df</span><span class="p">,</span>
     <span class="n">pokedex</span><span class="p">,</span>
@@ -602,6 +566,8 @@ memory usage: 75.9+ KB
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -616,6 +582,7 @@ memory usage: 75.9+ KB
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
@@ -625,6 +592,8 @@ memory usage: 75.9+ KB
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -704,44 +673,7 @@ memory usage: 75.9+ KB
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pokedex</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
-Int64Index: 721 entries, 0 to 799
-Data columns (total 6 columns):
-id            721 non-null int64
-name          721 non-null object
-type 1        721 non-null object
-type 2        721 non-null object
-generation    721 non-null int64
-legendary     721 non-null bool
-dtypes: bool(1), int64(2), object(3)
-memory usage: 34.5+ KB
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
@@ -751,6 +683,8 @@ memory usage: 34.5+ KB
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -841,46 +775,6 @@ memory usage: 34.5+ KB
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">statistics</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
-Int64Index: 721 entries, 0 to 720
-Data columns (total 8 columns):
-id         721 non-null int64
-hp         721 non-null int64
-attack     721 non-null int64
-defense    721 non-null int64
-sp. atk    721 non-null int64
-sp. def    721 non-null int64
-speed      721 non-null int64
-total      721 non-null int64
-dtypes: int64(8)
-memory usage: 50.7 KB
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -896,12 +790,12 @@ memory usage: 50.7 KB
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display a categorial histogram and label axes</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">factorplot</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">factorplot</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="s1">'generation'</span><span class="p">,</span> 
     <span class="n">data</span><span class="o">=</span><span class="n">pokedex</span><span class="p">,</span> 
     <span class="n">kind</span><span class="o">=</span><span class="s1">'count'</span>
@@ -910,6 +804,8 @@ memory usage: 50.7 KB
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -942,15 +838,12 @@ memory usage: 50.7 KB
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set the font scale for better readability </span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">'talk'</span><span class="p">)</span>
-
-<span class="c1"># Display a categorical histogram faceted by primary type and label axes</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">factorplot</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">factorplot</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="s1">'generation'</span><span class="p">,</span>
     <span class="n">data</span><span class="o">=</span><span class="n">pokedex</span><span class="p">,</span>
     <span class="n">col</span><span class="o">=</span><span class="s1">'type 1'</span><span class="p">,</span>
@@ -961,6 +854,8 @@ memory usage: 50.7 KB
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1001,15 +896,14 @@ memory usage: 50.7 KB
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Identify the primary types that are also secondary types, and vice versa</span>
-<span class="n">unique_type1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">pokedex</span><span class="p">[</span><span class="s1">'type 1'</span><span class="p">],</span> <span class="n">pokedex</span><span class="p">[</span><span class="s1">'type 2'</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unique_type1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">pokedex</span><span class="p">[</span><span class="s1">'type 1'</span><span class="p">],</span> <span class="n">pokedex</span><span class="p">[</span><span class="s1">'type 2'</span><span class="p">])</span>
 <span class="n">unique_type2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">pokedex</span><span class="p">[</span><span class="s1">'type 2'</span><span class="p">],</span> <span class="n">pokedex</span><span class="p">[</span><span class="s1">'type 1'</span><span class="p">])</span>
 
-<span class="c1"># Display any unique primary types</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Unique Type 1: '</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">unique_type1</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">'No unique types'</span><span class="p">)</span>
@@ -1017,7 +911,6 @@ memory usage: 50.7 KB
     <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">unique_type1</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
 
-<span class="c1"># Display any unique secondary types</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Unique Type 2: '</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">unique_type2</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">'No unique types'</span><span class="p">)</span>
@@ -1028,6 +921,8 @@ memory usage: 50.7 KB
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1058,19 +953,20 @@ Unique Type 2: None
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Group by primary or secondary type, and compute the total number in each </span>
-<span class="c1"># group</span>
-<span class="n">type1</span><span class="p">,</span> <span class="n">type2</span> <span class="o">=</span> <span class="n">pokedex</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'type 1'</span><span class="p">),</span> <span class="n">pokedex</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'type 2'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">type1</span><span class="p">,</span> <span class="n">type2</span> <span class="o">=</span> <span class="n">pokedex</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'type 1'</span><span class="p">),</span> <span class="n">pokedex</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'type 2'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Type 1 count: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">type1</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Type 2 count: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">type2</span><span class="p">)))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1102,15 +998,12 @@ Type 2 count: 19
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set the font scale for better readability </span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">'notebook'</span><span class="p">)</span>
-
-<span class="c1"># Display a categorical histogram of primary types and sort by largest counts</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">factorplot</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">factorplot</span><span class="p">(</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">'type 1'</span><span class="p">,</span>
     <span class="n">data</span><span class="o">=</span><span class="n">pokedex</span><span class="p">,</span>
     <span class="n">kind</span><span class="o">=</span><span class="s1">'count'</span><span class="p">,</span>
@@ -1119,7 +1012,6 @@ Type 2 count: 19
     <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span>
 <span class="p">)</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="s1">'# of Pokemon'</span><span class="p">,</span> <span class="s1">'Type 1'</span><span class="p">)</span>
 
-<span class="c1"># Display a categorical histogram of secondary types and sort by largest counts</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">factorplot</span><span class="p">(</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">'type 2'</span><span class="p">,</span>
     <span class="n">data</span><span class="o">=</span><span class="n">pokedex</span><span class="p">,</span>
@@ -1132,6 +1024,8 @@ Type 2 count: 19
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1180,15 +1074,13 @@ Type 2 count: 19
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Exclude Pokemon species without a secondary type to better highlight results</span>
-<span class="n">dual_types</span> <span class="o">=</span> <span class="n">pokedex</span><span class="p">[</span><span class="n">pokedex</span><span class="p">[</span><span class="s1">'type 2'</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">'None'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dual_types</span> <span class="o">=</span> <span class="n">pokedex</span><span class="p">[</span><span class="n">pokedex</span><span class="p">[</span><span class="s1">'type 2'</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">'None'</span><span class="p">]</span>
 
-<span class="c1"># Display a heatmap of the different combinations of primary and secondary </span>
-<span class="c1"># types, and show the counts for each combination</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
     <span class="n">dual_types</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'type 1'</span><span class="p">,</span> <span class="s1">'type 2'</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">(),</span>
     <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -1198,6 +1090,8 @@ Type 2 count: 19
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1238,14 +1132,13 @@ Type 2 count: 19
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select any Pokemon with only a primary type</span>
-<span class="n">single_types</span> <span class="o">=</span> <span class="n">pokedex</span><span class="p">[</span><span class="n">pokedex</span><span class="p">[</span><span class="s1">'type 2'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'None'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">single_types</span> <span class="o">=</span> <span class="n">pokedex</span><span class="p">[</span><span class="n">pokedex</span><span class="p">[</span><span class="s1">'type 2'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'None'</span><span class="p">]</span>
 
-<span class="c1"># Display a categorical histogram and sort by largest counts</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">factorplot</span><span class="p">(</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">'type 1'</span><span class="p">,</span> 
     <span class="n">data</span><span class="o">=</span><span class="n">single_types</span><span class="p">,</span>
@@ -1258,6 +1151,8 @@ Type 2 count: 19
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1293,13 +1188,12 @@ Type 2 count: 19
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Join the statistics table with the pokedex table based on id number to report</span>
-<span class="c1"># the 10 highest total values</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
     <span class="n">pokedex</span><span class="p">,</span> 
     <span class="n">statistics</span><span class="p">,</span> 
     <span class="n">on</span><span class="o">=</span><span class="s1">'id'</span>
@@ -1308,6 +1202,8 @@ Type 2 count: 19
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1521,19 +1417,19 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove the total column, move the id column to the row labels, standardize</span>
-<span class="c1"># each statistic by converting values into a z-score, and store the results in</span>
-<span class="c1"># a new table</span>
-<span class="n">std_stats</span> <span class="o">=</span> <span class="n">statistics</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'total'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">'columns'</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">std_stats</span> <span class="o">=</span> <span class="n">statistics</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'total'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">'columns'</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
     <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -1548,17 +1444,18 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Compute the strength as the sum of the z-scores for each statistic and store</span>
-<span class="c1"># the result in a new column</span>
-<span class="n">std_stats</span><span class="p">[</span><span class="s1">'strength'</span><span class="p">]</span> <span class="o">=</span> <span class="n">std_stats</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'columns'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">std_stats</span><span class="p">[</span><span class="s1">'strength'</span><span class="p">]</span> <span class="o">=</span> <span class="n">std_stats</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'columns'</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -1567,21 +1464,19 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can now add the <code>id</code> column back to the table and determine the strongest Pokemon based on their <code>strength</code> value.</p>
+<p>We can now add the <code>id</code> column back to the table and determine the ten strongest Pokemon based on their <code>strength</code> value.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Re-insert the id column back into the table</span>
-<span class="n">std_stats</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">std_stats</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># Join the std_stats table with the pokedex table based on id number to report</span>
-<span class="c1"># the Pokemon with the 10 highest strength values</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
     <span class="n">pokedex</span><span class="p">,</span> 
     <span class="n">std_stats</span><span class="p">,</span> 
@@ -1591,6 +1486,8 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1797,19 +1694,18 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>That's more like it! We now have a definitive ranking of the 10 strongest Pokemon species in order: Arceus, Giratina, Lugia, Ho-oh, Xerneas, Yveltal, Mewtwo, Reshiram, Palkia and Rayquaza. Not surprisingly, they're all legendary Pokemon! And even less shocking, <a href="http://bulbapedia.bulbagarden.net/wiki/Arceus_(Pok%C3%A9mon">Arceus</a> is colloquially known as the "god" Pokemon.</p>
-<p>Now let's take a look at the weakest Pokemon.</p>
+<p>Now let's take a look at the ten weakest Pokemon.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Join the std_stats table with the pokedex table based on id number to report</span>
-<span class="c1"># the Pokemon with the 10 lowest strength values</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
     <span class="n">pokedex</span><span class="p">,</span>
     <span class="n">std_stats</span><span class="p">,</span>
     <span class="n">on</span><span class="o">=</span><span class="s1">'id'</span>
@@ -1818,6 +1714,8 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -2030,13 +1928,12 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Join the std_stats table with the pokedex table based on id number to report</span>
-<span class="c1"># the non-legendary Pokemon with the 10 highest strength values</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
     <span class="n">pokedex</span><span class="p">[</span><span class="o">~</span><span class="n">pokedex</span><span class="p">[</span><span class="s1">'legendary'</span><span class="p">]],</span>
     <span class="n">std_stats</span><span class="p">,</span>
     <span class="n">on</span><span class="o">=</span><span class="s1">'id'</span>
@@ -2045,6 +1942,8 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -2260,24 +2159,19 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [25]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Join the std_stats table with the pokedex table based on id number</span>
-<span class="n">joined</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">joined</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
     <span class="n">pokedex</span><span class="p">,</span>
     <span class="n">std_stats</span><span class="p">,</span>
     <span class="n">on</span><span class="o">=</span><span class="s1">'id'</span>
 <span class="p">)</span>
 
-<span class="c1"># Calculate the median strength of each combination of primary and secondary</span>
-<span class="c1"># type</span>
-<span class="n">medians</span> <span class="o">=</span> <span class="n">joined</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'type 1'</span><span class="p">,</span>
-                          <span class="s1">'type 2'</span><span class="p">])</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'strength'</span><span class="p">]</span>
+<span class="n">medians</span> <span class="o">=</span> <span class="n">joined</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'type 1'</span><span class="p">,</span> <span class="s1">'type 2'</span><span class="p">])</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'strength'</span><span class="p">]</span>
 
-<span class="c1"># Display a heatmap of the median strength of each combination of primary and</span>
-<span class="c1"># secondary type</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
     <span class="n">medians</span><span class="o">.</span><span class="n">unstack</span><span class="p">(),</span>
     <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -2287,6 +2181,8 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -2318,17 +2214,18 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Rearrange the medians table and sort by the strongest combination of primary</span>
-<span class="c1"># and secondary types</span>
-<span class="n">medians</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'strength'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">medians</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'strength'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -2400,31 +2297,26 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 <li>Among the strongest Pokemon are some primary Psychic-types, secondary  Fighting-types and secondary Flying-types.</li>
 <li>The strongest Pokemon tend to have Dragon-type as either their primary or secondary type, and among the weakest Pokemon are primary Bug-types. Our suspicions are confirmed!</li>
 </ul>
-<p>Since legendary Pokemon species are a) rare and b) typically vastly stronger than non-legendary Pokemon, the former group may be confounding our results. Therefore, let's perform the same analysis as above without legendary Pokemon, and then list the strongest combinations.</p>
+<p>Since legendary Pokemon species are a) rare and b) typically vastly stronger than non-legendary Pokemon, the former group may be confounding our results. Therefore, let's perform the same analysis as above without legendary Pokemon.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [27]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Join the std_stats table with the pokedex table based on id number for</span>
-<span class="c1"># non-legendary Pokemon only</span>
-<span class="n">joined_nolegs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">joined_nolegs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
     <span class="n">pokedex</span><span class="p">[</span><span class="o">~</span><span class="n">pokedex</span><span class="p">[</span><span class="s1">'legendary'</span><span class="p">]],</span>
     <span class="n">std_stats</span><span class="p">,</span>
     <span class="n">on</span><span class="o">=</span><span class="s1">'id'</span>
 <span class="p">)</span>
 
-<span class="c1"># Calculate the median strength of each combination of primary and secondary</span>
-<span class="c1"># type</span>
-<span class="n">medians</span> <span class="o">=</span> <span class="n">joined_nolegs</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'type 1'</span><span class="p">,</span>
+<span class="n">medians</span> <span class="o">=</span> <span class="n">joined_nolegs</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'type 1'</span><span class="p">,</span> 
                                  <span class="s1">'type 2'</span><span class="p">])</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'strength'</span><span class="p">]</span>
 
-<span class="c1"># Display a heatmap of the median strength of each combination of primary and</span>
-<span class="c1"># secondary type for non-legendary Pokemon</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
     <span class="n">medians</span><span class="o">.</span><span class="n">unstack</span><span class="p">(),</span>
     <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -2434,6 +2326,8 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -2454,18 +2348,29 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's also list the five strongest combinations.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Rearrange the medians table and sort by the strongest combination of primary</span>
-<span class="c1"># and secondary types for non-legendary Pokemon</span>
-<span class="n">medians</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'strength'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">medians</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'strength'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -2542,12 +2447,12 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [29]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display a heatmap of the distribution of statistics across primary types</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
     <span class="n">joined</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'type 1'</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'hp'</span><span class="p">:</span><span class="s1">'speed'</span><span class="p">],</span> 
     <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">cmap</span><span class="o">=</span><span class="s1">'RdYlBu_r'</span>
@@ -2556,6 +2461,8 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -2592,13 +2499,12 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [30]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display a heatmap of the distribution of statistics across primary types</span>
-<span class="c1"># for non-legendary Pokemon</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
     <span class="n">joined_nolegs</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'type 1'</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'hp'</span><span class="p">:</span><span class="s1">'speed'</span><span class="p">],</span> 
     <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">cmap</span><span class="o">=</span><span class="s1">'RdYlBu_r'</span>
@@ -2607,6 +2513,8 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -2650,16 +2558,13 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">show_corr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="c1"># Calculate Pearson's coefficient for each pair of statistics</span>
     <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    
-    <span class="c1"># Annotate Pearson's coefficient, rounded to two decimal places, on each </span>
-    <span class="c1"># pairwise plot</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
         <span class="s1">'r = </span><span class="si">{:.2f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">),</span>
@@ -2670,6 +2575,8 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -2684,16 +2591,12 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set the font scale for better readability </span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">'talk'</span><span class="p">)</span>
-
-<span class="c1"># Show scatterplots with linear regression and Pearson's coefficient for each </span>
-<span class="c1"># pair of statistics</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="n">joined_nolegs</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'hp'</span><span class="p">:</span><span class="s1">'speed'</span><span class="p">],</span>
     <span class="n">kind</span><span class="o">=</span><span class="s1">'reg'</span>
 <span class="p">)</span><span class="o">.</span><span class="n">map_offdiag</span><span class="p">(</span><span class="n">show_corr</span><span class="p">);</span>
@@ -2701,6 +2604,8 @@ $$z = \frac{x-\mu}{\sigma}$$<p>There's no point in keeping the <code>total</code
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -22072,22 +21977,24 @@ SZIkSZIkSZIkSZIkSZLUAAdnS5IkSZIkSZIkSZIkSZIkSVIDHJwtSZIkSZIkSZIkSZIkSZIkSQ34
 <li>special attack/speed</li>
 </ol>
 <p>We can see that none of the statistics are strongly correlated, which is actually important as that would favor certain Pokemon or types of Pokemon over others. However, it is worth noting that all of the statistics are positively correlated except for defense and speed—this particular case is epitomized by Rock-type and Steel-type Pokemon!</p>
-<p>The above plot also reveals a few outliers with remarkably high HP, defense or special defense. Let's find out which Pokemon these are.</p>
+<p>The above plot also reveals a few outliers with certain statistics remarkably high. First, let's identify the HP outliers.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [33]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Show outliers for the HP statistic</span>
-<span class="n">joined_nolegs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">joined_nolegs</span><span class="p">[</span><span class="s1">'hp'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">joined_nolegs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">joined_nolegs</span><span class="p">[</span><span class="s1">'hp'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">]</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -22110,17 +22017,29 @@ Name: name, dtype: object</pre>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next, the outliers with high defense.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [34]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Show outliers for the defense statistic</span>
-<span class="n">joined_nolegs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">joined_nolegs</span><span class="p">[</span><span class="s1">'defense'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">joined_nolegs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">joined_nolegs</span><span class="p">[</span><span class="s1">'defense'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">]</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -22142,17 +22061,29 @@ Name: name, dtype: object</pre>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And finally, the outliers with high special defense.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [35]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Show outliers for the special defense statistic</span>
-<span class="n">joined_nolegs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">joined_nolegs</span><span class="p">[</span><span class="s1">'sp. def'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">joined_nolegs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">joined_nolegs</span><span class="p">[</span><span class="s1">'sp. def'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">]</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -22197,6 +22128,7 @@ Name: name, dtype: object</pre>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [36]:</div>
 <div class="inner_cell">
@@ -22206,6 +22138,8 @@ Name: name, dtype: object</pre>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -22257,6 +22191,7 @@ Name: name, dtype: object</pre>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [37]:</div>
 <div class="inner_cell">
@@ -22266,6 +22201,8 @@ Name: name, dtype: object</pre>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -22351,9 +22288,7 @@ Name: name, dtype: object</pre>
 </div>
 </div>
 </div>
-    </div>
-  </div>
-
+</div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../categories/data-analytics/" rel="tag">data analytics</a></li>

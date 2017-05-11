@@ -30,7 +30,18 @@ MathJax.Hub.Config({
 <meta property="og:site_name" content="In Machines We Trust">
 <meta property="og:title" content="Building a logistic regression classifier from the ground up">
 <meta property="og:url" content="https://redwanhuq.github.io/posts/building-logistic-regression/">
-<meta property="og:description" content="The logistic regression classifier is a widely used machine learning model that predicts the group or category that an observation belongs to. When implementing this model, most people rely on some pa">
+<meta property="og:description" content="div.prompt {
+	display: none;
+}
+
+
+
+
+
+
+
+
+The logistic regression classifier is a widely used machine learning model that predicts the group or category that an observation belongs to. When implementing ">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-02-13T10:00:00-06:00">
 <meta property="article:tag" content="classification">
@@ -105,9 +116,14 @@ MathJax.Hub.Config({
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div class="container" id="notebook-container">
+    <div>
+<style type="text/css">
+div.prompt {
+	display: none;
+}
 
+
+</style>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -135,28 +151,19 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load the required packages</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">special</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = 'retina'
-
-<span class="c1"># Load the training set using the first row as column labels</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/election.csv'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># Display the first five rows</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/election.csv'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -232,29 +239,27 @@ MathJax.Hub.Config({
 <code>result</code> - whether the candidate won or lost the election</li>
 </ul>
 <p><code>funds</code> and <code>rating</code> are the <strong>features</strong>, while <code>result</code> is the <strong>target variable</strong> that defines the classes: winners and losers. Using this training set and a logistic regression classifier, <strong>we aim to predict if a future candidate will win an election.</strong></p>
-<p>Because we'll need to eventually perform computations on the target variable, let's encode its values with numbers: "won" = 1 and "lost" = 0.</p>
+<p>Because we'll need to eventually perform computations on the target variable, let's encode its values with numbers ("won" = 1 and "lost" = 0) and convert its contents from <code>str</code> to <code>int</code> type.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Encode the values in the target variable</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'result'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'won'</span><span class="p">,</span> <span class="s1">'result'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'result'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'won'</span><span class="p">,</span> <span class="s1">'result'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'result'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'lost'</span><span class="p">,</span> <span class="s1">'result'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c1"># Convert the target variable to integer type</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">'result'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'result'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">)</span>
-
-<span class="c1"># Display the first five rows</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -328,6 +333,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
@@ -337,6 +343,8 @@ MathJax.Hub.Config({
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -416,15 +424,12 @@ MathJax.Hub.Config({
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Improve readability of figures</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s1">'notebook'</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.4</span><span class="p">)</span>
-
-<span class="c1"># Display a scatterplot of the training set and label the axes</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
     <span class="n">x</span><span class="o">=</span><span class="s1">'funds'</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">'rating'</span><span class="p">,</span>
@@ -436,6 +441,8 @@ MathJax.Hub.Config({
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -472,15 +479,14 @@ $$\sigma(z) = \frac{1}{1+\mathrm{e}^{-z}}$$<p>and see what this function looks l
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Compute the logistic function over a range of values</span>
-<span class="n">x_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">lf_values</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">x_values</span><span class="p">)</span>
 
-<span class="c1"># Display the logistic function</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">x_values</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="n">lf_values</span><span class="p">,</span>
@@ -490,6 +496,8 @@ $$\sigma(z) = \frac{1}{1+\mathrm{e}^{-z}}$$<p>and see what this function looks l
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -558,12 +566,12 @@ y^{(m)}
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cost_function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>    
-    <span class="c1"># Record the number of training examples</span>
     <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> 
     
     <span class="n">hypothesis</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span> <span class="o">@</span> <span class="n">theta</span><span class="p">)</span>
@@ -575,6 +583,8 @@ y^{(m)}
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -591,25 +601,24 @@ y^{(m)}
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Record the number of training examples</span>
-<span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-
-<span class="c1"># Create a design matrix</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
     <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'x0'</span><span class="p">),</span> <span class="n">df</span><span class="p">[[</span><span class="s1">'funds'</span><span class="p">,</span> <span class="s1">'rating'</span><span class="p">]]),</span>
     <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">)</span>
 
-<span class="c1"># Display the first five rows</span>
 <span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -681,19 +690,19 @@ y^{(m)}
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Store the target variable</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'result'</span><span class="p">]</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
-
-<span class="c1"># Display the first five rows</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">'result'</span><span class="p">]</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
 <span class="n">y</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -770,32 +779,27 @@ $$\vec{\theta} := \vec{\theta} - \frac{\alpha}{m}{X^T}({\sigma(X\vec{\theta}) - 
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">iterations</span><span class="p">):</span>
-    <span class="c1"># Record the number of training examples</span>
     <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-    
-    <span class="c1"># Initialize the parameters with arbitrary values</span>
     <span class="n">current_theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
-    
-    <span class="c1"># Create an empty array to track the cost function during each iteration</span>
     <span class="n">cost_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">iterations</span><span class="p">)</span>
-    
+
     <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
-        <span class="c1"># Compute the gradient and simultaneously update all parameters</span>
         <span class="n">hypothesis</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span> <span class="o">@</span> <span class="n">current_theta</span><span class="p">)</span>
         <span class="n">current_theta</span> <span class="o">-=</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="n">hypothesis</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">))</span> <span class="o">*</span> <span class="n">alpha</span> <span class="o">/</span> <span class="n">m</span>
-        
-        <span class="c1"># Record the current cost function</span>
         <span class="n">cost_values</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span> <span class="o">=</span> <span class="n">cost_function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">current_theta</span><span class="p">)</span>     
     <span class="k">return</span> <span class="n">current_theta</span><span class="p">,</span> <span class="n">cost_values</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -813,6 +817,7 @@ $$\vec{\theta} := \vec{\theta} - \frac{\alpha}{m}{X^T}({\sigma(X\vec{\theta}) - 
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
@@ -826,31 +831,34 @@ $$\vec{\theta} := \vec{\theta} - \frac{\alpha}{m}{X^T}({\sigma(X\vec{\theta}) - 
 </div>
 
 </div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It's finally time to train the logistic regression classifier!</p>
+<p>It's finally time to train the logistic regression classifier and identify the parameters $\theta$!</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Perform batch gradient descent</span>
-<span class="n">theta</span><span class="p">,</span> <span class="n">cost_history</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">iterations</span><span class="p">)</span>
-
-<span class="c1"># Display the learned parameters </span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">theta</span><span class="p">,</span> <span class="n">cost_history</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">iterations</span><span class="p">)</span>
+ 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">'theta</span><span class="si">{}</span><span class="s1"> = </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">parameter</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -882,12 +890,12 @@ theta2 = [ 9.47343264]
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display a scatterplot of the cost function after each iteration</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="s1">'Iteration'</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">'Cost'</span><span class="p">,</span>
     <span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'Iteration'</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">),</span> <span class="s1">'Cost'</span><span class="p">:</span> <span class="n">cost_history</span><span class="p">}),</span>
@@ -897,6 +905,8 @@ theta2 = [ 9.47343264]
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -929,26 +939,14 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Compute the decision boundary using the learned parameters</span>
-<span class="n">x1_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">'funds'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="p">[</span><span class="s1">'funds'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">iterations</span><span class="p">)</span>
-<span class="n">x2_vals</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x1_vals</span><span class="p">))</span> <span class="o">/</span> <span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display a scatterplot of the training set and label the axes</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x1_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">'funds'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="p">[</span><span class="s1">'funds'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">iterations</span><span class="p">)</span>
+<span class="n">x2_vals</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x1_vals</span><span class="p">))</span> <span class="o">/</span> <span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
 <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
     <span class="n">x</span><span class="o">=</span><span class="s1">'funds'</span><span class="p">,</span>
@@ -959,7 +957,6 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
     <span class="n">palette</span><span class="o">=</span><span class="s1">'Set1'</span>
 <span class="p">)</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="s1">'Funds (in millions)'</span><span class="p">,</span> <span class="s1">'Poll rating'</span><span class="p">);</span>
 
-<span class="c1"># Display the decision boundary</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">x1_vals</span><span class="p">,</span>
     <span class="n">x2_vals</span><span class="p">,</span>
@@ -969,6 +966,8 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1002,19 +1001,19 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Insert a value of one into the test example to account for x0</span>
-<span class="n">test_example</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">])</span>
-
-<span class="c1"># Compute the win probability with the learned parameters</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_example</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">])</span>
 <span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">test_example</span> <span class="o">@</span> <span class="n">theta</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1046,12 +1045,12 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
-    <span class="c1"># Return True if the hypothesis &gt;= 0.5, otherwise False</span>
     <span class="k">return</span> <span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span> <span class="o">@</span> <span class="n">theta</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.5</span>
 </pre></div>
 
@@ -1060,17 +1059,21 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 </div>
 
 </div>
+
+</div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Compute the classification accuracy</span>
-<span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">==</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">m</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">==</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">m</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1102,22 +1105,23 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">linear_model</span>
 
-<span class="c1"># Train a logistic regression classifier</span>
 <span class="n">classifier</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">'l2'</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">1e10</span><span class="p">)</span>
 <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
 
-<span class="c1"># Compute the classification accuracy</span>
 <span class="n">classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
+
 </div>
 
 <div class="output_wrapper">
@@ -1165,9 +1169,7 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 </div>
 </div>
 </div>
-    </div>
-  </div>
-
+</div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../categories/classification/" rel="tag">classification</a></li>
