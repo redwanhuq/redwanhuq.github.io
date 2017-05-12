@@ -133,14 +133,14 @@ div.prompt {
 <h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
 </h2>
 <ol>
-<li><a href="#cell1">Unraveling the secrets of a for loop</a></li>
+<li><a href="#cell1">Unraveling the secrets of a <code>for</code> loop</a></li>
 <li><a href="#cell2">Putting theory into practice</a></li>
 <li><a href="#cell3">Constructing custom iterators</a></li>
 <li><a href="#cell4">Infinite iterators</a></li>
 <li><a href="#cell5">Why iterators are so powerful</a></li>
 </ol>
 <p><a id="cell1"></a></p>
-<h2 id="1.-Unraveling-the-secrets-of-a-for-loop">1. Unraveling the secrets of a for loop<a class="anchor-link" href="#1.-Unraveling-the-secrets-of-a-for-loop">¶</a>
+<h2 id="1.-Unraveling-the-secrets-of-a-for-loop">1. Unraveling the secrets of a <code>for</code> loop<a class="anchor-link" href="#1.-Unraveling-the-secrets-of-a-for-loop">¶</a>
 </h2>
 <h3 id="What-are-iterables?">What are iterables?<a class="anchor-link" href="#What-are-iterables?">¶</a>
 </h3>
@@ -833,7 +833,6 @@ $$F_1 = 0$$$$F_2 = 1$$$$F_n = F_{n-1} + F_{n-2}$$<p>This translates to: starting
         <span class="bp">self</span><span class="o">.</span><span class="n">last</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
 
     <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Enables the iterator to be compatible with for loops</span>
         <span class="k">return</span> <span class="bp">self</span>
     
     <span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
