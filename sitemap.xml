@@ -11,11 +11,11 @@
  </url>
  <url>
   <loc>https://redwanhuq.github.io/archive.html</loc>
-  <lastmod>2017-05-12T13:10:00Z</lastmod>
+  <lastmod>2017-05-15T17:59:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/</loc>
-  <lastmod>2017-05-11T18:02:00Z</lastmod>
+  <lastmod>2017-05-15T17:59:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/classification/</loc>
@@ -24,6 +24,10 @@
  <url>
   <loc>https://redwanhuq.github.io/categories/clustering/</loc>
   <lastmod>2017-03-15T22:28:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/categories/cross-validation/</loc>
+  <lastmod>2017-05-15T16:15:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/data-analytics/</loc>
@@ -74,11 +78,11 @@
   <lastmod>2017-01-19T19:47:00Z</lastmod>
  </url>
  <url>
-  <loc>https://redwanhuq.github.io/categories/pandas/</loc>
-  <lastmod>2017-01-18T20:30:00Z</lastmod>
+  <loc>https://redwanhuq.github.io/categories/model-evaluation/</loc>
+  <lastmod>2017-05-15T17:59:00Z</lastmod>
  </url>
  <url>
-  <loc>https://redwanhuq.github.io/categories/pokemon/</loc>
+  <loc>https://redwanhuq.github.io/categories/pandas/</loc>
   <lastmod>2017-01-18T20:30:00Z</lastmod>
  </url>
  <url>
@@ -124,6 +128,10 @@
  <url>
   <loc>https://redwanhuq.github.io/posts/k-means_clustering/</loc>
   <lastmod>2017-03-15T22:28:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/posts/mushroom-classification/</loc>
+  <lastmod>2017-05-15T16:15:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/posts/understanding-generators/</loc>
