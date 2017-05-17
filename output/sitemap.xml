@@ -11,11 +11,11 @@
  </url>
  <url>
   <loc>https://redwanhuq.github.io/archive.html</loc>
-  <lastmod>2017-05-15T19:51:00Z</lastmod>
+  <lastmod>2017-05-17T03:11:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/</loc>
-  <lastmod>2017-05-15T17:59:00Z</lastmod>
+  <lastmod>2017-05-17T03:11:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/classification/</loc>
@@ -88,6 +88,10 @@
  <url>
   <loc>https://redwanhuq.github.io/categories/python/</loc>
   <lastmod>2017-01-18T20:30:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/categories/scikit-learn/</loc>
+  <lastmod>2017-05-17T03:11:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/seaborn/</loc>
