@@ -2,9 +2,9 @@
 ## Who am I?
 Hi, my name is Redwan, and I'm an aspiring data scientist and machine learning practitioner.
 
-I've witnessed artificial intelligence and data science transform businesses and improve our daily lives, but I believe they're also poised to usher in the next industrial revolution, solve mankind's toughest problems, and completely reshape the world. Having held a lifelong fascination with answering questions with data and tech, I decided it was time to quit being a spectator. I've since then dedicated myself to pursuing a career in data science and eventually contributing to the evolution of machine intelligence. 
+I've witnessed AI and data science improve our daily lives and transform businesses, but I believe they'll also usher in the next industrial revolution, solve the biggest problems facing humanity, and completely reshape the world. Having held a lifelong fascination with answering questions with data and tech, I decided it was time to quit being a spectator. I've since then dedicated myself to pursuing a career in data science and eventually contributing to the evolution of machine intelligence. 
 
-This blog serves to chronicle my journey, sharing what I've learned and a few projects I'm working on.
+This blog serves to chronicle my journey&mdash;sharing what I've learned, my experiences, and a few projects I'm working on.
 
 ## What have I done?
 I recently received a PhD in molecular physiology and biophysics from [Baylor College of Medicine](https://www.bcm.edu/research/labs/christine-beeton) where I used carbon nanotechnology to develop a [new](https://www.bcm.edu/news/molecular-physiology-and-biophysics/nanoparticle-therapy-for-autoimmune-disease) [treatment](http://www.nature.com/articles/srep33808) for autoimmune diseases. During grad school, I also founded and led a [501(c)(3) nonprofit organization](http://medcenterconsulting.com) that trains scientists and doctors to become management consultants. Previously, I worked in biomedical [R&D](https://www.canon-biomedical.com) and [venture capital](http://fannininnovation.com).
