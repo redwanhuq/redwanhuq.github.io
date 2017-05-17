@@ -49,6 +49,7 @@ It's been awhile since my last blog post but we've been busy with a big move fro
 <meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="model evaluation">
 <meta property="article:tag" content="python">
+<meta property="article:tag" content="scikit-learn">
 <meta property="article:tag" content="supervised learning">
 </head>
 <body>
@@ -394,7 +395,7 @@ memory usage: 1.4+ MB
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The dataset consists of 8124 training examples, each representing a single mushroom. The first column contains the target variable identifying whether the mushroom is poisonous or edible, while the remaining columns are 22 discrete features that describe the mushroom in some observable way; their values are encoded by characters. For example, <code>gill size</code> is either broad (b) or narrow (n), and <code>veil color</code> can be brown (n), orange (o), white (w), or yellow (y). Each feature has numerous values so if you'd like to peruse the details you can find them in the <a href="https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.names">data description</a>.</p>
+<p>The dataset consists of 8124 training examples, each representing a single mushroom. The first column is the target variable containing the class labels, identifying whether the mushroom is poisonous or edible. The remaining columns are 22 discrete features that describe the mushroom in some observable way; their values are encoded by characters. For example, <code>gill size</code> is either broad (b) or narrow (n), and <code>veil color</code> can be brown (n), orange (o), white (w), or yellow (y). Each feature has numerous values so if you'd like to peruse the details you can find them in the <a href="https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.names">data description</a>.</p>
 <p>Because the target variable contains discrete values, we'll need to train a classifier. But first, let's update the column labels.</p>
 
 </div>
@@ -1023,7 +1024,7 @@ Name: class, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's now train a logistic regression classifier on the training set using the default degree of $L_2$ regularization ($\lambda = 1$) and evaluate its performance on the test set. Because the classes are imbalanced, we need to use a performance metric other than classification accuracy; the weighted average of the <a href="https://en.wikipedia.org/wiki/F1_score">$F_1$ score</a> for each class should suffice.</p>
+<p>Let's now train a logistic regression classifier on the training set using the default hyperparameter ($L_2$ regularization, $\lambda = 1$) and evaluate its performance on the test set. Because the classes are imbalanced, we need to use a performance metric other than classification accuracy; the weighted average of the <a href="https://en.wikipedia.org/wiki/F1_score">$F_1$ score</a> for each class should suffice.</p>
 
 </div>
 </div>
@@ -1073,7 +1074,7 @@ Name: class, dtype: int64</pre>
 <p><a id="cell4"></a></p>
 <h2 id="4.-Nested-cross-validation">4. Nested cross-validation<a class="anchor-link" href="#4.-Nested-cross-validation">¶</a>
 </h2>
-<p>Instead of using the same data to tune the hyperparameter <em>and</em> evaluate model performance, we'll utilize <a href="https://www.quora.com/I-train-my-system-based-on-the-10-fold-cross-validation-framework-Now-it-gives-me-10-different-models-Which-model-to-select-as-a-representative">nested cross-validation</a> to avoid risking  optimistically biasing the model. I'll save the pros and cons of the various model evaluation strategies for a future blog post.</p>
+<p>Instead of using the same data to tune the hyperparameter <em>and</em> evaluate model performance, we'll utilize <a href="https://www.quora.com/I-train-my-system-based-on-the-10-fold-cross-validation-framework-Now-it-gives-me-10-different-models-Which-model-to-select-as-a-representative">nested cross-validation</a> to avoid risking optimistically biasing the model. Appropriate model evaluation is incredibly important but I'll save it for a future blog post.</p>
 
 </div>
 </div>
@@ -1116,7 +1117,7 @@ Name: class, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>One downside to using nested cross-validation is how computationally intensive it can be. The outer loop splits the data into training/test folds using 10-fold cross-validation and reports model performance, while the inner loop performs a grid search with 10-fold cross-validation on each training fold of the outer loop and tunes the hyperparameter. In addition, each grid search tests 10 hyperparameter values. That means we've just trained <em>1000 models!</em> Fortunately, <code>n_jobs=-1</code> parallelizes the operations across all CPU cores and speeds up the computation considerably.</p>
+<p>One downside to using nested cross-validation is how computationally intensive it can be. The outer loop splits the data into training/test folds using 10-fold cross-validation and reports model performance, while the inner loop performs a grid search on each training fold of the outer loop to tune the hyperparameter with 10-fold cross-validation. In addition, each grid search tests 10 hyperparameter values. That means we've just trained <em>1000 models!</em> Fortunately, <code>n_jobs=-1</code> parallelizes the operations across all CPU cores and speeds up the computation considerably.</p>
 <p>Let's take a look at model performance on each of the 10 test folds from the outer loop.</p>
 
 </div>
@@ -1161,7 +1162,7 @@ Name: class, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Witnessing how consistent the performance is, we can now conclude the model is indeed performing well and not overfitting the dataset. This kind of stellar performance with a linear model, such as logistic regression, hints that <strong>the relationship between our features and the target variable is simplistic and highly linear</strong>. There's really no need to train a more complex machine learning model. Lastly, let's report the mean score as the final measure of model performance.</p>
+<p>Witnessing how consistent the performance is, we can now conclude the model is indeed performing well and not overfitting. This kind of stellar performance with a linear model, such as logistic regression, hints that <strong>the relationship between our features and the target variable is simplistic and highly linear</strong>. There's really no need to train a more complex machine learning model. Lastly, let's report the mean score as the final measure of model performance.</p>
 
 </div>
 </div>
@@ -1278,7 +1279,7 @@ Name: class, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now let's report the five features that are most strongly correlated with class, either positively or negatively.</p>
+<p>Now let's report the five features that are most strongly correlated with class, either positively or negatively, as determined by the magnitude of the  learned parameters.</p>
 
 </div>
 </div>
@@ -1413,7 +1414,7 @@ Name: class, dtype: int64</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Interesting! It looks like the mushroom's odor is a predominant factor in determining whether it's edible.</p>
-<p>We can now use our model to decide if a <em>Agaricus</em> or <em>Lepiota</em> mushroom we find in the woods is edible. Evidently, this problem was a cakewalk for our machine learning model. Actually, I was hoping to find a dataset that would put up more of a challenge and allow me to troubleshoot the model, but it was still great for practicing with Scikit-learn. In addition, this was a phenomenal example to showcase the power of machine learning. While experts had concluded there is no rule that can be used to determine if these genera of mushrooms are edible, a machine with no domain knowledge whatsoever figured it out without breaking a sweat!</p>
+<p>We can now use our model to decide if an <em>Agaricus</em> or <em>Lepiota</em> mushroom is edible. Evidently, this problem was a cakewalk for our machine learning model. Actually, I was hoping to find a dataset that would put up more of a challenge and allow me to troubleshoot the model, but it was still great for practicing with Scikit-learn. Nevertheless, this was a phenomenal example to showcase the power of machine learning—while experts concluded there is no rule that can be used to determine if these genera of mushrooms are edible, a machine with no domain knowledge figured it out without breaking a sweat!</p>
 <p>If you'd like to play around with the code, here's the <a href="https://github.com/redwanhuq/machine-learning">GitHub repo</a>. As always, don't hesitate to leave your comments below.</p>
 
 </div>
@@ -1428,6 +1429,7 @@ Name: class, dtype: int64</pre>
             <li><a class="tag p-category" href="../../categories/machine-learning/" rel="tag">machine learning</a></li>
             <li><a class="tag p-category" href="../../categories/model-evaluation/" rel="tag">model evaluation</a></li>
             <li><a class="tag p-category" href="../../categories/python/" rel="tag">python</a></li>
+            <li><a class="tag p-category" href="../../categories/scikit-learn/" rel="tag">scikit-learn</a></li>
             <li><a class="tag p-category" href="../../categories/supervised-learning/" rel="tag">supervised learning</a></li>
         </ul>
 <ul class="pager hidden-print">
