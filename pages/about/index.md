@@ -2,7 +2,7 @@
 ## Who am I?
 Hi, my name is Redwan, and I'm an aspiring data scientist and machine learning practitioner.
 
-I've witnessed AI and data science improve our daily lives and transform businesses, but I believe they're also poised to usher in the next industrial revolution and solve the biggest problems facing humanity. Having held a lifelong passion for answering questions with data and tech, I decided it was time to quit being a spectator. I've since then dedicated myself to pursuing a career in data science and eventually contributing to the evolution of machine intelligence. 
+I've witnessed AI and data science improve our daily lives and transform businesses, but I believe they're also poised to usher in the next industrial revolution and address the biggest challenges facing humanity. Having held a lifelong passion for solving problems with data and tech, I decided it was time to quit being a spectator. I've since then dedicated myself to pursuing a career in data science and eventually contributing to the evolution of machine intelligence.  
 
 This blog serves to chronicle my journey&mdash;sharing what I've learned, my experiences, and a few projects I'm working on.
 
