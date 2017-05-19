@@ -1,4 +1,4 @@
-.. title: Determining whether a mushroom is edible
+.. title: Determining whether a mushroom is edible with machine learning
 .. slug: mushroom-classification
 .. date: 2017-05-15 11:00
 .. tags: python, machine learning, classification, logistic regression, cross validation, supervised learning, model evaluation, scikit-learn
