@@ -136,7 +136,7 @@ div.prompt {
 </h2>
 <ol>
 <li><a href="#cell1">Cleaning the dataset</a></li>
-<li><a href="#cell2">Preprocessing the features</a></li>
+<li><a href="#cell2">Preprocessing</a></li>
 <li><a href="#cell3">Preliminary validation with the hold-out method</a></li>
 <li><a href="#cell4">Nested cross-validation</a></li>
 <li><a href="#cell5">Identifying the most influential features</a></li>
@@ -988,6 +988,35 @@ Name: class, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Encoding-the-target-variable">Encoding the target variable<a class="anchor-link" href="#Encoding-the-target-variable">¶</a>
+</h3>
+<p>Some machine learning classifiers in <code>sklearn</code> <a href="https://stats.stackexchange.com/questions/134427/in-practice-why-do-we-convert-categorical-class-labels-to-integers-for-classifi">prefer</a> that the class labels in the target variable are encoded with numbers. Since we only have two classes, we can use <code>sklearn.preprocessing.LabelEncoder()</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">y_enc</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="cell3"></a></p>
 <h2 id="3.-Preliminary-validation-with-the-hold-out-method">3. Preliminary validation with the hold-out method<a class="anchor-link" href="#3.-Preliminary-validation-with-the-hold-out-method">¶</a>
 </h2>
@@ -1005,7 +1034,7 @@ Name: class, dtype: int64</pre>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
     <span class="n">X_std</span><span class="p">,</span>
-    <span class="n">y</span><span class="p">,</span>
+    <span class="n">y_enc</span><span class="p">,</span>
     <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
     <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
     <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>    
@@ -1024,7 +1053,7 @@ Name: class, dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's now train a logistic regression classifier on the training set using the default hyperparameter ($L_2$ regularization, $\lambda = 1$) and evaluate its performance on the test set. Because the classes are imbalanced, we need to use a performance metric other than classification accuracy; the weighted average of the <a href="https://en.wikipedia.org/wiki/F1_score">$F_1$ score</a> for each class should suffice.</p>
+<p>Let's now train a logistic regression classifier on the training set using the default hyperparameter ($L_2$ regularization, $\lambda = 1$) and evaluate its performance on the test set. Because the classes are imbalanced, we need to use a performance metric other than classification accuracy; the <a href="https://en.wikipedia.org/wiki/F1_score">$F_1$ score</a> should do the trick.</p>
 
 </div>
 </div>
@@ -1036,9 +1065,9 @@ Name: class, dtype: int64</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">metrics</span><span class="o">.</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'weighted'</span><span class="p">)</span>
+<span class="n">metrics</span><span class="o">.</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1091,16 +1120,16 @@ Name: class, dtype: int64</pre>
     <span class="n">estimator</span><span class="o">=</span><span class="n">LogisticRegression</span><span class="p">(),</span>
     <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span>
     <span class="n">cv</span><span class="o">=</span><span class="n">StratifiedShuffleSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
-    <span class="n">scoring</span><span class="o">=</span><span class="s1">'f1_weighted'</span><span class="p">,</span>
+    <span class="n">scoring</span><span class="o">=</span><span class="s1">'f1'</span><span class="p">,</span>
     <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
 <span class="p">)</span>
 
 <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span>
     <span class="n">estimator</span><span class="o">=</span><span class="n">grid_search</span><span class="p">,</span>
     <span class="n">X</span><span class="o">=</span><span class="n">X_std</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">enc</span><span class="p">,</span>
     <span class="n">cv</span><span class="o">=</span><span class="n">StratifiedShuffleSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">scoring</span><span class="o">=</span><span class="s1">'f1_weighted'</span><span class="p">,</span>
+    <span class="n">scoring</span><span class="o">=</span><span class="s1">'f1'</span><span class="p">,</span>
     <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
 <span class="p">)</span>
 </pre></div>
@@ -1219,7 +1248,7 @@ Name: class, dtype: int64</pre>
 <div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_std</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_std</span><span class="p">,</span> <span class="n">y_enc</span><span class="p">)</span>
 <span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span>
 </pre></div>
 
@@ -1264,7 +1293,7 @@ Name: class, dtype: int64</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">final_clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">final_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_std</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">());</span>
+<span class="n">final_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_std</span><span class="p">,</span> <span class="n">y_enc</span><span class="p">);</span>
 </pre></div>
 
 </div>
