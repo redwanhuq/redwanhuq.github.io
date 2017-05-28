@@ -952,7 +952,7 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally, it's very important to note that <strong>a generator expression is <em>not</em> a tuple comprehension</strong>. That is, a generator expression yields a <code>generator</code> object, not a <code>tuple</code> object.</p>
+<p>Finally, it's very important to note that <strong>a generator expression is <em>not</em> a tuple comprehension</strong>. That is, a generator expression yields a generator object, not a tuple object.</p>
 
 </div>
 </div>
@@ -999,14 +999,12 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 <h2 id="4.-Built-in-iterators-and-generators">4. Built-in iterators and generators<a class="anchor-link" href="#4.-Built-in-iterators-and-generators">¶</a>
 </h2>
 <p>Even with all of these convenient shortcuts for producing iterators and generators, Python includes a module called <a href="https://docs.python.org/3/library/itertools.html"><code>itertools</code></a> that contains some useful prepackaged ones. There's also several ingenious recipes that demonstrate ways to get creative with custom iterators. There's simply way too many to describe here but they're worth browsing through; you'll never know when they could come in handy!</p>
-<p>In addition, if you're performing data science using the <code>pandas</code> package, you've probably wondered if there was a simple way to loop over the rows or columns of a <code>DataFrame</code>. The following methods can do the job:</p>
+<p>In addition, if you're performing data science using the Pandas library, you've probably wondered if there was a simple way to loop over the rows or columns of a DataFrame. The following methods can do the job:</p>
 <ul>
 <li>
-<code>iterrows()</code> - produces a generator that loops over the indices and rows of a <code>DataFrame</code>
-</li>
+<code>iterrows()</code> - produces a generator that loops over the indices and rows of a DataFrame</li>
 <li>
-<code>iteritems()</code> - produces a generator that loops over the column labels and columns of a <code>DataFrame</code>
-</li>
+<code>iteritems()</code> - produces a generator that loops over the column labels and columns of a DataFrame</li>
 </ul>
 <p>By now, you should have an in-depth understanding of iterators and generators, how to build them, and use them effectively. I hope these two posts helped shed light on these abstract constructs and illustrated their utility. At first, I found it quite challenging to wrap my head around iterators and generators, but after appreciating what they can do, they've helped me write cleaner and more efficient code. In fact, now whenever I implement a loop, I'm naturally inclined to think about whether a generator could take its place.</p>
 <p>If you'd like to play around with the code, here's the <a href="https://github.com/redwanhuq/iterator-generator_tutorial">GitHub repo</a>. As always, don't hesitate to leave your comments below.</p>

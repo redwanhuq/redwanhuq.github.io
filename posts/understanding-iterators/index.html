@@ -121,18 +121,18 @@ div.prompt {
 <h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
 </h2>
 <ol>
-<li><a href="#cell1">Unraveling the secrets of a <code>for</code> loop</a></li>
+<li><a href="#cell1">Unraveling the secrets of a for loop</a></li>
 <li><a href="#cell2">Putting theory into practice</a></li>
 <li><a href="#cell3">Constructing custom iterators</a></li>
 <li><a href="#cell4">Infinite iterators</a></li>
 <li><a href="#cell5">Why iterators are so powerful</a></li>
 </ol>
 <p><a id="cell1"></a></p>
-<h2 id="1.-Unraveling-the-secrets-of-a-for-loop">1. Unraveling the secrets of a <code>for</code> loop<a class="anchor-link" href="#1.-Unraveling-the-secrets-of-a-for-loop">¶</a>
+<h2 id="1.-Unraveling-the-secrets-of-a-for-loop">1. Unraveling the secrets of a for loop<a class="anchor-link" href="#1.-Unraveling-the-secrets-of-a-for-loop">¶</a>
 </h2>
 <h3 id="What-are-iterables?">What are iterables?<a class="anchor-link" href="#What-are-iterables?">¶</a>
 </h3>
-<p>Most programmers have worked with an iterable before even if they weren't consciously aware of doing so. <strong>An iterable is an object whose contents can be traversed or looped over.</strong> For example, when implementing a <code>for</code> loop (<code>for item in obj: ...</code>), any object that can take the place of <code>obj</code> is an iterable. Many Python containers are examples of iterables, including <code>list</code>, <code>set</code>, <code>frozenset</code>, <code>tuple</code>, <code>str</code> and <code>dict</code>. Even <code>numpy</code> arrays, <code>pandas</code> DataFrames, and open file objects are iterables since we can loop over them. All iterables share a common thread: they implement the <code>__iter__()</code> method, which we'll get to in the next section.</p>
+<p>Most programmers have worked with an iterable before even if they weren't consciously aware of doing so. <strong>An iterable is an object whose contents can be traversed or looped over.</strong> For example, when implementing a <code>for</code> loop (<code>for item in obj: ...</code>), any object that can take the place of <code>obj</code> is an iterable. Many Python containers are examples of iterables, including <code>list</code>, <code>set</code>, <code>frozenset</code>, <code>tuple</code>, <code>str</code> and <code>dict</code>. Even NumPy arrays, Pandas DataFrames, and open file objects are iterables since we can loop over them. All iterables share a common thread: they implement the <code>__iter__()</code> method, which we'll get to in the next section.</p>
 <h3 id="What-are-iterators?">What are iterators?<a class="anchor-link" href="#What-are-iterators?">¶</a>
 </h3>
 <p>An iterable provides the <code>for</code> loop its contents but on its own isn't very useful; an iterable can't tell the loop <em>how</em> to traverse or iterate over its contents, or what the next item is. Therefore, upon initiating, a <code>for</code> loop cleverly calls <code>iter(obj)</code> behind-the-scenes, which in turn calls <code>obj.__iter__()</code>. If <code>obj</code> doesn't support iteration or sport the <code>__iter__()</code> method (meaning not an iterable), a <code>TypeError</code> is raised. Otherwise, <code>obj.__iter__()</code> hands the loop an <em>iterator</em>; <strong>an iterator is an object that knows how to perform the iteration and determines what the next item is</strong>. Logically, this means an iterable is any object when passed to <code>iter()</code>, that's capable of producing an iterator.</p>
