@@ -11,19 +11,7 @@
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://redwanhuq.github.io/posts/mushroom-classification/">
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-        processEscapes: true
-    },
-    displayAlign: 'center', // Change this to 'center' to center equations.
-    "HTML-CSS": {
-        styles: {'.MathJax_Display': {"margin": 0}}
-    }
-});
-</script><!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <meta name="author" content="Redwan Huq">
 <link rel="prev" href="../k-means_clustering/" title="Applying k-means clustering to flow cytometry analysis" type="text/html">
 <meta property="og:site_name" content="In Machines We Trust">
@@ -457,7 +445,7 @@ memory usage: 1.4+ MB
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Next, let's pull out the target variable $\mathbf{y}$ and create a design matrix $X$ that holds the features.</p>
+<p>Next, let's pull out the features and the target variable, and place them in their own tables.</p>
 
 </div>
 </div>
@@ -764,8 +752,8 @@ Name: class, dtype: int64</pre>
 <h3 id="Encoding-categorical-features">Encoding categorical features<a class="anchor-link" href="#Encoding-categorical-features">¶</a>
 </h3>
 <p>Most machine learning models expect the features to be continuous numerical variables. In addition, the last time I checked, Scikit-learn makes this mandatory. However, our features are all categorical variables! This means we'll need to encode them with numbers so we can perform the math required to train a classifier.</p>
-<p>One encoding option is to convert the distinct values for each feature into integers (<code>sklearn.preprocessing.LabelEncoder()</code> is handy). For example, the values for <code>veil color</code> are brown, orange, white, and yellow, but they can be represented by 1, 2, 3 and 4, respectively. Unfortunately, this is strategy has nonsensical implications— <code>yellow</code> isn't four times the value of <code>brown</code>! Now if our features were <em>ordinal</em> categorical variables, such as T-shirt size (small, medium, large), this strategy could have worked.</p>
-<p>Instead, our features are <em>nominal</em> categorical variables with no intrinsic order. Therefore, we'll need to perform <strong>one-hot encoding</strong>, in which each  feature with $z$ possible values is converted into $z$ binary features, only one of which is "on". We could use <code>sklearn.preprocessing.OneHotEncoder()</code> to execute this strategy, but this preprocessor requires the categories to be already encoded as integers. We can actually skip this extra step if we instead use <code>pandas.get_dummies()</code>, which does everything in one go and provides appropriate column labels to boot!</p>
+<p>One encoding option is to convert the distinct values for each feature into integers (<code>LabelEncoder</code> from Scikit-learn is handy). For example, the values for <code>veil color</code> are brown, orange, white, and yellow, but they can be represented by 1, 2, 3 and 4, respectively. Unfortunately, this is strategy has nonsensical implications— <code>yellow</code> isn't four times the value of <code>brown</code>! Now if our features were <em>ordinal</em> categorical variables, such as T-shirt size (small, medium, large), this strategy could have worked.</p>
+<p>Instead, our features are <em>nominal</em> categorical variables with no intrinsic order. Therefore, we'll need to perform <strong>one-hot encoding</strong>, in which each  feature with $z$ possible values is converted into $z$ binary features, only one of which is "on". We could use <code>OneHotEncoder</code> from Scikit-learn to execute this strategy, but this preprocessor requires the categories to be already encoded as integers. We can actually skip this extra step if we instead use <code>get_dummies()</code> from Pandas, which does everything in one go and provides appropriate column labels to boot!</p>
 
 </div>
 </div>
@@ -990,7 +978,7 @@ Name: class, dtype: int64</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Encoding-the-target-variable">Encoding the target variable<a class="anchor-link" href="#Encoding-the-target-variable">¶</a>
 </h3>
-<p>Some machine learning classifiers in <code>sklearn</code> <a href="https://stats.stackexchange.com/questions/134427/in-practice-why-do-we-convert-categorical-class-labels-to-integers-for-classifi">prefer</a> that the class labels in the target variable are encoded with numbers. Since we only have two classes, we can use <code>sklearn.preprocessing.LabelEncoder()</code>.</p>
+<p>Some machine learning classifiers in Scikit-learn <a href="https://stats.stackexchange.com/questions/134427/in-practice-why-do-we-convert-categorical-class-labels-to-integers-for-classifi">prefer</a> that the class labels in the target variable are encoded with numbers. Since we only have two classes, we can use <code>LabelEncoder</code>.</p>
 
 </div>
 </div>
@@ -1036,7 +1024,7 @@ Name: class, dtype: int64</pre>
     <span class="n">X_std</span><span class="p">,</span>
     <span class="n">y_enc</span><span class="p">,</span>
     <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
-    <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+    <span class="n">stratify</span><span class="o">=</span><span class="n">y_enc</span><span class="p">,</span>
     <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>    
 <span class="p">)</span>
 </pre></div>
@@ -1487,7 +1475,7 @@ Name: class, dtype: int64</pre>
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script><script type="text/x-mathjax-config">
+        </section><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-yYfngbEKv4RENfGDvNUqJTqGFcKf31NJEe9OTnnMH3Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
