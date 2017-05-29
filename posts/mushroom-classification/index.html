@@ -123,14 +123,14 @@ div.prompt {
 <h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
 </h2>
 <ol>
-<li><a href="#cell1">Cleaning the dataset</a></li>
-<li><a href="#cell2">Preprocessing</a></li>
-<li><a href="#cell3">Preliminary validation with the hold-out method</a></li>
-<li><a href="#cell4">Nested cross-validation</a></li>
+<li><a href="#cell1">Inspecting the dataset</a></li>
+<li><a href="#cell2">Data wrangling</a></li>
+<li><a href="#cell3">Training a model with the hold-out method</a></li>
+<li><a href="#cell4">Using nested cross-validation to evaluate performance</a></li>
 <li><a href="#cell5">Identifying the most influential features</a></li>
 </ol>
 <p><a id="cell1"></a></p>
-<h2 id="1.-Cleaning-the-dataset">1. Cleaning the dataset<a class="anchor-link" href="#1.-Cleaning-the-dataset">¶</a>
+<h2 id="1.-Inspecting-the-dataset">1. Inspecting the dataset<a class="anchor-link" href="#1.-Inspecting-the-dataset">¶</a>
 </h2>
 <p>Let's begin by loading the dataset.</p>
 
@@ -747,7 +747,7 @@ Name: class, dtype: int64</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Clearly, there are vastly more training examples for edible mushrooms versus poisonous ones. We'll have to take this imbalance into account when training and evaluating the classifier.</p>
 <p><a id="cell2"></a></p>
-<h2 id="2.-Preprocessing-the-features">2. Preprocessing the features<a class="anchor-link" href="#2.-Preprocessing-the-features">¶</a>
+<h2 id="2.-Data-wrangling">2. Data wrangling<a class="anchor-link" href="#2.-Data-wrangling">¶</a>
 </h2>
 <h3 id="Encoding-categorical-features">Encoding categorical features<a class="anchor-link" href="#Encoding-categorical-features">¶</a>
 </h3>
@@ -1006,7 +1006,7 @@ Name: class, dtype: int64</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="cell3"></a></p>
-<h2 id="3.-Preliminary-validation-with-the-hold-out-method">3. Preliminary validation with the hold-out method<a class="anchor-link" href="#3.-Preliminary-validation-with-the-hold-out-method">¶</a>
+<h2 id="3.-Training-a-model-with-the-hold-out-method">3. Training a model with the hold-out method<a class="anchor-link" href="#3.-Training-a-model-with-the-hold-out-method">¶</a>
 </h2>
 <p>I like to use the <a href="https://en.wikipedia.org/wiki/Occam%27s_razor">law of parsimony</a> when solving problems; this includes the selection of machine learning models. Therefore, we'll begin with a <a href="http://inmachineswetrust.com/posts/building-logistic-regression/">logistic regression classifier</a> and go from there.</p>
 <p>For a quick and dirty analysis, we'll use the holdout method (80/20 training and test split) to gauge how well the classifier is performing. As we had discovered the classes are imbalanced, we'll need to incorporate <strong>stratification</strong> to retain the same class distribution within the training and test sets.</p>
@@ -1089,9 +1089,9 @@ Name: class, dtype: int64</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>It looks like the classifier has a perfect $F_1$ score on the test set, but keep in mind <strong>this is just a single training/test split</strong>; we need to confirm this performance holds for other splits. In addition, we need to tune the regularization hyperparameter. Fortunately, there's a way to tackle both at the same time without introducing additional bias.</p>
 <p><a id="cell4"></a></p>
-<h2 id="4.-Nested-cross-validation">4. Nested cross-validation<a class="anchor-link" href="#4.-Nested-cross-validation">¶</a>
+<h2 id="4.-Using-nested-cross-validation-to-evaluate-performance">4. Using nested cross-validation to evaluate performance<a class="anchor-link" href="#4.-Using-nested-cross-validation-to-evaluate-performance">¶</a>
 </h2>
-<p>Instead of using the same data to tune the hyperparameter <em>and</em> evaluate model performance, we'll utilize <a href="https://www.quora.com/I-train-my-system-based-on-the-10-fold-cross-validation-framework-Now-it-gives-me-10-different-models-Which-model-to-select-as-a-representative">nested cross-validation</a> to avoid risking optimistically biasing the model. Appropriate model evaluation is incredibly important but I'll save it for a future blog post.</p>
+<p>Instead of using the same data to tune the hyperparameter <em>and</em> evaluate model performance, we'll utilize <a href="https://www.quora.com/I-train-my-system-based-on-the-10-fold-cross-validation-framework-Now-it-gives-me-10-different-models-Which-model-to-select-as-a-representative">nested cross-validation</a> to avoid risking optimistically biasing the model.</p>
 
 </div>
 </div>
@@ -1432,6 +1432,7 @@ Name: class, dtype: int64</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Interesting! It looks like the mushroom's odor is a predominant factor in determining whether it's edible.</p>
 <p>We can now use our model to decide if an <em>Agaricus</em> or <em>Lepiota</em> mushroom is edible. Evidently, this problem was a cakewalk for our machine learning model. Actually, I was hoping to find a dataset that would put up more of a challenge and allow me to troubleshoot the model, but it was still great for practicing with Scikit-learn. Nevertheless, this was a phenomenal example to showcase the power of machine learning—while experts concluded there is no rule that can be used to determine if these genera of mushrooms are edible, a machine with no domain knowledge figured it out without breaking a sweat!</p>
+<p>Nevertheless, <strong>this model serves to assist experts, not replace them</strong>. False negatives in this model may be life-threatening; as such, the final word about consuming a wild mushroom should always come from an expert.</p>
 <p>If you'd like to play around with the code, here's the <a href="https://github.com/redwanhuq/machine-learning">GitHub repo</a>. As always, don't hesitate to leave your comments below.</p>
 
 </div>
