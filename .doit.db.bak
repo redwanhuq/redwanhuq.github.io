@@ -245,7 +245,7 @@
 'render_tag_cloud:output\\assets\\js\\tag_cloud_data.json', (66048, 142)
 'copy_assets:output\\assets\\js\\ripples.min.js.map', (589312, 319)
 'render_taxonomies:output\\categories\\k-means.xml', (1244160, 594)
-'sitemap:output\\sitemap.xml', (1696256, 13917)
+'sitemap:output\\sitemap.xml', (1696256, 13920)
 'copy_assets:output\\assets\\css\\roboto.min.css', (591360, 312)
 'copy_assets:output\\assets\\js\\colorbox-i18n\\jquery.colorbox-pt-BR.js', (153088, 700)
 'copy_assets:output\\assets\\css\\bootstrap.css.map', (178176, 643)
