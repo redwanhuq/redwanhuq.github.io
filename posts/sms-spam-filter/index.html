@@ -27,18 +27,20 @@
 
 
 
-After watching the film Arrival, I developed a deep appreciation for the field of linguistics (also my favorite movie of 2016!). Human language is the most unstru">
+After watching the film Arrival, I developed a deep appreciation for the field of linguistics (also my favorite movie of 2016). Human language is the most unstruc">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2017-05-29T11:00:00-05:00">
+<meta property="article:published_time" content="2017-05-30T08:00:00-05:00">
 <meta property="article:tag" content="classification">
-<meta property="article:tag" content="cross validation">
+<meta property="article:tag" content="learning curves">
 <meta property="article:tag" content="machine learning">
-<meta property="article:tag" content="model evaluation">
+<meta property="article:tag" content="n-grams">
 <meta property="article:tag" content="natural language processing">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="nested cross-validation">
+<meta property="article:tag" content="nltk">
 <meta property="article:tag" content="scikit-learn">
 <meta property="article:tag" content="supervised learning">
 <meta property="article:tag" content="support vector machines">
+<meta property="article:tag" content="tf-idf">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -91,7 +93,7 @@ After watching the film Arrival, I developed a deep appreciation for the field o
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     Redwan Huq
             </span></p>
-            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2017-05-29T11:00:00-05:00" itemprop="datePublished" title="2017-05-29 11:00">2017-05-29 11:00</time></a></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2017-05-30T08:00:00-05:00" itemprop="datePublished" title="2017-05-30 08:00">2017-05-30 08:00</time></a></p>
                 <p class="commentline">
         
     <a href="#disqus_thread" data-disqus-identifier="cache/posts/post8.html">Comments</a>
@@ -117,7 +119,7 @@ div.prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>After watching the film <em>Arrival</em>, I developed a deep appreciation for the field of linguistics (also my favorite movie of 2016!). Human language is the most unstructured type of data, and yet we effortlessly parse and interpret it, and even generate our own. On the other hand, understanding everyday language is a significant challenge for machines; this is the focus of <strong>natural language processing</strong> (NLP)—the crossroads between linguistics and AI. In this post, we'll make use of some NLP concepts and combine them with machine learning to build a spam filter for SMS text messages.
+<p>After watching the film <em>Arrival</em>, I developed a deep appreciation for the field of linguistics (also my favorite movie of 2016). Human language is the most unstructured type of data, and yet we effortlessly parse and interpret it, and even generate our own. On the other hand, understanding everyday language is a significant challenge for machines; this is the focus of <strong>natural language processing</strong> (NLP)—the crossroads between linguistics and AI. In this post, we'll make use of some NLP concepts and combine them with machine learning to build a spam filter for SMS text messages.
 <!-- TEASER_END --></p>
 <p>In the 1950s, Alan Turing conjectured if a machine can fool a human into believing that he/she is speaking with another human, the machine exhibits intelligence—the iconic Turing test. Recently, a machine arguably passed the Turing test <a href="http://www.reading.ac.uk/news-and-events/releases/PR583836.aspx">for the first time</a>; the milestone was largely attributed to advances in NLP. If you've ever wondered how Siri or Google recognizes your voice, makes sense of a semantically nebulous question, such as "How did the Celtics do?", and returns an accurate response, that's also NLP in action! The war on spam is another.</p>
 <p>Before Gmail implemented its incredible spam filter, I remember crafting an elaborate set of if/then rules for words typically found in spam. Not surprisingly, it was tedious and prone to mistakes. Nowadays, no one hand codes a spam filter—we train machines to do the job! But email spam is different from SMS message spam; we tend to speak more casually on our phones, using more slang, incomplete sentences, or even concocting words and phrases. Let's see what machine learning can do for SMS message spam.</p>
@@ -374,7 +376,7 @@ Name: 0, dtype: int64</pre>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input_hidden">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">example</span> <span class="o">=</span> <span class="s2">"""  ***** CONGRATlations **** You won 2 tIckETs to Hamilton in </span>
@@ -421,10 +423,10 @@ Name: 0, dtype: int64</pre>
                                  <span class="s1">'emailaddr'</span><span class="p">)</span>
 <span class="n">processed</span> <span class="o">=</span> <span class="n">processed</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">'(http[s]?\S+)|(\w+\.[A-Za-z]{2,4}\S*)'</span><span class="p">,</span>
                                   <span class="s1">'httpaddr'</span><span class="p">)</span>
-<span class="n">processed</span> <span class="o">=</span> <span class="n">processed</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">'£|\$'</span><span class="p">,</span> <span class="s1">'moneysymb'</span><span class="p">)</span>
+<span class="n">processed</span> <span class="o">=</span> <span class="n">processed</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">'£|\$'</span><span class="p">,</span> <span class="s1">'moneysymb'</span><span class="p">)</span>    
 <span class="n">processed</span> <span class="o">=</span> <span class="n">processed</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
     <span class="sa">r</span><span class="s1">'\b(\+\d{1,2}\s)?\d?[\-(.]?\d</span><span class="si">{3}</span><span class="s1">\)?[\s.-]?\d</span><span class="si">{3}</span><span class="s1">[\s.-]?\d</span><span class="si">{4}</span><span class="s1">\b'</span><span class="p">,</span>
-    <span class="s1">'phonenumbr'</span><span class="p">)</span>
+    <span class="s1">'phonenumbr'</span><span class="p">)</span>    
 <span class="n">processed</span> <span class="o">=</span> <span class="n">processed</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">'\d+(\.\d+)?'</span><span class="p">,</span> <span class="s1">'numbr'</span><span class="p">)</span>
 </pre></div>
 
@@ -813,7 +815,7 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) = \textrm{tf}
 <p><a id="cell4"></a></p>
 <h2 id="4.-Training-and-evaluating-a-model">4. Training and evaluating a model<a class="anchor-link" href="#4.-Training-and-evaluating-a-model">¶</a>
 </h2>
-<p>That was a lot of prep work and we haven't even done any machine learning yet, but all of it crucial for building a robust classifier. <strong>Not only is a model only as good as the data it's trained on, but meticulous feature engineering can beat having a clever model.</strong> We'll be a training a state of the art classifier called <strong>support vector machines (SVM)</strong>. In a nutshell, this model attempts to find the hyperplane that best separates the two classes.</p>
+<p>That was a lot of prep work and we haven't even done any machine learning yet, but all of it crucial for building a robust classifier. <strong>Not only is a model only as good as the data it's trained on, but meticulous feature engineering superc having a clever model.</strong> We'll be a training a state of the art classifier called <strong>support vector machines (SVM)</strong>. In a nutshell, this model attempts to find the hyperplane that best separates the two classes.</p>
 <p>In particular, I've elected to use SVM with a <em>linear kernel</em> because text data contains a large number of features (we have over 30,000!); using a nonlinear kernel would be <a href="http://www.csie.ntu.edu.tw/~cjlin/papers/guide/guide.pdf">computationally expensive</a>. In addition, text data is typically <a href="https://link.springer.com/chapter/10.1007/BFb0026683">linearly separable to begin with</a>. Finally, we'll use <code>svm.LinearSVC()</code> instead of <code>svm.SVC(kernel='linear')</code> because the former relies on a library whose <a href="https://stackoverflow.com/questions/11508788/whats-the-difference-between-libsvm-and-liblinear">algorithmic complexity</a> is $O(n)$ instead of $O(n^2)$ or $O(n^3)$, meaning much faster.</p>
 <h3 id="Preliminary-analysis">Preliminary analysis<a class="anchor-link" href="#Preliminary-analysis">¶</a>
 </h3>
@@ -955,14 +957,14 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) = \textrm{tf}
 <p>It looks when the classifier does make a mistake, it's typically a false positive:  flagging an SMS message as spam when it's actually not. Not exactly ideal but then again, this is just a single training/test set split.</p>
 <h3 id="Diagnosing-the-model-with-learning-curves">Diagnosing the model with learning curves<a class="anchor-link" href="#Diagnosing-the-model-with-learning-curves">¶</a>
 </h3>
-<p>Because we have so many features, it's prudent to determine whether the model suffers from high variance and is overfitting. We can assess the situation by plotting <strong>learning curves</strong>. Here's the procedure:</p>
+<p>Because we have so many features, it's prudent to determine whether the classifier suffers from high variance and is overfitting. We can assess the situation by plotting <strong>learning curves</strong>. Here's the procedure:</p>
 <ol>
-<li>Split the entire dataset $k$ times into a training and cross-validation set</li>
+<li>Split the entire dataset $k$ times into a training and validation set</li>
 <li>For each split, train the model on <em>subsets</em> of the training set, each with fewer training examples</li>
-<li>Evaluate the model on the cross-validation set and each subset of the training set</li>
-<li>Average the model performance across the $k$ splits for both training and cross-validation sets</li>
+<li>Evaluate the model on the validation set and each subset of the training set</li>
+<li>Average the model performance across the $k$ splits for both training and validation sets</li>
 </ol>
-<p>Specifically, we'll use 10-fold cross-validation (80/20 split) <em>without regularization</em>. For each fold, we'll train the model on 10 different dataset sizes, starting with 500 training examples. Fortunately, Scikit-learn has a convenient tool that computes learning curves in one go.</p>
+<p>Specifically, we'll use 10-fold cross-validation (80/20 split) <em>without regularization</em>. For each fold, we'll train the classifier on 10 different dataset sizes, starting with 500 training examples. Fortunately, Scikit-learn has a convenient tool that computes learning curves in one go.</p>
 
 </div>
 </div>
@@ -1037,7 +1039,7 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) = \textrm{tf}
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We're now ready to use Seaborn to plot learning curves for the SVM model.</p>
+<p>We're now ready to use Seaborn to plot learning curves for the classifier.</p>
 
 </div>
 </div>
@@ -1088,11 +1090,13 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) = \textrm{tf}
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I love learning curves—they're teeming with information! Notice the performance on the training set is near perfect regardless of dataset size, which makes sense because we're evaluating the classifier on the same data used to train it. At first, it looks like the classifier is suffering from high variance and overfitting since the cross-validation scores never reach the same level. However, taking a closer look at the scale of the $y$-axis makes me believe this issue isn't that pronounced.</p>
-<p>Nevertheless, since the cross-validation scores improve with more training examples, an obvious next step is to acquire more data points. In addition, we could try a smaller set of features by only using bigrams, not unigrams. Finally, it's worth tuning the regularization hyperparameter.</p>
-<h3 id="Nested-cross-validation">Nested cross-validation<a class="anchor-link" href="#Nested-cross-validation">¶</a>
+<p>I love learning curves—they're teeming with information! Notice the performance on the training set is near perfect regardless of dataset size, which makes sense because we're evaluating the classifier on the same data used to train it. At first, it looks like the classifier is suffering from high variance and overfitting since the validation scores never reach the same level. However, taking a closer look at the scale of the $y$-axis makes me believe this issue isn't that pronounced.</p>
+<p>Nevertheless, since the validation scores improve with more training examples, an obvious next step is to acquire more data points. In addition, we could try a smaller set of features by only using bigrams, not unigrams. Finally, it's worth tuning the regularization hyperparameter.</p>
+<h3 id="Minimizing-information-leakage-with-nested-cross-validation">Minimizing information leakage with nested cross-validation<a class="anchor-link" href="#Minimizing-information-leakage-with-nested-cross-validation">¶</a>
 </h3>
-<p>With a better grasp of how the classifier is behaving, let's compute a robust estimate of its performance using 10-fold cross-validation. However, we also need to also optimize the regularization hyperparameter. Nested cross-validation can do both <a href="https://rapidminer.com/learn-right-way-validate-models-part-4-accidental-contamination/">without revealing information</a> about the cross-validation set while performing the hyperparameter tuning step, and thus, reducing the likelihood of reporting an overly optimisitic estimate of the classifier's performance.</p>
+<p>To optimize hyperparameters, we can use Scikit-learn's <code>GridSearchCV</code> tool, which trains a series of candidate models using every combination of hyperparameters, evaluates each model using $k$-fold cross-validation, and then reports the "winning" model and its hyperparameter combination that yielded the best performance. However, we can't report this value as an unbiased estimate of the model's performance because we repeatedly reused the same data for cross-validation—we potentially "leaked" information across the candidate models!</p>
+<p>What we <em>can</em> do is utilize <strong>nested cross-validation</strong> to alleviate this issue. In this procedure, we implement $k$-fold cross-validation to train $k$ models (the outer loop). Using the <em>training set</em> of each fold, we perform <code>GridSearchCV</code> to tune the hyperparameters and select a winning model (the inner loop). Then, using the <em>validation set</em> of each fold, we evaluate the performance of the winning model developed in the inner loop. Finally, by computing the mean of this performance value across the $k$ folds, we can report a robust estimate of the model's performance. This can be a bit confusing so I recommend taking a glance at <a href="https://mlr-org.github.io/mlr-tutorial/devel/html/nested_resampling/index.html">this visual representation</a> of what's going on.</p>
+<p>Using nested cross-validation, let's test a range of 20 values for the regularization hyperparameter and use 10-fold cross-validation to assess the classifier's performance.</p>
 
 </div>
 </div>
@@ -1158,7 +1162,7 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) = \textrm{tf}
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The scores across the 10 folds demonstrate the classifier's performance is moderately consistent—it depends on what level of variation we're comfortable with. Finally, let's use the mean cross-validation score to report an estimate of the classifier's performance.</p>
+<p>The scores across the 10 folds demonstrate the classifier's performance is moderately consistent—it depends on what level of variation we're comfortable with. Finally, let's compute the mean score to report an estimate of the classifier's performance.</p>
 
 </div>
 </div>
@@ -1276,19 +1280,19 @@ txt                2.690817
 moneysymbnumbr     2.557430
 call phonenumbr    2.251018
 rington            2.098571
-servic             2.049273
+servic             2.049272
 mobil              2.036900
-numbr              1.896236
-tone               1.831284
+numbr              1.896237
+tone               1.831285
 repli              1.664237
-text               1.603975
+text               1.603976
 claim              1.590065
-video              1.473552
+video              1.473553
 free               1.359938
 wap                1.336547
 stop               1.310738
 credit             1.278887
-uk                 1.239139
+uk                 1.239140
 order              1.227617
 dtype: float64</pre>
 </div>
@@ -1434,8 +1438,8 @@ dtype: float64</pre>
 <li>You may have noticed most of the top 20 terms listed above are unigrams. This hints that bigrams aren't as useful in this problem—a bag of words model may be sufficient.</li>
 </ul>
 </li>
-<li>Model training and evaluation<ul>
-<li>Instead of tuning just the model's hyperparameters, we can perform a more exhaustive grid search to compare the use of raw term frequencies instead of tf-idf, or perhaps only tokenizing terms that have a term frequency above/below a threshold. In fact, <code>TfidfVectorizer</code> includes many other knobs to play with. In addition, we can test other models such as Naive Bayes, logistic regression or a neural net. All of these different options can be investigated simultaneously by performing a grid search with Scikit-learn's <a href="http://scikit-learn.org/stable/auto_examples/model_selection/grid_search_text_feature_extraction.html"><code>Pipeline</code> tool</a>.</li>
+<li>Machine learning<ul>
+<li>Instead of tuning just the classifier's hyperparameters, we can perform a more exhaustive grid search to compare the use of raw term frequencies instead of tf-idf, or perhaps only tokenizing terms that have a term frequency above/below a threshold. In fact, <code>TfidfVectorizer</code> includes many other knobs to play with. In addition, we can test other classifiers such as Naive Bayes, logistic regression or a neural net. All of these different options can be investigated simultaneously by performing a grid search with Scikit-learn's <a href="http://scikit-learn.org/stable/auto_examples/model_selection/grid_search_text_feature_extraction.html"><code>Pipeline</code> tool</a>.</li>
 </ul>
 </li>
 </ol>
@@ -1450,14 +1454,16 @@ dtype: float64</pre>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../categories/classification/" rel="tag">classification</a></li>
-            <li><a class="tag p-category" href="../../categories/cross-validation/" rel="tag">cross validation</a></li>
+            <li><a class="tag p-category" href="../../categories/learning-curves/" rel="tag">learning curves</a></li>
             <li><a class="tag p-category" href="../../categories/machine-learning/" rel="tag">machine learning</a></li>
-            <li><a class="tag p-category" href="../../categories/model-evaluation/" rel="tag">model evaluation</a></li>
+            <li><a class="tag p-category" href="../../categories/n-grams/" rel="tag">n-grams</a></li>
             <li><a class="tag p-category" href="../../categories/natural-language-processing/" rel="tag">natural language processing</a></li>
-            <li><a class="tag p-category" href="../../categories/python/" rel="tag">python</a></li>
+            <li><a class="tag p-category" href="../../categories/nested-cross-validation/" rel="tag">nested cross-validation</a></li>
+            <li><a class="tag p-category" href="../../categories/nltk/" rel="tag">nltk</a></li>
             <li><a class="tag p-category" href="../../categories/scikit-learn/" rel="tag">scikit-learn</a></li>
             <li><a class="tag p-category" href="../../categories/supervised-learning/" rel="tag">supervised learning</a></li>
             <li><a class="tag p-category" href="../../categories/support-vector-machines/" rel="tag">support vector machines</a></li>
+            <li><a class="tag p-category" href="../../categories/tf-idf/" rel="tag">tf-idf</a></li>
         </ul>
 <ul class="pager hidden-print">
 <li class="previous">
