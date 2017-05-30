@@ -7,19 +7,11 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/classification.xml</loc>
-  <lastmod>2017-05-30T14:58:00Z</lastmod>
+  <lastmod>2017-05-30T15:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/clustering.xml</loc>
   <lastmod>2017-05-30T14:48:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://redwanhuq.github.io/categories/cross-validation.xml</loc>
-  <lastmod>2017-05-30T01:37:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://redwanhuq.github.io/categories/data-analytics.xml</loc>
-  <lastmod>2017-05-29T20:39:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/data-science.xml</loc>
@@ -63,7 +55,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/learning-curves.xml</loc>
-  <lastmod>2017-05-30T14:58:00Z</lastmod>
+  <lastmod>2017-05-30T15:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/logistic-regression.xml</loc>
@@ -71,27 +63,23 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/machine-learning.xml</loc>
-  <lastmod>2017-05-30T14:58:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://redwanhuq.github.io/categories/model-evaluation.xml</loc>
-  <lastmod>2017-05-30T01:37:00Z</lastmod>
+  <lastmod>2017-05-30T15:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/n-grams.xml</loc>
-  <lastmod>2017-05-30T14:58:00Z</lastmod>
+  <lastmod>2017-05-30T15:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/natural-language-processing.xml</loc>
-  <lastmod>2017-05-30T14:58:00Z</lastmod>
+  <lastmod>2017-05-30T15:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/nested-cross-validation.xml</loc>
-  <lastmod>2017-05-30T14:58:00Z</lastmod>
+  <lastmod>2017-05-30T15:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/nltk.xml</loc>
-  <lastmod>2017-05-30T14:58:00Z</lastmod>
+  <lastmod>2017-05-30T15:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/pandas.xml</loc>
@@ -103,7 +91,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/scikit-learn.xml</loc>
-  <lastmod>2017-05-30T14:58:00Z</lastmod>
+  <lastmod>2017-05-30T15:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/seaborn.xml</loc>
@@ -111,19 +99,15 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/supervised-learning.xml</loc>
-  <lastmod>2017-05-30T14:58:00Z</lastmod>
+  <lastmod>2017-05-30T15:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/support-vector-machines.xml</loc>
-  <lastmod>2017-05-30T14:58:00Z</lastmod>
+  <lastmod>2017-05-30T15:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/tf-idf.xml</loc>
-  <lastmod>2017-05-30T14:58:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://redwanhuq.github.io/categories/tutorial.xml</loc>
-  <lastmod>2017-05-29T20:39:00Z</lastmod>
+  <lastmod>2017-05-30T15:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/unsupervised-learning.xml</loc>
@@ -135,10 +119,10 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/rss.xml</loc>
-  <lastmod>2017-05-30T14:58:00Z</lastmod>
+  <lastmod>2017-05-30T15:02:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/sitemap.xml</loc>
-  <lastmod>2017-05-30T14:58:00Z</lastmod>
+  <lastmod>2017-05-30T15:02:00Z</lastmod>
  </sitemap>
 </sitemapindex>
