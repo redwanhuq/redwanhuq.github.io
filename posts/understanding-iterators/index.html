@@ -630,11 +630,9 @@ div.prompt {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">obj_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">item</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">obj_iter</span><span class="p">)</span>
-        
+        <span class="n">item</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">obj_iter</span><span class="p">)</span>   
     <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
         <span class="k">break</span>
 </pre></div>
@@ -716,7 +714,6 @@ div.prompt {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">myIteratorClone</span> <span class="o">=</span> <span class="n">TheNumbersMaker</span><span class="p">()</span>
-
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">myIteratorClone</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
 </pre></div>

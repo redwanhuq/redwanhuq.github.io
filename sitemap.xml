@@ -11,11 +11,11 @@
  </url>
  <url>
   <loc>https://redwanhuq.github.io/archive.html</loc>
-  <lastmod>2017-05-29T15:43:00Z</lastmod>
+  <lastmod>2017-05-30T01:09:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/</loc>
-  <lastmod>2017-05-17T03:11:00Z</lastmod>
+  <lastmod>2017-05-29T20:20:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/classification/</loc>
@@ -82,6 +82,10 @@
   <lastmod>2017-05-15T17:59:00Z</lastmod>
  </url>
  <url>
+  <loc>https://redwanhuq.github.io/categories/natural-language-processing/</loc>
+  <lastmod>2017-05-29T20:20:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://redwanhuq.github.io/categories/pandas/</loc>
   <lastmod>2017-01-18T20:30:00Z</lastmod>
  </url>
@@ -100,6 +104,10 @@
  <url>
   <loc>https://redwanhuq.github.io/categories/supervised-learning/</loc>
   <lastmod>2017-02-09T21:40:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/categories/support-vector-machines/</loc>
+  <lastmod>2017-05-29T20:20:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/tutorial/</loc>
@@ -136,6 +144,10 @@
  <url>
   <loc>https://redwanhuq.github.io/posts/mushroom-classification/</loc>
   <lastmod>2017-05-15T16:15:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/posts/sms-spam-filter/</loc>
+  <lastmod>2017-05-29T20:20:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/posts/understanding-generators/</loc>
