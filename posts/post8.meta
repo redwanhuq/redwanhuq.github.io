@@ -1,7 +1,7 @@
 .. title: Using natural language processing to build a spam filter for text messages
 .. slug: sms-spam-filter
-.. date: 2017-05-29 11:00
-.. tags: natural language processing, python, machine learning, classification, support vector machines, cross validation, supervised learning, model evaluation, scikit-learn
+.. date: 2017-05-30 8:00
+.. tags: natural language processing, nested cross-validation, machine learning, classification, learning curves, support vector machines, supervised learning, tf-idf, n-grams, scikit-learn, nltk
 .. link:
 .. description:
 .. type: text
