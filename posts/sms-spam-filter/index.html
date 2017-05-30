@@ -737,7 +737,7 @@ Name: 0, dtype: int64</pre>
 <p>Having selected a tokenization strategy, the next step is assign each $n$-gram to a feature and then compute the $n$-gram's frequency using some statistic. Again, we have options.</p>
 <p>One statistic called <strong>term frequency (tf)</strong> tallies the occurrences of each $n$-gram for every training example. However, some $n$-grams will undoubtedly show up often in any given SMS message, while others rarely appear in the overall corpus but show up frequently in certain <em>subsets</em> of messages such as spam. Therefore, to emphasize the latter, more interesting set of $n$-grams, we'll downweight the term frequency with <strong>inverse document frequency (idf)</strong>, which is calculated by logarithmically scaling the inverse of the fraction of training examples that contain a given term. Combining these two statistics yields the tf-idf statistic:</p>
 $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) \\ = \textrm{tf}(t, i) \times \log\bigg(\frac{M}{m_t}\bigg)$$<p>where $\textrm{tf}(t,i)$ is the term frequency for term $t$ in the $i$th training example, $M$ is the total number of training examples, and $m_t$ is the number of training examples that contain the term $t$.</p>
-<p>Scikit-learn has an off-the-shelf tool called <code>TfidfVectorizer</code> that performs $n$-gram tokenization and also computes the tf-idf statistic. Two technical details regarding <code>TfidVectorizer</code>: a) the tf-idf statistic is computed <a href="http://scikit-learn.org/stable/modules/feature_extraction.html#tfidf-term-weighting">slightly differently</a> to avoid division by zero, and b) the computed tf-idf values for each training example are subsequently <a href="http://scikit-learn.org/stable/modules/feature_extraction.html#tfidf-term-weighting">normalized</a>.</p>
+<p>Scikit-learn has an off-the-shelf tool called <code>TfidfVectorizer</code> that performs $n$-gram tokenization and also computes the tf-idf statistic. Two technical details regarding <code>TfidfVectorizer</code>: a) the tf-idf statistic is computed <a href="http://scikit-learn.org/stable/modules/feature_extraction.html#tfidf-term-weighting">slightly differently</a> to avoid division by zero, and b) the computed tf-idf values for each training example are subsequently <a href="http://scikit-learn.org/stable/modules/feature_extraction.html#tfidf-term-weighting">normalized</a>.</p>
 <p><strong>Finally, we're equipped to transform a corpus of text data into a matrix of numbers with one row per training example and one column per $n$-gram.</strong></p>
 
 </div>
@@ -811,7 +811,7 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) \\ = \textrm{
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Holy cow, that's one massive matrix! It looks like the tokenization process extracted 36,348 unigrams and bigrams from the corpus; each one defines a feature. Since each training example only makes use of a tiny fraction of the complete $n$-gram vocabulary, <code>X_ngrams</code> mostly consists of zeros and is called a <strong>sparse matrix</strong>. To perform linear algebra computations rapidly on such a large sparse matrix, it'd be more efficient to store only the non-zero values while maintaining the structure. Fortunately, <code>TfidVectorizer</code> utilizes the SciPy library to do <em>exactly</em> this!</p>
+<p>Holy cow, that's one massive matrix! It looks like the tokenization process extracted 36,348 unigrams and bigrams from the corpus; each one defines a feature. Since each training example only makes use of a tiny fraction of the complete $n$-gram vocabulary, <code>X_ngrams</code> mostly consists of zeros and is called a <strong>sparse matrix</strong>. To perform linear algebra computations rapidly on such a large sparse matrix, it'd be more efficient to store only the non-zero values while maintaining the structure. Fortunately, <code>TfidfVectorizer</code> utilizes the SciPy library to do <em>exactly</em> this!</p>
 <p><a id="cell4"></a></p>
 <h2 id="4.-Training-and-evaluating-a-model">4. Training and evaluating a model<a class="anchor-link" href="#4.-Training-and-evaluating-a-model">¶</a>
 </h2>
@@ -1090,7 +1090,7 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) \\ = \textrm{
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I love learning curves—they're teeming with information! Notice the performance on the training set is near perfect regardless of dataset size, which makes sense because we're evaluating the classifier on the same data used to train it. At first, it looks like the classifier is suffering from high variance and overfitting since the validation scores never reach the same level. However, taking a closer look at the scale of the $y$-axis makes me believe this issue isn't that pronounced.</p>
+<p>I love learning curves—they're teeming with information! Notice the performance on the training set is near perfect regardless of dataset size, which makes sense because we're evaluating the classifier on the same data used to train it. At first, it looks like the classifier is suffering from high variance and is overfitting since the validation scores never reach the same level. However, taking a closer look at the scale of the $y$-axis makes me believe this issue isn't that pronounced.</p>
 <p>Nevertheless, since the validation scores improve with more training examples, an obvious next step is to acquire more data points. In addition, we could try a smaller set of features by only using bigrams, not unigrams. Finally, it's worth tuning the regularization hyperparameter.</p>
 <h3 id="Using-nested-cross-validation-to-minimize-information-leakage">Using nested cross-validation to minimize information leakage<a class="anchor-link" href="#Using-nested-cross-validation-to-minimize-information-leakage">¶</a>
 </h3>
@@ -1211,7 +1211,7 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) \\ = \textrm{
 <p><a id="cell5"></a></p>
 <h2 id="5.-What-terms-are-the-top-predictors-of-spam?">5. What terms are the top predictors of spam?<a class="anchor-link" href="#5.-What-terms-are-the-top-predictors-of-spam?">¶</a>
 </h2>
-<p>To improve the classifier in the future, let's take a peek at the $n$-grams that were the most predictive of spam. But first, we need to use the optimal regularization hyperparameter to train the classifier on the <em>whole</em> dataset in order to provide it as much information as possible.</p>
+<p>I'm incredibly curious about which $n$-grams are the most predictive of spam. But first, we need to use the optimal regularization hyperparameter to train the classifier on the <em>whole</em> dataset in order to provide it as much information as possible.</p>
 
 </div>
 </div>
@@ -1308,7 +1308,7 @@ dtype: float64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There are a few obvious ones at the top: <code>phonenumbr</code>, <code>txt</code>, <code>moneysymbnumber</code> (money amount), <code>call phonenumbr</code>, <code>claim</code>, <code>video</code>, <code>free</code>, <code>stop</code>, <code>credit</code> and <code>order</code>. However, the <a href="https://archive.ics.uci.edu/ml/datasets/sms+spam+collection">data description</a> points out the majority of the spam in this dataset originated from a British website, while the most of the ham came from Singaporean students. This is quite concerning because the lexicon in SMS messages varies dramatically across different national, cultural and age demographics. This sampling bias may affect the validity of the classifier. Remember what I said earlier about the data you use to train a model?</p>
+<p>There are a few obvious ones at the top: <code>phonenumbr</code>, <code>txt</code>, <code>moneysymbnumber</code> (money amount), <code>call phonenumbr</code>, <code>claim</code>, <code>video</code>, <code>free</code>, <code>stop</code>, <code>credit</code> and <code>order</code>. However, the <a href="https://archive.ics.uci.edu/ml/datasets/sms+spam+collection">data description</a> points out the majority of the spam in this dataset originated from a British website, while the most of the ham came from Singaporean students. This is quite concerning because the lexicon in SMS messages varies dramatically across different national, cultural and age demographics. This sampling bias may adversely affect the validity of the classifier. Remember what I said earlier about the data you use to train a model?</p>
 <p>To finish up, let's write up a function that'll decide whether a string is spam or not, and apply it on the hypothetical message from earlier.</p>
 
 </div>
@@ -1428,7 +1428,7 @@ dtype: float64</pre>
 <p>We can attempt to boost the classifier's performance but there's simply too many different avenues. However, I'd like to highlight some of the prominent ones.</p>
 <ol>
 <li>Text preprocessing<ul>
-<li>I handcrafted the regular expressions in this post (by no means an expert!) but I'm certain we can increase their matching performance and efficiency. It may be also be worthwhile using regex to normalize other components such as dates, times, slang, etc.</li>
+<li>I handcrafted the regular expressions in this post (by no means an expert!) but I'm certain we can increase their matching performance and efficiency. It may be also be worthwhile using regex to normalize other terms such as dates, times, slang, etc.</li>
 <li>I selected the Porter stemmer here but comparing the performance with the Lancaster stemmer would be interesting. However, stemming can be crude and chop off suffixes haphazhardly—a better alternative is <strong>lemmatization</strong>, e.g., "worse" $\rightarrow$ "bad".</li>
 <li>We ignored the innate features of each training example such as message length, average word length, distribution of the various forms of punctuation, all-caps frequency, etc. Each of these may enhance the classifier's predictive capacity.</li>
 </ul>
@@ -1439,7 +1439,7 @@ dtype: float64</pre>
 </ul>
 </li>
 <li>Machine learning<ul>
-<li>Instead of tuning just the classifier's hyperparameters, we can perform a more exhaustive grid search to compare the use of raw term frequencies instead of tf-idf, or perhaps only tokenizing terms that have a term frequency above/below a threshold. In fact, <code>TfidfVectorizer</code> includes many other knobs to play with. In addition, we can test other classifiers such as Naive Bayes, logistic regression or a neural net. All of these different options can be investigated simultaneously by performing a grid search with Scikit-learn's <a href="http://scikit-learn.org/stable/auto_examples/model_selection/grid_search_text_feature_extraction.html"><code>Pipeline</code> tool</a>.</li>
+<li>Instead of tuning just the classifier's hyperparameters, we can perform a more exhaustive <code>GridSearchCV</code> to compare the use of raw term frequencies instead of tf-idf, or perhaps only tokenizing terms that have a term frequency above/below a threshold. In fact, <code>TfidfVectorizer</code> includes many other knobs to play with. In addition, we can test other classifiers such as Naive Bayes, logistic regression or a neural net. All of these different options can be investigated simultaneously by combining <code>GridSearchCV</code> with Scikit-learn's <a href="http://scikit-learn.org/stable/auto_examples/model_selection/grid_search_text_feature_extraction.html"><code>Pipeline</code> tool</a>.</li>
 </ul>
 </li>
 </ol>
