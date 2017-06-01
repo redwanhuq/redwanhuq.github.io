@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1496169888.0667613
+_modified_time = 1496285424.6809971
 _enable_loop = True
 _template_filename = 'c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/bootstrap3/templates/listing.tmpl'
 _template_uri = 'listing.tmpl'
@@ -33,17 +33,17 @@ def render_body(context,**pageargs):
         _import_ns = {}
         _mako_get_namespace(context, 'ui')._populate(_import_ns, ['bar'])
         ui = _mako_get_namespace(context, 'ui')
+        crumbs = _import_ns.get('crumbs', context.get('crumbs', UNDEFINED))
+        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
+        files = _import_ns.get('files', context.get('files', UNDEFINED))
         title = _import_ns.get('title', context.get('title', UNDEFINED))
+        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
         def content():
             return render_content(context._locals(__M_locals))
         source_link = _import_ns.get('source_link', context.get('source_link', UNDEFINED))
-        files = _import_ns.get('files', context.get('files', UNDEFINED))
-        code = _import_ns.get('code', context.get('code', UNDEFINED))
         def sourcelink():
             return render_sourcelink(context._locals(__M_locals))
-        crumbs = _import_ns.get('crumbs', context.get('crumbs', UNDEFINED))
-        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
-        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
+        code = _import_ns.get('code', context.get('code', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
@@ -68,15 +68,15 @@ def render_content(context,**pageargs):
         _import_ns = {}
         _mako_get_namespace(context, 'ui')._populate(_import_ns, ['bar'])
         ui = _mako_get_namespace(context, 'ui')
+        crumbs = _import_ns.get('crumbs', context.get('crumbs', UNDEFINED))
+        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
+        files = _import_ns.get('files', context.get('files', UNDEFINED))
         title = _import_ns.get('title', context.get('title', UNDEFINED))
+        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
         def content():
             return render_content(context)
         source_link = _import_ns.get('source_link', context.get('source_link', UNDEFINED))
-        files = _import_ns.get('files', context.get('files', UNDEFINED))
         code = _import_ns.get('code', context.get('code', UNDEFINED))
-        crumbs = _import_ns.get('crumbs', context.get('crumbs', UNDEFINED))
-        folders = _import_ns.get('folders', context.get('folders', UNDEFINED))
-        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer(str(ui.bar(crumbs)))
@@ -119,10 +119,10 @@ def render_sourcelink(context,**pageargs):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'ui')._populate(_import_ns, ['bar'])
-        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
-        source_link = _import_ns.get('source_link', context.get('source_link', UNDEFINED))
         def sourcelink():
             return render_sourcelink(context)
+        source_link = _import_ns.get('source_link', context.get('source_link', UNDEFINED))
+        messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n')
         if source_link:
