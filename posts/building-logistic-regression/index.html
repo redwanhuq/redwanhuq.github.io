@@ -28,7 +28,8 @@
 
 
 
-The logistic regression classifier is a widely used machine learning model that predicts the group or category that an observation belongs to. When implementing t">
+
+The logistic regression classifier is a widely used machine learning model that predicts the group or category that an observation belongs to. When implementing ">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-02-13T10:00:00-06:00">
 <meta property="article:tag" content="classification">
@@ -156,9 +157,7 @@ div.prompt {
 
 
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[1]:</div>
-
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -255,9 +254,7 @@ div.prompt {
 
 
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[2]:</div>
-
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -343,9 +340,7 @@ div.prompt {
 
 
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[3]:</div>
-
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -444,9 +439,7 @@ div.prompt {
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 
 
@@ -502,9 +495,7 @@ $$\sigma(z) = \frac{1}{1+\mathrm{e}^{-z}}$$<p>and see what this function looks l
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 
 
@@ -530,8 +521,8 @@ $$z = \theta_0{x_0} + \theta_1{x_1} + \theta_2{x_2}$$<ul>
 <li>$\theta_0$, $\theta_1$ and $\theta_2$ are real numbers</li>
 </ul>
 <p>If we input the above expression into the logistic function, we have a potential hypothesis for the classifier:</p>
-$$h_\theta(x) = \sigma(\theta_0{x_0} + \theta_1{x_1} + \theta_2{x_2}) = \frac{1}{1+\mathrm{e}^{-(\theta_0{x_0} + \theta_1{x_1} + \theta_2{x_2})}}$$<p>Specifically, <strong>this hypothesis computes the probability that a candidate will win an election given a set of features.</strong> But how do we know if this is a suitable hypothesis? Well, if we set $z = 0$, then $h_\theta(x) = \sigma(0) = 0.5$. This probability value holds some significance—it serves as an intuitive threshold for making predictions. That is, we can predict a candidate will win the election if the win probability equals or exceeds 50% (i.e., $h_\theta(x)\ge0.5$), otherwise he/she is predicted to lose. Setting $z = 0$ has another intriguing result: it transforms the above linear combination into the equation of a line:</p>
-$$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>Because this line is linked to the threshold for making predictions, logically, this must be the decision boundary of the classifier. It looks like our choice for the hypothesis wasn't arbitrary after all! Now all that remains is to figure out what are the <strong>parameters</strong> of the hypothesis: $\theta_0$, $\theta_1$ and $\theta_2$.</p>
+$$h_\theta(x) = \sigma(\theta_0{x_0} + \theta_1{x_1} + \theta_2{x_2}) = \frac{1}{1+\mathrm{e}^{-(\theta_0{x_0} + \theta_1{x_1} + \theta_2{x_2})}}$$<p>Specifically, <strong>this hypothesis computes the probability that a candidate will win an election given a set of features.</strong> But how do we know if this is a suitable hypothesis? Well, we can begin by settling on a probability threshold for deciding whether a candidate will win or lose the election. An intuitive threshold for this decision is: predict a candidate will win if the win probability equals or exceeds 50% (i.e., $h_\theta(x)\ge0.5$), otherwise he/she is predicted to lose. If $h_\theta(x) = 0.5$, then $z = 0$; substituting this latter value into the linear combination above and then rearranging yields an intriguing equation:</p>
+$$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>Notice that this is an equation of a line; in fact, it's the equation of a line that exists on the scatterplot from earlier. However, because this line is linked to the threshold for making predictions, logically, this must be the decision boundary of the classifier! It looks like our choice for the hypothesis wasn't arbitrary after all. Now all that remains is to figure out what are the <strong>parameters</strong> ($\theta_0$, $\theta_1$ and $\theta_2$) of the hypothesis in order to identify the exact decision boundary.</p>
 <p><a id="cell3"></a></p>
 <h2 id="3.-Measuring-prediction-error-using-the-cost-function">3. Measuring prediction error using the cost function<a class="anchor-link" href="#3.-Measuring-prediction-error-using-the-cost-function">¶</a>
 </h2>
@@ -625,9 +616,7 @@ y^{(m)}
 
 
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[7]:</div>
-
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -712,9 +701,7 @@ y^{(m)}
 
 
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[8]:</div>
-
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -872,9 +859,7 @@ $$\vec{\theta} := \vec{\theta} - \frac{\alpha}{m}{X^T}({\sigma(X\vec{\theta}) - 
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>theta0 = [-1.73093143]
@@ -923,9 +908,7 @@ theta2 = [ 9.47343264]
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 
 
@@ -945,7 +928,7 @@ theta2 = [ 9.47343264]
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Excellent, the cost function converges so we don't need to alter our choices for $\alpha$ and <code>iterations</code>. Let's also use the learned parameters to visualize the decision boundary of the classifier using the equation of the line from earlier:</p>
-$$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
+$$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$ \\ $</p>
 
 </div>
 </div>
@@ -987,9 +970,7 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 
 
@@ -1036,9 +1017,7 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 
 
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[15]:</div>
-
 
 
 
@@ -1057,7 +1036,7 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This candidate has a 64% chance of winning! Not bad. According to the probability threshold we decided on earlier, the classifier predicts the candidate will win. We can establish the <strong>classification accuracy</strong> by examining how well the classifier performs on the training set. Again, we'll make use of the threshold: if $h_\theta(x) \ge 0.5$, then we predict a win, otherwise a loss.</p>
+<p>This candidate has a 64% chance of winning. According to the probability threshold we decided on earlier, the classifier predicts the candidate will win. We can establish the <strong>classification accuracy</strong> by examining how well the classifier performs on the training set. Again, we'll make use of the threshold: if $h_\theta(x) \ge 0.5$, then we predict a win, otherwise a loss.</p>
 
 </div>
 </div>
@@ -1099,9 +1078,7 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 
 
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[17]:</div>
-
 
 
 
@@ -1149,9 +1126,7 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 
 
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[18]:</div>
-
 
 
 
@@ -1175,7 +1150,7 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 <p><a id="cell6"></a></p>
 <h2 id="6.-Assessing-and-improving-performance">6. Assessing and improving performance<a class="anchor-link" href="#6.-Assessing-and-improving-performance">¶</a>
 </h2>
-<p>Using classification accuracy alone provides a superficial and at times misleading picture of the classifier's performance. At the very least, a <strong>confusion matrix</strong> would reveal whether the classifier's mistakes are mostly false positives or false negatives. However, there's no reason to stop there; examining other performance metrics, such as precision, recall, F1 score, AUC, etc., would help narrow down whether this is a suitable model for making predictions on our data, or perhaps we should try a different one.</p>
+<p>Using classification accuracy alone provides a superficial and at times misleading picture of the classifier's performance. At the very least, a <strong>confusion matrix</strong> would reveal whether the classifier's mistakes are mostly false positives or false negatives. However, there's no reason to stop there; examining other performance metrics, such as precision and recall, would help narrow down whether this is a suitable model for making predictions on our data, or perhaps we should try a different one.</p>
 <p>There are also numerous ways to enhance our classifier:</p>
 <ul>
 <li>Instead of choosing a value for <code>iterations</code>, we could automatically stop iterating once the difference between successive values of the cost function drops below a specified tolerance</li>
@@ -1185,7 +1160,7 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$\\$</p>
 </li>
 </ul>
 <p>In addition, for each iteration in the batch gradient descent algorithm, we waited until we had processed every single training example prior to computing the gradient and updating the parameters. What if instead our dataset had <em>millions</em> of training examples? That would be computationally expensive. More suitable options in this scenario would be to use a subset of the training set (<strong>mini-batch gradient descent</strong>), or compute the gradient and update the parameters as each training example is processed (<strong>stochastic gradient descent</strong>). Moreover, gradient descent is one of <a href="https://en.wikipedia.org/wiki/Mathematical_optimization#Optimization_algorithms">many</a> learning algorithms—some don't require picking a learning rate, while others converge to the minimum of the cost function much faster.</p>
-<p>Finally, instead of choosing a linear combination of the features and a straight line as the decision boundary, we could've combined the features in a higher-order polynomial to achieve a more complex decision boundary; this may have enabled the classifier to perform even better. However, this strategy also increases the chance of building a classifier that <em>memorizes</em> the training set but fails to generalize a pattern, and thus performs poorly on test examples—a cardinal concern in machine learning called <strong>overfitting</strong>. To counter the risk of overfitting, we'd need to incorporate <strong>regularization</strong> into the learning algorithm, but that deserves its very own blog post.</p>
+<p>Finally, instead of choosing a linear combination of the features and a straight line as the decision boundary, we could've combined the features in a higher-order polynomial to achieve a more complex decision boundary; this may have enabled the classifier to perform even better. However, this strategy also increases the chance of building a classifier that <em>memorizes</em> the training set but fails to generalize a pattern, and thus performs poorly on test examples—a cardinal concern in machine learning called <strong>overfitting</strong>. To counter the risk of overfitting, we could incorporate <strong>regularization</strong> into the learning algorithm, but that deserves its very own blog post.</p>
 <p>If you made it this far, you should have a good grasp of how to construct a logistic regression classifier from the ground up! I hope you also found this walkthrough useful as a peek under the hood of a popular machine learning model. At the very least, becoming familiar with the thought process, terminology, logic and math behind this classifier can only help in traversing the vast machine learning landscape.</p>
 <p>If you'd like to play around with the code, here's the <a href="https://github.com/redwanhuq/machine-learning">GitHub repo</a>. As always, don't hesitate to leave your comments below.</p>
 
