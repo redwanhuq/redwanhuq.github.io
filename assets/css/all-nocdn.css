@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto Condensed:400,400i,700,700i");
 @import url("https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i");
 @import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
+@import url("https://fonts.googleapis.com/css?family=Rye:400");
 /*!
  * bootswatch v3.3.7
  * Homepage: http://bootswatch.com
@@ -4280,9 +4281,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   padding: 21.5px 15px;
+  font-family: "Rye", "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 24px;
   color: #0078D7 !important;
-  font-weight: bold !important;
   line-height: 34px !important;
   height: 65px;
 }
