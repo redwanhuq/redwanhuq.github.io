@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/classification.xml</loc>
-  <lastmod>2017-06-07T19:29:00Z</lastmod>
+  <lastmod>2017-06-08T18:04:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/clustering.xml</loc>
@@ -39,7 +39,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/gradient-descent.xml</loc>
-  <lastmod>2017-06-07T19:29:00Z</lastmod>
+  <lastmod>2017-06-08T18:04:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/iterable.xml</loc>
@@ -59,11 +59,11 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/logistic-regression.xml</loc>
-  <lastmod>2017-06-07T19:29:00Z</lastmod>
+  <lastmod>2017-06-08T18:04:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/machine-learning.xml</loc>
-  <lastmod>2017-06-07T19:29:00Z</lastmod>
+  <lastmod>2017-06-08T18:04:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/n-grams.xml</loc>
@@ -99,7 +99,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/supervised-learning.xml</loc>
-  <lastmod>2017-06-07T19:29:00Z</lastmod>
+  <lastmod>2017-06-08T18:04:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/support-vector-machines.xml</loc>
@@ -119,10 +119,10 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/rss.xml</loc>
-  <lastmod>2017-06-07T19:29:00Z</lastmod>
+  <lastmod>2017-06-08T18:04:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/sitemap.xml</loc>
-  <lastmod>2017-06-07T19:29:00Z</lastmod>
+  <lastmod>2017-06-08T18:04:00Z</lastmod>
  </sitemap>
 </sitemapindex>
