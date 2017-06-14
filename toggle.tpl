@@ -14,6 +14,11 @@ div.prompt {
 	display: none;
 }
 
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
 
 </style>
 
