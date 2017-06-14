@@ -22,6 +22,10 @@
 	display: none;
 }
 
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
 
 
 
@@ -29,7 +33,8 @@
 
 
 
-The logistic regression classifier is a widely used machine learning model that predicts the group or category that an observation belongs to. When implementing ">
+
+The logistic regression class">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-02-13T10:00:00-06:00">
 <meta property="article:tag" content="classification">
@@ -106,6 +111,11 @@ The logistic regression classifier is a widely used machine learning model that 
 <style type="text/css">
 div.prompt {
 	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
 }
 
 
@@ -551,8 +561,7 @@ y^{(1)} \\
 y^{(2)} \\
 \vdots \\
 y^{(m)}
-\end{array}\right]$$<p>$\\$</p>
-
+\end{array}\right]$$
 </div>
 </div>
 </div>
@@ -928,8 +937,7 @@ theta2 = [ 9.47343264]
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Excellent, the cost function converges so we don't need to alter our choices for $\alpha$ and <code>iterations</code>. Let's also use the learned parameters to visualize the decision boundary of the classifier using the equation of the line from earlier:</p>
-$$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$ \\ $</p>
-
+$$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$
 </div>
 </div>
 </div>
@@ -1205,7 +1213,7 @@ $$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>$ \\ $</p>
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-yYfngbEKv4RENfGDvNUqJTqGFcKf31NJEe9OTnnMH3Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+        </section><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
