@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/classification.xml</loc>
-  <lastmod>2017-06-14T13:13:00Z</lastmod>
+  <lastmod>2017-06-15T18:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/clustering.xml</loc>
@@ -23,7 +23,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/data-wrangling.xml</loc>
-  <lastmod>2017-06-14T12:50:00Z</lastmod>
+  <lastmod>2017-06-15T18:10:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/exploratory-analysis.xml</loc>
@@ -59,11 +59,11 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/logistic-regression.xml</loc>
-  <lastmod>2017-06-14T12:50:00Z</lastmod>
+  <lastmod>2017-06-15T18:10:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/machine-learning.xml</loc>
-  <lastmod>2017-06-14T13:13:00Z</lastmod>
+  <lastmod>2017-06-15T18:10:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/n-grams.xml</loc>
@@ -75,7 +75,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/nested-cross-validation.xml</loc>
-  <lastmod>2017-06-14T13:13:00Z</lastmod>
+  <lastmod>2017-06-15T18:10:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/nltk.xml</loc>
@@ -91,7 +91,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/scikit-learn.xml</loc>
-  <lastmod>2017-06-14T13:13:00Z</lastmod>
+  <lastmod>2017-06-15T18:10:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/seaborn.xml</loc>
@@ -99,7 +99,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/supervised-learning.xml</loc>
-  <lastmod>2017-06-14T13:13:00Z</lastmod>
+  <lastmod>2017-06-15T18:10:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/support-vector-machines.xml</loc>
@@ -119,10 +119,10 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/rss.xml</loc>
-  <lastmod>2017-06-15T15:15:00Z</lastmod>
+  <lastmod>2017-06-15T18:09:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/sitemap.xml</loc>
-  <lastmod>2017-06-15T15:15:00Z</lastmod>
+  <lastmod>2017-06-15T18:10:00Z</lastmod>
  </sitemap>
 </sitemapindex>
