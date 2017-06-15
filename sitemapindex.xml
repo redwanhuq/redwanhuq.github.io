@@ -19,7 +19,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/data-visualization.xml</loc>
-  <lastmod>2017-06-14T13:13:00Z</lastmod>
+  <lastmod>2017-06-15T15:15:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/data-wrangling.xml</loc>
@@ -27,7 +27,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/exploratory-analysis.xml</loc>
-  <lastmod>2017-06-14T13:13:00Z</lastmod>
+  <lastmod>2017-06-15T15:15:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/generator-function.xml</loc>
@@ -66,10 +66,6 @@
   <lastmod>2017-06-14T13:13:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>https://redwanhuq.github.io/categories/mathjax.xml</loc>
-  <lastmod>2017-06-14T12:45:00Z</lastmod>
- </sitemap>
- <sitemap>
   <loc>https://redwanhuq.github.io/categories/n-grams.xml</loc>
   <lastmod>2017-06-14T13:13:00Z</lastmod>
  </sitemap>
@@ -87,7 +83,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/pandas.xml</loc>
-  <lastmod>2017-06-14T13:13:00Z</lastmod>
+  <lastmod>2017-06-15T15:15:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/python.xml</loc>
@@ -99,7 +95,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/seaborn.xml</loc>
-  <lastmod>2017-06-14T13:13:00Z</lastmod>
+  <lastmod>2017-06-15T15:15:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/supervised-learning.xml</loc>
@@ -123,10 +119,10 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/rss.xml</loc>
-  <lastmod>2017-06-14T13:13:00Z</lastmod>
+  <lastmod>2017-06-15T15:15:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/sitemap.xml</loc>
-  <lastmod>2017-06-14T13:13:00Z</lastmod>
+  <lastmod>2017-06-15T15:15:00Z</lastmod>
  </sitemap>
 </sitemapindex>
