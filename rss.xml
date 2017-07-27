@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>In Machines We Trust</title><link>https://redwanhuq.github.io/</link><description>My journey to become a data scientist</description><atom:link href="https://redwanhuq.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 15 Jun 2017 18:09:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Using natural language processing to build a spam filter for text messages</title><link>https://redwanhuq.github.io/posts/sms-spam-filter/</link><dc:creator>Redwan Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>In Machines We Trust</title><link>https://redwanhuq.github.io/</link><description>My journey to become a data scientist</description><atom:link href="https://redwanhuq.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 27 Jul 2017 23:36:12 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>How to install Keras with a TensorFlow backend for deep learning</title><link>https://redwanhuq.github.io/posts/deep-learning-setup/</link><dc:creator>Redwan Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
+div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Teaching yourself data science is rife with challenges and some of the biggest ones for me have been determining what tools are available, which one to invest in learning, or how to access them. For example, once I reached the stage in my training where I was ready to add deep learning to my repertoire, I was baffled on &lt;a href="https://stackoverflow.com/questions/38233996/how-to-import-tensorflow-in-jupyter-notebook-from-conda-with-gpu-support"&gt;how&lt;/a&gt; &lt;a href="https://stackoverflow.com/questions/37061089/trouble-with-tensorflow-in-jupyter-notebook"&gt;troublesome&lt;/a&gt; &lt;a href="https://github.com/jupyter/notebook/issues/2120"&gt;it&lt;/a&gt; was to setup Keras and TensorFlow to work with Jupyter notebooks via the Anaconda distribution. Most solutions glossed over key steps, others just didn't work. After some digging, I came up with my solution and decided to share it in detail with the community.
+&lt;/p&gt;&lt;p&gt;&lt;a href="https://redwanhuq.github.io/posts/deep-learning-setup/"&gt;Read more…&lt;/a&gt; (5 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>anaconda</category><category>deep learning</category><category>keras</category><category>tensorflow</category><guid>https://redwanhuq.github.io/posts/deep-learning-setup/</guid><pubDate>Wed, 26 Jul 2017 15:00:00 GMT</pubDate></item><item><title>Using natural language processing to build a spam filter for text messages</title><link>https://redwanhuq.github.io/posts/sms-spam-filter/</link><dc:creator>Redwan Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
 div.prompt {
 	display: none;
 }

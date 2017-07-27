@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to install Keras with a TensorFlow backend for deep learning | In Machines We Trust</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#0078D7">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://redwanhuq.github.io/posts/deep-learning-setup/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<meta name="author" content="Redwan Huq">
+<link rel="prev" href="../sms-spam-filter/" title="Using natural language processing to build a spam filter for text messages" type="text/html">
+<meta property="og:site_name" content="In Machines We Trust">
+<meta property="og:title" content="How to install Keras with a TensorFlow backend for deep learning">
+<meta property="og:url" content="https://redwanhuq.github.io/posts/deep-learning-setup/">
+<meta property="og:description" content="div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+
+
+
+
+
+Teaching yourself data science">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2017-07-26T10:00:00-05:00">
+<meta property="article:tag" content="anaconda">
+<meta property="article:tag" content="deep learning">
+<meta property="article:tag" content="keras">
+<meta property="article:tag" content="tensorflow">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://redwanhuq.github.io/">
+
+                <span id="blog-title">In Machines We Trust</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../pages/about/">About</a>
+                </li>
+<li>
+<a href="../../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../../categories/">Tags</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">How to install Keras with a TensorFlow backend for deep learning</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Redwan Huq
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2017-07-26T10:00:00-05:00" itemprop="datePublished" title="2017-07-26 10:00">2017-07-26 10:00</time></a></p>
+                <p class="commentline">
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/post9.html">Comments</a>
+
+
+            
+
+        </p>
+</div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<style type="text/css">
+div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+</style>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Teaching yourself data science is rife with challenges and some of the biggest ones for me have been determining what tools are available, which one to invest in learning, or how to access them. For example, once I reached the stage in my training where I was ready to add deep learning to my repertoire, I was baffled on <a href="https://stackoverflow.com/questions/38233996/how-to-import-tensorflow-in-jupyter-notebook-from-conda-with-gpu-support">how</a> <a href="https://stackoverflow.com/questions/37061089/trouble-with-tensorflow-in-jupyter-notebook">troublesome</a> <a href="https://github.com/jupyter/notebook/issues/2120">it</a> was to setup Keras and TensorFlow to work with Jupyter notebooks via the Anaconda distribution. Most solutions glossed over key steps, others just didn't work. After some digging, I came up with my solution and decided to share it in detail with the community.
+<!-- TEASER_END -->
+<img src="../../images/tfkeraslogos.jpg" align="middle" width="400"></p>
+<p>I settled on <a href="https://keras.io/">Keras</a> because it provides a high-level, user friendly Python API for several deep learning libraries such as TensorFlow, Theano and Microsoft Cognitive Toolkit. Plus, I've truly enjoyed the Python data science ecosystem. Finally, because <a href="https://www.tensorflow.org/">TensorFlow</a> is an order of magnitude <a href="https://twitter.com/fchollet/status/787881948274266112">more popular</a> than the rest and is growing <a href="https://twitter.com/fchollet/status/890134015642087426">rapidly</a>, this library was the logical choice for the backend of Keras.</p>
+<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
+</h2>
+<ol>
+<li><a href="#cell1">Installing Anaconda</a></li>
+<li><a href="#cell2">Adding Anaconda to the Windows PATH</a></li>
+<li><a href="#cell3">Setting up a virtual environment for deep learning</a></li>
+</ol>
+<p><strong>Note: this tutorial is for Windows users only.</strong> Apologies!</p>
+<p><a id="cell1"></a></p>
+<h2 id="1.-Installing-Anaconda">1. Installing Anaconda<a class="anchor-link" href="#1.-Installing-Anaconda">¶</a>
+</h2>
+<p>Anaconda is a free and open source software distribution for data science. Basically, it's an up-to-date, comprehensive bundle of the most popular tools and libraries in this field and enables you to dive in quickly and easily.</p>
+<p>Of course, you could use <a href="https://pip.pypa.io/en/stable/">pip</a>, Python's default package manager, to install these libraries but that would likely take a while considering there are <a href="https://pypi.python.org/pypi?%3Aaction=browse">hundreds</a> to choose from. In addition, newcomers typically don't know which libraries are required and which are optional. Most importantly, a library may build off another library (the latter is called a <strong>dependency</strong>), so it's crucial to install them in the correct order <em>and</em> use the appropriate version of each one to ensure all libraries play nicely.</p>
+<p>Fortunately, Anaconda takes these responsibilities off your shoulder. First, the installer automatically provides the core libraries for data science to get you up and running immediately. In addition, it includes a language-agnostic package manager called <a href="https://conda.io/docs/intro.html">conda</a> that enables you to add <a href="https://docs.continuum.io/anaconda/packages/pkg-docs">more</a> libraries later.</p>
+<p>As the cherry on top, conda is also a top-notch <strong>virtual environment</strong> manager, so you don't need <a href="https://virtualenv.pypa.io/en/stable/">virtualenv</a> or <a href="https://docs.python.org/3/library/venv.html">venv</a>. For those new to virtual environments, think of them as tools to keep dependencies used by different projects or tasks in separate locations to avoid potentially messy conflicts. Later in this tutorial, we'll create a conda environment for our deep learning tasks.</p>
+<p>To get started, <a href="https://www.continuum.io/downloads">download Anaconda</a> with the latest version of Python—don't worry, you can always create a conda environment that uses an <a href="https://conda.io/docs/py2or3.html#install-a-different-version-of-python">older version</a> if needed. The installation will take a few minutes so grab a coffee!</p>
+<p><a id="cell2"></a></p>
+<h2 id="2.-Adding-Anaconda-to-the-Windows-PATH">2. Adding Anaconda to the Windows PATH<a class="anchor-link" href="#2.-Adding-Anaconda-to-the-Windows-PATH">¶</a>
+</h2>
+<p>Continuum Analytics, the company that maintains Anaconda, chose to remove the option to add the distribution to the PATH variable in version 4.4. This means if you liked having the option of using the command line to interface with Anaconda, like myself, you now need to manually add it yourself. Nevertheless, this step is mandatory if you want to install Keras and TensorFlow.</p>
+<ol>
+<li>Open the Start menu, start typing "environment" and select the option called <em>Edit the system environment variables</em>
+</li>
+<li>Select the <em>Environment Variables</em> button near the bottom</li>
+<li>In the top section containing user variables, select the one called <em>Path</em> and choose to edit it</li>
+<li>Create a new variable whose name refers to the location of the "Scripts" folder, which is inside whichever folder you chose to install Anaconda</li>
+</ol>
+<p>Take a look at the example below if you need help.</p>
+<p><a href="../../images/path.png"><img src="../../images/path.png" width="400"></a></p>
+<p><a id="cell3"></a></p>
+<h2 id="3.-Setting-up-a-virtual-environment-for-deep-learning">3. Setting up a virtual environment for deep learning<a class="anchor-link" href="#3.-Setting-up-a-virtual-environment-for-deep-learning">¶</a>
+</h2>
+<p>Let's begin by opening Command Prompt and creating a new conda environment.</p>
+
+<pre><code>conda create --name deeplearning python</code></pre>
+<p>Feel free to change <code>deeplearning</code> to whatever you'd like to call the environment. You'll be prompted to install various dependencies throughout this process—just agree each time.</p>
+<p>Let's now enter this newly created virtual environment.</p>
+
+<pre><code>activate deeplearning</code></pre>
+<p>If you're following along in Command Prompt, notice the prompt is now flanked by the name of the environment in parentheses—this indicates you're inside.</p>
+<p>Earlier, the Anaconda installer automatically created a conda environment called <code>root</code> that houses the core libraries for data science. Since we've now moved into a different environment, we can't access those libraries unless we re-install them and their dependencies in the new environment. Fortunately, we can use conda to install a few packages that cover everything we need. Because I make heavy use of the core data science libraries, I installed every package listed below. Just make sure to install them in the following order; only Seaborn and Scikit-learn are optional.</p>
+<p><strong>IPython</strong> and <strong>Jupyter</strong> are a must for those who rely on <a href="http://jupyter-notebook.readthedocs.io/en/latest/">Jupyter notebooks</a> for data science (who doesn't?).</p>
+
+<pre><code>conda install ipython
+conda install jupyter</code></pre>
+<p><strong>Pandas</strong> includes the <a href="https://pandas.pydata.org/pandas-docs/stable/style.html"><em>de facto</em> library</a> for exploratory analysis and data wrangling.</p>
+
+<pre><code>conda install pandas</code></pre>
+<p><strong>SciPy</strong> is an exhaustive package for scientific computing, but the SciPy library, in particular, is a dependency for Keras.</p>
+
+<pre><code>conda install scipy</code></pre>
+<p><strong>Seaborn</strong> includes my favorite high-level <a href="http://seaborn.pydata.org">visualization library</a>. If you're still exclusively using Matplotlib for plotting, I strongly recommend taking a look!</p>
+
+<pre><code>conda install seaborn</code></pre>
+<p><strong>Scikit-learn</strong> contains the <a href="http://scikit-learn.org/stable/index.html">go-to library</a> for all Python machine learning tasks outside of neural networks.</p>
+
+<pre><code>conda install scikit-learn</code></pre>
+<p>We're finally equipped to install the deep learning libraries, TensorFlow and Keras. Neither library is available officially via a conda package (yet) so we'll need to install them with pip. One more thing: I don't have a NVIDIA GPU on my laptop so I'm forced to install TensorFlow with only CPU support. If you want GPU support, <a href="https://blog.paperspace.com/running-tensorflow-on-windows/">check this out</a>.</p>
+
+<pre><code>pip install --upgrade tensorflow
+pip install --upgrade keras</code></pre>
+<p>If you missed a step or made a mistake, you can always remove the conda environment and start over.</p>
+
+<pre><code>conda remove --name deeplearning --all</code></pre>
+<p>Otherwise, you should have TensorFlow and Keras ready to go. Go forth and start and building! As always, don't hesitate to leave your comments below.</p>
+
+</div>
+</div>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/anaconda/" rel="tag">anaconda</a></li>
+            <li><a class="tag p-category" href="../../categories/deep-learning/" rel="tag">deep learning</a></li>
+            <li><a class="tag p-category" href="../../categories/keras/" rel="tag">keras</a></li>
+            <li><a class="tag p-category" href="../../categories/tensorflow/" rel="tag">tensorflow</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../sms-spam-filter/" rel="prev" title="Using natural language processing to build a spam filter for text messages">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="machinemade",
+            disqus_url="https://redwanhuq.github.io/posts/deep-learning-setup/",
+        disqus_title="How to install Keras with a TensorFlow backend for deep learning",
+        disqus_identifier="cache/posts/post9.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'center' to center equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script>var disqus_shortname="machinemade";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer"><div class="text-center">
+<p>
+<span class="fa-stack fa-2x">
+  <a href="../../rss.xml">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-rss fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://twitter.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-twitter fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://github.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-github fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://www.linkedin.com/in/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-linkedin fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="mailto:redwanhuq@gmail.com">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-envelope fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+</p>
+<p>
+  Contents © 2017  <a href="mailto:redwanhuq@gmail.com">Redwan Huq</a>
+  
+  —
+  Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>
+</p>
+</div>
+
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90799006-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

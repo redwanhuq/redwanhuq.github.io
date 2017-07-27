@@ -11,11 +11,15 @@
  </url>
  <url>
   <loc>https://redwanhuq.github.io/archive.html</loc>
-  <lastmod>2017-07-27T12:56:00Z</lastmod>
+  <lastmod>2017-07-27T23:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/</loc>
-  <lastmod>2017-06-14T13:17:00Z</lastmod>
+  <lastmod>2017-07-27T21:08:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/categories/anaconda/</loc>
+  <lastmod>2017-07-27T21:08:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/classification/</loc>
@@ -36,6 +40,10 @@
  <url>
   <loc>https://redwanhuq.github.io/categories/data-wrangling/</loc>
   <lastmod>2017-05-30T14:48:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/categories/deep-learning/</loc>
+  <lastmod>2017-07-27T21:08:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/exploratory-analysis/</loc>
@@ -64,6 +72,10 @@
  <url>
   <loc>https://redwanhuq.github.io/categories/k-means/</loc>
   <lastmod>2017-03-15T22:28:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/categories/keras/</loc>
+  <lastmod>2017-07-27T21:08:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/learning-curves/</loc>
@@ -118,6 +130,10 @@
   <lastmod>2017-05-29T20:20:00Z</lastmod>
  </url>
  <url>
+  <loc>https://redwanhuq.github.io/categories/tensorflow/</loc>
+  <lastmod>2017-07-27T21:08:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://redwanhuq.github.io/categories/tf-idf/</loc>
   <lastmod>2017-05-30T14:48:00Z</lastmod>
  </url>
@@ -140,6 +156,10 @@
  <url>
   <loc>https://redwanhuq.github.io/posts/building-logistic-regression/</loc>
   <lastmod>2017-02-12T18:27:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/posts/deep-learning-setup/</loc>
+  <lastmod>2017-07-27T21:08:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/posts/exploring-pokemon-dataset/</loc>
