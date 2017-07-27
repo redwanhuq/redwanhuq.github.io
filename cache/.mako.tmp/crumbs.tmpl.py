@@ -5,9 +5,9 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1500641800.486494
+_modified_time = 1501160306.9675379
 _enable_loop = True
-_template_filename = 'c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/crumbs.tmpl'
+_template_filename = 'c:/users/redwan huq/anaconda3/envs/blog/lib/site-packages/nikola/data/themes/base/templates/crumbs.tmpl'
 _template_uri = 'crumbs.tmpl'
 _source_encoding = 'utf-8'
 _exports = ['bar']
@@ -53,6 +53,6 @@ def render_bar(context,crumbs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "c:/users/redwan huq/anaconda3/lib/site-packages/nikola/data/themes/base/templates/crumbs.tmpl", "uri": "crumbs.tmpl", "source_encoding": "utf-8", "line_map": {"16": 0, "21": 2, "22": 19, "28": 3, "33": 3, "34": 4, "35": 5, "36": 7, "37": 8, "38": 9, "39": 10, "40": 10, "41": 10, "42": 11, "43": 12, "44": 12, "45": 12, "46": 12, "47": 12, "48": 16, "54": 48}}
+{"filename": "c:/users/redwan huq/anaconda3/envs/blog/lib/site-packages/nikola/data/themes/base/templates/crumbs.tmpl", "uri": "crumbs.tmpl", "source_encoding": "utf-8", "line_map": {"16": 0, "21": 2, "22": 19, "28": 3, "33": 3, "34": 4, "35": 5, "36": 7, "37": 8, "38": 9, "39": 10, "40": 10, "41": 10, "42": 11, "43": 12, "44": 12, "45": 12, "46": 12, "47": 12, "48": 16, "54": 48}}
 __M_END_METADATA
 """
