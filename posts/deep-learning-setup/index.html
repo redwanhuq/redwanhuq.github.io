@@ -129,13 +129,14 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
 </h2>
 <ol>
-<li><a href="#cell1">Installing Anaconda</a></li>
+<li><a href="#cell1">Setting up Anaconda</a></li>
 <li><a href="#cell2">Adding Anaconda to the Windows PATH</a></li>
 <li><a href="#cell3">Setting up a virtual environment for deep learning</a></li>
+<li><a href="#cell4">Verifying the installation</a></li>
 </ol>
 <p><strong>Note: this tutorial is for Windows users only.</strong> Apologies!</p>
 <p><a id="cell1"></a></p>
-<h2 id="1.-Installing-Anaconda">1. Installing Anaconda<a class="anchor-link" href="#1.-Installing-Anaconda">¶</a>
+<h2 id="1.-Setting-up-Anaconda">1. Setting up Anaconda<a class="anchor-link" href="#1.-Setting-up-Anaconda">¶</a>
 </h2>
 <p>Anaconda is a free and open source software distribution for data science. Basically, it's an up-to-date, comprehensive bundle of the most popular tools and libraries in this field and enables you to dive in quickly and easily.</p>
 <p>Of course, you could use <a href="https://pip.pypa.io/en/stable/">pip</a>, Python's default package manager, to install these libraries but that would likely take a while considering there are <a href="https://pypi.python.org/pypi?%3Aaction=browse">hundreds</a> to choose from. In addition, newcomers typically don't know which libraries are required and which are optional. Most importantly, a library may build off another library (the latter is called a <strong>dependency</strong>), so it's crucial to install them in the correct order <em>and</em> use the appropriate version of each one to ensure all libraries play nicely.</p>
@@ -154,7 +155,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <li>Create a new variable whose name refers to the location of the "Scripts" folder, which is inside whichever folder you chose to install Anaconda</li>
 </ol>
 <p>Take a look at the example below if you need help.</p>
-<p><a href="../../images/path.png"><img src="../../images/path.png" width="400"></a></p>
+<p><a class="image-reference" href="../../images/path.png"><img src="../../images/path.png" width="500"></a></p>
 <p><a id="cell3"></a></p>
 <h2 id="3.-Setting-up-a-virtual-environment-for-deep-learning">3. Setting up a virtual environment for deep learning<a class="anchor-link" href="#3.-Setting-up-a-virtual-environment-for-deep-learning">¶</a>
 </h2>
@@ -187,6 +188,16 @@ conda install jupyter</code></pre>
 
 <pre><code>pip install --upgrade tensorflow
 pip install --upgrade keras</code></pre>
+<p><a id="cell4"></a></p>
+<h2 id="4.-Verifying-the-installation">4. Verifying the installation<a class="anchor-link" href="#4.-Verifying-the-installation">¶</a>
+</h2>
+<p>A quick way to see if the installation succeeded is to try to import Keras and TensorFlow in a Jupyter notebook. There are two ways to access Jupyter:</p>
+<ol>
+<li>Open Command prompt, activate your deep learning environment, and enter <code>jupyter notebook</code> in the prompt</li>
+<li>Open Anaconda Navigator (use the Start menu shortcut), switch to your deep learning environment in the <em>Applications on</em> drop-down menu, and then choose to open Jupyter</li>
+</ol>
+<p><a class="image-reference" href="../../images/anaconda_navigator.png"><img src="../../images/anaconda_navigator.png" width="500"></a></p>
+<p>The first option is a bit faster and less clunky in my opinion.</p>
 <p>If you missed a step or made a mistake, you can always remove the conda environment and start over.</p>
 
 <pre><code>conda remove --name deeplearning --all</code></pre>
