@@ -32,9 +32,9 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 
-Teaching yourself data science">
+Some of the biggest challenges">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2017-07-26T10:00:00-05:00">
+<meta property="article:published_time" content="2017-07-28T09:00:00-05:00">
 <meta property="article:tag" content="anaconda">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="keras">
@@ -91,7 +91,7 @@ Teaching yourself data science">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     Redwan Huq
             </span></p>
-            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2017-07-26T10:00:00-05:00" itemprop="datePublished" title="2017-07-26 10:00">2017-07-26 10:00</time></a></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2017-07-28T09:00:00-05:00" itemprop="datePublished" title="2017-07-28 09:00">2017-07-28 09:00</time></a></p>
                 <p class="commentline">
         
     <a href="#disqus_thread" data-disqus-identifier="cache/posts/post9.html">Comments</a>
@@ -122,10 +122,10 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Teaching yourself data science is rife with challenges and some of the biggest ones for me have been determining what tools are available, which one to invest in learning, or how to access them. For example, once I reached the stage in my training where I was ready to add deep learning to my repertoire, I was baffled on <a href="https://stackoverflow.com/questions/38233996/how-to-import-tensorflow-in-jupyter-notebook-from-conda-with-gpu-support">how</a> <a href="https://stackoverflow.com/questions/37061089/trouble-with-tensorflow-in-jupyter-notebook">troublesome</a> <a href="https://github.com/jupyter/notebook/issues/2120">it</a> was to setup Keras and TensorFlow to work with Jupyter notebooks via the Anaconda distribution. Most solutions glossed over key steps, others just didn't work. After some digging, I came up with my solution and decided to share it in detail with the community.
+<p>Some of the biggest challenges I've faced while teaching myself data science have been determining what tools are available, which one to invest in learning, or how to access them. For example, once I reached the stage in my training where I was ready to add deep learning to my repertoire, I was baffled on <a href="https://stackoverflow.com/questions/38233996/how-to-import-tensorflow-in-jupyter-notebook-from-conda-with-gpu-support">how</a> <a href="https://stackoverflow.com/questions/37061089/trouble-with-tensorflow-in-jupyter-notebook">troublesome</a> it was to setup Keras and TensorFlow to work with Jupyter notebooks via the Anaconda distribution. Most solutions glossed over key steps, others just didn't work. After some digging, I came up with my own solution and decided to share it in detail with the community.
 <!-- TEASER_END -->
 <img src="../../images/tfkeraslogos.jpg" align="middle" width="400"></p>
-<p>I settled on <a href="https://keras.io/">Keras</a> because it provides a high-level, user friendly Python API for several deep learning libraries such as TensorFlow, Theano and Microsoft Cognitive Toolkit. Plus, I've truly enjoyed the Python data science ecosystem. Finally, because <a href="https://www.tensorflow.org/">TensorFlow</a> is an order of magnitude <a href="https://twitter.com/fchollet/status/787881948274266112">more popular</a> than the rest and is growing <a href="https://twitter.com/fchollet/status/890134015642087426">rapidly</a>, this library was the logical choice for the backend of Keras.</p>
+<p>I settled on <a href="https://keras.io/">Keras</a> because it provides a high-level, user friendly API for several deep learning libraries such as TensorFlow, Theano or Microsoft Cognitive Toolkit. Because <a href="https://www.tensorflow.org/">TensorFlow</a> is an order of magnitude <a href="https://twitter.com/fchollet/status/787881948274266112">more popular</a> than the rest and is growing <a href="https://twitter.com/fchollet/status/890134015642087426">rapidly</a>, it was the logical choice for Keras' backend. Thankfully, both libraries are written in Python, which circumvents a layer of friction for me.</p>
 <h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
 </h2>
 <ol>
@@ -134,19 +134,19 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <li><a href="#cell3">Setting up a virtual environment for deep learning</a></li>
 <li><a href="#cell4">Verifying the installation</a></li>
 </ol>
-<p><strong>Note: this tutorial is for Windows users only.</strong> Apologies!</p>
+<p><strong>Note: this tutorial is for Windows users.</strong> Apologies!</p>
 <p><a id="cell1"></a></p>
 <h2 id="1.-Setting-up-Anaconda">1. Setting up Anaconda<a class="anchor-link" href="#1.-Setting-up-Anaconda">¶</a>
 </h2>
-<p>Anaconda is a free and open source software distribution for data science. Basically, it's an up-to-date, comprehensive bundle of the most popular tools and libraries in this field and enables you to dive in quickly and easily.</p>
-<p>Of course, you could use <a href="https://pip.pypa.io/en/stable/">pip</a>, Python's default package manager, to install these libraries but that would likely take a while considering there are <a href="https://pypi.python.org/pypi?%3Aaction=browse">hundreds</a> to choose from. In addition, newcomers typically don't know which libraries are required and which are optional. Most importantly, a library may build off another library (the latter is called a <strong>dependency</strong>), so it's crucial to install them in the correct order <em>and</em> use the appropriate version of each one to ensure all libraries play nicely.</p>
-<p>Fortunately, Anaconda takes these responsibilities off your shoulder. First, the installer automatically provides the core libraries for data science to get you up and running immediately. In addition, it includes a language-agnostic package manager called <a href="https://conda.io/docs/intro.html">conda</a> that enables you to add <a href="https://docs.continuum.io/anaconda/packages/pkg-docs">more</a> libraries later.</p>
+<p>Anaconda is a free and open-source software distribution for data science. In a nutshell, it's an up-to-date, comprehensive bundle of the most popular tools and libraries in this field and enables you to dive in quickly and easily.</p>
+<p>Of course, you could use <a href="https://pip.pypa.io/en/stable/">pip</a>, Python's default package manager, to install these libraries but that would likely take a while considering there are <a href="https://pypi.python.org/pypi?%3Aaction=browse">hundreds</a> to choose from. In addition, newcomers typically don't know which libraries are useful and which are optional. Most importantly, a library may build off another library (the latter is called a <strong>dependency</strong>), so it's crucial to install them in the correct order <em>and</em> use the appropriate version of each one to ensure all libraries play nicely.</p>
+<p>Fortunately, Anaconda takes these responsibilities off your shoulder. First, the installer comes with the core libraries for data science to get you up and running immediately. In addition, Anaconda includes a language-agnostic package manager called <a href="https://conda.io/docs/intro.html">conda</a> that enables you to add <a href="https://docs.continuum.io/anaconda/packages/pkg-docs">more</a> libraries later.</p>
 <p>As the cherry on top, conda is also a top-notch <strong>virtual environment</strong> manager, so you don't need <a href="https://virtualenv.pypa.io/en/stable/">virtualenv</a> or <a href="https://docs.python.org/3/library/venv.html">venv</a>. For those new to virtual environments, think of them as tools to keep dependencies used by different projects or tasks in separate locations to avoid potentially messy conflicts. Later in this tutorial, we'll create a conda environment for our deep learning tasks.</p>
 <p>To get started, <a href="https://www.continuum.io/downloads">download Anaconda</a> with the latest version of Python—don't worry, you can always create a conda environment that uses an <a href="https://conda.io/docs/py2or3.html#install-a-different-version-of-python">older version</a> if needed. The installation will take a few minutes so grab a coffee!</p>
 <p><a id="cell2"></a></p>
 <h2 id="2.-Adding-Anaconda-to-the-Windows-PATH">2. Adding Anaconda to the Windows PATH<a class="anchor-link" href="#2.-Adding-Anaconda-to-the-Windows-PATH">¶</a>
 </h2>
-<p>Continuum Analytics, the company that maintains Anaconda, chose to remove the option to add the distribution to the PATH variable in version 4.4. This means if you liked having the option of using the command line to interface with conda, like myself, you now need to manually add it. Nevertheless, because you'll need to access the command line to install Keras and TensorFlow, this step is mandatory.</p>
+<p>Continuum Analytics, the company that maintains Anaconda, elected to remove the option to add the distribution to the PATH variable during the installation process in version 4.4. Basically, this allowed you to interface with conda via the command line instead of the GUI-based Anaconda Navigator, which I find clunky. Because we need to access the command line to install Keras and TensorFlow, this step is mandatory. No problem—manually adding Anaconda to the PATH variable is super easy.</p>
 <ol>
 <li>Open the Start menu, start typing "environment" and select the option called <em>Edit the system environment variables</em>
 </li>
@@ -159,7 +159,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <p><a id="cell3"></a></p>
 <h2 id="3.-Setting-up-a-virtual-environment-for-deep-learning">3. Setting up a virtual environment for deep learning<a class="anchor-link" href="#3.-Setting-up-a-virtual-environment-for-deep-learning">¶</a>
 </h2>
-<p>Let's begin by opening Command Prompt and creating a new conda environment.</p>
+<p>Let's begin by opening Command Prompt and creating a new conda environment with Python.</p>
 
 <pre><code>conda create --name deeplearning python</code></pre>
 <p>Feel free to change <code>deeplearning</code> to whatever you'd like to call the environment. You'll be prompted to install various dependencies throughout this process—just agree each time.</p>
@@ -172,33 +172,32 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <pre><code>conda install ipython
 conda install jupyter</code></pre>
-<p><strong>Pandas</strong> includes the <a href="https://pandas.pydata.org/pandas-docs/stable/style.html"><em>de facto</em> library</a> for exploratory analysis and data wrangling.</p>
+<p><strong>Pandas</strong> includes the <a href="https://pandas.pydata.org/pandas-docs/stable/style.html"><em>de facto</em> library</a> for exploratory analysis and data wrangling in Python.</p>
 
 <pre><code>conda install pandas</code></pre>
-<p><strong>SciPy</strong> is an exhaustive package for scientific computing, but the SciPy library, in particular, is a dependency for Keras.</p>
+<p><strong>SciPy</strong> is an exhaustive package for scientific computing, but the namesake library itself is a dependency for Keras.</p>
 
 <pre><code>conda install scipy</code></pre>
-<p><strong>Seaborn</strong> includes my favorite high-level <a href="http://seaborn.pydata.org">visualization library</a>. If you're still exclusively using Matplotlib for plotting, I strongly recommend taking a look!</p>
+<p><strong>Seaborn</strong> includes my favorite high-level <a href="http://seaborn.pydata.org">visualization library</a>. If you're still exclusively using Matplotlib for plotting, do yourself a favor and take a look.</p>
 
 <pre><code>conda install seaborn</code></pre>
-<p><strong>Scikit-learn</strong> contains the <a href="http://scikit-learn.org/stable/index.html">go-to library</a> for all Python machine learning tasks outside of neural networks.</p>
+<p><strong>Scikit-learn</strong> contains the <a href="http://scikit-learn.org/stable/index.html">go-to library</a> for machine learning tasks in Python outside of neural networks.</p>
 
 <pre><code>conda install scikit-learn</code></pre>
-<p>We're finally equipped to install the deep learning libraries, TensorFlow and Keras. Neither library is available officially via a conda package (yet) so we'll need to install them with pip. One more thing: I don't have a NVIDIA GPU on my laptop so I'm forced to install TensorFlow with only CPU support. If you want GPU support, <a href="https://blog.paperspace.com/running-tensorflow-on-windows/">check this out</a>.</p>
+<p>We're finally equipped to install the deep learning libraries, TensorFlow and Keras. Neither library is officially available via a conda package (yet) so we'll need to install them with pip. One more thing: this step installs TensorFlow with CPU support only; if you want GPU support too, <a href="https://blog.paperspace.com/running-tensorflow-on-windows/">check this out</a>.</p>
 
 <pre><code>pip install --upgrade tensorflow
 pip install --upgrade keras</code></pre>
 <p><a id="cell4"></a></p>
 <h2 id="4.-Verifying-the-installation">4. Verifying the installation<a class="anchor-link" href="#4.-Verifying-the-installation">¶</a>
 </h2>
-<p>A quick way to see if the installation succeeded is to try to import Keras and TensorFlow in a Jupyter notebook. There are two ways to access Jupyter:</p>
+<p>A quick way to check if the installation succeeded is to try to import Keras and TensorFlow in a Jupyter notebook. Here are two ways to access Jupyter:</p>
 <ol>
 <li>Open Command prompt, activate your deep learning environment, and enter <code>jupyter notebook</code> in the prompt</li>
 <li>Open Anaconda Navigator (use the Start menu shortcut), switch to your deep learning environment in the <em>Applications on</em> drop-down menu, and then choose to open Jupyter</li>
 </ol>
 <p><a class="image-reference" href="../../images/anaconda_navigator.png"><img src="../../images/anaconda_navigator.png" width="500"></a></p>
-<p>The first option is a bit faster and less clunky in my opinion.</p>
-<p>If you missed a step or made a mistake, you can always remove the conda environment and start over.</p>
+<p>The first option is a lot faster. If you missed a step or made a mistake, you can always remove the conda environment and start over.</p>
 
 <pre><code>conda remove --name deeplearning --all</code></pre>
 <p>Otherwise, you should have TensorFlow and Keras ready to go. Go forth and start and building! As always, don't hesitate to leave your comments below.</p>
