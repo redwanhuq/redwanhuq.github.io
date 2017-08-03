@@ -19,7 +19,7 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/data-science.xml</loc>
-  <lastmod>2017-06-13T11:41:00Z</lastmod>
+  <lastmod>2017-08-03T14:44:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/data-visualization.xml</loc>
@@ -48,6 +48,10 @@
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/gradient-descent.xml</loc>
   <lastmod>2017-06-14T12:50:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://redwanhuq.github.io/categories/insight.xml</loc>
+  <lastmod>2017-08-03T14:44:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/categories/iterable.xml</loc>
@@ -135,10 +139,10 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/rss.xml</loc>
-  <lastmod>2017-07-28T14:07:00Z</lastmod>
+  <lastmod>2017-08-03T14:44:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/sitemap.xml</loc>
-  <lastmod>2017-07-28T14:07:00Z</lastmod>
+  <lastmod>2017-08-03T14:44:00Z</lastmod>
  </sitemap>
 </sitemapindex>
