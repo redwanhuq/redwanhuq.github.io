@@ -11,11 +11,11 @@
  </url>
  <url>
   <loc>https://redwanhuq.github.io/archive.html</loc>
-  <lastmod>2017-07-28T14:07:00Z</lastmod>
+  <lastmod>2017-08-03T14:44:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/</loc>
-  <lastmod>2017-07-27T21:08:00Z</lastmod>
+  <lastmod>2017-07-28T21:22:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/anaconda/</loc>
@@ -60,6 +60,10 @@
  <url>
   <loc>https://redwanhuq.github.io/categories/gradient-descent/</loc>
   <lastmod>2017-02-11T22:37:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/categories/insight/</loc>
+  <lastmod>2017-07-28T21:22:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/categories/iterable/</loc>
@@ -166,6 +170,10 @@
   <lastmod>2017-01-17T23:34:00Z</lastmod>
  </url>
  <url>
+  <loc>https://redwanhuq.github.io/posts/journey-update/</loc>
+  <lastmod>2017-07-28T21:22:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://redwanhuq.github.io/posts/k-means_clustering/</loc>
   <lastmod>2017-03-15T22:28:00Z</lastmod>
  </url>
@@ -184,6 +192,10 @@
  <url>
   <loc>https://redwanhuq.github.io/posts/understanding-iterators/</loc>
   <lastmod>2017-01-27T21:27:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://redwanhuq.github.io/posts/update-august2017/</loc>
+  <lastmod>2017-07-28T23:50:00Z</lastmod>
  </url>
  <url>
   <loc>https://redwanhuq.github.io/posts/what-is-data-science/</loc>
