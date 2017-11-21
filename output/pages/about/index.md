@@ -1,10 +1,8 @@
 <img src="/images/profile.jpg" align="left" height="200" style="padding-right:20px; padding-bottom:5px">
 ## Who am I?
-Hi, my name is Redwan, and I'm an aspiring data scientist and machine learning practitioner.
+Hi, my name is Redwan, and I'm a data scientist.
 
-As a life scientist by training, I strive to use data and technology to maximize the social impact of my work. Naturally, I'm drawn to AI and data science, which are not only improving our daily lives and transforming businesses, but I believe are also poised to usher in the next industrial revolution and address the biggest challenges facing humanity&mdash;it was time to stop being a spectator. I've since then dedicated myself to transitioning into a career in data science and eventually contributing to the evolution of machine intelligence.
-
-This blog serves to chronicle my journey&mdash;sharing what I've learned, my experiences, and a few projects I'm working on.
+I have always strived to use data and technology to maximize the social impact of my work. Naturally, I'm drawn to artificial intelligence and data science, which are not only improving our daily lives and transforming businesses, but I believe are also poised to usher in the next industrial revolution and address the biggest challenges facing humanity. In 2017, I made the transition from a life scientist to a data scientist. This blog serves to chronicle my journey&mdash;sharing what I've learned, my experiences, and a few projects I'm working on.
 
 ## What have I done?
 I recently received a PhD in molecular physiology and biophysics from [Baylor College of Medicine](https://www.bcm.edu/research/labs/christine-beeton) where I used carbon nanotechnology to develop a [new](https://www.bcm.edu/news/molecular-physiology-and-biophysics/nanoparticle-therapy-for-autoimmune-disease) [treatment](http://www.nature.com/articles/srep33808) for autoimmune diseases. During grad school, I also founded and led a [501(c)(3) nonprofit organization](http://medcenterconsulting.com) that trains scientists and doctors to become management consultants, and also provides consulting services. Previously, I worked in biomedical [R&D](https://www.canon-biomedical.com) and [venture capital](http://fannininnovation.com).
