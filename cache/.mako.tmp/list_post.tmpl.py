@@ -5,9 +5,9 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1513257317.6561933
+_modified_time = 1520049250.2774947
 _enable_loop = True
-_template_filename = 'c:/users/redwan huq/anaconda3/envs/blog/lib/site-packages/nikola/data/themes/base/templates/list_post.tmpl'
+_template_filename = 'c:/miniconda3/envs/blog/lib/site-packages/nikola/data/themes/base/templates/list_post.tmpl'
 _template_uri = 'list_post.tmpl'
 _source_encoding = 'utf-8'
 _exports = ['content']
@@ -36,14 +36,14 @@ def render_body(context,**pageargs):
         _import_ns = {}
         _mako_get_namespace(context, 'archive_nav')._populate(_import_ns, ['*'])
         _mako_get_namespace(context, 'feeds_translations')._populate(_import_ns, ['*'])
+        title = _import_ns.get('title', context.get('title', UNDEFINED))
         messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
         def content():
             return render_content(context._locals(__M_locals))
-        posts = _import_ns.get('posts', context.get('posts', UNDEFINED))
         date_format = _import_ns.get('date_format', context.get('date_format', UNDEFINED))
         archive_nav = _mako_get_namespace(context, 'archive_nav')
         feeds_translations = _mako_get_namespace(context, 'feeds_translations')
-        title = _import_ns.get('title', context.get('title', UNDEFINED))
+        posts = _import_ns.get('posts', context.get('posts', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
@@ -64,14 +64,14 @@ def render_content(context,**pageargs):
         _import_ns = {}
         _mako_get_namespace(context, 'archive_nav')._populate(_import_ns, ['*'])
         _mako_get_namespace(context, 'feeds_translations')._populate(_import_ns, ['*'])
+        title = _import_ns.get('title', context.get('title', UNDEFINED))
         messages = _import_ns.get('messages', context.get('messages', UNDEFINED))
         def content():
             return render_content(context)
-        posts = _import_ns.get('posts', context.get('posts', UNDEFINED))
         date_format = _import_ns.get('date_format', context.get('date_format', UNDEFINED))
         archive_nav = _mako_get_namespace(context, 'archive_nav')
         feeds_translations = _mako_get_namespace(context, 'feeds_translations')
-        title = _import_ns.get('title', context.get('title', UNDEFINED))
+        posts = _import_ns.get('posts', context.get('posts', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n<article class="listpage">\n    <header>\n        <h1>')
         __M_writer(filters.html_escape(str(title)))
@@ -107,6 +107,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "c:/users/redwan huq/anaconda3/envs/blog/lib/site-packages/nikola/data/themes/base/templates/list_post.tmpl", "uri": "list_post.tmpl", "source_encoding": "utf-8", "line_map": {"23": 3, "26": 4, "32": 0, "48": 2, "49": 3, "50": 4, "55": 23, "61": 6, "76": 6, "77": 9, "78": 9, "79": 11, "80": 11, "81": 12, "82": 12, "83": 13, "84": 14, "85": 15, "86": 16, "87": 16, "88": 16, "89": 16, "90": 16, "91": 16, "92": 16, "93": 16, "94": 16, "95": 16, "96": 16, "97": 18, "98": 19, "99": 20, "100": 20, "101": 20, "102": 22, "108": 102}}
+{"filename": "c:/miniconda3/envs/blog/lib/site-packages/nikola/data/themes/base/templates/list_post.tmpl", "uri": "list_post.tmpl", "source_encoding": "utf-8", "line_map": {"23": 3, "26": 4, "32": 0, "48": 2, "49": 3, "50": 4, "55": 23, "61": 6, "76": 6, "77": 9, "78": 9, "79": 11, "80": 11, "81": 12, "82": 12, "83": 13, "84": 14, "85": 15, "86": 16, "87": 16, "88": 16, "89": 16, "90": 16, "91": 16, "92": 16, "93": 16, "94": 16, "95": 16, "96": 16, "97": 18, "98": 19, "99": 20, "100": 20, "101": 20, "102": 22, "108": 102}}
 __M_END_METADATA
 """

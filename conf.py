@@ -25,7 +25,7 @@ SITE_URL = "https://redwanhuq.github.io/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://example.com/"
-BLOG_EMAIL = "redwanhuq@gmail.com"
+BLOG_EMAIL = "endigo85@gmail.com"
 BLOG_DESCRIPTION = "My journey to become a data scientist"  # (translatable)
 
 # Nikola is multilingual!
