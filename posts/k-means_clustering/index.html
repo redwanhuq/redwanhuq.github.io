@@ -33,8 +33,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 
-
-Is it possible for a machine ">
+Is it possible for a machine t">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-03-16T09:00:00-05:00">
 <meta property="article:tag" content="clustering">
@@ -62,7 +61,7 @@ Is it possible for a machine ">
             </a>
         </div>
 <!-- /.navbar-header -->
-        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
             <ul class="nav navbar-nav">
 <li>
 <a href="../../pages/about/">About</a>
@@ -168,7 +167,9 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[2]:</div>
+
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -236,7 +237,9 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[3]:</div>
+
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -371,7 +374,9 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -503,7 +508,9 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[9]:</div>
+
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -609,7 +616,9 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -691,7 +700,9 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -716,7 +727,8 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 </h2>
 <p>Having assigned every training example to a cluster, each cluster must therefore have a new centroid. To determine the positions of these new centroids, we compute the mean of all training examples assigned to each cluster, feature by feature.</p>
 <p>Specifically, for each cluster $j$, we assign a new position for its centroid as given by</p>
-$$u_j := \frac{1}{\lvert c_j \rvert}\sum_{i \in c_j}x^{(i)}$$<p>where $c_j$ is the set of training examples assigned to cluster $j$. Let's build a function that performs this step.</p>
+<p>$$u_j := \frac{1}{\lvert c_j \rvert}\sum_{i \in c_j}x^{(i)}$$</p>
+<p>where $c_j$ is the set of training examples assigned to cluster $j$. Let's build a function that performs this step.</p>
 
 </div>
 </div>
@@ -771,7 +783,9 @@ $$u_j := \frac{1}{\lvert c_j \rvert}\sum_{i \in c_j}x^{(i)}$$<p>where $c_j$ is t
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -795,7 +809,8 @@ $$u_j := \frac{1}{\lvert c_j \rvert}\sum_{i \in c_j}x^{(i)}$$<p>where $c_j$ is t
 <h2 id="6.-Minimizing-the-distortion-function">6. Minimizing the distortion function<a class="anchor-link" href="#6.-Minimizing-the-distortion-function">¶</a>
 </h2>
 <p>We can measure how tightly clustered the data are using the sum of the squared Euclidean distance between each training example and the centroid of its currently assigned cluster. This metric is called the <strong>distortion function</strong> and is given by</p>
-$$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>where $m$ is the total number of training examples. The tighter the clustering, the smaller the value of $J$. In fact, $J$ converging to a minimum is a good indicator that the algorithm has converged to a set of centroids. <strong>Therefore, the goal of the $k$-means clustering algorithm is to minimize the distortion function.</strong></p>
+<p>$$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$</p>
+<p>where $m$ is the total number of training examples. The tighter the clustering, the smaller the value of $J$. In fact, $J$ converging to a minimum is a good indicator that the algorithm has converged to a set of centroids. <strong>Therefore, the goal of the $k$-means clustering algorithm is to minimize the distortion function.</strong></p>
 
 </div>
 </div>
@@ -886,7 +901,9 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -938,7 +955,9 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -1024,7 +1043,9 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[21]:</div>
+
 
 
 
@@ -1059,7 +1080,9 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -1117,7 +1140,9 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -1161,7 +1186,9 @@ $$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>whe
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[24]:</div>
+
 
 
 

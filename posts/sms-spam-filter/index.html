@@ -33,8 +33,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 
-
-After watching the film Arriv">
+After watching the film Arriva">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-05-30T08:00:00-05:00">
 <meta property="article:tag" content="classification">
@@ -69,7 +68,7 @@ After watching the film Arriv">
             </a>
         </div>
 <!-- /.navbar-header -->
-        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
             <ul class="nav navbar-nav">
 <li>
 <a href="../../pages/about/">About</a>
@@ -174,7 +173,9 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[2]:</div>
+
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -242,7 +243,9 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -292,7 +295,9 @@ memory usage: 87.1+ KB
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[4]:</div>
+
 
 
 
@@ -657,7 +662,9 @@ Name: 0, dtype: int64</pre>
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[15]:</div>
+
 
 
 
@@ -701,7 +708,9 @@ Name: 0, dtype: int64</pre>
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[16]:</div>
+
 
 
 
@@ -738,7 +747,8 @@ Name: 0, dtype: int64</pre>
 </h3>
 <p>Having selected a tokenization strategy, the next step is assign each $n$-gram to a feature and then compute the $n$-gram's frequency using some statistic. Again, we have options.</p>
 <p>One statistic called <strong>term frequency (tf)</strong> tallies the occurrences of each $n$-gram for every training example. However, some $n$-grams will undoubtedly show up often in any given SMS message, while others rarely appear in the overall corpus but show up frequently in certain <em>subsets</em> of messages such as spam. Therefore, to emphasize the latter, more interesting set of $n$-grams, we'll downweight the term frequency with <strong>inverse document frequency (idf)</strong>, which is calculated by logarithmically scaling the inverse of the fraction of training examples that contain a given term. Combining these two statistics yields the tf-idf statistic:</p>
-$$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) \\ = \textrm{tf}(t, i) \times \log\bigg(\frac{M}{m_t}\bigg)$$<p>where $\textrm{tf}(t,i)$ is the term frequency for term $t$ in the $i$th training example, $M$ is the total number of training examples, and $m_t$ is the number of training examples that contain the term $t$.</p>
+<p>$$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) \\ = \textrm{tf}(t, i) \times \log\bigg(\frac{M}{m_t}\bigg)$$</p>
+<p>where $\textrm{tf}(t,i)$ is the term frequency for term $t$ in the $i$th training example, $M$ is the total number of training examples, and $m_t$ is the number of training examples that contain the term $t$.</p>
 <p>Scikit-learn has an off-the-shelf tool called <code>TfidfVectorizer</code> that performs $n$-gram tokenization and also computes the tf-idf statistic. Two technical details regarding <code>TfidfVectorizer</code>: a) the tf-idf statistic is computed <a href="http://scikit-learn.org/stable/modules/feature_extraction.html#tfidf-term-weighting">slightly differently</a> to avoid division by zero, and b) the computed tf-idf values for each training example are subsequently <a href="http://scikit-learn.org/stable/modules/feature_extraction.html#tfidf-term-weighting">normalized</a>.</p>
 <p><strong>Finally, we're equipped to transform a corpus of text data into a matrix of numbers with one row per training example and one column per $n$-gram.</strong></p>
 
@@ -792,7 +802,9 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) \\ = \textrm{
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[18]:</div>
+
 
 
 
@@ -855,7 +867,9 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) \\ = \textrm{
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[19]:</div>
+
 
 
 
@@ -903,7 +917,9 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) \\ = \textrm{
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[20]:</div>
+
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -1065,7 +1081,9 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) \\ = \textrm{
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 
 
@@ -1134,7 +1152,9 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) \\ = \textrm{
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[24]:</div>
+
 
 
 
@@ -1179,7 +1199,9 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) \\ = \textrm{
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[25]:</div>
+
 
 
 
@@ -1257,7 +1279,9 @@ $$\textrm{tf-idf}(t, i) = \textrm{tf}(t, i) \times \textrm{idf}(t) \\ = \textrm{
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[27]:</div>
+
 
 
 
@@ -1342,7 +1366,9 @@ dtype: float64</pre>
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[29]:</div>
+
 
 
 
@@ -1386,7 +1412,9 @@ dtype: float64</pre>
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[30]:</div>
+
 
 
 

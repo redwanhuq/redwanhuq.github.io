@@ -33,8 +33,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 
-
-In a previous post, we learne">
+In a previous post, we learned">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-03-03T10:00:00-06:00">
 <meta property="article:tag" content="generator">
@@ -62,7 +61,7 @@ In a previous post, we learne">
             </a>
         </div>
 <!-- /.navbar-header -->
-        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
             <ul class="nav navbar-nav">
 <li>
 <a href="../../pages/about/">About</a>
@@ -138,9 +137,10 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <h2 id="1.-A-shortcut-for-constructing-custom-iterators">1. A shortcut for constructing custom iterators<a class="anchor-link" href="#1.-A-shortcut-for-constructing-custom-iterators">¶</a>
 </h2>
 <p>Let's start by examining how to build an iterator that yields the <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a>. As a refresher, the instructions for computing the <em>n</em>th Fibonacci number are</p>
-$$F_1 = 0 \\
+<p>$$F_1 = 0 \\
 F_2 = 1 \\
-F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the iterator protocol.</p>
+F_n = F_{n-1} + F_{n-2}$$</p>
+<p>To construct this iterator, we need to implement the iterator protocol.</p>
 
 </div>
 </div>
@@ -265,7 +265,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>First item
@@ -274,7 +276,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 </div>
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[4]:</div>
+
 
 
 
@@ -308,7 +312,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Second item
@@ -317,7 +323,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 </div>
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[5]:</div>
+
 
 
 
@@ -351,7 +359,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Third item
@@ -360,7 +370,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 </div>
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[6]:</div>
+
 
 
 
@@ -394,7 +406,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>No more items left!
@@ -403,7 +417,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 </div>
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_text output_error">
 <pre>
@@ -493,7 +509,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>First item
@@ -502,7 +520,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 </div>
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[9]:</div>
+
 
 
 
@@ -584,7 +604,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946 17711 28657 46368 75025 121393 196418 317811 514229 832040 1346269 2178309 3524578 5702887 9227465 14930352 24157817 39088169 63245986 102334155 165580141 267914296 433494437 701408733 1134903170 1836311903 2971215073 4807526976 7778742049 12586269025 </pre>
@@ -658,7 +680,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946 17711 28657 46368 75025 121393 196418 317811 514229 832040 </pre>
@@ -705,7 +729,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0 8 64 216 512 1000 1728 2744 4096 5832 8000 </pre>
@@ -749,7 +775,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt"></div>
+
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0 8 64 216 512 1000 1728 2744 4096 5832 8000 </pre>
@@ -791,7 +819,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[16]:</div>
+
 
 
 
@@ -836,7 +866,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[17]:</div>
+
 
 
 
@@ -882,7 +914,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[18]:</div>
+
 
 
 
@@ -916,7 +950,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[19]:</div>
+
 
 
 
@@ -961,7 +997,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[20]:</div>
+
 
 
 
@@ -1005,7 +1043,9 @@ F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the
 
 
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[21]:</div>
+
 
 
 
