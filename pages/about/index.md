@@ -1,6 +1,6 @@
 <img src="/images/profile.jpg" align="left" height="200" style="padding-right:20px; padding-bottom:5px">
 ## Who am I?
-Hi, I'm Red. I'm a data scientist at [Nielsen](http://www.nielsen.com/us/en.html) in New York City.
+Hi, I'm Red. I'm a machine learning engineer in New York City.
 
 I'm passionate about artificial intelligence and data science, which are not only improving our daily lives and transforming businesses, but I believe are also poised to usher in the next industrial revolution and address the biggest challenges facing humanity. Having always strived to use data and technology to maximize the impact of my work, I recently completed the transition from a life scientist to a data scientist. This blog serves to chronicle my journey and the road ahead&mdash;sharing what I've learned, my experiences, and a few side projects I'm working on.
 
