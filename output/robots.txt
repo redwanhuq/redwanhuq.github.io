@@ -1,4 +1,4 @@
-Sitemap: https://redwanhuq.github.io/sitemapindex.xml
+Sitemap: https://inmachineswetrust.com/sitemapindex.xml
 
 User-Agent: *
-Host: redwanhuq.github.io
+Host: inmachineswetrust.com
