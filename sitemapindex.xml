@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/anaconda.xml</loc>
-  <lastmod>2019-04-28T02:24:00Z</lastmod>
+  <lastmod>2019-04-28T12:25:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/classification.xml</loc>
@@ -15,10 +15,6 @@
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/clustering.xml</loc>
-  <lastmod>2019-04-28T02:24:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://inmachineswetrust.com/categories/conda.xml</loc>
   <lastmod>2019-04-28T02:24:00Z</lastmod>
  </sitemap>
  <sitemap>
@@ -143,10 +139,10 @@
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/rss.xml</loc>
-  <lastmod>2019-04-28T02:24:00Z</lastmod>
+  <lastmod>2019-04-28T12:25:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/sitemap.xml</loc>
-  <lastmod>2019-04-28T02:24:00Z</lastmod>
+  <lastmod>2019-04-28T12:33:00Z</lastmod>
  </sitemap>
 </sitemapindex>
