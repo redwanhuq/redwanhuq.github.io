@@ -18,10 +18,6 @@
   <lastmod>2018-05-31T01:45:00Z</lastmod>
  </sitemap>
  <sitemap>
-  <loc>https://redwanhuq.github.io/categories/conda.xml</loc>
-  <lastmod>2019-04-27T16:18:00Z</lastmod>
- </sitemap>
- <sitemap>
   <loc>https://redwanhuq.github.io/categories/data-science.xml</loc>
   <lastmod>2019-04-27T15:26:00Z</lastmod>
  </sitemap>
@@ -147,6 +143,6 @@
  </sitemap>
  <sitemap>
   <loc>https://redwanhuq.github.io/sitemap.xml</loc>
-  <lastmod>2019-04-28T00:07:00Z</lastmod>
+  <lastmod>2019-04-28T00:08:00Z</lastmod>
  </sitemap>
 </sitemapindex>
