@@ -17,7 +17,7 @@ import time
 
 
 # Data about this site
-BLOG_AUTHOR = "Redwan Huq"  # (translatable)
+BLOG_AUTHOR = "Red Huq"  # (translatable)
 BLOG_TITLE = "In Machines We Trust"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
