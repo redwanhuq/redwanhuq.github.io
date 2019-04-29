@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An opinionated guide for gearing up for data science | In Machines We Trust</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#0078D7">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://inmachineswetrust.com/posts/dev-setup/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<meta name="author" content="Red Huq">
+<link rel="prev" href="../update-december2017/" title="A few words about my experience at Insight Data Science" type="text/html">
+<meta property="og:site_name" content="In Machines We Trust">
+<meta property="og:title" content="An opinionated guide for gearing up for data science">
+<meta property="og:url" content="https://inmachineswetrust.com/posts/dev-setup/">
+<meta property="og:description" content="div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+
+
+
+
+
+This post couldn't be any more">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2019-04-28T21:30:00-05:00">
+<meta property="article:tag" content="anaconda">
+<meta property="article:tag" content="conda">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="Jupyter">
+<meta property="article:tag" content="linux">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://inmachineswetrust.com/">
+
+                <span id="blog-title">In Machines We Trust</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../pages/about/">About</a>
+                </li>
+<li>
+<a href="../../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../../categories/">Tags</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">An opinionated guide for gearing up for data science</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Red Huq
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-04-28T21:30:00-05:00" itemprop="datePublished" title="2019-04-28 21:30">2019-04-28 21:30</time></a></p>
+                <p class="commentline">
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/post12.html">Comments</a>
+
+
+            
+
+        </p>
+</div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<style type="text/css">
+div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+</style>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This post couldn't be any more overdue, but going forward, I'm hoping to be more active and to continue sharing my data science knowledge, particularly the nuances that you acquire on the job.</p>
+<p>Whether you're a data scientist, machine learning engineer, or data engineer, your day-to-day typically involves writing code—we <em>are</em> developers after all. Today I'd like share my <del>idiosyncrasies</del> thoughts for setting up a solid local machine for data science, sprinkled with tips and software engineering best practices. What this post <em>doesn't</em> cover are prerequisites for entering the field.
+<!-- TEASER_END --></p>
+<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
+</h2>
+<ol>
+<li><a href="#cell1">Pick a Unix-like operating system</a></li>
+<li><a href="#cell2">Get Miniconda, not Anaconda</a></li>
+<li><a href="#cell3">Always use a virtual environment</a></li>
+<li><a href="#cell4">Set up git, learn git, use git</a></li>
+<li><a href="#cell5">Select an editor, use notebooks sparingly</a></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="cell1"></a></p>
+<h2 id="Pick-a-Unix-like-operating-system">Pick a Unix-like operating system<a class="anchor-link" href="#Pick-a-Unix-like-operating-system">¶</a>
+</h2>
+<h3 id="Why-switch?">Why switch?<a class="anchor-link" href="#Why-switch?">¶</a>
+</h3>
+<p>If you're developing on Windows, you're doing yourself a disservice. Here's why I recommend switching to a Unix-like OS such as a Linux distro:</p>
+<ul>
+<li>Avoids needless cross-platform support. When your model or pipeline is productionized, you don't want to discover at the last minute that it has a critical Windows dependency. Cloud compute typically runs on a Linux distro so save yourself and your coworkers of that hassle when making the transition.</li>
+<li>Many data science tools and packages are released for Linux first, then Macs, and eventually Windows. For example, TensorFlow added Windows support <a href="https://developers.googleblog.com/2016/11/tensorflow-0-12-adds-support-for-windows.html">one year after</a> it was open sourced.</li>
+<li>Some packages are aggravating to install on Windows. <a href="https://www.cvxpy.org/">CVXPY</a>, for example, is my go-to tool for convex optimization but thinking about setting it up on a Windows machine makes me cringe.</li>
+<li>Practically every developer uses Linux or a Mac—you don't want to feel alienated</li>
+</ul>
+<p>It might seem like I have a bone to pick with Windows, which isn't true at all—I have a desktop at home running Steam 24/7 (PC master race!). Nevertheless, there's way to transform Windows into an effective development platform, so keep reading.</p>
+<h3 id="What-are-my-options?">What are my options?<a class="anchor-link" href="#What-are-my-options?">¶</a>
+</h3>
+<p>I prefer using bare-metal Linux on my local hardware—Ubuntu and Mint are mature operating systems, take minutes to set up, and look and feel like Windows and Mac OS. Hardware-wise, the <a href="https://www.dell.com/en-us/work/shop/laptops/13-9380/spd/xps-13-9380-laptop">Dell XPS 13 Developer Edition</a> is the best bang for the buck&amp;mdash. Not only does it have incredible build quality, you save some bucks by not paying for the license of a proprietary OS and later wiping it to install a Linux distro.</p>
+<p><img src="../../images/dell_xps.png" width="600" title="From https://www.dell.com/"></p>
+<p>Another option is to get a Mac, which runs on Darwin, a Unix-like OS developed by Apple. The PC vs. Mac debate is long-dead—ultrabooks today have comparable, if not better, hardware design and are priced nearly the same. I like to tweak and tinker so I've never been a fan of Mac OS.</p>
+<h3 id="Making-Windows-more-viable-for-development">Making Windows more viable for development<a class="anchor-link" href="#Making-Windows-more-viable-for-development">¶</a>
+</h3>
+<p>If you're using Windows 10 but don't want to wipe your machine, there's actually a simple path to the world of Linux via <strong>Windows Subsystem for Linux (WSL)</strong>. <a href="https://docs.microsoft.com/en-us/windows/wsl/faq">WSL</a> is a platform developed by Microsoft in 2016 that allows Windows users to run Linux distros <em>natively</em>. This sorcery lets you install Debian, Ubuntu, Kali, etc. simply by visiting the Microsoft app store!</p>
+<p><img src="../../images/store.png" width="600" title="From https://docs.microsoft.com/en-us/windows/wsl/install-win10"></p>
+<p>Unlike using a virtual machine, such as VirtualBox, to run Linux on Windows, WSL doesn't bring your machine to a crawl and devour your memory. WSL is also superior to dual-booting because you can actually access your Windows files and directories from Linux—no partitioning or rebooting. <strong>WSL is the best way to develop on Windows.</strong></p>
+<p>WSL comes preinstalled on Windows 10; <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">activating it</a> is even easier and faster than wiping your machine. The <a href="https://blogs.msdn.microsoft.com/wsl/2016/04/22/windows-subsystem-for-linux-overview/">underlying architecture</a> of WSL is also very elegant and worth reading over. It's hard to imagine that Microsoft is one of the biggest proponents of open source today—what a topsy-turvy world we live in.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="cell2"></a></p>
+<h2 id="Get-Miniconda,-not-Anaconda">Get Miniconda, not Anaconda<a class="anchor-link" href="#Get-Miniconda,-not-Anaconda">¶</a>
+</h2>
+<p>You may have heard about Anaconda—it's a widely used free and open source distribution of data science tools. <em>Don't get Anaconda.</em> It ends up installing hundreds of packages that you'll never use. Anaconda also eats up gigabytes of disk space.</p>
+<p>Instead, <a href="https://docs.conda.io/en/latest/miniconda.html">download Miniconda</a> (WSL users should get the Linux binary). This distribution, also made by the folks that built Anaconda, only includes 1) Python and its dependencies and 2) a handy package and virtual environment manager that can be used to install any package you want.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="cell3"></a></p>
+<h2 id="Always-use-a-virtual-environment">Always use a virtual environment<a class="anchor-link" href="#Always-use-a-virtual-environment">¶</a>
+</h2>
+<p>A <strong>virtual environment</strong> is a virtualization technology that allows you to isolate the exact packages, and their correct versions, necessary to successfully work on a project, run a script, or use a tool.</p>
+<p>Ever try to run a script written by a coworker only to discover that it breaks because you have missing dependencies and/or the wrong versions? You could manually configure each and every dependency, but that's laborious and may also require upgrading or downgrading packages that you'd refer be left alone. A virtual environment solves these problems.</p>
+<p><strong>Conda</strong> is the virtual environment and package manager that ships with Miniconda. Why not just install packages with pip? Because pip is restricted to Python packages, whereas conda is language-agnostic. In addition, conda does a spectacular job ensuring dependencies and their versions are compatible with each other.</p>
+<h3 id="Creating-a-virtual-environment">Creating a virtual environment<a class="anchor-link" href="#Creating-a-virtual-environment">¶</a>
+</h3>
+<p>I've described using conda to set up virtual environments <a href="http://inmachineswetrust.com/posts/deep-learning-setup/#cell3">before</a>, but because they're are so useful and important, it's worth reiterating.</p>
+<ol>
+<li>Open a terminal window and <strong>create a new environment</strong> by entering
+<code>$ conda create --name &lt;env-name&gt; python</code>. After confirming, the new environment will be populated with Python and its dependencies.</li>
+<li>
+<strong>Activate the virtual environment</strong> by entering <code>$ source activate &lt;env-name&gt;</code>. See how the environment name now appears in the prompt? That indicates you're "inside" the environment and now have access to its packages.</li>
+<li>
+<strong>Install packages</strong> you need for your project by entering <code>$ conda install &lt;package-name&gt;</code>. If you can't find a package via conda, it's likely available through a different conda channel (<a href="http://conda-forge.org/feedstocks">search here</a>). Your last resort should be using pip.</li>
+</ol>
+<p><img src="../../images/vir_env.png" width="600"></p>
+<p>My default virtual environment typically contains Jupyter notebook, pandas, and scikit-learn. Install these packages and their dependencies by entering <code>$ conda install jupyter pandas scikit-learn</code>.</p>
+<h3 id="Using-virtual-environments">Using virtual environments<a class="anchor-link" href="#Using-virtual-environments">¶</a>
+</h3>
+<p>Now that you've created a virtual environment, what does your workflow look like? When you're ready to work on a project, activate its environment and get cracking! A good practice is to <strong>create a virtual environment for each project.</strong> You can multitask by having different environments activated in separate terminal windows. Environments are expendable—they only take up a bit of disk space—so make as many as you like.</p>
+<p>When you launch a terminal window, you'll find yourself in the <code>base</code> virtual environment that comes with Miniconda. The only time you should interact with the <code>base</code> environment is if you need to update conda itself. Switch to the <code>base</code> environment and enter <code>$ conda update conda</code>. Keep conda updated regularly.</p>
+<p>You can update individual packages in a virtual environment by entering <code>$ conda update &lt;package-name&gt;</code>. You can also update all packages by entering <code>$ conda update --all</code>. To conserve disk space, I also recommend removing unused packages/tarballs and clearing the cache by entering <code>$ conda clean --all</code>. More conda commands can be found <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">here</a>.</p>
+<p>Finally, to use Jupyter notebook, activate the virtual environment it's located in and enter <code>$ jupyter notebook</code>. To enter an iPython console, enter <code>$ ipython</code>.</p>
+<p>You've probably noticed we've been doing everything in the command line. <strong>If you're not comfortable in the command line yet, <a href="https://lifehacker.com/a-command-line-primer-for-beginners-5633909">now is the time</a>.</strong> Working in the command line will unequivocally give you more confidence as a developer—don't be afraid of it.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="cell4"></a></p>
+<h2 id="Set-up-git,-learn-git,-use-git">Set up git, learn git, use git<a class="anchor-link" href="#Set-up-git,-learn-git,-use-git">¶</a>
+</h2>
+<p>Time machines don't exist, but if you write code for a living, git comes pretty close. <strong>Git</strong> is a version control system that keeps track of changes made to a codebase by each developer. A git repository is home to both a codebase and its entire history; repositories are shared with other developers via a hosting site such as <a href="https://github.com/">GitHub</a>.</p>
+<p>Git is also a <em>distributed</em> version control system—each developer gets a local copy of the repository. That means if you're offline, you can still develop, submit changes, and sync with Github when you're back online. And if GitHub were to go down or if their company were to shut down tomorrow, anyone's local repository would serve as a backup of the codebase and its history. That's powerful stuff.</p>
+<p>If you're writing code, you need to version it. <strong>If everything else on this post is optional, using git is not.</strong></p>
+<h3 id="Configuring-git-and-GitHub">Configuring git and GitHub<a class="anchor-link" href="#Configuring-git-and-GitHub">¶</a>
+</h3>
+<p>Git comes preinstalled in most Unix-like operating systems. Here's how to set it up:</p>
+<ol>
+<li>Launch a terminal window and set a git username by entering <code>$ git config --global user.name "&lt;full-name&gt;"</code>
+</li>
+<li>Set a git email address by entering <code>$ git config --global user.email "&lt;email&gt;"</code>
+</li>
+<li>Create a secure shell (SSH) key to authenticate with GitHub by entering <code>ssh-keygen -t rsa -C "&lt;email&gt;"</code>
+</li>
+<li>Accept the default path of the file in which the SSH key will be saved by pressing Enter</li>
+<li>Add a passphrase if you'd like to locally encrypt the SSH key or press Enter to skip this step (I prefer to skip the passphrase and trade the risk for the convenience of not having to enter it dozens of times each day)</li>
+<li>Navigate to where the SSH key was created: <code>/home/&lt;username&gt;/.ssh/</code>
+</li>
+<li>Open the public key <code>id_rsa.pub</code> in a text editor and copy its contents</li>
+<li>Visit your Github's <a href="https://github.com/settings/profile">Settings page</a>. Navigate to the SSH and GPG keys section, press the Add Key button, and paste in your SSH key.</li>
+</ol>
+<h3 id="Using-git-effectively">Using git effectively<a class="anchor-link" href="#Using-git-effectively">¶</a>
+</h3>
+<p>When I first learned about git, I found it convoluted. When I first used git, I found it daunting. However, when I began working on a development team, everything clicked—now I can't imagine life before git. But you shouldn't wait until you're developing collaboratively. While the <a href="https://www.codecademy.com/learn/learn-git">CodeAcademy</a> free short course is a decent introduction, the best way to learn git commands is to practice with a toy repository. <strong>Break stuff and learn how to fix them.</strong></p>
+<p><img src="../../images/git.png" width="550" title="By Daniel Kinzler - Own work, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=25223536"></p>
+<p>Once you have a strong grasp of git's mechanics, the next step is to understand when to commit your work. Don't wait until you've made dozens of changes to your code. For example, if you just refactored a few related lines of code, commit now. If you updated a class' docstring, it's time to commit. While this skill becomes second nature over time, the best practice is to <strong>commit smaller changes frequently.</strong></p>
+<p>You're not out of the woods yet. In fact, to get out of said metaphorical woods, you need breadcrumbs. Informative commit messages are the breadcrumbs for pinpointing exactly when and how you caused that catastrophic issue that's breaking your build. That's when you'll regret having to decipher ambiguous commit messages, such as "made minor changes", or overly broad ones like "uploaded files and added more functions".</p>
+<p><img src="../../images/hansel.png" width="600" title="From https://floridapolitics.com/archives/249585-jack-latvala-breadcrumbs"></p>
+<p>Check out Chris Beams' <a href="https://chris.beams.io/posts/git-commit/">phenomenal guide</a> for writing informative commit messages. At the very least, <strong>start every commit message with a one-liner of what you changed followed by why it was changed.</strong> Your future self will thank you.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="cell5"></a></p>
+<h2 id="Select-an-editor,-use-notebooks-sparingly">Select an editor, use notebooks sparingly<a class="anchor-link" href="#Select-an-editor,-use-notebooks-sparingly">¶</a>
+</h2>
+<p>There are a countless different tools for writing code. Some people love command line text editors such as Vim. Others adore GUI-based text editors like <a href="https://www.sublimetext.com/">Sublime</a>, <a href="https://atom.io/">Atom</a>, and <a href="https://code.visualstudio.com/">VSCode</a>. Still others swear by IDEs such as <a href="https://www.jetbrains.com/pycharm/">PyCharm</a>. Find the one that fits your workflow style.</p>
+<p>I'm a Sublime man myself. I also use the dark <a href="https://ethanschoonover.com/solarized/">Solarized theme</a> anywhere I can—dark themes give your eyes a rest. And while we're here, check out <a href="http://input.fontbureau.com/">Input font</a>—it was designed from the ground up for programming.</p>
+<p>If you use Spyder to develop Python, <em>stop today</em>. Spyder was designed for academic data analysis. You're not an analyst, you're not in academia. For starters, take a look at VSCode. Once you've experienced <a href="https://code.visualstudio.com/docs/editor/versioncontrol#_gutter-indicators">git gutter indicators</a>, you'll never want to go back to Spyder.</p>
+<p>What about Jupyter notebook as a development tool? This topic has been <a href="https://docs.google.com/presentation/d/1n2RlMdmv1p25Xy5thJUhkKGvjtV-dkAIsUXP-AL4ffI/preview?slide=id.g362da58057_0_1">argued</a> <a href="https://docs.google.com/presentation/d/1XmbeH_sdOKqhi05_FbH2EdRw948i8IvBz1PdfJGbhf4/edit#slide=id.p">to</a> <a href="https://yihui.name/en/2018/09/notebook-war/">death</a>. Sure, many have nobly attempted to enable versioning, linting, and testing of notebooks, but in the words of Ian Malcolm...</p>
+<p><img src="../../images/malcolm.jpg" width="600"></p>
+<p>When I first started exploring data science, I enjoyed using Jupyter notebooks to facilitate my learning. However, as the case with most new developers, notebooks became a dangerous crutch. Nowadays, I seldom touch Jupyter and when I do, I use a Jupyter notebook as a...notebook; <em>literally as a scratchpad.</em> Moreover, as I removed notebooks from my workflow, my programming chops improved noticeably, I felt at home in the command line, git made sense...I could go on. Correlation or causation?</p>
+
+</div>
+</div>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/anaconda/" rel="tag">anaconda</a></li>
+            <li><a class="tag p-category" href="../../categories/conda/" rel="tag">conda</a></li>
+            <li><a class="tag p-category" href="../../categories/git/" rel="tag">git</a></li>
+            <li><a class="tag p-category" href="../../categories/jupyter/" rel="tag">Jupyter</a></li>
+            <li><a class="tag p-category" href="../../categories/linux/" rel="tag">linux</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../update-december2017/" rel="prev" title="A few words about my experience at Insight Data Science">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="machinemade",
+            disqus_url="https://inmachineswetrust.com/posts/dev-setup/",
+        disqus_title="An opinionated guide for gearing up for data science",
+        disqus_identifier="cache/posts/post12.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'center' to center equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script>var disqus_shortname="machinemade";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer"><div class="text-center">
+<p>
+<span class="fa-stack fa-2x">
+  <a href="../../rss.xml">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-rss fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://twitter.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-twitter fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://github.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-github fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://www.linkedin.com/in/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-linkedin fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="mailto:endigo85@gmail.com">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-envelope fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+</p>
+<p>
+  Contents © 2019  <a href="mailto:endigo85@gmail.com">Red Huq</a>
+  
+  —
+  Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>
+</p>
+</div>
+
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90799006-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

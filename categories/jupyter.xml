@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>In Machines We Trust (Posts about Jupyter)</title><link>https://inmachineswetrust.com/</link><description></description><atom:link href="https://inmachineswetrust.com/categories/jupyter.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 29 Apr 2019 02:30:53 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>An opinionated guide for gearing up for data science</title><link>https://inmachineswetrust.com/posts/dev-setup/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
+div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;This post couldn't be any more overdue, but going forward, I'm hoping to be more active and to continue sharing my data science knowledge, particularly the nuances that you acquire on the job.&lt;/p&gt;
+&lt;p&gt;Whether you're a data scientist, machine learning engineer, or data engineer, your day-to-day typically involves writing code—we &lt;em&gt;are&lt;/em&gt; developers after all. Today I'd like share my &lt;del&gt;idiosyncrasies&lt;/del&gt; thoughts for setting up a solid local machine for data science, sprinkled with tips and software engineering best practices. What this post &lt;em&gt;doesn't&lt;/em&gt; cover are prerequisites for entering the field.
+&lt;/p&gt;&lt;p&gt;&lt;a href="https://inmachineswetrust.com/posts/dev-setup/"&gt;Read more…&lt;/a&gt; (11 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>anaconda</category><category>conda</category><category>git</category><category>Jupyter</category><category>linux</category><guid>https://inmachineswetrust.com/posts/dev-setup/</guid><pubDate>Mon, 29 Apr 2019 02:30:00 GMT</pubDate></item></channel></rss>
