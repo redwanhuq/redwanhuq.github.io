@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/anaconda.xml</loc>
-  <lastmod>2019-04-29T02:30:00Z</lastmod>
+  <lastmod>2019-04-29T10:51:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/classification.xml</loc>
@@ -19,7 +19,7 @@
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/conda.xml</loc>
-  <lastmod>2019-04-29T02:30:00Z</lastmod>
+  <lastmod>2019-04-29T10:51:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/data-science.xml</loc>
@@ -51,7 +51,7 @@
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/git.xml</loc>
-  <lastmod>2019-04-29T02:30:00Z</lastmod>
+  <lastmod>2019-04-29T10:51:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/gradient-descent.xml</loc>
@@ -71,7 +71,7 @@
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/jupyter.xml</loc>
-  <lastmod>2019-04-29T02:30:00Z</lastmod>
+  <lastmod>2019-04-29T10:51:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/k-means.xml</loc>
@@ -87,7 +87,7 @@
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/linux.xml</loc>
-  <lastmod>2019-04-29T02:30:00Z</lastmod>
+  <lastmod>2019-04-29T10:51:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/logistic-regression.xml</loc>
@@ -155,10 +155,10 @@
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/rss.xml</loc>
-  <lastmod>2019-04-29T02:30:00Z</lastmod>
+  <lastmod>2019-04-29T10:51:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/sitemap.xml</loc>
-  <lastmod>2019-04-29T02:30:00Z</lastmod>
+  <lastmod>2019-04-29T10:51:00Z</lastmod>
  </sitemap>
 </sitemapindex>
