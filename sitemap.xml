@@ -11,11 +11,11 @@
  </url>
  <url>
   <loc>https://inmachineswetrust.com/archive.html</loc>
-  <lastmod>2019-04-28T12:25:00Z</lastmod>
+  <lastmod>2019-04-29T00:50:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/</loc>
-  <lastmod>2019-04-28T12:27:00Z</lastmod>
+  <lastmod>2019-04-28T12:38:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/anaconda/</loc>
@@ -28,6 +28,10 @@
  <url>
   <loc>https://inmachineswetrust.com/categories/clustering/</loc>
   <lastmod>2018-05-10T23:47:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://inmachineswetrust.com/categories/conda/</loc>
+  <lastmod>2019-04-28T12:38:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/data-science/</loc>
@@ -46,6 +50,10 @@
   <lastmod>2018-05-10T23:47:00Z</lastmod>
  </url>
  <url>
+  <loc>https://inmachineswetrust.com/categories/development/</loc>
+  <lastmod>2019-04-28T12:38:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://inmachineswetrust.com/categories/exploratory-analysis/</loc>
   <lastmod>2018-05-10T23:48:00Z</lastmod>
  </url>
@@ -56,6 +64,10 @@
  <url>
   <loc>https://inmachineswetrust.com/categories/generator/</loc>
   <lastmod>2018-05-10T23:47:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://inmachineswetrust.com/categories/git/</loc>
+  <lastmod>2019-04-28T12:38:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/gradient-descent/</loc>
@@ -74,6 +86,10 @@
   <lastmod>2018-05-10T23:47:00Z</lastmod>
  </url>
  <url>
+  <loc>https://inmachineswetrust.com/categories/jupyter/</loc>
+  <lastmod>2019-04-28T12:38:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://inmachineswetrust.com/categories/k-means/</loc>
   <lastmod>2018-05-10T23:47:00Z</lastmod>
  </url>
@@ -86,12 +102,20 @@
   <lastmod>2018-05-10T23:47:00Z</lastmod>
  </url>
  <url>
+  <loc>https://inmachineswetrust.com/categories/linux/</loc>
+  <lastmod>2019-04-28T12:38:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://inmachineswetrust.com/categories/logistic-regression/</loc>
   <lastmod>2018-05-10T23:48:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/machine-learning/</loc>
   <lastmod>2018-05-10T23:47:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://inmachineswetrust.com/categories/miniconda/</loc>
+  <lastmod>2019-04-28T12:38:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/n-grams/</loc>
@@ -151,7 +175,7 @@
  </url>
  <url>
   <loc>https://inmachineswetrust.com/index-1.html</loc>
-  <lastmod>2019-04-28T12:25:00Z</lastmod>
+  <lastmod>2019-04-29T00:50:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/listings/</loc>
