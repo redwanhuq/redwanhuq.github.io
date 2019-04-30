@@ -10,4 +10,4 @@ I currently work at [Nielsen](https://www.nielsen.com/us/en.html). I received a 
 ## How to get in touch
 Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/redwanhuq), [GitHub](https://github.com/redwanhuq), and [Twitter](https://twitter.com/redwanhuq). If you have any questions or comments, don't hesitate to contact me. Thanks for visiting!
 
-All views on this blog are my own.
+*All views on this blog are my own.*
