@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Think twice before dropping that first one-hot encoded column | In Machines We Trust</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#0078D7">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://inmachineswetrust.com/posts/drop-first-columns/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<meta name="author" content="Red Huq">
+<link rel="prev" href="../dev-setup/" title="An opinionated guide for gearing up for data science" type="text/html">
+<meta property="og:site_name" content="In Machines We Trust">
+<meta property="og:title" content="Think twice before dropping that first one-hot encoded column">
+<meta property="og:url" content="https://inmachineswetrust.com/posts/drop-first-columns/">
+<meta property="og:description" content="div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+
+
+
+
+
+Many machine learning models d">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2019-05-06T19:30:00-05:00">
+<meta property="article:tag" content="feature engineering">
+<meta property="article:tag" content="linear algebra">
+<meta property="article:tag" content="linear regression">
+<meta property="article:tag" content="logistic regression">
+<meta property="article:tag" content="one-hot encoding">
+<meta property="article:tag" content="ordinary least squares">
+<meta property="article:tag" content="regularization">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://inmachineswetrust.com/">
+
+                <span id="blog-title">In Machines We Trust</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../pages/about/">About</a>
+                </li>
+<li>
+<a href="../../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../../categories/">Tags</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Think twice before dropping that first one-hot encoded column</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Red Huq
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-05-06T19:30:00-05:00" itemprop="datePublished" title="2019-05-06 19:30">2019-05-06 19:30</time></a></p>
+                <p class="commentline">
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/post13.html">Comments</a>
+
+
+            
+
+        </p>
+</div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<style type="text/css">
+div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+</style>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Many machine learning models demand that categorical features are converted to a format they can comprehend via a widely used feature engineering technique called <strong>one-hot encoding</strong>. Machines aren't <em>that</em> smart.</p>
+<p>A common convention after one-hot encoding is to remove one of the one-hot encoded columns from each categorical feature. For example, the feature <code>sex</code> containing values of <code>male</code> and <code>female</code> are transformed into the columns <code>sex_male</code> and <code>sex_female</code>, each containing binary values. Because using either of these columns provides sufficient information to determine a person's sex, we can drop one of them.</p>
+<p>In this post, we dive deep into the circumstances where this convention is relevant, necessary, or even prudent.
+<!-- TEASER_END --></p>
+<p><a id="cell1"></a></p>
+<h2 id="Preparing-the-data">Preparing the data<a class="anchor-link" href="#Preparing-the-data">¶</a>
+</h2>
+<p>Let's generate a toy dataset with three variables; the third column serves as the target variable while the remaining are categorical features. Because we're working with a continuous target variable, we'll create a linear regression model.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Create training set</span>
+<span class="n">training_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="s1">'apple'</span><span class="p">,</span> <span class="s1">'dog'</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">'banana'</span><span class="p">,</span> <span class="s1">'cat'</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">'pear'</span><span class="p">,</span> <span class="s1">'fish'</span><span class="p">,</span> <span class="mi">39</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">'orange'</span><span class="p">,</span> <span class="s1">'dog'</span><span class="p">,</span> <span class="o">-</span><span class="mi">12</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">'apple'</span><span class="p">,</span> <span class="s1">'fish'</span><span class="p">,</span> <span class="mi">21</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">'pear'</span><span class="p">,</span> <span class="s1">'cat'</span><span class="p">,</span> <span class="mi">53</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">'apple'</span><span class="p">,</span> <span class="s1">'fish'</span><span class="p">,</span> <span class="o">-</span><span class="mi">69</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'var1'</span><span class="p">,</span> <span class="s1">'var2'</span><span class="p">,</span> <span class="s1">'var3'</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">training_set</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[1]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead><tr style="text-align: right;">
+<th></th>
+      <th>var1</th>
+      <th>var2</th>
+      <th>var3</th>
+    </tr></thead>
+<tbody>
+<tr>
+<th>0</th>
+      <td>apple</td>
+      <td>dog</td>
+      <td>10</td>
+    </tr>
+<tr>
+<th>1</th>
+      <td>banana</td>
+      <td>cat</td>
+      <td>4</td>
+    </tr>
+<tr>
+<th>2</th>
+      <td>pear</td>
+      <td>fish</td>
+      <td>39</td>
+    </tr>
+<tr>
+<th>3</th>
+      <td>orange</td>
+      <td>dog</td>
+      <td>-12</td>
+    </tr>
+<tr>
+<th>4</th>
+      <td>apple</td>
+      <td>fish</td>
+      <td>21</td>
+    </tr>
+<tr>
+<th>5</th>
+      <td>pear</td>
+      <td>cat</td>
+      <td>53</td>
+    </tr>
+<tr>
+<th>6</th>
+      <td>apple</td>
+      <td>fish</td>
+      <td>-69</td>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can use the pandas function <code>get_dummies</code> to perform one-hot encoding and generate the feature matrix $\mathbf{X}$.</p>
+<p>Let's also add a bias term to $\mathbf{X}$ as a new column so that any model we create isn't confined to passing through the origin.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># One-hot encode categorical features</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">training_set</span><span class="p">[[</span><span class="s1">'var1'</span><span class="p">,</span> <span class="s1">'var2'</span><span class="p">]])</span>
+
+<span class="c1"># Add bias column</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">'bias'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Display first three rows</span>
+<span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[2]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead><tr style="text-align: right;">
+<th></th>
+      <th>var1_apple</th>
+      <th>var1_banana</th>
+      <th>var1_orange</th>
+      <th>var1_pear</th>
+      <th>var2_cat</th>
+      <th>var2_dog</th>
+      <th>var2_fish</th>
+      <th>bias</th>
+    </tr></thead>
+<tbody>
+<tr>
+<th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1.0</td>
+    </tr>
+<tr>
+<th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.0</td>
+    </tr>
+<tr>
+<th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1.0</td>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, let's identify the target variable $\mathbf{y}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Extract target variable</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">training_set</span><span class="p">[</span><span class="s1">'var3'</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="cell2"></a></p>
+<h2 id="Creating-a-linear-regression-model-with-ordinary-least-squares">Creating a linear regression model with ordinary least-squares<a class="anchor-link" href="#Creating-a-linear-regression-model-with-ordinary-least-squares">¶</a>
+</h2>
+<p>In a linear regression model, we express the target variable $\mathbf{y}$ as a linear function of the features $\mathbf{X}$ and some unknown set of parameters $\vec{\theta}$:</p>
+<p>$$\mathbf{y} = \mathbf{X}\vec{\theta}$$</p>
+<p>The simplest algorithm for finding this "line of best fit" is <strong>ordinary least-squares (OLS)</strong>; it identifies $\vec\theta$ that minimizes the sum of the squared residuals. Therefore, the objective function for OLS is</p>
+<p>$$J(\vec{\theta}) = {\left\lVert \mathbf{y} - \mathbf{X}\vec{\theta} \right\rVert_2}^2$$</p>
+<p>Next, we have to solve the partial differential equation $\frac{\partial J}{\partial\vec{\theta}} = 0$, which conveniently has a closed-form solution called the <strong>normal equation</strong>:</p>
+<p>$$\vec{\theta} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$$</p>
+<p>Let's apply the normal equation to identify the parameters of the OLS model.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Compute parameters of OLS model</span>
+<span class="n">OLS_theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Label parameters with feature names</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">OLS_theta</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">LinAlgError</span>                               Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-4-d1b033489f2a&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># Compute parameters of OLS model</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>OLS_theta <span class="ansi-blue-fg">=</span> np<span class="ansi-blue-fg">.</span>linalg<span class="ansi-blue-fg">.</span>inv<span class="ansi-blue-fg">(</span>X<span class="ansi-blue-fg">.</span>T <span class="ansi-blue-fg">@</span> X<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">@</span> <span class="ansi-blue-fg">(</span>X<span class="ansi-blue-fg">.</span>T <span class="ansi-blue-fg">@</span> y<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> 
+<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-red-fg"># Label parameters with feature names</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> pd<span class="ansi-blue-fg">.</span>Series<span class="ansi-blue-fg">(</span>OLS_theta<span class="ansi-blue-fg">,</span> index<span class="ansi-blue-fg">=</span>X<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/miniconda3/envs/phoenix/lib/python3.7/site-packages/numpy/linalg/linalg.py</span> in <span class="ansi-cyan-fg">inv</span><span class="ansi-blue-fg">(a)</span>
+<span class="ansi-green-intense-fg ansi-bold">    549</span>     signature <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">'D-&gt;D'</span> <span class="ansi-green-fg">if</span> isComplexType<span class="ansi-blue-fg">(</span>t<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">else</span> <span class="ansi-blue-fg">'d-&gt;d'</span>
+<span class="ansi-green-intense-fg ansi-bold">    550</span>     extobj <span class="ansi-blue-fg">=</span> get_linalg_error_extobj<span class="ansi-blue-fg">(</span>_raise_linalgerror_singular<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 551</span><span class="ansi-red-fg">     </span>ainv <span class="ansi-blue-fg">=</span> _umath_linalg<span class="ansi-blue-fg">.</span>inv<span class="ansi-blue-fg">(</span>a<span class="ansi-blue-fg">,</span> signature<span class="ansi-blue-fg">=</span>signature<span class="ansi-blue-fg">,</span> extobj<span class="ansi-blue-fg">=</span>extobj<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    552</span>     <span class="ansi-green-fg">return</span> wrap<span class="ansi-blue-fg">(</span>ainv<span class="ansi-blue-fg">.</span>astype<span class="ansi-blue-fg">(</span>result_t<span class="ansi-blue-fg">,</span> copy<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    553</span> 
+
+<span class="ansi-green-fg">~/miniconda3/envs/phoenix/lib/python3.7/site-packages/numpy/linalg/linalg.py</span> in <span class="ansi-cyan-fg">_raise_linalgerror_singular</span><span class="ansi-blue-fg">(err, flag)</span>
+<span class="ansi-green-intense-fg ansi-bold">     95</span> 
+<span class="ansi-green-intense-fg ansi-bold">     96</span> <span class="ansi-green-fg">def</span> _raise_linalgerror_singular<span class="ansi-blue-fg">(</span>err<span class="ansi-blue-fg">,</span> flag<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 97</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">raise</span> LinAlgError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"Singular matrix"</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     98</span> 
+<span class="ansi-green-intense-fg ansi-bold">     99</span> <span class="ansi-green-fg">def</span> _raise_linalgerror_nonposdef<span class="ansi-blue-fg">(</span>err<span class="ansi-blue-fg">,</span> flag<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">LinAlgError</span>: Singular matrix</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>NumPy got angry because we tried to invert a singular matrix. Specifically, $\mathbf{X}^T\mathbf{X}$ (the Gram matrix of $\mathbf{X}$) was found to be <strong>singular</strong>, meaning it doesn't have an inverse. In fact, <a href="https://math.stackexchange.com/questions/36580/gram-matrix-invertible-iff-set-of-vectors-linearly-independent">the Gram matrix is invertible</a> if and only if the columns of $\mathbf{X}$ are linearly independent.</p>
+<p>Examining the columns of $\mathbf{X}$, we see that</p>
+<p><code>var1_apple</code> = 1 - (<code>var1_orange</code> + <code>var1_pear</code> + <code>var1_banana</code>)</p>
+<p><code>var2_cat</code> = 1 - (<code>var2_dog</code> + <code>var2_fish</code>)</p>
+<p>For any categorical feature, each one-hot encoded column can be expressed as a linear combination of the others—they're perfectly correlated. Therefore, the columns of $\mathbf{X}$ are linearly <em>dependent</em>, which explains the error.</p>
+<p><a id="cell3"></a></p>
+<h2 id="Making-the-normal-equation-usable-again">Making the normal equation usable again<a class="anchor-link" href="#Making-the-normal-equation-usable-again">¶</a>
+</h2>
+<p>By dropping one of the one-hot encoded columns from each categorical feature, we ensure there are no "reference" columns—the remaining columns become linearly independent.</p>
+<p>Let's verify this works by implementing it; <code>get_dummies</code> even has a dedicated parameter <code>drop_first</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># One-hot encode categorical features and drop first value column</span>
+<span class="n">X_dropped</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">training_set</span><span class="p">[[</span><span class="s1">'var1'</span><span class="p">,</span> <span class="s1">'var2'</span><span class="p">]],</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Add bias column</span>
+<span class="n">X_dropped</span><span class="p">[</span><span class="s1">'bias'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Display first three rows</span>
+<span class="n">X_dropped</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead><tr style="text-align: right;">
+<th></th>
+      <th>var1_banana</th>
+      <th>var1_orange</th>
+      <th>var1_pear</th>
+      <th>var2_dog</th>
+      <th>var2_fish</th>
+      <th>bias</th>
+    </tr></thead>
+<tbody>
+<tr>
+<th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1.0</td>
+    </tr>
+<tr>
+<th>1</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.0</td>
+    </tr>
+<tr>
+<th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1.0</td>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We see that <code>var1_apple</code> and <code>var2_cat</code> were dropped. Let's reattempt to use the normal equation to identify the parameters of the OLS model.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Compute parameters of OLS model</span>
+<span class="n">OLS_theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X_dropped</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X_dropped</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">X_dropped</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Label parameters with feature names</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">OLS_theta</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X_dropped</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>var1_banana    14.0
+var1_orange   -22.0
+var1_pear      63.0
+var2_dog       20.0
+var2_fish     -14.0
+bias          -10.0
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Smooth sailing this time. Therefore, when using the normal equation to create an OLS model, you <em>must</em> drop one of the one-hot encoded columns from each categorical feature.</p>
+<p><a id="cell4"></a></p>
+<h2 id="Regularizing-improves-predictions-and-then-some">Regularizing improves predictions and then some<a class="anchor-link" href="#Regularizing-improves-predictions-and-then-some">¶</a>
+</h2>
+<p>OLS models are handy when we'd like to summarize linear trends for data we <em>already have</em>. When the goal is prediction however, these models are seldom useful because of their <a href="https://www.clockbackward.com/2009/06/18/ordinary-least-squares-linear-regression-flaws-problems-and-pitfalls/">numerous pitfalls</a>. In particular, OLS models tend to generalize poorly to new data (aka overfitting).</p>
+<p>To prevent overfitting, applying some form of <strong>regularization</strong> is a no-brainer. $\ell_2$ regularization involves adding a penalty term—square of the $\ell_2$ norm of $\vec{\theta}$—to the objective function. Applying $\ell_2$ regularization to the OLS objective function yields</p>
+<p>$$J(\vec{\theta}) =  {\left\lVert  \mathbf{y} - \mathbf{X}\vec{\theta} \right\rVert_2}^2 + \alpha{\left\lVert \vec{\theta} \right\rVert_2}^2$$</p>
+<p>where $\alpha$ is a positive scalar hyperparameter that controls the degree of regularization (higher = more regularization).</p>
+<p>We need to solve a new partial differential equation $\frac{\partial J}{\partial\vec{\theta}} = 0$; fortunately, it too has a closed-form solution</p>
+<p>$$\vec{\theta} = (\mathbf{X}^T\mathbf{X} + \alpha \mathbf{I})^{-1}\mathbf{X}^T\mathbf{y}$$</p>
+<p>where $\mathbf{I}$ is an identity matrix with the same dimensions as the Gram matrix. Let's identify the parameters of the $\ell_2$ regularized model using $\alpha = 1$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">create_L2_reg_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Generate a L2 regularized linear regression model.</span>
+<span class="sd">    </span>
+<span class="sd">    This function uses the closed-form solution to compute the parameters of</span>
+<span class="sd">    an L2 regularized linear regression model.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        X (DataFrame): table containing features</span>
+<span class="sd">        y (Series): table containing target variable</span>
+<span class="sd">        alpha (float): positive scalar controlling regularization strength</span>
+<span class="sd">            (higher = more regularization)</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        theta (Series): table containing identified parameters of model</span>
+
+<span class="sd">    """</span>
+    <span class="c1"># Compute identity matrix </span>
+    <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Compute parameters</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">I</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># Label parameters with feature names</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">theta</span>
+
+<span class="c1"># Create L2 regularized model after dropping columns </span>
+<span class="n">create_L2_reg_model</span><span class="p">(</span><span class="n">X_dropped</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>var1_banana     0.246537
+var1_orange    -7.501385
+var1_pear      32.678670
+var2_dog       -0.504155
+var2_fish     -13.049861
+bias            3.506925
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A regularized model will generally perform better on new data than an OLS model. In practice however, we'd tune the value of $\alpha$ using cross-validation to maximize model performance.</p>
+<p><a id="cell5"></a></p>
+<h2 id="Skip-dropping-columns-when-regularizing">Skip dropping columns when regularizing<a class="anchor-link" href="#Skip-dropping-columns-when-regularizing">¶</a>
+</h2>
+<p>Having understood the benefits of regularization, let's try to generate a $\ell_2$ regularized model with the closed-form solution but instead use the original one-hot encoded features prior to dropping any columns. We'll probably run into the singular matrix error again.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create L2 regularized model using original one-hot encoded features</span>
+<span class="n">create_L2_reg_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>var1_apple     -9.617518
+var1_banana    -4.306569
+var1_orange    -9.543066
+var1_pear      27.564964
+var2_cat        8.515328
+var2_dog        2.988321
+var2_fish      -7.405839
+bias            4.097810
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Wait, shouldn't NumPy have gotten angry? How were we still able to create a model? The answer is because in the closed-form solution of the $\ell_2$ regularized model above, <strong>the matrix $(\mathbf{X}^T\mathbf{X} + \alpha \mathbf{I})$ is almost surely nonsingular</strong>. I'll prove it:</p>
+<ul>
+<li>$(\mathbf{X}^T\mathbf{X})^T = \mathbf{X}^T (\mathbf{X}^T)^T = \mathbf{X}^T \mathbf{X}$. Therefore, $\mathbf{X}^T\mathbf{X}$ is a $n \times n$ symmetric matrix with exactly $n$ eigenvalues $\lambda_i = \lambda_1, \lambda_2, \dots \lambda_n$.</li>
+<li>When $\alpha = -\lambda_i$, $\det(\mathbf{X}^T\mathbf{X} + \alpha\mathbf{I}) = 0$ and, therefore, $(\mathbf{X}^T\mathbf{X} + \alpha\mathbf{I})$ is singular</li>
+<li>When $\alpha \neq -\lambda_i$, the eigenvalues of $(\mathbf{X}^T\mathbf{X} + \alpha\mathbf{I})$ are $(\lambda_1 + \alpha), \dots (\lambda_n + \alpha)$, all of which are nonzero and, therefore, $(\mathbf{X}^T\mathbf{X} + \alpha\mathbf{I})$ is nonsingular</li>
+<li>$(\mathbf{X}^T\mathbf{X} + \alpha\mathbf{I})$ is nonsingular $\forall\{\alpha \in \mathbb{R} \mid \alpha \neq -\lambda_i\}$. Therefore, $(\mathbf{X}^T\mathbf{X} + \alpha\mathbf{I})$ is almost surely nonsingular</li>
+</ul>
+<p><a href="https://math.stackexchange.com/questions/1443015/why-do-we-say-almost-surely-in-probability-theory">"Almost surely"</a> is an expression from probability theory describing events that occur with $P = 1$ within an infinitely large sample space. Therefore, as long as $\alpha$ isn't the negative of an eigenvalue of $\mathbf{X}^T\mathbf{X}$, there exist infinitely many values of $\alpha$ that make $(\mathbf{X}^T\mathbf{X} + \alpha\mathbf{I})$ nonsingular. Practically any perturbation of a singular matrix makes it nonsingular!</p>
+<p>Consequently, if we apply the <em>tiniest</em> bit of regularization (whether it's $\ell_2$, $\ell_1$, or elastic net), we can handle features that are perfectly correlated without removing any columns. Regularization also innately addresses the <a href="https://stats.stackexchange.com/a/184023">effects of multicollinearity</a>—it's pretty awesome.</p>
+<p>But if you <em>are</em> regularizing, there's no need to drop one of the one-hot encoded columns from each categorical feature—math's got your back.</p>
+<p><a id="cell6"></a></p>
+<h2 id="Skip-dropping-columns-when-using-iterative-numerical-methods">Skip dropping columns when using iterative numerical methods<a class="anchor-link" href="#Skip-dropping-columns-when-using-iterative-numerical-methods">¶</a>
+</h2>
+<p>As elegant as they are, the closed-form solutions are seldom utilized in practice. That's because matrix inversion is stupidly expensive. The time complexity of inverting an $n \times n$ matrix is $O(n^3)$ when using Gaussian elimination; more optimized algorithms can bring it down to about $O(n^{2.4})$. Unless it has a few hundred columns (rarely the case with real world datasets), you shouldn't attempt to invert a matrix.</p>
+<p>Instead of relying on a closed-form solution, we machine learning practitioners estimate parameters via some efficient iterative numerical method such as gradient descent. Because iterative numerical methods—with or without regularization—don't involve matrix inversions, there's no reason to drop one of the one-hot encoded columns from each categorical feature when using them.</p>
+<p><a id="cell7"></a></p>
+<h2 id="Maybe-just-stop-dropping-columns-altogether">Maybe just stop dropping columns altogether<a class="anchor-link" href="#Maybe-just-stop-dropping-columns-altogether">¶</a>
+</h2>
+<p>So far we've discussed a few situations where removing one of the one-hot encoded columns isn't mandatory. However, dropping these columns can also have unforeseen, deleterious consequences.</p>
+<p>Did you notice that the parameters between one-hot encoded features had different values depending on whether columns were removed or not? For example, when columns are dropped $\theta_{var1\_banana} = -4.307$ and $\theta_{var2\_dog} = 2.988$; otherwise, $\theta_{var1\_banana} = 0.247$ and $\theta_{var2\_dog} = -0.504$. If we were planning to use these parameters to get a sense of feature importance, dropping columns would tell a whole another story!</p>
+<p>Because we alter the model's parameters by dropping one-hot encoded columns, we also change its predictions. What's more alarming is that dropping a different column from each categorical feature yields an entirely new set of parameters.</p>
+<p>For example, instead of <code>var1_apple</code> and <code>var2_cat</code>, let's drop <code>var1_banana</code> and <code>var2_dog</code> from the one-hot encoded features.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input_hidden">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Drop different one-hot encoded columns from each categorical feature</span>
+<span class="n">X_dropped</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'var1_banana'</span><span class="p">,</span> <span class="s1">'var2_dog'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Create L2 regularized model after dropping different set of columns</span>
+<span class="n">create_L2_reg_model</span><span class="p">(</span><span class="n">X_dropped</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>var1_apple     -8.651452
+var1_orange    -8.199170
+var1_pear      28.286307
+var2_cat        6.639004
+var2_fish      -8.294606
+bias            4.398340
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we arrive at a different model depending on the particular set of columns removed, how do we pick the right model? There's no good answer here—removing columns isn't trivial. You're better off staying objective and leaving one-hot encoded features alone.</p>
+<h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">¶</a>
+</h2>
+<p>Feature engineering is the most important aspect of creating an effective model—you want to get it right. When dealing with categorical features, a common convention is to drop one of the one-hot encoded columns from each feature. Here we discovered this convention is <em>only required</em> when creating an OLS model with the normal equation.</p>
+<p>However, a cornerstone of machine learning is to produce a highly predictive model; therefore, we rarely turn to OLS models and <em>always</em> apply regularization. Even if we were to create a $\ell_2$ regularized model with a closed-form solution, the <a href="https://en.wikipedia.org/wiki/Mathematical_beauty">gorgeous math</a> behind regularization would lift the obligation of removing one-hot encoded columns.</p>
+<p>Nevertheless, the normal equation and other closed-form solutions are seldom practical due to their computational cost. Instead, we machine learning practitioners prefer creating linear regression models using <a href="http://ruder.io/optimizing-gradient-descent/">iterative numerical methods</a> that don't demand dropping one-hot encoded columns.</p>
+<p>Finally, we found that dropping one-hot encoded columns tampers with a linear regression model's parameters and predictions. We also end up with a distinct model depending on which set of columns we happened to drop.</p>
+<p>In summary, we've uncovered one unlikely usecase where removing one of the one-hot encoded from each categorical feature is crucial for creating a linear regression model, two common situations when it's unnecessary, and two reasons why it's perilous. I'll leave it to you.</p>
+<p>What about <em>logistic</em> regression? The same reasons actually apply to generalized linear models. There's even less of a reason to drop one-hot encoded columns when using logistic regression because there is no known closed-form solution for identifying its parameters. We always rely on an iterative numerical method. That is, unless your training set has <a href="https://www.tandfonline.com/doi/abs/10.1080/02664763.2014.932760">two examples</a>.</p>
+<hr>
+<p><strong>Side note:</strong> I recommend avoiding pandas' <code>get_dummies</code> and switching to a more robust one-hot encoder, such as <code>OneHotEncoder</code> from scikit-learn—it's designed to handle these frequent scenarios:</p>
+<ul>
+<li>A categorical feature containing values that appear in the test set but not the training set</li>
+<li>A categorical feature in the test set containing a subset of the total possible values</li>
+</ul>
+<p>Notice how <code>OneHotEncoder</code> doesn't let us drop one-hot encoded columns...</p>
+
+</div>
+</div>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/feature-engineering/" rel="tag">feature engineering</a></li>
+            <li><a class="tag p-category" href="../../categories/linear-algebra/" rel="tag">linear algebra</a></li>
+            <li><a class="tag p-category" href="../../categories/linear-regression/" rel="tag">linear regression</a></li>
+            <li><a class="tag p-category" href="../../categories/logistic-regression/" rel="tag">logistic regression</a></li>
+            <li><a class="tag p-category" href="../../categories/one-hot-encoding/" rel="tag">one-hot encoding</a></li>
+            <li><a class="tag p-category" href="../../categories/ordinary-least-squares/" rel="tag">ordinary least squares</a></li>
+            <li><a class="tag p-category" href="../../categories/regularization/" rel="tag">regularization</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../dev-setup/" rel="prev" title="An opinionated guide for gearing up for data science">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="machinemade",
+            disqus_url="https://inmachineswetrust.com/posts/drop-first-columns/",
+        disqus_title="Think twice before dropping that first one-hot encoded column",
+        disqus_identifier="cache/posts/post13.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'center' to center equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script>var disqus_shortname="machinemade";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer"><div class="text-center">
+<p>
+<span class="fa-stack fa-2x">
+  <a href="../../rss.xml">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-rss fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://twitter.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-twitter fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://github.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-github fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://www.linkedin.com/in/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-linkedin fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="mailto:endigo85@gmail.com">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-envelope fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+</p>
+<p>
+  Contents © 2019  <a href="mailto:endigo85@gmail.com">Red Huq</a>
+  
+  —
+  Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>
+</p>
+</div>
+
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90799006-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

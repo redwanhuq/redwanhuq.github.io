@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>In Machines We Trust (Posts about ordinary least squares)</title><link>https://inmachineswetrust.com/</link><description></description><atom:link href="https://inmachineswetrust.com/categories/ordinary-least-squares.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 07 May 2019 01:46:30 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Think twice before dropping that first one-hot encoded column</title><link>https://inmachineswetrust.com/posts/drop-first-columns/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
+div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Many machine learning models demand that categorical features are converted to a format they can comprehend via a widely used feature engineering technique called &lt;strong&gt;one-hot encoding&lt;/strong&gt;. Machines aren't &lt;em&gt;that&lt;/em&gt; smart.&lt;/p&gt;
+&lt;p&gt;A common convention after one-hot encoding is to remove one of the one-hot encoded columns from each categorical feature. For example, the feature &lt;code&gt;sex&lt;/code&gt; containing values of &lt;code&gt;male&lt;/code&gt; and &lt;code&gt;female&lt;/code&gt; are transformed into the columns &lt;code&gt;sex_male&lt;/code&gt; and &lt;code&gt;sex_female&lt;/code&gt;, each containing binary values. Because using either of these columns provides sufficient information to determine a person's sex, we can drop one of them.&lt;/p&gt;
+&lt;p&gt;In this post, we dive deep into the circumstances where this convention is relevant, necessary, or even prudent.
+&lt;/p&gt;&lt;p&gt;&lt;a href="https://inmachineswetrust.com/posts/drop-first-columns/"&gt;Read more…&lt;/a&gt; (10 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>feature engineering</category><category>linear algebra</category><category>linear regression</category><category>logistic regression</category><category>one-hot encoding</category><category>ordinary least squares</category><category>regularization</category><guid>https://inmachineswetrust.com/posts/drop-first-columns/</guid><pubDate>Tue, 07 May 2019 00:30:00 GMT</pubDate></item></channel></rss>
