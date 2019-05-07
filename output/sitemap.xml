@@ -11,11 +11,11 @@
  </url>
  <url>
   <loc>https://inmachineswetrust.com/archive.html</loc>
-  <lastmod>2019-05-04T00:53:00Z</lastmod>
+  <lastmod>2019-05-07T01:46:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/</loc>
-  <lastmod>2019-04-29T02:30:00Z</lastmod>
+  <lastmod>2019-05-07T01:40:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/anaconda/</loc>
@@ -52,6 +52,10 @@
  <url>
   <loc>https://inmachineswetrust.com/categories/exploratory-analysis/</loc>
   <lastmod>2018-05-10T23:48:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://inmachineswetrust.com/categories/feature-engineering/</loc>
+  <lastmod>2019-05-05T19:54:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/generator-function/</loc>
@@ -98,6 +102,14 @@
   <lastmod>2018-05-10T23:47:00Z</lastmod>
  </url>
  <url>
+  <loc>https://inmachineswetrust.com/categories/linear-algebra/</loc>
+  <lastmod>2019-05-07T01:40:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://inmachineswetrust.com/categories/linear-regression/</loc>
+  <lastmod>2019-05-04T18:32:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://inmachineswetrust.com/categories/linux/</loc>
   <lastmod>2019-04-29T02:30:00Z</lastmod>
  </url>
@@ -126,12 +138,24 @@
   <lastmod>2018-05-10T23:47:00Z</lastmod>
  </url>
  <url>
+  <loc>https://inmachineswetrust.com/categories/one-hot-encoding/</loc>
+  <lastmod>2019-05-05T19:54:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://inmachineswetrust.com/categories/ordinary-least-squares/</loc>
+  <lastmod>2019-05-04T18:32:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://inmachineswetrust.com/categories/pandas/</loc>
   <lastmod>2018-05-10T23:47:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/python/</loc>
   <lastmod>2018-05-10T23:47:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://inmachineswetrust.com/categories/regularization/</loc>
+  <lastmod>2019-05-04T18:32:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/scikit-learn/</loc>
@@ -167,7 +191,7 @@
  </url>
  <url>
   <loc>https://inmachineswetrust.com/index-1.html</loc>
-  <lastmod>2019-04-29T02:30:00Z</lastmod>
+  <lastmod>2019-05-04T01:43:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/listings/</loc>
@@ -188,6 +212,14 @@
  <url>
   <loc>https://inmachineswetrust.com/posts/dev-setup/</loc>
   <lastmod>2019-04-29T02:30:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://inmachineswetrust.com/posts/drop-first-column/</loc>
+  <lastmod>2019-05-04T01:43:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://inmachineswetrust.com/posts/drop-first-columns/</loc>
+  <lastmod>2019-05-07T01:40:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/exploring-pokemon-dataset/</loc>
