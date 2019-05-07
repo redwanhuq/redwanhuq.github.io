@@ -129,6 +129,18 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <p>A common convention after one-hot encoding is to remove one of the one-hot encoded columns from each categorical feature. For example, the feature <code>sex</code> containing values of <code>male</code> and <code>female</code> are transformed into the columns <code>sex_male</code> and <code>sex_female</code>, each containing binary values. Because using either of these columns provides sufficient information to determine a person's sex, we can drop one of them.</p>
 <p>In this post, we dive deep into the circumstances where this convention is relevant, necessary, or even prudent.
 <!-- TEASER_END --></p>
+<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
+</h2>
+<ol>
+<li><a href="#cell1">Preparing the data</a></li>
+<li><a href="#cell2">Creating a linear regression model with ordinary least-squares</a></li>
+<li><a href="#cell3">Making the normal equation usable again</a></li>
+<li><a href="#cell4">Regularizing improves predictions and then some</a></li>
+<li><a href="#cell5">Don't bother dropping columns when regularizing</a></li>
+<li><a href="#cell6">Skip dropping columns when using iterative numerical methods</a></li>
+<li><a href="#cell7">Maybe just stop dropping columns altogether</a></li>
+<li><a href="#cell8">Conclusions</a></li>
+</ol>
 <p><a id="cell1"></a></p>
 <h2 id="Preparing-the-data">Preparing the data<a class="anchor-link" href="#Preparing-the-data">¶</a>
 </h2>
@@ -747,7 +759,7 @@ dtype: float64</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A regularized model will generally perform better on new data than an OLS model. In practice however, we'd tune the value of $\alpha$ using cross-validation to maximize model performance.</p>
 <p><a id="cell5"></a></p>
-<h2 id="Skip-dropping-columns-when-regularizing">Skip dropping columns when regularizing<a class="anchor-link" href="#Skip-dropping-columns-when-regularizing">¶</a>
+<h2 id="Don't-bother-dropping-columns-when-regularizing">Don't bother dropping columns when regularizing<a class="anchor-link" href="#Don't-bother-dropping-columns-when-regularizing">¶</a>
 </h2>
 <p>Having understood the benefits of regularization, let's try to generate a $\ell_2$ regularized model with the closed-form solution but instead use the original one-hot encoded features prior to dropping any columns. We'll probably run into the singular matrix error again.</p>
 
@@ -882,6 +894,7 @@ dtype: float64</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If we arrive at a different model depending on the particular set of columns removed, how do we pick the right model? There's no good answer here—removing columns isn't trivial. You're better off staying objective and leaving one-hot encoded features alone.</p>
+<p><a id="cell8"></a></p>
 <h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">¶</a>
 </h2>
 <p>Feature engineering is the most important aspect of creating an effective model—you want to get it right. When dealing with categorical features, a common convention is to drop one of the one-hot encoded columns from each feature. Here we discovered this convention is <em>only required</em> when creating an OLS model with the normal equation.</p>
