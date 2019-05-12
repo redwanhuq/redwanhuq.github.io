@@ -483,7 +483,7 @@
 'render_taxonomies:output/categories/natural-language-processing/index.html', (2906112, 2149)
 'copy_assets:output/assets/css/images/ie6/borderBottomCenter.png', (2908672, 476)
 'render_sources:output/posts/understanding-iterators/index.ipynb', (2909184, 241)
-'create_bundles:output/assets/css/all-nocdn.css', (2909696, 915)
+'create_bundles:output/assets/css/all-nocdn.css', (2909696, 921)
 'render_sources:output/posts/deep-learning-setup/index.ipynb', (2910720, 235)
 'sitemap:output/sitemap.xml', (3357696, 16340)
 'render_taxonomies:output/categories/n-grams.xml', (2924032, 577)
