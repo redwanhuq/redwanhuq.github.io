@@ -422,7 +422,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <p>$$\mathbf{y} = \mathbf{X}\vec{\theta}$$</p>
 <p>The simplest algorithm for finding this "line of best fit" is <strong>ordinary least-squares (OLS)</strong>; it identifies $\vec\theta$ that minimizes the sum of the squared residuals. Therefore, the objective function for OLS is</p>
 <p>$$J(\vec{\theta}) = {\left\lVert \mathbf{y} - \mathbf{X}\vec{\theta} \right\rVert_2}^2$$</p>
-<p>Next, we have to solve the partial differential equation $\frac{\partial J}{\partial\vec{\theta}} = 0$, which conveniently has a closed-form solution called the <strong>normal equation</strong>:</p>
+<p>Next, we have to solve the system of first order partial differential equations $\frac{\partial J}{\partial\vec{\theta}} = 0$, which conveniently has a closed-form solution called the <strong>normal equation</strong>:</p>
 <p>$$\vec{\theta} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$$</p>
 <p>Let's apply the normal equation to identify the parameters of the OLS model.</p>
 
@@ -674,7 +674,7 @@ dtype: float64</pre>
 <p>To prevent overfitting, applying some form of <strong>regularization</strong> is a no-brainer. $\ell_2$ regularization involves adding a penalty term—square of the $\ell_2$ norm of $\vec{\theta}$—to the objective function. Applying $\ell_2$ regularization to the OLS objective function yields</p>
 <p>$$J(\vec{\theta}) =  {\left\lVert  \mathbf{y} - \mathbf{X}\vec{\theta} \right\rVert_2}^2 + \alpha{\left\lVert \vec{\theta} \right\rVert_2}^2$$</p>
 <p>where $\alpha$ is a positive scalar hyperparameter that controls the degree of regularization (higher = more regularization).</p>
-<p>We need to solve a new partial differential equation $\frac{\partial J}{\partial\vec{\theta}} = 0$; fortunately, it too has a closed-form solution</p>
+<p>We need to solve a new system of partial differential equations $\frac{\partial J}{\partial\vec{\theta}} = 0$; fortunately, it too has a closed-form solution</p>
 <p>$$\vec{\theta} = (\mathbf{X}^T\mathbf{X} + \alpha \mathbf{I})^{-1}\mathbf{X}^T\mathbf{y}$$</p>
 <p>where $\mathbf{I}$ is an identity matrix with the same dimensions as the Gram matrix. Let's identify the parameters of the $\ell_2$ regularized model using $\alpha = 1$.</p>
 
