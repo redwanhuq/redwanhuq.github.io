@@ -124,8 +124,9 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Some of the biggest challenges I've faced while teaching myself data science have been determining what tools are available, which one to invest in learning, or how to access them. For example, once I reached the stage in my training where I was ready to add deep learning to my repertoire, I was baffled on <a href="https://stackoverflow.com/questions/38233996/how-to-import-tensorflow-in-jupyter-notebook-from-conda-with-gpu-support">how</a> <a href="https://stackoverflow.com/questions/37061089/trouble-with-tensorflow-in-jupyter-notebook">troublesome</a> it was to setup Keras and TensorFlow to work with Jupyter notebooks via the Anaconda distribution. Most solutions glossed over key steps, others just didn't work. After some digging, I came up with my own solution and decided to share it in detail with the community.
-<!-- TEASER_END -->
-<img src="../../images/tfkeraslogos.jpg" align="middle" width="400"></p>
+<!-- TEASER_END --></p>
+<p><strong>Update (May 13, 2019): This blog post is nearly two years old, which makes it prehistoric in the data science world. Steps 3-4 for installing Keras and TensorFlow are still relevant. However, I <em>don't</em> recommend using Windows directly as a development platform for data science; I don't even advise using Anaconda! Up-to-date recommendations for gearing up for data science work, in addition to instructions for transforming Windows into a viable development platform can be found on a recent <a href="https://inmachineswetrust.com/posts/dev-setup/">blog post</a>.</strong></p>
+<p><img src="../../images/tfkeraslogos.jpg" align="middle" width="400"></p>
 <p>I settled on <a href="https://keras.io/">Keras</a> because it provides a high-level, user friendly API for several deep learning libraries such as TensorFlow, Theano or Microsoft Cognitive Toolkit. Because <a href="https://www.tensorflow.org/">TensorFlow</a> is an order of magnitude <a href="https://twitter.com/fchollet/status/787881948274266112">more popular</a> than the rest and is growing <a href="https://twitter.com/fchollet/status/890134015642087426">rapidly</a>, it was the logical choice for Keras' backend. Thankfully, both libraries are written in Python, which circumvents a layer of friction for me.</p>
 <h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
 </h2>
@@ -168,27 +169,20 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <pre><code>activate deeplearning</code></pre>
 <p>If you're following along in Command Prompt, notice the prompt is now flanked by the name of the environment in parentheses—this indicates you're inside.</p>
-<p>Earlier, the Anaconda installer automatically created a conda environment called <code>root</code> that houses the core libraries for data science. Since we've now moved into a different environment, we can't access those libraries unless we re-install them and their dependencies in the new environment. Fortunately, we can use conda to install a few packages that cover everything we need. Because I make heavy use of the core data science libraries, I installed every package listed below. <em>Make sure to install them in order listed below</em>; only Seaborn and Scikit-learn are optional.</p>
-<p><strong>IPython</strong> and <strong>Jupyter</strong> are a must for those who rely on <a href="http://jupyter-notebook.readthedocs.io/en/latest/">Jupyter notebooks</a> for data science (who doesn't?).</p>
+<p>Earlier, the Anaconda installer automatically created a conda environment called <code>root</code> that houses the core libraries for data science. Since we've now moved into a different environment, we can't access those libraries unless we re-install them and their dependencies in the new environment. Fortunately, we can use conda to install a few packages that cover everything we need. Because I make heavy use of the core data science libraries, I installed every package listed below.</p>
+<p><strong>Jupyter</strong> is a must for those who rely on <a href="http://jupyter-notebook.readthedocs.io/en/latest/">notebooks</a> for data science (who doesn't?).</p>
 
-<pre><code>conda install ipython
-conda install jupyter</code></pre>
+<pre><code>conda install jupyter</code></pre>
 <p><strong>Pandas</strong> includes the <a href="https://pandas.pydata.org/pandas-docs/stable/style.html"><em>de facto</em> library</a> for exploratory analysis and data wrangling in Python.</p>
 
 <pre><code>conda install pandas</code></pre>
-<p><strong>SciPy</strong> is an exhaustive package for scientific computing, but the namesake library itself is a dependency for Keras.</p>
-
-<pre><code>conda install scipy</code></pre>
-<p><strong>Seaborn</strong> includes my favorite high-level <a href="http://seaborn.pydata.org">visualization library</a>. If you're still exclusively using Matplotlib for plotting, do yourself a favor and take a look.</p>
-
-<pre><code>conda install seaborn</code></pre>
 <p><strong>Scikit-learn</strong> contains the <a href="http://scikit-learn.org/stable/index.html">go-to library</a> for machine learning tasks in Python outside of neural networks.</p>
 
 <pre><code>conda install scikit-learn</code></pre>
 <p>We're finally equipped to install the deep learning libraries, TensorFlow and Keras. Neither library is officially available via a conda package (yet) so we'll need to install them with pip. One more thing: this step installs TensorFlow with CPU support only; if you want GPU support too, <a href="https://blog.paperspace.com/running-tensorflow-on-windows/">check this out</a>.</p>
 
-<pre><code>pip install --upgrade tensorflow
-pip install --upgrade keras</code></pre>
+<pre><code>pip install tensorflow
+pip install keras</code></pre>
 <p><a id="cell4"></a></p>
 <h2 id="4.-Verifying-the-installation">4. Verifying the installation<a class="anchor-link" href="#4.-Verifying-the-installation">¶</a>
 </h2>
