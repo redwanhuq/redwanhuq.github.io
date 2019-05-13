@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/anaconda.xml</loc>
-  <lastmod>2019-05-04T00:53:00Z</lastmod>
+  <lastmod>2019-05-13T23:13:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/classification.xml</loc>
@@ -35,7 +35,7 @@
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/deep-learning.xml</loc>
-  <lastmod>2019-04-28T02:24:00Z</lastmod>
+  <lastmod>2019-05-13T23:13:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/exploratory-analysis.xml</loc>
@@ -83,7 +83,7 @@
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/keras.xml</loc>
-  <lastmod>2019-04-28T02:24:00Z</lastmod>
+  <lastmod>2019-05-13T23:13:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/learning-curves.xml</loc>
@@ -163,7 +163,7 @@
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/tensorflow.xml</loc>
-  <lastmod>2019-04-28T02:24:00Z</lastmod>
+  <lastmod>2019-05-13T23:13:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/tf-idf.xml</loc>
@@ -179,10 +179,10 @@
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/rss.xml</loc>
-  <lastmod>2019-05-12T16:55:00Z</lastmod>
+  <lastmod>2019-05-13T23:13:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/sitemap.xml</loc>
-  <lastmod>2019-05-12T16:55:00Z</lastmod>
+  <lastmod>2019-05-13T23:13:00Z</lastmod>
  </sitemap>
 </sitemapindex>
