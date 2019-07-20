@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>In Machines We Trust (Posts about anaconda)</title><link>https://inmachineswetrust.com/</link><description></description><atom:link href="https://inmachineswetrust.com/categories/anaconda.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 13 May 2019 23:13:21 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>An opinionated guide for gearing up for data science</title><link>https://inmachineswetrust.com/posts/dev-setup/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>In Machines We Trust (Posts about anaconda)</title><link>https://inmachineswetrust.com/</link><description></description><atom:link href="https://inmachineswetrust.com/categories/anaconda.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 20 Jul 2019 20:00:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>An opinionated guide for gearing up for data science</title><link>https://inmachineswetrust.com/posts/dev-setup/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
 div.prompt {
 	display: none;
 }
@@ -12,8 +12,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 &lt;/style&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;This post couldn't be any more overdue, but going forward, I'm hoping to be more active and to continue sharing my data science knowledge, particularly the nuances that you acquire on the job.&lt;/p&gt;
 &lt;p&gt;Whether you're a data scientist, machine learning engineer, or data engineer, your day-to-day typically involves writing code—we &lt;em&gt;are&lt;/em&gt; developers after all. Today I'd like share my &lt;del&gt;idiosyncrasies&lt;/del&gt; thoughts for setting up a solid local machine for data science, sprinkled with tips and software engineering best practices. What this post &lt;em&gt;doesn't&lt;/em&gt; cover are prerequisites for entering the field.
@@ -30,8 +29,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 &lt;/style&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Some of the biggest challenges I've faced while teaching myself data science have been determining what tools are available, which one to invest in learning, or how to access them. For example, once I reached the stage in my training where I was ready to add deep learning to my repertoire, I was baffled on &lt;a href="https://stackoverflow.com/questions/38233996/how-to-import-tensorflow-in-jupyter-notebook-from-conda-with-gpu-support"&gt;how&lt;/a&gt; &lt;a href="https://stackoverflow.com/questions/37061089/trouble-with-tensorflow-in-jupyter-notebook"&gt;troublesome&lt;/a&gt; it was to setup Keras and TensorFlow to work with Jupyter notebooks via the Anaconda distribution. Most solutions glossed over key steps, others just didn't work. After some digging, I came up with my own solution and decided to share it in detail with the community.
 &lt;/p&gt;&lt;p&gt;&lt;a href="https://inmachineswetrust.com/posts/deep-learning-setup/"&gt;Read more…&lt;/a&gt; (6 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>anaconda</category><category>deep learning</category><category>keras</category><category>tensorflow</category><guid>https://inmachineswetrust.com/posts/deep-learning-setup/</guid><pubDate>Fri, 28 Jul 2017 14:00:00 GMT</pubDate></item></channel></rss>

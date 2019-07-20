@@ -4,7 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Iterables, iterators and generators, oh my! Part 2 | In Machines We Trust</title>
-<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/html4css1.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#0078D7">
@@ -32,8 +37,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 
-
-In a previous post, we learned">
+In a previous post, we learned ">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-03-03T10:00:00-06:00">
 <meta property="article:tag" content="generator">
@@ -137,10 +141,9 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <h2 id="1.-A-shortcut-for-constructing-custom-iterators">1. A shortcut for constructing custom iterators<a class="anchor-link" href="#1.-A-shortcut-for-constructing-custom-iterators">¶</a>
 </h2>
 <p>Let's start by examining how to build an iterator that yields the <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a>. As a refresher, the instructions for computing the <em>n</em>th Fibonacci number are</p>
-<p>$$F_1 = 0 \\
+$$F_1 = 0 \\
 F_2 = 1 \\
-F_n = F_{n-1} + F_{n-2}$$</p>
-<p>To construct this iterator, we need to implement the iterator protocol.</p>
+F_n = F_{n-1} + F_{n-2}$$<p>To construct this iterator, we need to implement the iterator protocol.</p>
 
 </div>
 </div>
@@ -165,7 +168,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
         <span class="k">return</span> <span class="n">temp</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -202,7 +205,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
     <span class="nb">print</span><span class="p">(</span><span class="s1">'No more items left!'</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -228,7 +231,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seq</span> <span class="o">=</span> <span class="n">gen_func</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -254,7 +257,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -266,7 +269,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -277,7 +280,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -301,7 +304,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -313,7 +316,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -324,7 +327,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -348,7 +351,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -360,7 +363,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -371,7 +374,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -395,7 +398,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -407,7 +410,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -418,7 +421,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_text output_error">
@@ -472,7 +475,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seq</span> <span class="o">=</span> <span class="n">gen_func</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -498,7 +501,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -510,7 +513,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -521,7 +524,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -563,7 +566,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
         <span class="n">last</span><span class="p">,</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">,</span> <span class="n">last</span> <span class="o">+</span> <span class="n">curr</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -593,7 +596,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
     <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">fib_seq</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -605,7 +608,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -640,7 +643,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
         <span class="n">last</span><span class="p">,</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">,</span> <span class="n">last</span> <span class="o">+</span> <span class="n">curr</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -669,7 +672,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
     <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -681,7 +684,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -718,7 +721,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -730,7 +733,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -764,7 +767,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">' '</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -776,7 +779,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -808,7 +811,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 <span class="nb">sum</span><span class="p">(</span><span class="n">cubes_list2</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -820,7 +823,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -855,7 +858,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 <span class="nb">sum</span><span class="p">(</span><span class="n">cubes_gen2</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -867,7 +870,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -903,7 +906,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 <span class="n">getsizeof</span><span class="p">(</span><span class="n">cubes_list2</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -915,7 +918,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -939,7 +942,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">getsizeof</span><span class="p">(</span><span class="n">cubes_gen2</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -951,7 +954,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -986,7 +989,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -998,7 +1001,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[20]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -1032,7 +1035,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">cubes_gen2</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1044,7 +1047,7 @@ F_n = F_{n-1} + F_{n-2}$$</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -1181,7 +1184,7 @@ MathJax.Hub.Config({
 </div>
 
 
-            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+            <script src="../../assets/js/jquery.min.js"></script><script src="../../assets/js/bootstrap.min.js"></script><script src="../../assets/js/moment-with-locales.min.js"></script><script src="../../assets/js/fancydates.js"></script><script src="../../assets/js/jquery.colorbox-min.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
     moment.locale("en");
     fancydates(2, "YYYY-MM-DD HH:mm");
     </script><!-- end fancy dates --><script>

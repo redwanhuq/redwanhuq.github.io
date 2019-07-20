@@ -4,7 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Think twice before dropping that first one-hot encoded column | In Machines We Trust</title>
-<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/html4css1.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#0078D7">
@@ -31,8 +36,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 
-
-Many machine learning models d">
+Many machine learning models de">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2019-05-06T19:30:00-05:00">
 <meta property="article:tag" content="feature engineering">
@@ -176,7 +180,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">training_set</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -188,7 +192,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[1]:</div>
+    <div class="prompt output_prompt">Out[1]:</div>
 
 
 
@@ -295,7 +299,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -307,7 +311,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[2]:</div>
+    <div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -403,7 +407,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">y</span> <span class="o">=</span> <span class="n">training_set</span><span class="p">[</span><span class="s1">'var3'</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -419,12 +423,9 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <h2 id="Creating-a-linear-regression-model-with-ordinary-least-squares">Creating a linear regression model with ordinary least-squares<a class="anchor-link" href="#Creating-a-linear-regression-model-with-ordinary-least-squares">¶</a>
 </h2>
 <p>In a linear regression model, we express the target variable $\mathbf{y}$ as a linear function of the features $\mathbf{X}$ and some unknown set of parameters $\vec{\theta}$:</p>
-<p>$$\mathbf{y} = \mathbf{X}\vec{\theta}$$</p>
-<p>The simplest algorithm for finding this "line of best fit" is <strong>ordinary least-squares (OLS)</strong>; it identifies $\vec\theta$ that minimizes the sum of the squared residuals. Therefore, the objective function for OLS is</p>
-<p>$$J(\vec{\theta}) = {\left\lVert \mathbf{y} - \mathbf{X}\vec{\theta} \right\rVert_2}^2$$</p>
-<p>Next, we have to solve the system of first order partial differential equations $\frac{\partial J}{\partial\vec{\theta}} = 0$, which conveniently has a closed-form solution called the <strong>normal equation</strong>:</p>
-<p>$$\vec{\theta} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$$</p>
-<p>Let's apply the normal equation to identify the parameters of the OLS model.</p>
+$$\mathbf{y} = \mathbf{X}\vec{\theta}$$<p>The simplest algorithm for finding this "line of best fit" is <strong>ordinary least-squares (OLS)</strong>; it identifies $\vec\theta$ that minimizes the sum of the squared residuals. Therefore, the objective function for OLS is</p>
+$$J(\vec{\theta}) = {\left\lVert \mathbf{y} - \mathbf{X}\vec{\theta} \right\rVert_2}^2$$<p>Next, we have to solve the system of first order partial differential equations $\frac{\partial J}{\partial\vec{\theta}} = 0$, which conveniently has a closed-form solution called the <strong>normal equation</strong>:</p>
+$$\vec{\theta} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$$<p>Let's apply the normal equation to identify the parameters of the OLS model.</p>
 
 </div>
 </div>
@@ -442,7 +443,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">OLS_theta</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -454,7 +455,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_text output_error">
@@ -525,7 +526,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">X_dropped</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -537,7 +538,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -628,7 +629,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">OLS_theta</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X_dropped</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -640,7 +641,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -672,11 +673,9 @@ dtype: float64</pre>
 </h2>
 <p>OLS models are handy when we'd like to summarize linear trends for data we <em>already have</em>. When the goal is prediction however, these models are seldom useful because of their <a href="https://www.clockbackward.com/2009/06/18/ordinary-least-squares-linear-regression-flaws-problems-and-pitfalls/">numerous pitfalls</a>. In particular, OLS models tend to generalize poorly to new data (aka overfitting).</p>
 <p>To prevent overfitting, applying some form of <strong>regularization</strong> is a no-brainer. $\ell_2$ regularization involves adding a penalty term—square of the $\ell_2$ norm of $\vec{\theta}$—to the objective function. Applying $\ell_2$ regularization to the OLS objective function yields</p>
-<p>$$J(\vec{\theta}) =  {\left\lVert  \mathbf{y} - \mathbf{X}\vec{\theta} \right\rVert_2}^2 + \alpha{\left\lVert \vec{\theta} \right\rVert_2}^2$$</p>
-<p>where $\alpha$ is a positive scalar hyperparameter that controls the degree of regularization (higher = more regularization).</p>
+$$J(\vec{\theta}) =  {\left\lVert  \mathbf{y} - \mathbf{X}\vec{\theta} \right\rVert_2}^2 + \alpha{\left\lVert \vec{\theta} \right\rVert_2}^2$$<p>where $\alpha$ is a positive scalar hyperparameter that controls the degree of regularization (higher = more regularization).</p>
 <p>We need to solve a new system of partial differential equations $\frac{\partial J}{\partial\vec{\theta}} = 0$; fortunately, it too has a closed-form solution</p>
-<p>$$\vec{\theta} = (\mathbf{X}^T\mathbf{X} + \alpha \mathbf{I})^{-1}\mathbf{X}^T\mathbf{y}$$</p>
-<p>where $\mathbf{I}$ is an identity matrix with the same dimensions as the Gram matrix. Let's identify the parameters of the $\ell_2$ regularized model using $\alpha = 1$.</p>
+$$\vec{\theta} = (\mathbf{X}^T\mathbf{X} + \alpha \mathbf{I})^{-1}\mathbf{X}^T\mathbf{y}$$<p>where $\mathbf{I}$ is an identity matrix with the same dimensions as the Gram matrix. Let's identify the parameters of the $\ell_2$ regularized model using $\alpha = 1$.</p>
 
 </div>
 </div>
@@ -719,7 +718,7 @@ dtype: float64</pre>
 <span class="n">create_L2_reg_model</span><span class="p">(</span><span class="n">X_dropped</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -731,7 +730,7 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -776,7 +775,7 @@ dtype: float64</pre>
 <span class="n">create_L2_reg_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -788,7 +787,7 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -855,7 +854,7 @@ dtype: float64</pre>
 <span class="n">create_L2_reg_model</span><span class="p">(</span><span class="n">X_dropped</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -867,7 +866,7 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -1014,7 +1013,7 @@ MathJax.Hub.Config({
 </div>
 
 
-            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+            <script src="../../assets/js/jquery.min.js"></script><script src="../../assets/js/bootstrap.min.js"></script><script src="../../assets/js/moment-with-locales.min.js"></script><script src="../../assets/js/fancydates.js"></script><script src="../../assets/js/jquery.colorbox-min.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
     moment.locale("en");
     fancydates(2, "YYYY-MM-DD HH:mm");
     </script><!-- end fancy dates --><script>

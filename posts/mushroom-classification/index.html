@@ -4,7 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Training a machine to determine whether a mushroom is edible | In Machines We Trust</title>
-<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/html4css1.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#0078D7">
@@ -32,8 +37,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 
-
-It's been awhile since my last">
+It's been awhile since my last ">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-05-15T11:00:00-05:00">
 <meta property="article:tag" content="classification">
@@ -156,7 +160,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -168,7 +172,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[2]:</div>
+    <div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -341,7 +345,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -353,7 +357,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -422,7 +426,7 @@ memory usage: 1.4+ MB
 <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">column_labels</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -448,7 +452,7 @@ memory usage: 1.4+ MB
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'stalk root'</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">'?'</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -475,7 +479,7 @@ memory usage: 1.4+ MB
 <span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -487,7 +491,7 @@ memory usage: 1.4+ MB
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -661,7 +665,7 @@ memory usage: 1.4+ MB
 <span class="n">y</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -673,7 +677,7 @@ memory usage: 1.4+ MB
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -735,7 +739,7 @@ memory usage: 1.4+ MB
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span><span class="p">[</span><span class="s1">'class'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -747,7 +751,7 @@ memory usage: 1.4+ MB
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -792,7 +796,7 @@ Name: class, dtype: int64</pre>
 <span class="n">X_enc</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -804,7 +808,7 @@ Name: class, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -991,7 +995,7 @@ Name: class, dtype: int64</pre>
 <span class="n">X_std</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_enc</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1020,7 +1024,7 @@ Name: class, dtype: int64</pre>
 <span class="n">y_enc</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1056,7 +1060,7 @@ Name: class, dtype: int64</pre>
 <span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1085,7 +1089,7 @@ Name: class, dtype: int64</pre>
 <span class="n">metrics</span><span class="o">.</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1097,7 +1101,7 @@ Name: class, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -1152,7 +1156,7 @@ Name: class, dtype: int64</pre>
 <span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1179,7 +1183,7 @@ Name: class, dtype: int64</pre>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1191,7 +1195,7 @@ Name: class, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -1226,7 +1230,7 @@ Name: class, dtype: int64</pre>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1238,7 +1242,7 @@ Name: class, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -1276,7 +1280,7 @@ Name: class, dtype: int64</pre>
 <span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1288,7 +1292,7 @@ Name: class, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -1323,7 +1327,7 @@ Name: class, dtype: int64</pre>
 <span class="n">final_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_std</span><span class="p">,</span> <span class="n">y_enc</span><span class="p">);</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1351,7 +1355,7 @@ Name: class, dtype: int64</pre>
 <span class="n">feature_ranks</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'parameter value'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1363,7 +1367,7 @@ Name: class, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -1415,7 +1419,7 @@ Name: class, dtype: int64</pre>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">feature_ranks</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'parameter value'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1427,7 +1431,7 @@ Name: class, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -1586,7 +1590,7 @@ MathJax.Hub.Config({
 </div>
 
 
-            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+            <script src="../../assets/js/jquery.min.js"></script><script src="../../assets/js/bootstrap.min.js"></script><script src="../../assets/js/moment-with-locales.min.js"></script><script src="../../assets/js/fancydates.js"></script><script src="../../assets/js/jquery.colorbox-min.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
     moment.locale("en");
     fancydates(2, "YYYY-MM-DD HH:mm");
     </script><!-- end fancy dates --><script>

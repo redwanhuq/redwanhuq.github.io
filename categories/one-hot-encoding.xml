@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>In Machines We Trust (Posts about one-hot encoding)</title><link>https://inmachineswetrust.com/</link><description></description><atom:link href="https://inmachineswetrust.com/categories/one-hot-encoding.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 12 May 2019 16:55:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Think twice before dropping that first one-hot encoded column</title><link>https://inmachineswetrust.com/posts/drop-first-columns/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>In Machines We Trust (Posts about one-hot encoding)</title><link>https://inmachineswetrust.com/</link><description></description><atom:link href="https://inmachineswetrust.com/categories/one-hot-encoding.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 20 Jul 2019 20:00:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Think twice before dropping that first one-hot encoded column</title><link>https://inmachineswetrust.com/posts/drop-first-columns/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
 div.prompt {
 	display: none;
 }
@@ -12,8 +12,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 &lt;/style&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Many machine learning models demand that categorical features are converted to a format they can comprehend via a widely used feature engineering technique called &lt;strong&gt;one-hot encoding&lt;/strong&gt;. Machines aren't &lt;em&gt;that&lt;/em&gt; smart.&lt;/p&gt;
 &lt;p&gt;A common convention after one-hot encoding is to remove one of the one-hot encoded columns from each categorical feature. For example, the feature &lt;code&gt;sex&lt;/code&gt; containing values of &lt;code&gt;male&lt;/code&gt; and &lt;code&gt;female&lt;/code&gt; are transformed into the columns &lt;code&gt;sex_male&lt;/code&gt; and &lt;code&gt;sex_female&lt;/code&gt;, each containing binary values. Because using either of these columns provides sufficient information to determine a person's sex, we can drop one of them.&lt;/p&gt;

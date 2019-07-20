@@ -4,7 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Applying k-means clustering to flow cytometry analysis | In Machines We Trust</title>
-<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/html4css1.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#0078D7">
@@ -32,8 +37,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 
-
-Is it possible for a machine t">
+Is it possible for a machine to">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-03-16T09:00:00-05:00">
 <meta property="article:tag" content="clustering">
@@ -156,7 +160,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">features</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -168,7 +172,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[2]:</div>
+    <div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -226,7 +230,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -238,7 +242,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -337,7 +341,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
     <span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -363,7 +367,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_data</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="kc">None</span><span class="p">);</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -375,7 +379,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -410,7 +414,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">(</span><span class="n">features</span> <span class="o">-</span> <span class="n">features</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">features</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -439,7 +443,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">4</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -480,7 +484,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
     <span class="k">return</span> <span class="n">init_centroids</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -497,7 +501,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">centroids</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -509,7 +513,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -578,7 +582,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
     <span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -605,7 +609,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">plot_centroids</span><span class="p">(</span><span class="n">dot_plot</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -617,7 +621,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -661,7 +665,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
     <span class="k">return</span> <span class="n">C</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -689,7 +693,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">plot_centroids</span><span class="p">(</span><span class="n">dot_plot</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -701,7 +705,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -727,8 +731,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 </h2>
 <p>Having assigned every training example to a cluster, each cluster must therefore have a new centroid. To determine the positions of these new centroids, we compute the mean of all training examples assigned to each cluster, feature by feature.</p>
 <p>Specifically, for each cluster $j$, we assign a new position for its centroid as given by</p>
-<p>$$u_j := \frac{1}{\lvert c_j \rvert}\sum_{i \in c_j}x^{(i)}$$</p>
-<p>where $c_j$ is the set of training examples assigned to cluster $j$. Let's build a function that performs this step.</p>
+$$u_j := \frac{1}{\lvert c_j \rvert}\sum_{i \in c_j}x^{(i)}$$<p>where $c_j$ is the set of training examples assigned to cluster $j$. Let's build a function that performs this step.</p>
 
 </div>
 </div>
@@ -744,7 +747,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
     <span class="k">return</span> <span class="n">joined</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'label'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -772,7 +775,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">plot_centroids</span><span class="p">(</span><span class="n">dot_plot</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -784,7 +787,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -809,8 +812,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <h2 id="6.-Minimizing-the-distortion-function">6. Minimizing the distortion function<a class="anchor-link" href="#6.-Minimizing-the-distortion-function">¶</a>
 </h2>
 <p>We can measure how tightly clustered the data are using the sum of the squared Euclidean distance between each training example and the centroid of its currently assigned cluster. This metric is called the <strong>distortion function</strong> and is given by</p>
-<p>$$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$</p>
-<p>where $m$ is the total number of training examples. The tighter the clustering, the smaller the value of $J$. In fact, $J$ converging to a minimum is a good indicator that the algorithm has converged to a set of centroids. <strong>Therefore, the goal of the $k$-means clustering algorithm is to minimize the distortion function.</strong></p>
+$$J(c^{(i)}, u_j) = \sum_{i=1}^m{\lVert x^{(i)} - u_{c^{(i)}} \rVert ^2}$$<p>where $m$ is the total number of training examples. The tighter the clustering, the smaller the value of $J$. In fact, $J$ converging to a minimum is a good indicator that the algorithm has converged to a set of centroids. <strong>Therefore, the goal of the $k$-means clustering algorithm is to minimize the distortion function.</strong></p>
 
 </div>
 </div>
@@ -826,7 +828,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
                <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">example</span><span class="p">)</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">iterrows</span><span class="p">())</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -863,7 +865,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
     <span class="n">distortion_history</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">distortion_function</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -890,7 +892,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">plot_centroids</span><span class="p">(</span><span class="n">dot_plot</span><span class="p">,</span> <span class="n">centroids</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -902,7 +904,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -944,7 +946,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="p">);</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -956,7 +958,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -1006,7 +1008,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
         <span class="n">opt_centroids</span> <span class="o">=</span> <span class="n">centroids</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1032,7 +1034,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">distortion_function</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">opt_centroids</span><span class="p">,</span> <span class="n">opt_labels</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1044,7 +1046,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -1069,7 +1071,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">plot_centroids</span><span class="p">(</span><span class="n">dot_plot</span><span class="p">,</span> <span class="n">opt_centroids</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1081,7 +1083,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -1129,7 +1131,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">plot_centroids</span><span class="p">(</span><span class="n">dot_plot</span><span class="p">,</span> <span class="n">opt_centroids2</span><span class="p">);</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1141,7 +1143,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -1175,7 +1177,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">distortion_function</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">opt_centroids2</span><span class="p">,</span> <span class="n">opt_labels2</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1187,7 +1189,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[24]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -1321,7 +1323,7 @@ MathJax.Hub.Config({
 </div>
 
 
-            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+            <script src="../../assets/js/jquery.min.js"></script><script src="../../assets/js/bootstrap.min.js"></script><script src="../../assets/js/moment-with-locales.min.js"></script><script src="../../assets/js/fancydates.js"></script><script src="../../assets/js/jquery.colorbox-min.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
     moment.locale("en");
     fancydates(2, "YYYY-MM-DD HH:mm");
     </script><!-- end fancy dates --><script>

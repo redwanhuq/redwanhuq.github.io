@@ -4,7 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Building a logistic regression classifier from the ground up | In Machines We Trust</title>
-<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/html4css1.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#0078D7">
@@ -32,8 +37,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 
 
-
-The logistic regression classi">
+The logistic regression classif">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2017-02-13T10:00:00-06:00">
 <meta property="article:tag" content="classification">
@@ -155,7 +159,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -167,7 +171,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[1]:</div>
+    <div class="prompt output_prompt">Out[1]:</div>
 
 
 
@@ -254,7 +258,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -266,7 +270,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[2]:</div>
+    <div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -342,7 +346,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -354,7 +358,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -443,7 +447,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="p">)</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="s1">'Funds (in millions)'</span><span class="p">,</span> <span class="s1">'Poll rating'</span><span class="p">);</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -455,7 +459,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -480,8 +484,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <h2 id="2.-Developing-a-hypothesis-using-the-logistic-function">2. Developing a hypothesis using the logistic function<a class="anchor-link" href="#2.-Developing-a-hypothesis-using-the-logistic-function">¶</a>
 </h2>
 <p>Machine learning models are based on some mathematical function that processes the features $x$ and outputs a value; this function is called the <strong>hypothesis</strong> $h(x)$. Since our classifier of interest outputs probabilities, we need its hypothesis to range between zero and one. We can't use linear functions because probabilities below zero or above one don't make any sense. Therefore, let's turn to the <strong>logistic function</strong></p>
-<p>$$\sigma(z) = \frac{1}{1+\mathrm{e}^{-z}}$$</p>
-<p>and see what this function looks like.</p>
+$$\sigma(z) = \frac{1}{1+\mathrm{e}^{-z}}$$<p>and see what this function looks like.</p>
 
 </div>
 </div>
@@ -502,7 +505,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticks</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">));</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -514,7 +517,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -535,38 +538,26 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We notice that $\lim_{z\rightarrow\infty}\sigma(z) = 1$ and $\lim_{z\rightarrow-\infty}\sigma(z) = 0$, which is perfect since we're working with probabilities. The question is: how do we incorporate <code>funds</code> and <code>rating</code> into the logistic function to develop a hypothesis? Because we're interested in finding a linear decision boundary, perhaps a <a href="https://en.wikipedia.org/wiki/Linear_combination">linear combination</a> of the features will suffice:</p>
-<p>$$z = \theta_0{x_0} + \theta_1{x_1} + \theta_2{x_2}$$</p>
-<ul>
+$$z = \theta_0{x_0} + \theta_1{x_1} + \theta_2{x_2}$$<ul>
 <li>$x_1$ and $x_2$ are the features <code>funds</code> and <code>rating</code>, respectively</li>
 <li>$x_0 = 1$</li>
 <li>$\theta_0$, $\theta_1$ and $\theta_2$ are real numbers</li>
 </ul>
 <p>If we input the above expression into the logistic function, we have a potential hypothesis for the classifier:</p>
-<p>$$h_\theta(x) = \sigma(\theta_0{x_0} + \theta_1{x_1} + \theta_2{x_2}) = \frac{1}{1+\mathrm{e}^{-(\theta_0{x_0} + \theta_1{x_1} + \theta_2{x_2})}}$$</p>
-<p>Specifically, <strong>this hypothesis computes the probability that a candidate will win an election given a set of features.</strong> But how do we know if this is a suitable hypothesis? Well, we can begin by settling on a probability threshold for deciding whether a candidate will win or lose the election. An intuitive threshold for this decision is: predict a candidate will win if the win probability equals or exceeds 50% (i.e., $h_\theta(x)\ge0.5$), otherwise he/she is predicted to lose. If $h_\theta(x) = 0.5$, then $z = 0$; substituting this latter value into the linear combination above and then rearranging yields an intriguing equation:</p>
-<p>$$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$</p>
-<p>Notice that this is an equation of a line; in fact, it's the equation of a line that exists on the scatterplot from earlier. However, because this line is linked to the threshold for making predictions, logically, this must be the decision boundary of the classifier! It looks like our choice for the hypothesis wasn't arbitrary after all. Now all that remains is to figure out what are the <strong>parameters</strong> ($\theta_0$, $\theta_1$ and $\theta_2$) of the hypothesis in order to identify the exact decision boundary.</p>
+$$h_\theta(x) = \sigma(\theta_0{x_0} + \theta_1{x_1} + \theta_2{x_2}) = \frac{1}{1+\mathrm{e}^{-(\theta_0{x_0} + \theta_1{x_1} + \theta_2{x_2})}}$$<p>Specifically, <strong>this hypothesis computes the probability that a candidate will win an election given a set of features.</strong> But how do we know if this is a suitable hypothesis? Well, we can begin by settling on a probability threshold for deciding whether a candidate will win or lose the election. An intuitive threshold for this decision is: predict a candidate will win if the win probability equals or exceeds 50% (i.e., $h_\theta(x)\ge0.5$), otherwise he/she is predicted to lose. If $h_\theta(x) = 0.5$, then $z = 0$; substituting this latter value into the linear combination above and then rearranging yields an intriguing equation:</p>
+$$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$<p>Notice that this is an equation of a line; in fact, it's the equation of a line that exists on the scatterplot from earlier. However, because this line is linked to the threshold for making predictions, logically, this must be the decision boundary of the classifier! It looks like our choice for the hypothesis wasn't arbitrary after all. Now all that remains is to figure out what are the <strong>parameters</strong> ($\theta_0$, $\theta_1$ and $\theta_2$) of the hypothesis in order to identify the exact decision boundary.</p>
 <p><a id="cell3"></a></p>
 <h2 id="3.-Measuring-prediction-error-using-the-cost-function">3. Measuring prediction error using the cost function<a class="anchor-link" href="#3.-Measuring-prediction-error-using-the-cost-function">¶</a>
 </h2>
 <p>To determine the parameters of our newly formulated hypothesis, let's work backwards and start with how we'd want the logistic regression classifier to perform on the training examples. Hopefully, the <em>actual winners</em> have win probabilities near one, while the <em>actual losers</em> near zero. Let's go ahead and define the win probability of an actual winner, which is equivalent to the probability of <em>correctly</em> classifying an actual winner:</p>
-<p>$$P(y = 1 \mid x_{winner}) = h_\theta(x_{winner})$$</p>
-<p>where $y$ is the target variable. Since we're performing binary classification, the probability of correctly classifying an actual loser is given by</p>
-<p>$$P(y = 0 \mid x_{loser}) = 1-h_\theta(x_{loser})$$</p>
-<p>Assuming each training example was independently generated, the probability of correctly classifying <em>every</em> actual winner in the training set is the product of their individual probabilities: $\prod_{winners}h_\theta(x)$. Conversely, the probability of correctly classifying <em>every</em> actual loser is $\prod_{losers}(1-h_\theta(x))$. Taken together, the joint product represents the probability of correctly classifying <em>all of the training examples</em>:</p>
-<p>$$\displaystyle\prod_{y=1}h_\theta(x)\displaystyle\prod_{y=0}(1-h_\theta(x))$$</p>
-<p>This joint product can be combined and written more succinctly, and is called the <strong>likelihood</strong> of the data for a set of parameters $\theta$:</p>
-<p>$$\mathcal{L}(\theta) = \displaystyle\prod_{i=1}^{m}h_\theta({x}^{(i)})^{y^{(i)}}(1-h_\theta({x}^{(i)}))^{1-y^{(i)}}$$</p>
-<p>where $({x}^{(i)}, {y}^{(i)})$ refers to the $i$th training example and  $m$ is the number of training examples. Since we'd like to maximize the probability of correctly classifying the entire training set, we need to maximize $\mathcal{L}(\theta)$. It turns out that it's much easier to maximize its logarithm:</p>
-<p>$$\log{\mathcal{L}(\theta)} =\sum_{i=1}^{m}{y}^{(i)}\log{h_\theta(x^{(i)})} + (1 - y^{(i)})\log(1 - h_\theta(x^{(i)}))$$</p>
-<p>The above expression took two things into account: a) $\log(xy) = \log(x) + \log(y)$ and b) logarithmic functions are <a href="https://opencurriculum.org/5512/monotonically-increasing-and-decreasing-functions-an-algebraic-approach/">monotonically increasing</a>. Maximizing $\log{\mathcal{L}(\theta)}$ is also equivalent to <em>minimizing</em> its negative:</p>
-<p>$$-\log{\mathcal{L}(\theta)} = \sum_{i=1}^{m}{-y}^{(i)}\log h_\theta(x^{(i)}) - (1 - y^{(i)})\log(1 - h_\theta(x^{(i)}))$$</p>
-<p>This expression represents the probability of <em>incorrectly</em> classifying the training set, or in other words, the total error or cost of the predictions made by the classifier. The mean cost of a prediction can then serve as a convenient metric for how well the classifier performs, and is called the <strong>cost function</strong>:</p>
-<p>$$C(\theta) = \frac{1}{m}\sum_{i=1}^{m}{-y}^{(i)}\log h_\theta(x^{(i)}) - (1 - y^{(i)})\log(1 - h_\theta(x^{(i)}))$$</p>
-<p><strong>Therefore, our goal is to the identify the parameters $\theta$ that minimize the cost function.</strong> Programming the cost function would typically require nested <code>for</code> loops and/or the use of <code>sum()</code>. A more elegant and computationally efficient method takes advantageous of linear algebra to arrive at a vectorized form:</p>
-<p>$$C(\vec{\theta}) = \frac{1}{m}\Big({-\mathbf{y}}^T\log \sigma({X}{\vec\theta}) - (1 - \mathbf{y})^T\log(1 - \sigma({X}{\vec\theta}))\Big)$$
-$$\\$$
-$$\vec{\theta}=
+$$P(y = 1 \mid x_{winner}) = h_\theta(x_{winner})$$<p>where $y$ is the target variable. Since we're performing binary classification, the probability of correctly classifying an actual loser is given by</p>
+$$P(y = 0 \mid x_{loser}) = 1-h_\theta(x_{loser})$$<p>Assuming each training example was independently generated, the probability of correctly classifying <em>every</em> actual winner in the training set is the product of their individual probabilities: $\prod_{winners}h_\theta(x)$. Conversely, the probability of correctly classifying <em>every</em> actual loser is $\prod_{losers}(1-h_\theta(x))$. Taken together, the joint product represents the probability of correctly classifying <em>all of the training examples</em>:</p>
+$$\displaystyle\prod_{y=1}h_\theta(x)\displaystyle\prod_{y=0}(1-h_\theta(x))$$<p>This joint product can be combined and written more succinctly, and is called the <strong>likelihood</strong> of the data for a set of parameters $\theta$:</p>
+$$\mathcal{L}(\theta) = \displaystyle\prod_{i=1}^{m}h_\theta({x}^{(i)})^{y^{(i)}}(1-h_\theta({x}^{(i)}))^{1-y^{(i)}}$$<p>where $({x}^{(i)}, {y}^{(i)})$ refers to the $i$th training example and  $m$ is the number of training examples. Since we'd like to maximize the probability of correctly classifying the entire training set, we need to maximize $\mathcal{L}(\theta)$. It turns out that it's much easier to maximize its logarithm:</p>
+$$\log{\mathcal{L}(\theta)} =\sum_{i=1}^{m}{y}^{(i)}\log{h_\theta(x^{(i)})} + (1 - y^{(i)})\log(1 - h_\theta(x^{(i)}))$$<p>The above expression took two things into account: a) $\log(xy) = \log(x) + \log(y)$ and b) logarithmic functions are <a href="https://opencurriculum.org/5512/monotonically-increasing-and-decreasing-functions-an-algebraic-approach/">monotonically increasing</a>. Maximizing $\log{\mathcal{L}(\theta)}$ is also equivalent to <em>minimizing</em> its negative:</p>
+$$-\log{\mathcal{L}(\theta)} = \sum_{i=1}^{m}{-y}^{(i)}\log h_\theta(x^{(i)}) - (1 - y^{(i)})\log(1 - h_\theta(x^{(i)}))$$<p>This expression represents the probability of <em>incorrectly</em> classifying the training set, or in other words, the total error or cost of the predictions made by the classifier. The mean cost of a prediction can then serve as a convenient metric for how well the classifier performs, and is called the <strong>cost function</strong>:</p>
+$$C(\theta) = \frac{1}{m}\sum_{i=1}^{m}{-y}^{(i)}\log h_\theta(x^{(i)}) - (1 - y^{(i)})\log(1 - h_\theta(x^{(i)}))$$<p><strong>Therefore, our goal is to the identify the parameters $\theta$ that minimize the cost function.</strong> Programming the cost function would typically require nested <code>for</code> loops and/or the use of <code>sum()</code>. A more elegant and computationally efficient method takes advantageous of linear algebra to arrive at a vectorized form:</p>
+$$C(\vec{\theta}) = \frac{1}{m}\Big({-\mathbf{y}}^T\log \sigma({X}{\vec\theta}) - (1 - \mathbf{y})^T\log(1 - \sigma({X}{\vec\theta}))\Big)$$$$\\$$$$\vec{\theta}=
 \left[\begin{array}{cccc}
 \theta_0 \\
 \theta_1 \\
@@ -583,8 +574,7 @@ y^{(1)} \\
 y^{(2)} \\
 \vdots \\
 y^{(m)}
-\end{array}\right]$$</p>
-
+\end{array}\right]$$
 </div>
 </div>
 </div>
@@ -603,7 +593,7 @@ y^{(m)}
     <span class="p">)</span> <span class="o">/</span> <span class="n">m</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -637,7 +627,7 @@ y^{(m)}
 <span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -649,7 +639,7 @@ y^{(m)}
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -724,7 +714,7 @@ y^{(m)}
 <span class="n">y</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -736,7 +726,7 @@ y^{(m)}
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -798,13 +788,10 @@ y^{(m)}
 </ol>
 <p><strong>Here's an intuitive perspective of this algorithm:</strong> imagine a hiker that's stranded somewhere on a mountain (step 1) and wants to reach the bottom. Unfortunately, visibility is low due to thick fog—the way down isn't obvious and the hiker wants to get down as soon as possible. First, the hiker examines the immediate surroundings and identifies the direction of the steepest incline (the gradient in step 2). Next, the hiker moves a set distance, perhaps as far as is visible in the fog, in the <em>opposite</em> direction (step 3); thereby, arriving at a slightly lower position on the mountain. The hiker then reassesses the steepness again and repeats this process until he/she eventually arrives at the bottom (step 4).</p>
 <p>The gradient of $C(\theta)$ is given by its partial derivatives with respect to the parameters $\theta$:</p>
-<p>$$\frac{\partial}{\partial\theta_j}C(\theta) = \frac{1}{m}\sum_{i=1}^{m}{x_j}^{(i)}({h_\theta}(x^{(i)}) - y^{(i)})$$</p>
-<p>where $j = 0, 1\dots n$ with $n$ being the number of features. This algorithm is called <em>batch</em> gradient descent because we process <em>all</em> of the training examples prior to computing the gradient and updating the parameters. The update formula used in the algorithm for each iteration is</p>
-<p>$$\theta_j := \theta_j - \alpha\frac{\partial}{\partial\theta_j}C(\theta) = \theta_j - \frac{\alpha}{m}\sum_{i=1}^{m}{x_j}^{(i)}({h_\theta}(x^{(i)}) - y^{(i)})$$</p>
-<p>where $\alpha$ dictates the magnitude of the update (or the set distance the hiker decided to move) and is called the <strong>learning rate</strong>. If $\alpha$ is too small, we may take a long time to converge to the minimum of $C(\theta)$. On the other hand, if $\alpha$ is too large, we may overshoot the minimum and the parameters may oscillate or even diverge! Once we've converged to the minimum of $C(\theta)$, the classifier will have learned the parameters of the hypothesis and will be equipped to make predictions.</p>
+$$\frac{\partial}{\partial\theta_j}C(\theta) = \frac{1}{m}\sum_{i=1}^{m}{x_j}^{(i)}({h_\theta}(x^{(i)}) - y^{(i)})$$<p>where $j = 0, 1\dots n$ with $n$ being the number of features. This algorithm is called <em>batch</em> gradient descent because we process <em>all</em> of the training examples prior to computing the gradient and updating the parameters. The update formula used in the algorithm for each iteration is</p>
+$$\theta_j := \theta_j - \alpha\frac{\partial}{\partial\theta_j}C(\theta) = \theta_j - \frac{\alpha}{m}\sum_{i=1}^{m}{x_j}^{(i)}({h_\theta}(x^{(i)}) - y^{(i)})$$<p>where $\alpha$ dictates the magnitude of the update (or the set distance the hiker decided to move) and is called the <strong>learning rate</strong>. If $\alpha$ is too small, we may take a long time to converge to the minimum of $C(\theta)$. On the other hand, if $\alpha$ is too large, we may overshoot the minimum and the parameters may oscillate or even diverge! Once we've converged to the minimum of $C(\theta)$, the classifier will have learned the parameters of the hypothesis and will be equipped to make predictions.</p>
 <p>A vectorized form of the update formula is</p>
-<p>$$\vec{\theta} := \vec{\theta} - \frac{\alpha}{m}{X^T}({\sigma(X\vec{\theta}) - \mathbf{y}})$$</p>
-<p>It's also probably a good idea to keep track of the value of the cost function during each iteration to confirm that we've indeed converged to the minimum.</p>
+$$\vec{\theta} := \vec{\theta} - \frac{\alpha}{m}{X^T}({\sigma(X\vec{\theta}) - \mathbf{y}})$$<p>It's also probably a good idea to keep track of the value of the cost function during each iteration to confirm that we've indeed converged to the minimum.</p>
 
 </div>
 </div>
@@ -828,7 +815,7 @@ y^{(m)}
     <span class="k">return</span> <span class="n">current_theta</span><span class="p">,</span> <span class="n">cost_values</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -858,7 +845,7 @@ y^{(m)}
 <span class="n">iterations</span> <span class="o">=</span> <span class="mi">1500</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -887,7 +874,7 @@ y^{(m)}
     <span class="nb">print</span><span class="p">(</span><span class="s1">'theta</span><span class="si">{}</span><span class="s1"> = </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">parameter</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -899,7 +886,7 @@ y^{(m)}
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -938,7 +925,7 @@ theta2 = [ 9.47343264]
 <span class="p">);</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -950,7 +937,7 @@ theta2 = [ 9.47343264]
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -971,8 +958,7 @@ theta2 = [ 9.47343264]
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Excellent, the cost function converges so we don't need to alter our choices for $\alpha$ and <code>iterations</code>. Let's also use the learned parameters to visualize the decision boundary of the classifier using the equation of the line from earlier:</p>
-<p>$$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$</p>
-
+$$x_2=-\frac{\theta_0}{\theta_2}-{\frac{\theta_1}{\theta_2}}x_1$$
 </div>
 </div>
 </div>
@@ -1002,7 +988,7 @@ theta2 = [ 9.47343264]
 <span class="p">);</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1014,7 +1000,7 @@ theta2 = [ 9.47343264]
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -1051,7 +1037,7 @@ theta2 = [ 9.47343264]
 <span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">test_example</span> <span class="o">@</span> <span class="n">theta</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1063,7 +1049,7 @@ theta2 = [ 9.47343264]
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -1098,7 +1084,7 @@ theta2 = [ 9.47343264]
     <span class="k">return</span> <span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span> <span class="o">@</span> <span class="n">theta</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.5</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1114,7 +1100,7 @@ theta2 = [ 9.47343264]
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">==</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">m</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1126,7 +1112,7 @@ theta2 = [ 9.47343264]
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -1164,7 +1150,7 @@ theta2 = [ 9.47343264]
 <span class="n">classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1176,7 +1162,7 @@ theta2 = [ 9.47343264]
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -1319,7 +1305,7 @@ MathJax.Hub.Config({
 </div>
 
 
-            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+            <script src="../../assets/js/jquery.min.js"></script><script src="../../assets/js/bootstrap.min.js"></script><script src="../../assets/js/moment-with-locales.min.js"></script><script src="../../assets/js/fancydates.js"></script><script src="../../assets/js/jquery.colorbox-min.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
     moment.locale("en");
     fancydates(2, "YYYY-MM-DD HH:mm");
     </script><!-- end fancy dates --><script>
