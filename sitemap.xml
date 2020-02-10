@@ -7,11 +7,11 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://inmachineswetrust.com/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-01-25T15:48:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/archive.html</loc>
-  <lastmod>2020-01-24T02:18:00Z</lastmod>
+  <lastmod>2020-01-25T15:48:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/</loc>
@@ -191,7 +191,7 @@
  </url>
  <url>
   <loc>https://inmachineswetrust.com/index-1.html</loc>
-  <lastmod>2020-01-24T02:18:00Z</lastmod>
+  <lastmod>2020-01-25T15:41:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/pages/about/</loc>
@@ -232,6 +232,10 @@
  <url>
   <loc>https://inmachineswetrust.com/posts/understanding-generators/</loc>
   <lastmod>2019-07-20T20:00:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://inmachineswetrust.com/posts/understanding-git-checkout-reset/</loc>
+  <lastmod>2020-01-25T15:03:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/understanding-iterators/</loc>

@@ -1,5 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>In Machines We Trust (Posts about git)</title><link>https://inmachineswetrust.com/</link><description></description><atom:link href="https://inmachineswetrust.com/categories/git.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 24 Jan 2020 02:18:48 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>An opinionated guide for gearing up for data science</title><link>https://inmachineswetrust.com/posts/dev-setup/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>In Machines We Trust (Posts about git)</title><link>https://inmachineswetrust.com/</link><description></description><atom:link href="https://inmachineswetrust.com/categories/git.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 25 Jan 2020 15:41:28 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>How git reset and checkout really work</title><link>https://inmachineswetrust.com/posts/understanding-git-checkout-reset/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
+div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h4 id="Two-pointers-of-git"&gt;Two pointers of git&lt;a class="anchor-link" href="https://inmachineswetrust.com/posts/understanding-git-checkout-reset/#Two-pointers-of-git"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;BRANCH&lt;/code&gt; ref pointer references the latest commit (or "tip") of a branch&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;HEAD&lt;/code&gt; ref pointer references (typically) a &lt;code&gt;BRANCH&lt;/code&gt; ref pointer, and identifies the current branch and commit&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;def func():
+    do stuff&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id="Commit-level-reset"&gt;Commit-level reset&lt;a class="anchor-link" href="https://inmachineswetrust.com/posts/understanding-git-checkout-reset/#Commit-level-reset"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git reset [commit]&lt;/code&gt; moves &lt;code&gt;BRANCH&lt;/code&gt; ref pointer &lt;em&gt;and&lt;/em&gt; &lt;code&gt;HEAD&lt;/code&gt; ref pointer to &lt;code&gt;[commit]&lt;/code&gt;, resulting in traveling back to &lt;code&gt;[commit]&lt;/code&gt; (if &lt;code&gt;[commit]&lt;/code&gt; is on the same branch)&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--soft&lt;/code&gt; argument keeps all changes made since &lt;code&gt;[commit]&lt;/code&gt; in both the index and the working directory&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--mixed&lt;/code&gt; (default) argument keeps all changes made since &lt;code&gt;[commit]&lt;/code&gt; in only the working directory—all changes in the index are unstaged. If &lt;code&gt;[commit] == HEAD&lt;/code&gt;, this action effectively unstages all changes in the current index.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--hard&lt;/code&gt; argument &lt;em&gt;discards all changes&lt;/em&gt; made since &lt;code&gt;[commit]&lt;/code&gt; by unstaging all changes in the index &lt;em&gt;and&lt;/em&gt; deleting those changes from the working directory too. If &lt;code&gt;[commit] == HEAD&lt;/code&gt;, this action resets the branch to the previous commit and discards any changes made.&lt;/li&gt;
+&lt;li&gt;If &lt;code&gt;[commit] != HEAD&lt;/code&gt;, all commits succeeding &lt;code&gt;[commit]&lt;/code&gt;, including the one referenced by &lt;code&gt;HEAD&lt;/code&gt;, are orphaned and deleted in the next garbage collection (default is 30 days)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="Commit-or-branch-level-checkout"&gt;Commit or branch-level checkout&lt;a class="anchor-link" href="https://inmachineswetrust.com/posts/understanding-git-checkout-reset/#Commit-or-branch-level-checkout"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;git checkout [commit]&lt;/code&gt; moves &lt;code&gt;HEAD&lt;/code&gt; ref pointer (from its &lt;code&gt;BRANCH&lt;/code&gt; ref pointer) directly to &lt;code&gt;[commit]&lt;/code&gt;— &lt;code&gt;BRANCH&lt;/code&gt; ref pointer does &lt;em&gt;not&lt;/em&gt; move&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Because &lt;code&gt;HEAD&lt;/code&gt; ref pointer no longer references a &lt;code&gt;BRANCH&lt;/code&gt; ref pointer, git enters a "detached head state" (limbo)—here, new commits are &lt;em&gt;not&lt;/em&gt; recorded&lt;/li&gt;
+&lt;li&gt;To leave the detached head state either create new branch or simply check out an existing branch&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;git checkout branch&lt;/code&gt; moves the &lt;code&gt;HEAD&lt;/code&gt; ref pointer to &lt;code&gt;BRANCH&lt;/code&gt; ref pointer—&lt;code&gt;BRANCH&lt;/code&gt; ref pointer does &lt;em&gt;not&lt;/em&gt; move&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; during a &lt;code&gt;git checkout&lt;/code&gt;, both the index and the working directory are updated to match the state of &lt;code&gt;[commit/branch]&lt;/code&gt;. If there are &lt;em&gt;tracked&lt;/em&gt; changes in the index and/or the working directory, they must be committed or stashed before the checkout can proceed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="File-level-reset"&gt;File-level reset&lt;a class="anchor-link" href="https://inmachineswetrust.com/posts/understanding-git-checkout-reset/#File-level-reset"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git reset [commit/branch] file&lt;/code&gt; updates the index (but &lt;em&gt;not&lt;/em&gt; the working directory) with the version of &lt;code&gt;file&lt;/code&gt; from &lt;code&gt;[commit/branch]&lt;/code&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;HEAD&lt;/code&gt; and &lt;code&gt;BRANCH&lt;/code&gt; ref pointers do &lt;em&gt;not&lt;/em&gt; move&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--soft&lt;/code&gt;, &lt;code&gt;--mixed&lt;/code&gt;, and &lt;code&gt;--hard&lt;/code&gt; arguments are not used&lt;/li&gt;
+&lt;li&gt;If &lt;code&gt;[commit] == HEAD&lt;/code&gt;, git fetches the version of &lt;code&gt;file&lt;/code&gt; from &lt;code&gt;HEAD&lt;/code&gt;, which is simply the previous version of &lt;code&gt;file&lt;/code&gt; and updates the index. Therefore, this action effectively unstages any changes to &lt;code&gt;file&lt;/code&gt; in the index.&lt;/li&gt;
+&lt;li&gt;If the version of &lt;code&gt;file&lt;/code&gt; from &lt;code&gt;[commit/branch]&lt;/code&gt; is different from the one in the working directory, the latter will &lt;em&gt;not&lt;/em&gt; be overwritten in the working directory but now deemed "modified"&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="File-level-checkout"&gt;File-level checkout&lt;a class="anchor-link" href="https://inmachineswetrust.com/posts/understanding-git-checkout-reset/#File-level-checkout"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git checkout [commit/branch] file&lt;/code&gt; updates the index &lt;em&gt;and&lt;/em&gt; the working directory with the version of &lt;code&gt;file&lt;/code&gt; from &lt;code&gt;[commit/branch]&lt;/code&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;HEAD&lt;/code&gt; and &lt;code&gt;BRANCH&lt;/code&gt; ref pointers do &lt;em&gt;not&lt;/em&gt; move&lt;/li&gt;
+&lt;li&gt;If &lt;code&gt;[commit] == HEAD&lt;/code&gt;, git fetches the version of &lt;code&gt;file&lt;/code&gt; from &lt;code&gt;HEAD&lt;/code&gt;, which is simply the previous version of &lt;code&gt;file&lt;/code&gt; and updates the index and the working directory. Therefore, this action effectively unstages any changes to &lt;code&gt;file&lt;/code&gt; in the index and deletes those changes from the working directory too.&lt;/li&gt;
+&lt;li&gt;If the version of &lt;code&gt;file&lt;/code&gt; from &lt;code&gt;[commit/branch]&lt;/code&gt; is different from the one in the working directory, the latter is overwritten with the former in the working directory (&lt;em&gt;dangerous&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>git</category><guid>https://inmachineswetrust.com/posts/understanding-git-checkout-reset/</guid><pubDate>Tue, 07 Jan 2020 01:30:00 GMT</pubDate></item><item><title>An opinionated guide for gearing up for data science</title><link>https://inmachineswetrust.com/posts/dev-setup/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
 div.prompt {
 	display: none;
 }
