@@ -7,250 +7,246 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://inmachineswetrust.com/</loc>
-  <lastmod>2020-01-25T15:48:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/archive.html</loc>
-  <lastmod>2020-01-25T15:48:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/anaconda/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/classification/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/clustering/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/conda/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/data-science/</loc>
-  <lastmod>2019-07-20T19:59:00Z</lastmod>
+  <lastmod>2020-06-20T17:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/data-visualization/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/data-wrangling/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/deep-learning/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/exploratory-analysis/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/feature-engineering/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/generator-function/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/generator/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/git/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/gradient-descent/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/insight/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/iterable/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/iterator/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/jupyter/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/k-means/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/keras/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/learning-curves/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/linear-algebra/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/linear-regression/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/linux/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/logistic-regression/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/machine-learning/</loc>
-  <lastmod>2019-07-20T19:59:00Z</lastmod>
+  <lastmod>2020-06-20T17:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/n-grams/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/natural-language-processing/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/nested-cross-validation/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/nltk/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/one-hot-encoding/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/ordinary-least-squares/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/pandas/</loc>
-  <lastmod>2019-07-20T19:59:00Z</lastmod>
+  <lastmod>2020-06-20T17:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/python/</loc>
-  <lastmod>2019-07-20T19:59:00Z</lastmod>
+  <lastmod>2020-06-20T17:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/regularization/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/scikit-learn/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/seaborn/</loc>
-  <lastmod>2019-07-20T19:59:00Z</lastmod>
+  <lastmod>2020-06-20T17:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/supervised-learning/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/support-vector-machines/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/tensorflow/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/tf-idf/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/categories/unsupervised-learning/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/galleries/</loc>
-  <lastmod>2019-07-20T19:59:00Z</lastmod>
+  <lastmod>2020-06-20T17:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/index-1.html</loc>
-  <lastmod>2020-01-25T15:41:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/pages/about/</loc>
-  <lastmod>2019-07-20T19:59:00Z</lastmod>
+  <lastmod>2020-06-20T17:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/building-logistic-regression/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/deep-learning-setup/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/dev-setup/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/drop-first-columns/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/exploring-pokemon-dataset/</loc>
-  <lastmod>2019-07-20T19:59:00Z</lastmod>
+  <lastmod>2020-06-20T17:36:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/k-means_clustering/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/mushroom-classification/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/sms-spam-filter/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/understanding-generators/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
- </url>
- <url>
-  <loc>https://inmachineswetrust.com/posts/understanding-git-checkout-reset/</loc>
-  <lastmod>2020-01-25T15:03:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/understanding-iterators/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/update-august2017/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/update-december2017/</loc>
-  <lastmod>2019-07-20T20:00:00Z</lastmod>
+  <lastmod>2020-06-20T17:49:00Z</lastmod>
  </url>
  <url>
   <loc>https://inmachineswetrust.com/posts/what-is-data-science/</loc>
-  <lastmod>2019-07-20T19:59:00Z</lastmod>
+  <lastmod>2020-06-20T17:36:00Z</lastmod>
  </url>
 </urlset>
