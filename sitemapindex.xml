@@ -55,7 +55,7 @@
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/git.xml</loc>
-  <lastmod>2020-06-20T17:49:00Z</lastmod>
+  <lastmod>2020-06-21T20:22:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/categories/gradient-descent.xml</loc>
@@ -154,6 +154,10 @@
   <lastmod>2020-06-20T17:36:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>https://inmachineswetrust.com/categories/software-development.xml</loc>
+  <lastmod>2020-06-21T20:22:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>https://inmachineswetrust.com/categories/supervised-learning.xml</loc>
   <lastmod>2020-06-20T17:49:00Z</lastmod>
  </sitemap>
@@ -174,15 +178,19 @@
   <lastmod>2020-06-20T17:49:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>https://inmachineswetrust.com/categories/version-control.xml</loc>
+  <lastmod>2020-06-21T20:22:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>https://inmachineswetrust.com/galleries/rss.xml</loc>
   <lastmod>2020-06-20T17:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/rss.xml</loc>
-  <lastmod>2020-06-20T17:49:00Z</lastmod>
+  <lastmod>2020-06-21T20:22:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://inmachineswetrust.com/sitemap.xml</loc>
-  <lastmod>2020-06-20T17:49:00Z</lastmod>
+  <lastmod>2020-06-21T20:22:00Z</lastmod>
  </sitemap>
 </sitemapindex>

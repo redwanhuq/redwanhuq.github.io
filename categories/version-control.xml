@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>In Machines We Trust (Posts about version control)</title><link>https://inmachineswetrust.com/</link><description></description><atom:link href="https://inmachineswetrust.com/categories/version-control.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 21 Jun 2020 20:22:24 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>He who dove too deep into git checkout and git reset, Part 1</title><link>https://inmachineswetrust.com/posts/git-deep-dive-checkout/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
+div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;I love git. I think it's a brilliant masterpiece of design and programming by Linus Torvalds and one of the greatest codebases ever written. To me it's more than just a tool—it's art. Ok I'm a little weird but we know that today git is the de facto tool for version control and an unequivocal cornerstone of successful software development.&lt;/p&gt;
+&lt;p&gt;In this blog post series, I'm going to dive &lt;em&gt;really&lt;/em&gt; deep into the inner workings of the commands &lt;code&gt;git checkout&lt;/code&gt; and &lt;code&gt;git reset&lt;/code&gt;, break them down logically, and expose the method to the madness. You might already be familiar with a few aspects of these commands, but both of them conceal surprisingly powerful and useful functionality. Some of it might be new territory but I hope a lot of it will absolutely blow your mind. Either way, let's started with &lt;code&gt;git checkout&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://inmachineswetrust.com/posts/git-deep-dive-checkout/"&gt;Read more…&lt;/a&gt; (13 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>git</category><category>software development</category><category>version control</category><guid>https://inmachineswetrust.com/posts/git-deep-dive-checkout/</guid><pubDate>Sat, 20 Jun 2020 14:00:00 GMT</pubDate></item></channel></rss>

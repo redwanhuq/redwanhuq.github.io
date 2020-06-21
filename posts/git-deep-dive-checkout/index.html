@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>He who dove too deep into git checkout and git reset, Part 1 | In Machines We Trust</title>
+<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/html4css1.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#0078D7">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://inmachineswetrust.com/posts/git-deep-dive-checkout/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<meta name="author" content="Red Huq">
+<link rel="prev" href="../drop-first-columns/" title="Think twice before dropping that first one-hot encoded column" type="text/html">
+<meta property="og:site_name" content="In Machines We Trust">
+<meta property="og:title" content="He who dove too deep into git checkout and git reset, Part 1">
+<meta property="og:url" content="https://inmachineswetrust.com/posts/git-deep-dive-checkout/">
+<meta property="og:description" content="div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+
+
+
+
+I love git. I think it's a bril">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-06-20T09:00:00-05:00">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="software development">
+<meta property="article:tag" content="version control">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://inmachineswetrust.com/">
+
+                <span id="blog-title">In Machines We Trust</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../pages/about/">About</a>
+                </li>
+<li>
+<a href="../../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../../categories/">Tags</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">He who dove too deep into git checkout and git reset, Part 1</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Red Huq
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2020-06-20T09:00:00-05:00" itemprop="datePublished" title="2020-06-20 09:00">2020-06-20 09:00</time></a></p>
+                <p class="commentline">
+        
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/post14.html">Comments</a>
+
+
+            
+
+        </p>
+</div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<style type="text/css">
+div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+</style>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I love git. I think it's a brilliant masterpiece of design and programming by Linus Torvalds and one of the greatest codebases ever written. To me it's more than just a tool—it's art. Ok I'm a little weird but we know that today git is the de facto tool for version control and an unequivocal cornerstone of successful software development.</p>
+<p>In this blog post series, I'm going to dive <em>really</em> deep into the inner workings of the commands <code>git checkout</code> and <code>git reset</code>, break them down logically, and expose the method to the madness. You might already be familiar with a few aspects of these commands, but both of them conceal surprisingly powerful and useful functionality. Some of it might be new territory but I hope a lot of it will absolutely blow your mind. Either way, let's started with <code>git checkout</code>.</p>
+<!-- TEASER_END -->
+
+<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">¶</a>
+</h2>
+<ol>
+<li><a href="#cell1">A pointer or two about a pointer or two</a></li>
+<li><a href="#cell2">Checking out a branch</a></li>
+<li><a href="#cell3">Checking out a commit</a></li>
+<li><a href="#cell4">Demystifying the detached HEAD state</a></li>
+<li><a href="#cell5">When and why git checkout sometimes doesn't work</a></li>
+<li><a href="#cell6">Thoughts and what's next</a></li>
+</ol>
+<p><a id="cell1"></a></p>
+<h2 id="A-pointer-or-two-about-a-pointer-or-two">A pointer or two about a pointer or two<a class="anchor-link" href="#A-pointer-or-two-about-a-pointer-or-two">¶</a>
+</h2>
+<p>To understand how <code>git checkout</code> and <code>git reset</code> work, we're going to need to visit a place that most developers pretend doesn't exist, if not dread. Yes, we're going to visit the <code>.git</code> directory of a git repository.</p>
+<p>The <code>.git</code> directory is chock full of information about a codebase and its history, but the only components we'll be needing here are two types of pointers.</p>
+<p>To help explain, I'll be using <a href="https://github.com/redwanhuq/toy_repo_for_blog_post">this toy repository</a> below—feel free to clone it and follow along. In the repository, <a href="https://github.com/redwanhuq/toy_repo_for_blog_post/network">you can see</a> I made a few commits on the <code>master</code> branch, and then added a few commits on its two child branches <code>branch1</code> and <code>branch2</code>.</p>
+<h3 id="The-branch-reference">The branch reference<a class="anchor-link" href="#The-branch-reference">¶</a>
+</h3>
+<p>The first pointer is a <strong>branch reference</strong> (let's call it a <code>BRANCH</code> ref from now on) and it <strong>identifies the most recent commit—the "tip" or present state—of a branch by storing its SHA-1 value</strong> in a file within the directory <code>.git/refs/heads/</code>. Let's take a peek at the <code>BRANCH</code> ref for the <code>master</code> branch.</p>
+<p><img src="../../images/post14/image1.png"></p>
+<p>We see that the abbreviated SHA-1 value for the most recent commit on the <code>master</code> branch matches the value stored in <code>.git/refs/heads/master</code>. As you may have guessed,  the branches <code>branch1</code> and <code>branch2</code> have their own <code>BRANCH</code> refs.</p>
+<h3 id="The-HEAD-reference">The HEAD reference<a class="anchor-link" href="#The-HEAD-reference">¶</a>
+</h3>
+<p>In git repositories, we typically have numerous branches that we switch between frequently. How does git know which branch we're <em>currently</em> on? That responsibility is given to another type of pointer called the <strong>HEAD reference</strong> (or the <code>HEAD</code> ref). Sound familiar? When interacting with git in the command line, you've probably seen the <code>HEAD</code> ref rear its head (sorry, couldn't help it).</p>
+<p>While there's a <code>BRANCH</code> ref for each branch, there's only one <code>HEAD</code> ref. By default, <strong>the <code>HEAD</code> ref file stores a <em>pointer</em> to the <code>BRANCH</code> ref of the <em>current</em> branch.</strong> Because we're on the <code>master</code> branch right now, let's visualize what this looks like.</p>
+<p><img src="../../images/post14/git_image1.png"></p>
+<p>Now let's examine the <code>HEAD</code> ref file in the <code>.git</code> directory.</p>
+<p><img src="../../images/post14/image2.png"></p>
+<p>We can see that the file <code>.git/HEAD</code> contains a pointer to the <code>BRANCH</code> ref for the <code>master</code> branch—our current branch. To summarize, think of the <code>HEAD</code> ref as a marker for where you are currently in the repository.</p>
+<p><a id="cell2"></a></p>
+<h2 id="Checking-out-a-branch">Checking out a branch<a class="anchor-link" href="#Checking-out-a-branch">¶</a>
+</h2>
+<p>Let's use our newfound knowledge on these two types of pointers to unravel a command most developers are very familiar with and use often: <code>git checkout &lt;branch&gt;</code>—it lets us switch from one branch to another.</p>
+<p>When switching branches, <strong>git assigns the <code>HEAD</code> ref to a different <code>BRANCH</code> ref.</strong> That's it.</p>
+<p>Here's the updated diagram after executing <code>git checkout branch1</code>.</p>
+<p><img src="../../images/post14/git_image2.png"></p>
+<p>Let's also take a look at the <code>HEAD</code> ref file in the <code>.git</code> directory.</p>
+<p><img src="../../images/post14/image3.png"></p>
+<p>I've hacked my terminal to make it pretty, but try executing the default <code>git log</code> while on <code>branch1</code>. That very first line in the log has been concealing the truth the entire time!</p>
+<p><a id="cell3"></a></p>
+<h2 id="Checking-out-a-commit">Checking out a commit<a class="anchor-link" href="#Checking-out-a-commit">¶</a>
+</h2>
+<p>If <code>git checkout &lt;branch&gt;</code> moves us to another branch, then <code>git checkout &lt;commit&gt;</code> (where <code>&lt;commit&gt;</code> is a SHA-1 value) probably moves us to another commit? Indeed! But what does that even mean, and what happens to the <code>HEAD</code> ref?</p>
+<p>I'll answer the second question first: <strong><code>git checkout &lt;commit&gt;</code> assigns the <code>HEAD</code> ref directly to a commit</strong>, i.e., the <code>HEAD</code> ref file no longer stores a pointer to a <code>BRANCH</code> ref, but rather stores the commit's SHA-1 value.</p>
+<p>If we were to checkout the first commit on <code>branch1</code> (SHA-1 <code>2aaf9c0</code>), the updated diagram would look like:</p>
+<p><img src="../../images/post14/git_image3.png"></p>
+<p>Now let's see what happens when we emulate this in the terminal and inspect the <code>HEAD</code> ref file.</p>
+<p><img src="../../images/post14/image4.png"></p>
+<p>Ignore the scary looking "detached HEAD state" message and focus on the contents of the <code>HEAD</code> ref file. As we can see, it no longer contains a pointer but the full SHA-1 value for the commit we checked out.</p>
+<p><a id="cell4"></a></p>
+<h2 id="Demystifying-the-detached-HEAD-state">Demystifying the detached HEAD state<a class="anchor-link" href="#Demystifying-the-detached-HEAD-state">¶</a>
+</h2>
+<p>I still remember  the first time I inadvertently found myself face-to-face with the scary "detached HEAD state" (is this limbo?) and those austere messages from git. It's actually pretty straightforward once you break it down.</p>
+<p>Because the <code>HEAD</code> ref no longer points to a <code>BRANCH</code> ref, it's not coupled to a branch and its most recent commit; hence the aptly named <strong>detached <code>HEAD</code> state</strong>. But let's think about what this entails. We know a <code>BRANCH</code> ref identifies the present state of a branch, while the <code>HEAD</code> ref tells us where we are currently in the repository. That suggests checking out a commit enables us to visit a previous state of the codebase—effectively travelling back in time!</p>
+<p><img src="../../images/post14/time_travel.jpg"></p>
+<p>We can also move forward in time if we checkout a more recent commit, say, the second commit on <code>branch1</code> (SHA-1 <code>138ef91</code>). Here's the updated diagram after executing <code>git checkout 138ef91</code>.</p>
+<p><img src="../../images/post14/git_image4.png"></p>
+<p>The target commit can even be the most recent commit on a branch, but checking out a commit will always result in entering a detached <code>HEAD</code> state.</p>
+<h3 id="Using-the-detached-HEAD-state-effectively">Using the detached HEAD state effectively<a class="anchor-link" href="#Using-the-detached-HEAD-state-effectively">¶</a>
+</h3>
+<p>Why would anyone want to be in a detached <code>HEAD</code> state?</p>
+<p>For starters, a detached <code>HEAD</code> state can be <strong>your best friend when fixing bugs</strong>. Say we discover a bug but don't know when or how it was introduced. By checking out past commits, we can regress to a state when the code was bug-free and then identify the commit responsible. If you adhered to git best practices by submitting atomic commits with informative commit messages, then finding the culpable commit is straightforward because you've left yourself numerous <a href="https://inmachineswetrust.com/posts/dev-setup/#Using-git-effectively">breadcrumbs</a>.</p>
+<p>Fixing the bug would be even easier—you could just revert that commit without worry! There's even a <a href="https://git-scm.com/docs/git-bisect">handy git command</a> to systematically find the bug using binary search. But if your commits were bloated with all sorts of changes and the commit messages were broad and ambiguous, then may god help you.</p>
+<p>Another great use of a detached <code>HEAD</code> state is for <strong>experimentation</strong>. We can play around with a previous state of the codebase, and even submit commits in the local repository. But once we leave the detached <code>HEAD</code> state, these commits will be lost. To keep these commits, simply create a new branch.</p>
+<h3 id="Leaving-the-detached-HEAD-state">Leaving the detached HEAD state<a class="anchor-link" href="#Leaving-the-detached-HEAD-state">¶</a>
+</h3>
+<p>There's two ways to exit a detached <code>HEAD</code> state: at any point, <strong>either create a new branch or switch to an existing one.</strong> Why do these work? Because first, both options involve <em>checking out a branch</em>. Second, we already know that checking out a branch assigns the <code>HEAD</code> ref to a different <code>BRANCH</code> ref (either newly created or an existing one, respectively); either way, the <code>HEAD</code> ref gets "reattached".</p>
+<p>We'll demo this by checking out the second commit of <code>branch1</code>, creating a new file, submitting a commit, and then finally creating a new branch <code>branch3</code>. The updated diagram would look like:</p>
+<p><img src="../../images/post14/git_image5.png"></p>
+<p>Next, let's execute the corresponding  commands in the terminal.</p>
+<p><img src="../../images/post14/image5.png"></p>
+<p>Notice that creating <code>branch3</code> not only let us leave the detached <code>HEAD</code> state, but the contents of the <code>HEAD</code> ref file once again oints to a <code>BRANCH</code> ref.</p>
+<p><a id="cell5"></a></p>
+<h2 id="When-and-why-git-checkout-sometimes-doesn't-work">When and why git checkout sometimes doesn't work<a class="anchor-link" href="#When-and-why-git-checkout-sometimes-doesn't-work">¶</a>
+</h2>
+<p>Sometimes checking out commits (<code>git checkout &lt;commit&gt;</code>) or existing branches (<code>git checkout &lt;branch&gt;</code>) fails and git tells us</p>
+<blockquote>
+<p>Please commit your changes or stash them before you switch branches. Aborting</p>
+</blockquote>
+<p>In this final section, we'll explain when and why this scenario occurs and how to deal with it.</p>
+<p>Let's say we made a change—either modified the contents of a file, deleted it, or added a new file entirely. If that change exists in our working directory or index (some call it the staging area), attempting to checkout a commit or an existing branch will fail <em>if that change is in conflict</em> with the state of the working directory or index, respectively, of the target commit or branch.</p>
+<p>I'll admit that's a lot to digest so to help explain it, let's start on <code>branch1</code>, modify <code>file1.py</code> (i.e., introduce a change in the working directory), and try to switch to <code>branch2</code>, which also contains a <code>file1.py</code>.</p>
+<p><img src="../../images/post14/image6.png"></p>
+<p>Because our changed <code>file1.py</code> in the working directory would be overwritten by the same file in the working directory on <code>branch2</code>, git actually does us a favor and asks us what we'd like to do with the change we made (hey it could be important). And we have 3 options: <strong>either commit, stash, or discard the changes.</strong> After selecting one of these options, we'd be free to switch to <code>branch2</code>.</p>
+<p>The same rules apply if:</p>
+<ul>
+<li>we tried to switch branches but the above change existed in the index instead of the working directory</li>
+<li>we attempted to checkout a commit, instead of a branch, that had a conflicting version of <code>file1.py</code>
+</li>
+</ul>
+<p>To really hit this home, let's introduce a different change by creating a new file <code>file3.py</code> on <code>branch1</code>, <em>adding it to the index</em>, and then attempting to switch to <code>branch2</code>.</p>
+<p><img src="../../images/post14/image7.png"></p>
+<p>Notice that git doesn't stop us from checking out <code>branch2</code>. In fact, git allows us to bring that change over to <code>branch2</code>. This is because <code>branch2</code> doesn't already have a <code>file3.py</code> in its index and therefore, no conflict is present.</p>
+<p>One last point and it might be obvious but <strong>checking out a branch will <em>never</em> fail when creating a new branch</strong> regardless of what changes are currently present in the working directory or index. This makes sense because the working directory and index of a new branch will never, by definition, be in conflict with the original branch.</p>
+<p>In summary, during a <strong><code>git checkout &lt;branch&gt;</code> or <code>git checkout &lt;commit&gt;</code>, both the working directory and index will be updated</strong>. If there are any conflicts present, we'd need to address them.</p>
+<p><a id="cell6"></a></p>
+<h2 id="Thoughts-and-what's-next">Thoughts and what's next<a class="anchor-link" href="#Thoughts-and-what's-next">¶</a>
+</h2>
+<p>We all know that git has a steep learning curve, mainly due to its abstract nature. The fact that most training sessions ask newcomers to memorize commands doesn't help at all. Learning git by memorizing and regurgitating didn't work for me, and I'm positive that applies to most folks. Only after dissecting a command, unraveling how it works, and understanding the underlying logic driving its functionality did I feel proficient.</p>
+<p>I know this was probably more than you ever expected to know about using <code>git checkout</code>, but I'm hoping it empowered you to use this command more confidently and effectively so you spend more time developing and spend less time perusing StackOverflow or googling to refresh your memory.</p>
+<p>The next command I plan to cover is <code>git reset</code>; it's not as straightforward as <code>git checkout</code>, but everything I covered here will serve as building blocks to digesting <code>git reset</code>. So keep an eye out for a future blog post on this command as well how to use both <code>git checkout</code> and <code>git reset</code> at the <em>file</em> level...</p>
+
+</div>
+</div>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/git/" rel="tag">git</a></li>
+            <li><a class="tag p-category" href="../../categories/software-development/" rel="tag">software development</a></li>
+            <li><a class="tag p-category" href="../../categories/version-control/" rel="tag">version control</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../drop-first-columns/" rel="prev" title="Think twice before dropping that first one-hot encoded column">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="machinemade",
+            disqus_url="https://inmachineswetrust.com/posts/git-deep-dive-checkout/",
+        disqus_title="He who dove too deep into git checkout and git reset, Part 1",
+        disqus_identifier="cache/posts/post14.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha256-SDRP1VVYu+tgAGKhddBSl5+ezofHKZeI+OzxakbIe/Y=" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'center' to center equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article><script>var disqus_shortname="machinemade";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer"><div class="text-center">
+<p>
+<span class="fa-stack fa-2x">
+  <a href="../../rss.xml">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-rss fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://twitter.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-twitter fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://github.com/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-github fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="https://www.linkedin.com/in/redwanhuq">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-linkedin fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+<span class="fa-stack fa-2x">
+  <a href="mailto:endigo85@gmail.com">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-envelope fa-inverse fa-stack-1x"></i>
+  </a>
+</span>
+</p>
+<p>
+  Contents © 2020  <a href="mailto:endigo85@gmail.com">Red Huq</a>
+  
+  —
+  Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a>
+</p>
+</div>
+
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../assets/js/jquery.min.js"></script><script src="../../assets/js/bootstrap.min.js"></script><script src="../../assets/js/moment-with-locales.min.js"></script><script src="../../assets/js/fancydates.js"></script><script src="../../assets/js/jquery.colorbox-min.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(2, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90799006-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

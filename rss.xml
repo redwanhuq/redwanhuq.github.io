@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>In Machines We Trust</title><link>https://inmachineswetrust.com/</link><description>My journey to become a data scientist</description><atom:link href="https://inmachineswetrust.com/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 20 Jun 2020 17:49:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Think twice before dropping that first one-hot encoded column</title><link>https://inmachineswetrust.com/posts/drop-first-columns/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>In Machines We Trust</title><link>https://inmachineswetrust.com/</link><description>My journey to become a data scientist</description><atom:link href="https://inmachineswetrust.com/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 21 Jun 2020 20:22:24 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>He who dove too deep into git checkout and git reset, Part 1</title><link>https://inmachineswetrust.com/posts/git-deep-dive-checkout/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
+div.prompt {
+	display: none;
+}
+
+div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;I love git. I think it's a brilliant masterpiece of design and programming by Linus Torvalds and one of the greatest codebases ever written. To me it's more than just a tool—it's art. Ok I'm a little weird but we know that today git is the de facto tool for version control and an unequivocal cornerstone of successful software development.&lt;/p&gt;
+&lt;p&gt;In this blog post series, I'm going to dive &lt;em&gt;really&lt;/em&gt; deep into the inner workings of the commands &lt;code&gt;git checkout&lt;/code&gt; and &lt;code&gt;git reset&lt;/code&gt;, break them down logically, and expose the method to the madness. You might already be familiar with a few aspects of these commands, but both of them conceal surprisingly powerful and useful functionality. Some of it might be new territory but I hope a lot of it will absolutely blow your mind. Either way, let's started with &lt;code&gt;git checkout&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://inmachineswetrust.com/posts/git-deep-dive-checkout/"&gt;Read more…&lt;/a&gt; (13 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>git</category><category>software development</category><category>version control</category><guid>https://inmachineswetrust.com/posts/git-deep-dive-checkout/</guid><pubDate>Sat, 20 Jun 2020 14:00:00 GMT</pubDate></item><item><title>Think twice before dropping that first one-hot encoded column</title><link>https://inmachineswetrust.com/posts/drop-first-columns/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
 div.prompt {
 	display: none;
 }
@@ -148,20 +165,4 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;In a &lt;a href="http://inmachineswetrust.com/posts/understanding-iterators/"&gt;previous post&lt;/a&gt;, we learned about iterators—one of the most powerful programming constructs. Our discussion divulged their role as a fundamental but hidden component of Python's &lt;code&gt;for&lt;/code&gt; loop, which led to a startling revelation regarding the &lt;code&gt;for&lt;/code&gt; loop itself (no spoilers here). We also discovered how to implement the iterator protocol to create our very own iterators, even constructing ones that represent infinite data structures. In this post, I'd like to build upon our knowledge and introduce a more elegant and efficient means for producing iterators. However, if you're not comfortable with the iterator protocol and the inner workings of iterators, I &lt;em&gt;strongly&lt;/em&gt; recommend familiarizing yourself with &lt;a href="http://inmachineswetrust.com/posts/understanding-iterators/"&gt;Part 1&lt;/a&gt; first.
-&lt;/p&gt;&lt;p&gt;&lt;a href="https://inmachineswetrust.com/posts/understanding-generators/"&gt;Read more…&lt;/a&gt; (8 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>generator</category><category>generator function</category><category>iterator</category><category>python</category><guid>https://inmachineswetrust.com/posts/understanding-generators/</guid><pubDate>Fri, 03 Mar 2017 16:00:00 GMT</pubDate></item><item><title>Building a logistic regression classifier from the ground up</title><link>https://inmachineswetrust.com/posts/building-logistic-regression/</link><dc:creator>Red Huq</dc:creator><description>&lt;div&gt;&lt;style type="text/css"&gt;
-div.prompt {
-	display: none;
-}
-
-div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
-  font-size: 16px;
-  border: 1px solid black;
-}
-
-
-&lt;/style&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The logistic regression classifier is a widely used machine learning model that predicts the group or category that an observation belongs to. When implementing this model, most people rely on some library or API: just hand over a dataset and out come the predictions. However, I'm not a fan of using black boxes without first understanding what's going on inside. In fact, lifting the hood on this classifier provides a segue to more complex models such as neural networks. Therefore, in this post, I'd like to explore the methodology behind logistic regression classifiers and walk through how to construct one from scratch.
-&lt;/p&gt;&lt;p&gt;&lt;a href="https://inmachineswetrust.com/posts/building-logistic-regression/"&gt;Read more…&lt;/a&gt; (15 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>classification</category><category>gradient descent</category><category>logistic regression</category><category>machine learning</category><category>supervised learning</category><guid>https://inmachineswetrust.com/posts/building-logistic-regression/</guid><pubDate>Mon, 13 Feb 2017 16:00:00 GMT</pubDate></item></channel></rss>
+&lt;/p&gt;&lt;p&gt;&lt;a href="https://inmachineswetrust.com/posts/understanding-generators/"&gt;Read more…&lt;/a&gt; (8 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>generator</category><category>generator function</category><category>iterator</category><category>python</category><guid>https://inmachineswetrust.com/posts/understanding-generators/</guid><pubDate>Fri, 03 Mar 2017 16:00:00 GMT</pubDate></item></channel></rss>
