@@ -501,7 +501,7 @@
 'render_taxonomies:output/categories/insight/index.html', (4062720, 4391)
 'scale_images:output/images/insightlogo.png', (2958336, 224)
 'render_taxonomies:output/categories/support-vector-machines.xml', (2958848, 583)
-'sitemap:output/sitemapindex.xml', (2959872, 255)
+'sitemap:output/sitemapindex.xml', (2959872, 254)
 'copy_assets:output/assets/js/html5shiv-printshiv.min.js', (3531776, 818)
 'copy_assets:output/assets/fonts/glyphicons-halflings-regular.ttf', (3680256, 883)
 'render_taxonomies:output/categories/insight.xml', (3633152, 1034)
