@@ -148,7 +148,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <h3 id="The-branch-reference">The branch reference<a class="anchor-link" href="#The-branch-reference">¶</a>
 </h3>
 <p>The first pointer is a <strong>branch reference</strong> (let's call it a <code>BRANCH</code> ref from now on) and it <strong>identifies the most recent commit—the "tip" or present state—of a branch by storing its SHA-1 value</strong> in a file within the directory <code>.git/refs/heads/</code>. Let's take a peek at the <code>BRANCH</code> ref for the <code>master</code> branch.</p>
-<p><img src="../../images/post14/image1.png"></p>
+<p><img src="../../images/post14/terminal_image1.png"></p>
 <p>We see that the abbreviated SHA-1 value for the most recent commit on the <code>master</code> branch matches the value stored in <code>.git/refs/heads/master</code>. As you may have guessed,  the branches <code>branch1</code> and <code>branch2</code> have their own <code>BRANCH</code> refs.</p>
 <h3 id="The-HEAD-reference">The HEAD reference<a class="anchor-link" href="#The-HEAD-reference">¶</a>
 </h3>
@@ -156,7 +156,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <p>While there's a <code>BRANCH</code> ref for each branch, there's only one <code>HEAD</code> ref. By default, <strong>the <code>HEAD</code> ref file stores a <em>pointer</em> to the <code>BRANCH</code> ref of the <em>current</em> branch.</strong> Because we're on the <code>master</code> branch right now, let's visualize what this looks like.</p>
 <p><img src="../../images/post14/git_image1.png"></p>
 <p>Now let's examine the <code>HEAD</code> ref file in the <code>.git</code> directory.</p>
-<p><img src="../../images/post14/image2.png"></p>
+<p><img src="../../images/post14/terminal_image2.png"></p>
 <p>We can see that the file <code>.git/HEAD</code> contains a pointer to the <code>BRANCH</code> ref for the <code>master</code> branch—our current branch. To summarize, think of the <code>HEAD</code> ref as a marker for where you are currently in the repository.</p>
 <p><a id="cell2"></a></p>
 <h2 id="Checking-out-a-branch">Checking out a branch<a class="anchor-link" href="#Checking-out-a-branch">¶</a>
@@ -166,7 +166,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <p>Here's the updated diagram after executing <code>git checkout branch1</code>.</p>
 <p><img src="../../images/post14/git_image2.png"></p>
 <p>Let's also take a look at the <code>HEAD</code> ref file in the <code>.git</code> directory.</p>
-<p><img src="../../images/post14/image3.png"></p>
+<p><img src="../../images/post14/terminal_image3.png"></p>
 <p>I've hacked my terminal to make it pretty, but try executing the default <code>git log</code> while on <code>branch1</code>. That very first line in the log has been concealing the truth the entire time!</p>
 <p><a id="cell3"></a></p>
 <h2 id="Checking-out-a-commit">Checking out a commit<a class="anchor-link" href="#Checking-out-a-commit">¶</a>
@@ -176,7 +176,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <p>If we were to checkout the first commit on <code>branch1</code> (SHA-1 <code>2aaf9c0</code>), the updated diagram would look like:</p>
 <p><img src="../../images/post14/git_image3.png"></p>
 <p>Now let's see what happens when we emulate this in the terminal and inspect the <code>HEAD</code> ref file.</p>
-<p><img src="../../images/post14/image4.png"></p>
+<p><img src="../../images/post14/terminal_image4.png"></p>
 <p>Ignore the scary looking "detached HEAD state" message and focus on the contents of the <code>HEAD</code> ref file. As we can see, it no longer contains a pointer but the full SHA-1 value for the commit we checked out.</p>
 <p><a id="cell4"></a></p>
 <h2 id="Demystifying-the-detached-HEAD-state">Demystifying the detached HEAD state<a class="anchor-link" href="#Demystifying-the-detached-HEAD-state">¶</a>
@@ -199,7 +199,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <p>We'll demo this by checking out the second commit of <code>branch1</code>, creating a new file, submitting a commit, and then finally creating a new branch <code>branch3</code>. The updated diagram would look like:</p>
 <p><img src="../../images/post14/git_image5.png"></p>
 <p>Next, let's execute the corresponding  commands in the terminal.</p>
-<p><img src="../../images/post14/image5.png"></p>
+<p><img src="../../images/post14/terminal_image5.png"></p>
 <p>Notice that creating <code>branch3</code> not only let us leave the detached <code>HEAD</code> state, but the contents of the <code>HEAD</code> ref file once again oints to a <code>BRANCH</code> ref.</p>
 <p><a id="cell5"></a></p>
 <h2 id="When-and-why-git-checkout-sometimes-doesn't-work">When and why git checkout sometimes doesn't work<a class="anchor-link" href="#When-and-why-git-checkout-sometimes-doesn't-work">¶</a>
@@ -211,7 +211,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 <p>In this final section, we'll explain when and why this scenario occurs and how to deal with it.</p>
 <p>Let's say we made a change—either modified the contents of a file, deleted it, or added a new file entirely. If that change exists in our working directory or index (some call it the staging area), attempting to checkout a commit or an existing branch will fail <em>if that change is in conflict</em> with the state of the working directory or index, respectively, of the target commit or branch.</p>
 <p>I'll admit that's a lot to digest so to help explain it, let's start on <code>branch1</code>, modify <code>file1.py</code> (i.e., introduce a change in the working directory), and try to switch to <code>branch2</code>, which also contains a <code>file1.py</code>.</p>
-<p><img src="../../images/post14/image6.png"></p>
+<p><img src="../../images/post14/terminal_image6.png"></p>
 <p>Because our changed <code>file1.py</code> in the working directory would be overwritten by the same file in the working directory on <code>branch2</code>, git actually does us a favor and asks us what we'd like to do with the change we made (hey it could be important). And we have 3 options: <strong>either commit, stash, or discard the changes.</strong> After selecting one of these options, we'd be free to switch to <code>branch2</code>.</p>
 <p>The same rules apply if:</p>
 <ul>
@@ -220,7 +220,7 @@ div.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td
 </li>
 </ul>
 <p>To really hit this home, let's introduce a different change by creating a new file <code>file3.py</code> on <code>branch1</code>, <em>adding it to the index</em>, and then attempting to switch to <code>branch2</code>.</p>
-<p><img src="../../images/post14/image7.png"></p>
+<p><img src="../../images/post14/terminal_image7.png"></p>
 <p>Notice that git doesn't stop us from checking out <code>branch2</code>. In fact, git allows us to bring that change over to <code>branch2</code>. This is because <code>branch2</code> doesn't already have a <code>file3.py</code> in its index and therefore, no conflict is present.</p>
 <p>One last point and it might be obvious but <strong>checking out a branch will <em>never</em> fail when creating a new branch</strong> regardless of what changes are currently present in the working directory or index. This makes sense because the working directory and index of a new branch will never, by definition, be in conflict with the original branch.</p>
 <p>In summary, during a <strong><code>git checkout &lt;branch&gt;</code> or <code>git checkout &lt;commit&gt;</code>, both the working directory and index will be updated</strong>. If there are any conflicts present, we'd need to address them.</p>
