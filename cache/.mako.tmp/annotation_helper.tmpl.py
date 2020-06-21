@@ -1,15 +1,15 @@
-# -*- coding:utf-8 -*-
+# -*- coding:ascii -*-
 from mako import runtime, filters, cache
 UNDEFINED = runtime.UNDEFINED
 STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1592770988.096899
+_modified_time = 1592772000.051027
 _enable_loop = True
-_template_filename = '/mnt/f/miniconda3/envs/blog/lib/python3.8/site-packages/nikola/data/themes/base/templates/annotation_helper.tmpl'
+_template_filename = '/home/red/miniconda3/envs/blog/lib/python3.7/site-packages/nikola/data/themes/base/templates/annotation_helper.tmpl'
 _template_uri = 'annotation_helper.tmpl'
-_source_encoding = 'utf-8'
+_source_encoding = 'ascii'
 _exports = ['css', 'code']
 
 
@@ -47,6 +47,6 @@ def render_code(context):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/mnt/f/miniconda3/envs/blog/lib/python3.8/site-packages/nikola/data/themes/base/templates/annotation_helper.tmpl", "uri": "annotation_helper.tmpl", "source_encoding": "utf-8", "line_map": {"16": 0, "21": 3, "22": 16, "28": 1, "32": 1, "38": 5, "42": 5, "48": 42}}
+{"filename": "/home/red/miniconda3/envs/blog/lib/python3.7/site-packages/nikola/data/themes/base/templates/annotation_helper.tmpl", "uri": "annotation_helper.tmpl", "source_encoding": "ascii", "line_map": {"16": 0, "21": 3, "22": 16, "28": 1, "32": 1, "38": 5, "42": 5, "48": 42}}
 __M_END_METADATA
 """
