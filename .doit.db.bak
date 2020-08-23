@@ -485,7 +485,7 @@
 'render_sources:output/posts/understanding-iterators/index.ipynb', (2909184, 237)
 'create_bundles:output/assets/css/all-nocdn.css', (2909696, 921)
 'render_sources:output/posts/deep-learning-setup/index.ipynb', (2910720, 236)
-'sitemap:output/sitemap.xml', (4247040, 16806)
+'sitemap:output/sitemap.xml', (4247040, 16807)
 'render_taxonomies:output/categories/n-grams.xml', (2924032, 568)
 'render_taxonomies:output/categories/scikit-learn/index.html', (4045824, 4333)
 'render_galleries:output/galleries/index.html', (3921408, 8807)
